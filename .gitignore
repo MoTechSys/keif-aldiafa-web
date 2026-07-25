@@ -1,0 +1,10 @@
+node_modules/
+.next/
+dist/
+*.log
+tsconfig.tsbuildinfo
+
+# Local images (tracked via Git LFS)
+# public/images/
+reports/shots/
+.env*
