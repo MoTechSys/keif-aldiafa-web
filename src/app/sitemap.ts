@@ -44,6 +44,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/about", priority: 0.7, changeFrequency: "monthly" as const, lastModified: DATES.about },
     { path: "/contact", priority: 0.8, changeFrequency: "monthly" as const, lastModified: DATES.contact },
     { path: "/locations", priority: 0.8, changeFrequency: "monthly" as const, lastModified: DATES.locations },
+    { path: "/social", priority: 0.6, changeFrequency: "monthly" as const, lastModified: DATES.contact },
     { path: "/legal", priority: 0.3, changeFrequency: "yearly" as const, lastModified: DATES.legal },
     ...cityRoutes,
     ...serviceCityRoutes,
