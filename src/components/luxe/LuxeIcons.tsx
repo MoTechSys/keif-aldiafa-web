@@ -1,35 +1,124 @@
 /**
- * LuxeIcons.tsx — أيقونات SVG مرسومة يدوياً بعمق ثلاثي الأبعاد.
+ * LuxeIcons.tsx — أيقونات ذهبية مجسّمة (3D) بإضاءة SVG حقيقية.
  *
- * سبب وجودها: القالب السابق كان يستخدم إيموجي (👤 🏢 ☰) — تُرسم بخط
- * النظام فتختلف شكلاً بين أندرويد وآيفون وويندوز، ولا تقبل التلوين،
- * وتُقرأ كنص لدى قارئ الشاشة. البديل: SVG بتدرّج ذهبي + ظل داخلي
- * (feDropShadow) + إبراز عُلوي، فتبدو معدنية مجسّمة وتُطبع بدقة أي حجم.
+ * ═══ لماذا أُعيد بناؤها بالكامل ═══
+ * الإصدار السابق كان خطوطاً (stroke-width 1.5) بتدرّج ذهبي. الخطّ الرقيق
+ * لا يمكن أن يبدو مجسّماً مهما لُوّن، لأن الجسم المجسّم يحتاج ثلاثة أشياء
+ * لا يملكها الخطّ: كتلة تعكس الضوء، حافة مضيئة، وظلّ يُرسّخه في الفضاء.
  *
- * كل أيقونة: مسار واحد نظيف، viewBox 24، لا تبعية خارجية.
+ * ═══ التقنية المستخدمة ═══
+ * 1) صورة ظلّية مملوءة (fill) بدل الخطّ ⇒ صار للأيقونة كتلة.
+ * 2) <feSpecularLighting> + <fePointLight> ⇒ إضاءة حقيقية يحسبها المتصفّح
+ *    من قناة الشفافية، فتظهر الحافة العلوية-اليسرى لامعة والسفلية معتمة.
+ *    هذا ليس تدرّجاً مرسوماً يدوياً بل إضاءة تُحسب — وهو فرق مرئي.
+ * 3) شريط انعكاس داخل التدرّج الذهبي (stop عند 58% أفتح من جاره).
+ *    هذه هي العلامة الفارقة للمعدن: الذهب لا يتدرّج تدرّجاً خطياً، بل
+ *    ينعكس فيه المحيط فيُنتج شريطاً فاتحاً في منتصف الكتلة الداكنة.
+ * 4) <feDropShadow> بإزاحة رأسية ⇒ ظلّ يُثبّت الأيقونة على السطح.
+ *
+ * القياس البصري لمراجع العميل أعطى الأرقام: إبراز #EAD5A5،
+ * وسط #C5A880، ظلّ #8E704C — وهي المستخدمة أدناه حرفياً.
  */
 
 import type { SVGProps } from "react";
 
-/** التدرّجات المشتركة — تُحقن مرة واحدة في الصفحة */
+/** التعريفات المشتركة — تُحقن مرة واحدة في الصفحة */
 export function LuxeIconDefs() {
   return (
     <svg width="0" height="0" aria-hidden="true" style={{ position: "absolute" }}>
       <defs>
-        {/* تدرّج ذهبي معدني: فاتح أعلى-يسار، غامق أسفل-يمين */}
-        <linearGradient id="lxAu" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#F6E3BC" />
-          <stop offset="38%" stopColor="#D8A877" />
-          <stop offset="72%" stopColor="#C5A059" />
-          <stop offset="100%" stopColor="#8A6A2F" />
+        {/* ── الذهب المعدني: لاحظ شريط الانعكاس عند 56% ── */}
+        <linearGradient id="lxAu" x1="0.08" y1="0" x2="0.92" y2="1">
+          <stop offset="0%" stopColor="#FFF7E6" />
+          <stop offset="14%" stopColor="#EAD5A5" />
+          <stop offset="32%" stopColor="#D8A877" />
+          <stop offset="46%" stopColor="#A97F45" />
+          <stop offset="56%" stopColor="#EBD3A0" />
+          <stop offset="74%" stopColor="#C5A880" />
+          <stop offset="100%" stopColor="#8E704C" />
         </linearGradient>
-        {/* ظل داخلي يعطي إحساس النقش */}
-        <filter id="lxDepth" x="-30%" y="-30%" width="160%" height="160%">
-          <feDropShadow dx="0" dy="1.1" stdDeviation="0.9" floodColor="#000" floodOpacity="0.55" />
+
+        {/* ذهب أغمق للأجزاء الخلفية — يخلق ترتيب العمق داخل الأيقونة */}
+        <linearGradient id="lxAuDeep" x1="0.1" y1="0" x2="0.9" y2="1">
+          <stop offset="0%" stopColor="#C9A56F" />
+          <stop offset="52%" stopColor="#96733F" />
+          <stop offset="100%" stopColor="#6B5230" />
+        </linearGradient>
+
+        {/* لمعة زجاجية للإبراز العُلوي */}
+        <linearGradient id="lxSpec" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#FFFDF6" stopOpacity="0.92" />
+          <stop offset="100%" stopColor="#FFFDF6" stopOpacity="0" />
+        </linearGradient>
+
+        {/* ── الإضاءة المجسّمة: هذا هو مصدر إحساس 3D ──
+            المتصفّح يبني خريطة ارتفاع من قناة الشفافية ثم يضيئها
+            من نقطة أعلى-يسار، فتنشأ حافة لامعة وحافة معتمة تلقائياً. */}
+        <filter id="lx3d" x="-40%" y="-40%" width="180%" height="180%">
+          <feGaussianBlur in="SourceAlpha" stdDeviation="0.55" result="bump" />
+          <feSpecularLighting
+            in="bump"
+            surfaceScale="2.6"
+            specularConstant="0.95"
+            specularExponent="19"
+            lightingColor="#FFF6E2"
+            result="spec"
+          >
+            <fePointLight x="-24" y="-34" z="58" />
+          </feSpecularLighting>
+          <feComposite in="spec" in2="SourceAlpha" operator="in" result="specIn" />
+          <feComposite
+            in="SourceGraphic"
+            in2="specIn"
+            operator="arithmetic"
+            k1="0"
+            k2="1"
+            k3="1"
+            k4="0"
+            result="lit"
+          />
+          <feDropShadow
+            in="lit"
+            dx="0"
+            dy="0.9"
+            stdDeviation="0.75"
+            floodColor="#0a0705"
+            floodOpacity="0.62"
+          />
         </filter>
-        {/* هالة ذهبية للأيقونات الكبيرة */}
-        <filter id="lxGlow" x="-50%" y="-50%" width="200%" height="200%">
-          <feDropShadow dx="0" dy="0" stdDeviation="1.6" floodColor="#D8A877" floodOpacity="0.55" />
+
+        {/* نسخة بهالة ذهبية للأيقونات الكبيرة */}
+        <filter id="lx3dGlow" x="-60%" y="-60%" width="220%" height="220%">
+          <feGaussianBlur in="SourceAlpha" stdDeviation="0.55" result="bump" />
+          <feSpecularLighting
+            in="bump"
+            surfaceScale="2.6"
+            specularConstant="0.95"
+            specularExponent="19"
+            lightingColor="#FFF6E2"
+            result="spec"
+          >
+            <fePointLight x="-24" y="-34" z="58" />
+          </feSpecularLighting>
+          <feComposite in="spec" in2="SourceAlpha" operator="in" result="specIn" />
+          <feComposite
+            in="SourceGraphic"
+            in2="specIn"
+            operator="arithmetic"
+            k1="0"
+            k2="1"
+            k3="1"
+            k4="0"
+            result="lit"
+          />
+          <feDropShadow
+            in="lit"
+            dx="0"
+            dy="0"
+            stdDeviation="1.5"
+            floodColor="#D8A877"
+            floodOpacity="0.6"
+          />
         </filter>
       </defs>
     </svg>
@@ -38,16 +127,13 @@ export function LuxeIconDefs() {
 
 type P = SVGProps<SVGSVGElement> & { glow?: boolean };
 
+/** الحاوية: كتلة مملوءة + إضاءة محسوبة (لا خطوط) */
 function Base({ children, glow, ...p }: P & { children: React.ReactNode }) {
   return (
     <svg
       viewBox="0 0 24 24"
-      fill="none"
-      stroke="url(#lxAu)"
-      strokeWidth={1.5}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      filter={glow ? "url(#lxGlow)" : "url(#lxDepth)"}
+      fill="url(#lxAu)"
+      filter={glow ? "url(#lx3dGlow)" : "url(#lx3d)"}
       aria-hidden="true"
       focusable="false"
       {...p}
@@ -61,12 +147,28 @@ function Base({ children, glow, ...p }: P & { children: React.ReactNode }) {
 export function IconDallah(p: P) {
   return (
     <Base {...p}>
-      <path d="M9.2 8.6h5.6c1.2 0 2.1 1 2 2.2l-.6 6.4a2.2 2.2 0 0 1-2.2 2H10a2.2 2.2 0 0 1-2.2-2l-.6-6.4c-.1-1.2.8-2.2 2-2.2Z" />
-      <path d="M14.8 9.4c1.6-.5 2.6-1.4 2.6-2.4 0-.8-.6-1.4-1.4-1.6" />
-      <path d="M9.2 11.2c-1.5.3-2.4 1-2.4 1.9 0 .9.9 1.6 2.3 1.9" />
-      <path d="M11 8.6V6.4M13 8.6V6.4" />
-      <path d="M10.6 5.2h2.8" />
-      <path d="M10.4 19.2h3.2" opacity="0.55" />
+      {/* المصبّ والمقبض بذهب أغمق ⇒ يقعان خلف الجسم في ترتيب العمق */}
+      <path
+        fill="url(#lxAuDeep)"
+        d="M15.1 6.1c1.9.35 3.1 1.4 3.1 2.7 0 1.35-1.3 2.4-3.3 2.85l-.34-1.5c1.25-.3 1.94-.85 1.94-1.35 0-.47-.6-.98-1.7-1.24l.3-1.46Z"
+      />
+      <path
+        fill="url(#lxAuDeep)"
+        d="M8.8 11.7l.3 1.48c-1.05.26-1.62.72-1.62 1.15 0 .44.6.91 1.72 1.16l-.33 1.5C6.86 16.55 5.6 15.5 5.6 14.2c0-1.28 1.2-2.13 3.2-2.5Z"
+      />
+      {/* الجسم */}
+      <path d="M8.5 8.9h7c1.28 0 2.28 1.1 2.16 2.38l-.62 6.42A2.75 2.75 0 0 1 14.3 20.2H9.7a2.75 2.75 0 0 1-2.74-2.5l-.62-6.42A2.17 2.17 0 0 1 8.5 8.9Z" />
+      {/* العنق والغطاء */}
+      <path d="M9.9 5.4h4.2l.62 3.5H9.28l.62-3.5Z" />
+      <path d="M10.9 3.5h2.2a.95.95 0 0 1 0 1.9h-2.2a.95.95 0 0 1 0-1.9Z" />
+      {/* القاعدة */}
+      <path d="M8 20.5h8a.8.8 0 0 1 0 1.6H8a.8.8 0 0 1 0-1.6Z" />
+      {/* لمعة زجاجية على الكتف الأيسر — الحافة التي تلتقط الضوء */}
+      <path
+        fill="url(#lxSpec)"
+        opacity="0.5"
+        d="M9.5 10.3c.9 0 1.3.5 1.15 1.2l-.5 4.3c-.1.62-.5.95-1 .85-.5-.1-.75-.55-.68-1.2l.42-4.3c.06-.55.25-.85.61-.85Z"
+      />
     </Base>
   );
 }
@@ -75,32 +177,64 @@ export function IconDallah(p: P) {
 export function IconCup(p: P) {
   return (
     <Base {...p}>
-      <path d="M7.6 8.4h8.8l-.7 6.2a2.4 2.4 0 0 1-2.4 2.1h-2.6a2.4 2.4 0 0 1-2.4-2.1L7.6 8.4Z" />
-      <path d="M16.2 10.2c1.3 0 2.2.7 2.2 1.7s-.9 1.7-2 1.8" />
-      <path d="M5.6 19.2h12.8" />
-      <path d="M10.4 5.6c0 .8-.8 1.1-.8 1.9M13.4 5.2c0 .9-.9 1.3-.9 2.2" opacity="0.7" />
+      <path
+        fill="url(#lxAuDeep)"
+        d="M16.2 9.8c1.7.1 2.9 1.1 2.9 2.4 0 1.3-1.2 2.3-2.85 2.42l-.15-1.62c.85-.08 1.4-.45 1.4-.8 0-.36-.55-.71-1.42-.79l.12-1.61Z"
+      />
+      <path d="M6.9 8.1h10.2l-.82 6.7a3 3 0 0 1-2.98 2.6h-2.6a3 3 0 0 1-2.98-2.6L6.9 8.1Z" />
+      <path d="M5.2 18.6h13.6a.85.85 0 0 1 0 1.7H5.2a.85.85 0 0 1 0-1.7Z" />
+      {/* بخار */}
+      <path
+        opacity="0.75"
+        d="M10.5 3.4c.55.7.3 1.3-.1 1.85-.4.55-.55 1-.1 1.65l-.9.5c-.7-1-.42-1.85.02-2.45.44-.6.5-.9.18-1.35l.9-.2Z"
+      />
+      <path
+        opacity="0.55"
+        d="M13.6 3.9c.5.65.28 1.2-.1 1.7-.37.5-.5.9-.1 1.5l-.85.45c-.63-.92-.38-1.7.03-2.25.4-.55.45-.82.16-1.22l.86-.18Z"
+      />
+      <path
+        fill="url(#lxSpec)"
+        opacity="0.45"
+        d="M9 9.4c.75 0 1.05.45.95 1.05l-.5 3.4c-.08.55-.42.85-.85.75-.43-.1-.62-.5-.55-1.05l.4-3.4c.05-.5.22-.75.55-.75Z"
+      />
     </Base>
   );
 }
 
-/** طاقم — ثلاثة أشخاص */
+/** طاقم — ثلاثة أشخاص، الأماميّ أفتح ⇒ عمق */
 export function IconCrew(p: P) {
   return (
     <Base {...p}>
-      <circle cx="12" cy="7.6" r="2.7" />
-      <path d="M7.4 19.4c0-2.6 2.1-4.4 4.6-4.4s4.6 1.8 4.6 4.4" />
-      <path d="M6.2 11.4a2 2 0 1 0-.1-4M4 17.8c0-1.6.9-2.8 2.3-3.3" opacity="0.65" />
-      <path d="M17.8 11.4a2 2 0 1 1 .1-4M20 17.8c0-1.6-.9-2.8-2.3-3.3" opacity="0.65" />
+      <g fill="url(#lxAuDeep)">
+        <circle cx="5.6" cy="9.1" r="2.15" />
+        <path d="M1.8 18c0-2.15 1.45-3.75 3.5-3.95l.6 1.5c-1.35.3-2.2 1.25-2.2 2.45H1.8Z" />
+        <circle cx="18.4" cy="9.1" r="2.15" />
+        <path d="M22.2 18c0-2.15-1.45-3.75-3.5-3.95l-.6 1.5c1.35.3 2.2 1.25 2.2 2.45h1.9Z" />
+      </g>
+      <circle cx="12" cy="7.5" r="3.1" />
+      <path d="M6.4 19.4c0-3.1 2.5-5.2 5.6-5.2s5.6 2.1 5.6 5.2v.55a.6.6 0 0 1-.6.6H7a.6.6 0 0 1-.6-.6v-.55Z" />
+      <ellipse fill="url(#lxSpec)" opacity="0.5" cx="10.7" cy="6.2" rx="1" ry="1.3" />
     </Base>
   );
 }
 
-/** درع/ضمان */
+/** درع/ضمان — كتلة مقوّسة بحافة داخلية */
 export function IconShield(p: P) {
   return (
     <Base {...p}>
-      <path d="M12 3.4l6.6 2.4v5.6c0 4-2.7 7.4-6.6 8.8-3.9-1.4-6.6-4.8-6.6-8.8V5.8L12 3.4Z" />
-      <path d="M9.2 11.8l2 2.1 3.7-4.2" />
+      <path d="M12 2.2l8 2.9v6.1c0 4.9-3.25 9.05-8 10.6-4.75-1.55-8-5.7-8-10.6V5.1l8-2.9Z" />
+      {/* التجويف الداخلي: نفس شكل الدرع مصغّراً بلون أغمق ⇒ إحساس النقش */}
+      <path
+        fill="url(#lxAuDeep)"
+        d="M12 4.5l5.8 2.1v4.6c0 3.6-2.35 6.65-5.8 7.85-3.45-1.2-5.8-4.25-5.8-7.85V6.6L12 4.5Z"
+      />
+      {/* صحّ مرفوع */}
+      <path d="M10.85 14.6L8 11.8l1.5-1.5 1.35 1.35 3.65-3.9L16 9.25l-5.15 5.35Z" />
+      <path
+        fill="url(#lxSpec)"
+        opacity="0.42"
+        d="M12 2.9l3 1.1-1 1.9L12 5.2 9.9 5.9 9 4Z"
+      />
     </Base>
   );
 }
@@ -109,9 +243,14 @@ export function IconShield(p: P) {
 export function IconClock(p: P) {
   return (
     <Base {...p}>
-      <circle cx="12" cy="12.4" r="7.8" />
-      <path d="M12 8.2v4.4l3 1.9" />
-      <path d="M12 3.2v1.4M20.6 12.4h1.2M12 20.2v1.4M2.2 12.4h1.2" opacity="0.6" />
+      <circle cx="12" cy="12.3" r="9" />
+      <circle fill="url(#lxAuDeep)" cx="12" cy="12.3" r="6.9" />
+      <path d="M11.05 6.9h1.9v5.55l3.6 2.2-1 1.62-4.5-2.75V6.9Z" />
+      <path
+        fill="url(#lxSpec)"
+        opacity="0.4"
+        d="M12 3.6a8.7 8.7 0 0 1 6 2.4l-1.3 1.35A6.85 6.85 0 0 0 12 5.5c-1.8 0-3.4.65-4.6 1.7L6.05 5.9A8.7 8.7 0 0 1 12 3.6Z"
+      />
     </Base>
   );
 }
@@ -120,8 +259,13 @@ export function IconClock(p: P) {
 export function IconPin(p: P) {
   return (
     <Base {...p}>
-      <path d="M12 21.2s6.4-5.3 6.4-10.2A6.4 6.4 0 0 0 5.6 11c0 4.9 6.4 10.2 6.4 10.2Z" />
-      <circle cx="12" cy="10.6" r="2.4" />
+      <path d="M12 1.9a7.35 7.35 0 0 1 7.35 7.35c0 5.15-5.9 11.05-7.35 12.85-1.45-1.8-7.35-7.7-7.35-12.85A7.35 7.35 0 0 1 12 1.9Z" />
+      <circle fill="url(#lxAuDeep)" cx="12" cy="9.15" r="2.95" />
+      <path
+        fill="url(#lxSpec)"
+        opacity="0.45"
+        d="M12 3.2c1.6 0 3.05.6 4.15 1.6l-1.3 1.35A4.35 4.35 0 0 0 12 5c-1.05 0-2 .35-2.75.95L7.9 4.65A6.05 6.05 0 0 1 12 3.2Z"
+      />
     </Base>
   );
 }
@@ -130,24 +274,40 @@ export function IconPin(p: P) {
 export function IconIncense(p: P) {
   return (
     <Base {...p}>
-      <path d="M8.4 12.6h7.2l-.5 5.2a1.9 1.9 0 0 1-1.9 1.7h-2.4a1.9 1.9 0 0 1-1.9-1.7l-.5-5.2Z" />
-      <path d="M7.6 12.6h8.8" />
-      <path d="M10.6 19.5h2.8" opacity="0.5" />
-      <path d="M12 10.4c-1.1-1 .3-2 -.4-3.2M14.6 10c-.9-.8.2-1.6-.3-2.6" opacity="0.75" />
+      {/* الدخان — أرفع وأغمق ⇒ يقع خلف المبخرة */}
+      <g fill="url(#lxAuDeep)" opacity="0.9">
+        <path d="M11.4 9.9c-1.15-1.1-.75-2.05-.15-2.85.6-.8.7-1.3.2-2.05l1.15-.5c.85 1.25.6 2.3-.05 3.15-.65.85-.75 1.2-.25 1.7l-.9.55Z" />
+        <path d="M14.4 9.6c-.95-.9-.62-1.7-.12-2.35.5-.65.58-1.05.17-1.68l.95-.42c.7 1.03.5 1.9-.04 2.6-.54.7-.62 1-.2 1.4l-.76.45Z" />
+      </g>
+      {/* الغطاء المثقّب */}
+      <path d="M7.4 11.6h9.2a.85.85 0 0 1 0 1.7H7.4a.85.85 0 0 1 0-1.7Z" />
+      {/* الجسم */}
+      <path d="M8.1 13.6h7.8l-.62 5.35a2.55 2.55 0 0 1-2.53 2.25h-1.5a2.55 2.55 0 0 1-2.53-2.25L8.1 13.6Z" />
+      <path
+        fill="url(#lxSpec)"
+        opacity="0.45"
+        d="M9.9 14.5c.6 0 .85.4.78.95l-.42 3.1c-.07.5-.36.78-.74.68-.38-.1-.53-.45-.47-.95l.36-3.1c.05-.45.2-.68.49-.68Z"
+      />
     </Base>
   );
 }
 
-/** نجمة — تقييم */
+/** نجمة — كتلة مملوءة بحافة داخلية */
 export function IconStar(p: P) {
   return (
-    <Base {...p} fill="url(#lxAu)" strokeWidth={0.8}>
-      <path d="M12 4.2l2.4 4.9 5.4.8-3.9 3.8.9 5.4-4.8-2.5-4.8 2.5.9-5.4L4.2 9.9l5.4-.8L12 4.2Z" />
+    <Base {...p}>
+      <path d="M12 2.1l3.05 6.15 6.8 1-4.92 4.8 1.16 6.78L12 17.62 5.91 20.83l1.16-6.78L2.15 9.25l6.8-1L12 2.1Z" />
+      <path
+        fill="url(#lxAuDeep)"
+        opacity="0.85"
+        d="M12 6.15l1.85 3.72 4.1.6-2.97 2.9.7 4.1L12 15.53 8.32 17.47l.7-4.1-2.97-2.9 4.1-.6L12 6.15Z"
+      />
+      <path fill="url(#lxSpec)" opacity="0.5" d="M12 2.1l1.5 3.05-1.5 1.15-1.5-1.15L12 2.1Z" />
     </Base>
   );
 }
 
-/** واتساب */
+/** واتساب — يبقى بلون التطبيق لأن التعرّف عليه فوري وله قيمة وظيفية */
 export function IconWhatsApp(p: SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false" {...p}>
@@ -156,11 +316,16 @@ export function IconWhatsApp(p: SVGProps<SVGSVGElement>) {
   );
 }
 
-/** هاتف */
+/** هاتف — كتلة مجسّمة */
 export function IconPhone(p: P) {
   return (
     <Base {...p}>
-      <path d="M4.4 5.6a2 2 0 0 1 2-2h2.4a1 1 0 0 1 .95.68l1.2 3.6a1 1 0 0 1-.5 1.2l-1.7.86a11 11 0 0 0 5.06 5.06l.86-1.7a1 1 0 0 1 1.2-.5l3.6 1.2a1 1 0 0 1 .68.95v2.4a2 2 0 0 1-2 2h-.7C9.3 19.35 4.4 14.45 4.4 6.3v-.7Z" />
+      <path d="M3.9 5.4a2.5 2.5 0 0 1 2.5-2.5h2.35a1.5 1.5 0 0 1 1.43 1.03l1.2 3.62a1.5 1.5 0 0 1-.74 1.8l-1.1.56a9.4 9.4 0 0 0 3.98 3.98l.56-1.1a1.5 1.5 0 0 1 1.8-.74l3.62 1.2a1.5 1.5 0 0 1 1.03 1.43V17a2.5 2.5 0 0 1-2.5 2.5h-.72C9.06 19.5 3.9 14.34 3.9 6.12V5.4Z" />
+      <path
+        fill="url(#lxSpec)"
+        opacity="0.4"
+        d="M6.4 4.4h2.2l.55 1.7H6.4a.6.6 0 0 0-.6.6V4.98c0-.32.26-.58.6-.58Z"
+      />
     </Base>
   );
 }
@@ -168,17 +333,26 @@ export function IconPhone(p: P) {
 /** سهم للروابط (RTL — يشير لليسار) */
 export function IconArrow(p: P) {
   return (
-    <Base {...p} strokeWidth={1.7}>
-      <path d="M19 12H5" />
-      <path d="M11 6l-6 6 6 6" />
+    <Base {...p}>
+      <path d="M10.7 4.9l1.62 1.6-4.35 4.35H20v2.3H7.97l4.35 4.35-1.62 1.6-6.7-7.1 6.7-7.1Z" />
     </Base>
   );
 }
 
-/** شعار مصغّر للـ crest — نخلة مبسّطة */
+/** شعار مصغّر للـ crest — نخلة مبسّطة، تبقى داكنة لأنها فوق قرص ذهبي */
 export function IconCrestMark(p: SVGProps<SVGSVGElement>) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="#16110a" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false" {...p}>
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="#16110a"
+      strokeWidth={1.8}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      focusable="false"
+      {...p}
+    >
       <path d="M12 20.5V11" />
       <path d="M12 11c-2.6-2.2-5.4-2-6.6-.6M12 11c2.6-2.2 5.4-2 6.6-.6" />
       <path d="M12 11c-1.6-3-4-3.8-5.6-3.2M12 11c1.6-3 4-3.8 5.6-3.2" />

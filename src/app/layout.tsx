@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Tajawal, Cairo } from "next/font/google";
+import { Tajawal, Cairo, Marcellus } from "next/font/google";
 import "@/styles/globals.css";
 // طبقة الفخامة — إضافية بالكامل ومحصورة داخل .luxe فلا تؤثر على بقية الصفحات
 import "@/styles/luxe.css";
@@ -28,6 +28,17 @@ const cairo = Cairo({
   display: "swap",
   variable: "--font-cairo",
   preload: true,
+});
+
+/* Marcellus — خط عرض لاتيني بروماني رفيع (serif).
+   السبب: التحليل البصري لمراجع العميل أظهر أن كل تصميم فاخر يزاوج
+   خط عرض serif مع sans للنص. الموقع كان يستخدم Cairo (sans) للجميع
+   فبدا مسطّحاً. يُستخدم للأرقام والوسمات اللاتينية والميداليات فقط. */
+const marcellus = Marcellus({
+  subsets: ["latin"],
+  weight: ["400"],
+  display: "swap",
+  variable: "--font-marcellus",
 });
 
 export const metadata: Metadata = {
@@ -151,7 +162,7 @@ export default function RootLayout({
     <html
       lang="ar"
       dir="rtl"
-      className={`scroll-smooth ${tajawal.variable} ${cairo.variable}`}
+      className={`scroll-smooth ${tajawal.variable} ${cairo.variable} ${marcellus.variable}`}
     >
       <head>
         {/* Google tag (gtag.js) — محقون مباشرة في <head> (ليظهر في HTML المُقدّم فوراً

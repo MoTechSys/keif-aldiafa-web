@@ -27,10 +27,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { LocalServicePageProps } from "@/components/LocalServicePage";
-import { HERO, CREW, EQUIPMENT, DALLAH, GALLERY, SECTIONS, LOGO, FRAME } from "@/lib/luxeAssets";
+import { HERO, CREW, EQUIPMENT, DALLAH, DALLAH_SILVER, GALLERY, SECTIONS, FRAME } from "@/lib/luxeAssets";
 import { PROTOCOL, STANDARDS, KIT, OBJECTIONS, BADGES } from "@/lib/luxeCopy";
 import LuxeReveal from "./LuxeReveal";
-import LuxeQuote from "./LuxeQuote";
+import LuxeRequest from "./LuxeRequest";
 import {
   LuxeIconDefs,
   IconDallah,
@@ -91,121 +91,110 @@ export default function LuxeServicePage(props: LocalServicePageProps) {
       <LuxeIconDefs />
       <LuxeReveal />
 
-      {/* ══════════════════ الهيرو ══════════════════
-          نصّي على عمق كحلي، لا صورة مقصوصة خلف النص.
-          الشعار الأصلي في الأعلى، والـ CTA مرئي على الهاتف بلا تمرير. */}
-      <section className="relative px-4 pt-24 pb-14 sm:pt-28 sm:pb-16 md:pt-32">
-        <div className="max-w-5xl mx-auto text-center">
-          {/* مسار التنقّل */}
-          <nav aria-label="مسار التنقّل" className="mb-7 text-[0.72rem] text-[--lx-cream-55]">
-            <ol className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1">
-              {props.breadcrumbItems.map((b, i) => (
-                <li key={b.href} className="flex items-center gap-2">
-                  {i > 0 && (
-                    <span aria-hidden="true" className="text-[--lx-gold-deep]">
-                      ·
-                    </span>
-                  )}
-                  {i < props.breadcrumbItems.length - 1 ? (
-                    <Link href={b.href} className="hover:text-[--lx-gold-warm] transition-colors">
-                      {b.label}
-                    </Link>
-                  ) : (
-                    <span className="text-[--lx-cream-75]">{b.label}</span>
-                  )}
-                </li>
-              ))}
-            </ol>
-          </nav>
-
-          {/* الشعار الأصلي — يظهر على الشاشات الواسعة فقط.
-              السبب: على الهاتف يحمله الناف بار في الأعلى مباشرة، فتكراره
-              على بُعد بكسلات قليلة يقرأ كخطأ نسخ لا كقصد تصميمي. */}
+      {/* ══════════════════ الهيرو — بصري أولاً ══════════════════
+          إعادة بناء كاملة بعد قياس مراجع العميل:
+            المراجع: 30–35 كلمة في الشاشة، 55–65% منها صورة.
+            الإصدار السابق: هيرو نصّي + intro كامل + 3 شارات = ~90 كلمة.
+          القرار: الصورة تملأ الشاشة الأولى، والنص 12 كلمة فقط + زر واحد.
+          الانطباع في أول 5 ثوانٍ يُبنى بالصورة لا بالقراءة. */}
+      <section className="relative">
+        {/* الصورة تحتل الشاشة الأولى كاملة على الهاتف (85vh) */}
+        <div className="relative h-[85svh] min-h-[520px] max-h-[760px] w-full overflow-hidden">
           <Image
-            src={LOGO.mark}
-            alt="كيف الضيافة"
-            width={96}
-            height={96}
+            src={HERO.src}
+            alt={HERO.alt}
+            fill
             priority
-            className="hidden md:block mx-auto mb-6 w-[92px] h-[92px] drop-shadow-[0_10px_28px_rgba(216,168,119,0.32)]"
+            sizes="100vw"
+            className="object-cover"
+            style={{ objectPosition: HERO.focus }}
+          />
+          {/* تعميق سينمائي: حافتان داكنتان تُبرزان النص بلا حاجب مسطّح */}
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background:
+                "linear-gradient(to top, rgba(13,10,8,0.97) 4%, rgba(13,10,8,0.62) 30%, rgba(13,10,8,0.14) 58%, rgba(13,10,8,0.5) 100%)",
+            }}
+          />
+          {/* توهّج عنبري خفيف من اليمين — الدفء الذي كشفه القياس */}
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background:
+                "radial-gradient(ellipse 60% 45% at 82% 22%, rgba(216,168,119,0.20), transparent 70%)",
+            }}
           />
 
-          <p className="lx-eyebrow justify-center mb-3">
-            <IconPin className="w-4 h-4" />
-            {props.cityAr}
-          </p>
+          {/* النص: 12 كلمة. لا مقدّمة، لا شارات، لا رقم هاتف. */}
+          <div className="absolute inset-x-0 bottom-0 px-5 pb-9 sm:pb-12">
+            <div className="max-w-4xl mx-auto text-center">
+              <p className="lx-kicker mb-4">KEIF ALDIAFA · {props.cityAr}</p>
 
-          <h1 className="font-[family-name:var(--font-cairo)] text-[clamp(1.72rem,7.4vw,3.4rem)] font-black leading-[1.22] tracking-tight mb-5">
-            <span className="lx-sheen">{props.h1}</span>
-          </h1>
+              <h1 className="font-[family-name:var(--font-cairo)] text-[clamp(1.9rem,8.6vw,3.6rem)] font-black leading-[1.16] tracking-tight mb-4">
+                <span className="lx-sheen">{props.h1}</span>
+              </h1>
 
-          <p className="lx-lead max-w-3xl mx-auto">{props.intro}</p>
+              {/* سطر واحد فقط — الجملة الأقصر التي تحمل الوعد كاملاً */}
+              <p className="text-[--lx-cream-75] text-[0.98rem] sm:text-[1.06rem] leading-relaxed max-w-[34ch] mx-auto mb-7">
+                طاقم سعودي بزيّ تراثي، يصل قبل الموعد بساعة.
+              </p>
 
-          {/* CTA — 52px، مرئي بلا تمرير على الهاتف */}
-          <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center max-w-md sm:max-w-none mx-auto">
-            <a
-              href={waMain}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="lx-btn lx-btn--gold"
-            >
-              <IconWhatsApp className="w-5 h-5" />
-              اطلب عرض سعر الآن
-            </a>
-            <a href={tel} className="lx-btn lx-btn--ghost">
-              <IconPhone className="w-5 h-5" />
-              {WA_DISPLAY}
-            </a>
+              {/* زر أساسي واحد — بلا منافس بصري */}
+              <a
+                href={waMain}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="lx-btn lx-btn--gold w-full max-w-sm mx-auto !min-h-[58px]"
+              >
+                <IconWhatsApp className="w-5 h-5" />
+                احجز طاقمك
+              </a>
+            </div>
           </div>
+        </div>
 
-          {/* شارات الثقة */}
-          <ul className="mt-9 grid grid-cols-3 gap-2 sm:gap-3 max-w-2xl mx-auto">
-            {BADGES.map((b, i) => (
-              <li key={b.t} className="lx-stat">
-                {i === 0 ? (
-                  <IconCrew className="w-6 h-6 mx-auto mb-2" />
-                ) : i === 1 ? (
-                  <IconClock className="w-6 h-6 mx-auto mb-2" />
-                ) : (
-                  <IconShield className="w-6 h-6 mx-auto mb-2" />
+        {/* الشارات الثلاث نزلت تحت الطيّة: ليست جزءاً من الانطباع الأول */}
+        <ul className="max-w-3xl mx-auto px-4 -mt-1 pt-9 grid grid-cols-3 gap-2 sm:gap-3">
+          {BADGES.map((b, i) => (
+            <li key={b.t} className="lx-stat" data-rise>
+              {i === 0 ? (
+                <IconCrew className="w-6 h-6 mx-auto mb-2" />
+              ) : i === 1 ? (
+                <IconClock className="w-6 h-6 mx-auto mb-2" />
+              ) : (
+                <IconShield className="w-6 h-6 mx-auto mb-2" />
+              )}
+              <b className="!text-[0.9rem] sm:!text-[1.05rem]">{b.t}</b>
+              <span>{b.d}</span>
+            </li>
+          ))}
+        </ul>
+
+        {/* مسار التنقّل انتقل للأسفل: لا قيمة له في الانطباع الأول،
+            وقيمته الحقيقية لمحرّكات البحث تتحقق في أي موضع. */}
+        <nav aria-label="مسار التنقّل" className="mt-8 px-4 text-[0.7rem] text-[--lx-cream-55]">
+          <ol className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1">
+            {props.breadcrumbItems.map((b, i) => (
+              <li key={b.href} className="flex items-center gap-2">
+                {i > 0 && (
+                  <span aria-hidden="true" className="text-[--lx-gold-deep]">
+                    ·
+                  </span>
                 )}
-                <b className="!text-[0.95rem] sm:!text-[1.1rem]">{b.t}</b>
-                <span>{b.d}</span>
+                {i < props.breadcrumbItems.length - 1 ? (
+                  <Link href={b.href} className="hover:text-[--lx-gold-warm] transition-colors">
+                    {b.label}
+                  </Link>
+                ) : (
+                  <span className="text-[--lx-cream-75]">{b.label}</span>
+                )}
               </li>
             ))}
-          </ul>
-        </div>
-      </section>
-
-      {/* ══════════════════ لوحة القاعة — الصورة بعرضها الكامل ══════════════════
-          3168×1344 (نسبة 2.36). سابقاً كانت تُقصّ لتصير 0.8.
-          الآن تُعرض كلوحة عريضة تحتفظ بالأعمدة والثريا والأرائك. */}
-      <section className="px-3 sm:px-4" data-rise>
-        <figure className="max-w-6xl mx-auto lx-shot lx-shot--plain lx-frame overflow-hidden">
-          <div className="relative aspect-[16/9] sm:aspect-[21/9]">
-            <Image
-              src={HERO.src}
-              alt={HERO.alt}
-              fill
-              priority
-              sizes="(max-width: 640px) 100vw, (max-width: 1280px) 100vw, 1200px"
-              className="object-cover"
-              style={{ objectPosition: HERO.focus }}
-            />
-            {/* تدرّج خفيف أسفل الصورة لدمجها بالعمق الداكن */}
-            <div
-              className="absolute inset-0 pointer-events-none"
-              style={{
-                background:
-                  "linear-gradient(to top, rgba(7,8,15,0.72) 0%, rgba(7,8,15,0.12) 38%, transparent 66%)",
-              }}
-              aria-hidden="true"
-            />
-          </div>
-          <figcaption className="lx-note px-4 py-3 text-center border-t border-[--lx-hair-soft]">
-            من تنفيذ فريق كيف الضيافة — قاعة استقبال مجهّزة بالكامل قبل وصول الضيوف
-          </figcaption>
-        </figure>
+          </ol>
+        </nav>
       </section>
 
       <Orn />
@@ -308,11 +297,24 @@ export default function LuxeServicePage(props: LocalServicePageProps) {
           كيف تُدار <em>الضيافة</em> عندنا خطوة بخطوة
         </Head>
 
-        <ol className="lx-steps mt-10 space-y-9">
-          {PROTOCOL.map((p) => (
-            <li key={p.t} data-rise className="lx-step">
-              <h3 className="font-bold text-lg text-[--lx-cream] mb-1.5 pt-2.5">{p.t}</h3>
-              <p className="lx-lead !text-[0.94rem]">{p.d}</p>
+        {/* الميدالية المقيسة من بوستر «10 Shades of Black»:
+            قطر ≈ 66% من ارتفاع الصفّ، حلقة 1px، فِلّ شفّاف يُظهر الخلفية،
+            زخرفتان ماسيتان على المحور الأفقي، أرقام serif بخطّ رفيع.
+            الفِلّ الشفّاف هو ما وصفه التحليل بـ«يجعل التصميم خفيفاً ومصنوعاً
+            على المقاس» — الميدالية المملوءة تبدو أثقل وأرخص. */}
+        <ol className="mt-10 divide-y divide-[--lx-hair-soft]">
+          {PROTOCOL.map((p, pi) => (
+            <li key={p.t} data-rise className="flex items-center gap-4 sm:gap-5 py-5">
+              <span className="lx-medal" aria-hidden="true">
+                <i />
+                {String(pi + 1).padStart(2, "0")}
+              </span>
+              <div className="min-w-0">
+                <h3 className="font-bold text-[1.02rem] sm:text-lg text-[--lx-cream] leading-snug">
+                  {p.t}
+                </h3>
+                <p className="lx-note !mt-1 !text-[0.87rem]">{p.d}</p>
+              </div>
             </li>
           ))}
         </ol>
@@ -334,11 +336,10 @@ export default function LuxeServicePage(props: LocalServicePageProps) {
             <h2 className="lx-h2">
               أدوات تقديم <em>أصلية</em> — لا نعتمد على المكان
             </h2>
+            {/* 12 كلمة بدل 45. القاعدة المقيسة من المراجع (21–180 كلمة للصفحة
+                كاملة) لا تسمح بفقرة تفسيرية هنا — الصور تقول الباقي. */}
             <p className="lx-lead mb-6">
-              نأتي بكل ما تحتاجه الضيافة: الدلال والفناجيل والترامس والمباخر وحوامل
-              البوفيه. لا نطلب من صاحب المناسبة تجهيز شيء، ولا نستعير من المكان
-              أدواته. هذا يعني أن مستوى التقديم ثابت في كل مناسبة، لا يتغيّر بتغيّر
-              القاعة.
+              نأتي بعدّتنا كاملة. لا نستعير من المكان، ولا نطلب منك تجهيز شيء.
             </p>
             <ul className="grid sm:grid-cols-2 gap-x-5 gap-y-2.5">
               {KIT.map((k) => (
@@ -353,26 +354,20 @@ export default function LuxeServicePage(props: LocalServicePageProps) {
             </ul>
           </div>
 
-          <div data-rise className="grid grid-cols-2 gap-3 sm:gap-4">
-            {/* الدلّة الذهبية — أكبر لأنها العنصر الأيقوني */}
-            <figure className="lx-tile col-span-2 relative aspect-[16/10]">
-              <Image
-                src={DALLAH.src}
-                alt={DALLAH.alt}
-                fill
-                sizes="(max-width: 1024px) 100vw, 45vw"
-                className="object-contain p-6"
-              />
+          {/* الأجسام تطفو بلا مربّعات — الآلية المقيسة في المراجع السبعة كلها.
+              كل جسم مقصوص ومطبَّع على لوحة 640×640 بقاعٍ مثبَّت عند 88%، فظلّ
+              التلامس في .lx-obj يصدُق على الجميع، والأحجام موحّدة بعد أن كانت
+              341→745 بكسل. الدلّتان تعومان عوماً دائماً بطيئاً (6px / 7s). */}
+          <div data-rise className="grid grid-cols-3 gap-1 sm:gap-3">
+            <figure className="lx-obj lx-obj--hero relative">
+              <Image src={DALLAH.src} alt={DALLAH.alt} fill sizes="(max-width: 1024px) 31vw, 15vw" loading="eager" />
             </figure>
-            {EQUIPMENT.slice(0, 4).map((e) => (
-              <figure key={e.src} className="lx-tile relative aspect-square">
-                <Image
-                  src={e.src}
-                  alt={e.alt}
-                  fill
-                  sizes="(max-width: 640px) 45vw, 22vw"
-                  className="object-contain p-3.5"
-                />
+            <figure className="lx-obj relative">
+              <Image src={DALLAH_SILVER.src} alt={DALLAH_SILVER.alt} fill sizes="(max-width: 1024px) 31vw, 15vw" loading="eager" />
+            </figure>
+            {EQUIPMENT.slice(0, 6).map((e) => (
+              <figure key={e.src} className="lx-obj relative">
+                <Image src={e.src} alt={e.alt} fill sizes="(max-width: 1024px) 31vw, 15vw" loading="eager" />
               </figure>
             ))}
           </div>
@@ -381,19 +376,24 @@ export default function LuxeServicePage(props: LocalServicePageProps) {
 
       <Orn />
 
-      {/* ══════════════════ الحاسبة + النموذج ══════════════════
-          التدقيق أظهر <form> = 0 في الصفحة المنشورة: كل التحويل كان روابط
-          واتساب بنص ثابت، فلا يعرف العميل التكلفة ولا يصلك بيان مؤهَّل. */}
+      {/* ══════════════════ طلب العرض — بلا أسعار ══════════════════
+          استُبدلت الحاسبة بقرار صريح من صاحب العمل: لا قائمة أسعار.
+          السعر يُبنى على المناسبة والعميل، ويُرفع أو يُخفض بحسبهما.
+          إظهار رقم تقديري يصنع سقفاً تفاوضياً ويُخرج العميل للمقارنة. */}
       <section className="max-w-3xl mx-auto px-4">
-        <LuxeQuote cityAr={props.cityAr} />
+        <LuxeRequest cityAr={props.cityAr} />
       </section>
 
       <Orn />
 
       {/* ══════════════════ الباقات ══════════════════ */}
       <section className="max-w-6xl mx-auto px-4">
-        <Head eyebrow="الباقات" center lead={props.pricingNote}>
-          باقات <em>{props.serviceAr}</em>
+        <Head
+          eyebrow="الاختيارات"
+          center
+          lead="ثلاث صيغ للخدمة. تُفصَّل كل واحدة على مناسبتك بعد المحادثة."
+        >
+          صيغ <em>{props.serviceAr}</em>
         </Head>
 
         <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">

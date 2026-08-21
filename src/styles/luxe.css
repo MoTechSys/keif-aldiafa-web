@@ -2,22 +2,27 @@
    luxe.css — طبقة الفخامة (Keif Luxe Layer)
    تُحمّل بعد globals.css ولا تعدّلها، فتبقى بقية الموقع كما هي.
 
-   مصدر اللوحة: شعار البراند الأصلي logo-1.svg
-     كحلي ملكي  #1B224A   ← كان غائباً عن الموقع تماماً
-     ذهبي دافئ  #D8A877   ← ذهبي الشعار الحقيقي
-   مضافاً إليها الذهبي المستخدم حالياً #C5A059 للاستمرارية.
+   ── تصحيح جذري بعد التحليل البصري لمراجع العميل ──
+   الإصدار الأول بُني على كحلي بارد #07080f مأخوذاً من الشعار. القياس
+   البصري لمراجع العميل السبع أثبت أن كل واحدة منها دافئة:
+       #13100E شوكولاتي داكن  |  #110E0D بأندرتون عنبري/برونزي
+   والسبب منطقي لا ذوقي: المنتج المُقدَّم قهوة عربية، ولونها بنّي دافئ.
+   الخلفية الكحلية الباردة تضع القهوة في بيئة معادية لطيفها اللوني،
+   فتبدو الصور باهتة بلا سبب ظاهر. الكحلي يبقى للشعار كهوية، لا كأرضية.
 
-   القاعدة: لون بارز واحد على عمق داكن. الفخامة تُبنى بالتقييد.
+   اللوحة الآن: بنّي دخاني عميق + ذهبي الشعار #D8A877 + كريمي.
+   القاعدة: لون بارز واحد على عمق دافئ. الفخامة تُبنى بالتقييد.
    ═══════════════════════════════════════════════════════════════════════ */
 
 .luxe {
-  /* ── العمق: أسود مائل للكحلي، لا رمادي ── */
-  --lx-ink: #07080f;
-  --lx-ink-2: #0b0d18;
-  --lx-navy: #1b224a;      /* كحلي الشعار */
-  --lx-navy-2: #131836;
-  --lx-surface: #10131f;
-  --lx-surface-2: #161a2b;
+  /* ── العمق: بنّي دخاني دافئ (لا كحلي، لا رمادي) ── */
+  --lx-ink: #0d0a08;        /* أعمق نقطة — شوكولاتي شبه أسود */
+  --lx-ink-2: #14100c;      /* سطح البطاقات */
+  --lx-navy: #1b224a;       /* كحلي الشعار — للوسمات فقط */
+  --lx-navy-2: #1a1410;
+  --lx-surface: #191410;
+  --lx-surface-2: #221a14;
+  --lx-espresso: #2a1f17;   /* حدود وأسطح مرتفعة */
 
   /* ── الذهبي ── */
   --lx-gold: #c5a059;
@@ -31,12 +36,15 @@
   --lx-hair-bright: rgba(240, 217, 168, 0.62);
 
   /* ── النص ── */
-  --lx-cream: #f7f2e7;
-  --lx-cream-75: rgba(247, 242, 231, 0.76);
-  --lx-cream-55: rgba(247, 242, 231, 0.56);
+  --lx-cream: #f7f0e4;
+  --lx-cream-75: rgba(247, 240, 228, 0.76);
+  --lx-cream-55: rgba(247, 240, 228, 0.54);
+
+  /* خط العرض: serif للأرقام واللاتيني (مزاوجة الفخامة) */
+  --lx-display: var(--font-marcellus), "Cairo", serif;
 
   --lx-r: 20px;
-  --lx-shadow: 0 24px 60px -28px rgba(0, 0, 0, 0.9);
+  --lx-shadow: 0 24px 60px -28px rgba(0, 0, 0, 0.92);
 
   background: var(--lx-ink);
   color: var(--lx-cream);
@@ -51,10 +59,13 @@
   inset: 0;
   z-index: -2;
   pointer-events: none;
+  /* توهّج عنبري دافئ من الأعلى — يحاكي إضاءة القاعة على القهوة.
+     كان كحلياً بارداً؛ القياس البصري للمراجع أثبت أن الدفء شرط. */
   background:
-    radial-gradient(ellipse 70% 45% at 50% -5%, rgba(27, 34, 74, 0.75), transparent 70%),
-    radial-gradient(ellipse 50% 35% at 88% 12%, rgba(197, 160, 89, 0.1), transparent 68%),
-    radial-gradient(ellipse 55% 40% at 8% 45%, rgba(19, 24, 54, 0.6), transparent 72%);
+    radial-gradient(ellipse 78% 48% at 50% -6%, rgba(120, 74, 38, 0.5), transparent 72%),
+    radial-gradient(ellipse 52% 36% at 88% 10%, rgba(216, 168, 119, 0.12), transparent 68%),
+    radial-gradient(ellipse 60% 44% at 6% 48%, rgba(42, 31, 23, 0.85), transparent 74%),
+    radial-gradient(ellipse 120% 80% at 50% 100%, rgba(13, 10, 8, 1), transparent 60%);
 }
 
 .luxe::after {
@@ -211,34 +222,9 @@
 }
 .lx-crest svg { width: 22px; height: 22px; }
 
-/* ═══════════════ الميدالية المرقّمة ═══════════════ */
-.lx-steps { counter-reset: lxst; }
-.lx-step {
-  position: relative;
-  padding-inline-start: 4.6rem;
-  counter-increment: lxst;
-}
-.lx-step::before {
-  content: counter(lxst, decimal-leading-zero);
-  position: absolute;
-  inset-inline-start: 0;
-  top: 0;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  font-family: var(--font-cairo), "Cairo", sans-serif;
-  font-weight: 800;
-  font-size: 1rem;
-  color: var(--lx-gold-hi);
-  background:
-    radial-gradient(circle at 32% 26%, rgba(240, 217, 168, 0.2), transparent 62%),
-    var(--lx-ink-2);
-  border: 1px solid var(--lx-gold);
-  box-shadow: 0 0 0 4px var(--lx-ink), 0 0 0 5px rgba(197, 160, 89, 0.24),
-    0 12px 28px -14px rgba(197, 160, 89, 0.55);
-}
+/* الميدالية القديمة (.lx-steps/.lx-step) حُذفت: استُبدلت بالحلقة الشعرية
+   .lx-medal المقيسة من بوستر «10 Shades of Black». القرص المعدني المملوء
+   كان يبدو ثقيلاً؛ والتحليل نصّ على أن الحلقة بلا فِلّ هي علامة الغلاء. */
 
 /* ═══════════════ إطار الصورة — يحترم النسبة ═══════════════ */
 .lx-shot {
@@ -683,4 +669,250 @@
 
 @media (prefers-reduced-motion: reduce) {
   .lx-shot--load::before { animation: none; }
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   طبقة «الفخامة الواقعية» — مبنية على القياس البصري لمراجع العميل
+   ------------------------------------------------------------------
+   الاستنتاج الحرفي من التحليل:
+     «الرخيص = قصّ مسطّح بحدود مسطّحة أو هالة بيضاء صناعية.
+      الغالي = يحفظ الشفافية ويعتمد إضاءة الحافة (rim light) لتحديد
+      الشكل طبيعياً، مع ظل خفيف تحت القاعدة يُرسّخ الجسم في الفضاء.»
+   لذلك: لا صناديق حول الأجسام — بل توهّج تحتها وحافة مضيئة حولها.
+   ══════════════════════════════════════════════════════════════════ */
+
+/* ── 1) الجسم الطافي: الدلال والمعدّات بلا صندوق ── */
+.lx-float {
+  position: relative;
+  display: grid;
+  place-items: center;
+  isolation: isolate;
+}
+/* توهّج عنبري تحت الجسم = مصدر ضوء لا خلفية */
+.lx-float::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset-inline: 12%;
+  bottom: 8%;
+  block-size: 42%;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse at 50% 50%,
+    rgba(216, 168, 119, 0.34) 0%,
+    rgba(184, 124, 62, 0.16) 42%,
+    transparent 72%
+  );
+  filter: blur(16px);
+}
+/* ظل قاعدة ضيّق: يُرسّخ الجسم بدل تعويمه بلا وزن */
+.lx-float::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset-inline: 26%;
+  bottom: 6%;
+  block-size: 10px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(0, 0, 0, 0.72), transparent 70%);
+  filter: blur(6px);
+}
+/* إضاءة الحافة على الجسم نفسه — لا حدّ مرسوم */
+.lx-float img {
+  filter: drop-shadow(0 1px 0 rgba(255, 233, 199, 0.28))
+          drop-shadow(0 18px 30px rgba(0, 0, 0, 0.65));
+}
+
+/* ── 2) بطاقة برفع دافئ + حافة علوية مضيئة (لا حدّ مسطّح) ── */
+.lx-lift {
+  position: relative;
+  border-radius: var(--lx-r);
+  background: linear-gradient(168deg, #1c1611 0%, #14100c 62%, #100c09 100%);
+  box-shadow: 0 1px 0 rgba(255, 226, 186, 0.09) inset,
+    0 26px 60px -34px rgba(0, 0, 0, 0.95);
+}
+/* حافة مضيئة تتلاشى — التقنية التي وصفها التحليل بـ backlit glow */
+.lx-lift::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  padding: 1px;
+  background: linear-gradient(
+    150deg,
+    rgba(240, 217, 168, 0.5),
+    rgba(216, 168, 119, 0.13) 34%,
+    transparent 62%
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+/* ── 3) الميدالية المرقّمة — القياس الحرفي من بوستر «10 Shades of Black»
+   «قطر ≈ 40px على صفّ 60px (66%)، حلقة خارجية 1px، فِلّ شفّاف يُظهر
+    نسيج الخلفية، زخرفة ماسية على الأقطاب، أرقام serif رفيعة»
+   والسبب الذي ذكره التحليل لكون هذا غالياً: الحلقة الشعرية بلا فِلّ
+   داخلي تجعل التصميم «خفيفاً ومصنوعاً على المقاس» — بينما القرص
+   المعدني المملوء يبدو ثقيلاً وجاهزاً. */
+.lx-medal {
+  position: relative;
+  inline-size: 44px;
+  block-size: 44px;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  font-family: var(--lx-display);
+  font-size: 0.94rem;
+  letter-spacing: 0.06em;
+  color: var(--lx-gold-hi);
+  background: transparent;                    /* فِلّ شفّاف — مقصود */
+  border: 1px solid rgba(216, 168, 119, 0.55);
+  box-shadow: inset 0 0 12px rgba(216, 168, 119, 0.07);
+}
+/* الزخرفتان الماسيتان على المحور الأفقي — تكسران رتابة الدائرة */
+.lx-medal i {
+  position: absolute;
+  inset-inline: -3.5px;
+  inset-block: 0;
+  pointer-events: none;
+}
+.lx-medal i::before,
+.lx-medal i::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 6px;
+  height: 6px;
+  margin-top: -3px;
+  rotate: 45deg;
+  border: 1px solid rgba(216, 168, 119, 0.62);
+  background: var(--lx-ink);
+}
+.lx-medal i::before { inset-inline-start: 0; }
+.lx-medal i::after { inset-inline-end: 0; }
+
+/* ── 4) خط العرض: مزاوجة serif + sans ── */
+.lx-display { font-family: var(--lx-display); font-weight: 400; }
+/* وسم لاتيني صغير بتتبّع واسع — كما في BEAUTY STUDIO المقيسة */
+.lx-kicker {
+  font-family: var(--lx-display);
+  font-size: 0.66rem;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: var(--lx-gold-warm);
+  opacity: 0.85;
+}
+
+/* ── 5) شريحة زجاجية (glassmorphism) — من مرجع N99 ── */
+.lx-glass {
+  background: rgba(32, 24, 18, 0.55);
+  backdrop-filter: blur(18px) saturate(150%);
+  -webkit-backdrop-filter: blur(18px) saturate(150%);
+  border: 1px solid rgba(240, 217, 168, 0.16);
+  border-radius: 18px;
+}
+
+/* ── 6) صورة داخل إطار: تلاشٍ دافئ لا حدّ حادّ ── */
+.lx-shot { background: var(--lx-ink-2); }
+.lx-shot::after {
+  background: linear-gradient(to top, rgba(13, 10, 8, 0.92), transparent);
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   طبقة «الجسم العائم» .lx-obj — بديل المربّعات
+   ══════════════════════════════════════════════════════════════════════
+   القياس على المراجع السبعة: لا واحد منها يضع منتجاً داخل مربّع بحدود.
+   المرجع الداكن نصّاً: «قصّ PNG يطفو على الخلفية الداكنة مباشرة، بلا
+   لون فِلّ ولا حدود ولا طبقات ظلّ للبلاطة… إضاءة حافة بيضاء قوية على
+   الأعلى واليسار لفصل الزجاج عن الأسود» — و«يُكسر الأثر بإدخال مربّع
+   خلفية أفتح حول أي عنصر واحد». فالمربّع الكريمي القديم كان هو العطب.
+
+   أربع آليات مقيسة تُركَّب هنا:
+   1) هالة عنبرية تحت الجسم (::before) ⇒ تفصله عن الأرضية بلا إطار.
+   2) ظلّ تلامس بيضاوي (::after) ⇒ «ظلّ التلامس مباشرة تحت الكأس».
+      يعمل لأن كل الأجسام مطبَّعة على قاع واحد عند 88%.
+   3) إضاءة حافة عبر drop-shadow علوي كريمي 1px ⇒ «الحافة المضيئة».
+   4) الظلّ الأسفل 22px يجعل الجسم واقفاً لا ملصوقاً.
+   والحركة: رفع + توسّع الهالة عند اللمس/التحويم — «لا حركات» كانت
+   الشكوى، فصارت الحركة على الجسم نفسه لا على مربّع حوله.
+   ══════════════════════════════════════════════════════════════════════ */
+.lx-obj {
+  position: relative;
+  display: block;
+  aspect-ratio: 1 / 1;
+  isolation: isolate;
+}
+/* 1) الهالة العنبرية */
+.lx-obj::before {
+  content: "";
+  position: absolute;
+  inset-inline: 14%;
+  bottom: 6%;
+  height: 46%;
+  z-index: -1;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse at 50% 62%,
+    rgba(216, 168, 119, 0.30),
+    rgba(216, 168, 119, 0.10) 46%,
+    transparent 74%
+  );
+  filter: blur(15px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+/* 2) ظلّ التلامس — بيضاوي ضيّق على خطّ الأساس 88% */
+.lx-obj::after {
+  content: "";
+  position: absolute;
+  inset-inline: 28%;
+  top: 86.5%;
+  height: 9px;
+  z-index: -1;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at 50% 50%, rgba(0, 0, 0, 0.78), transparent 72%);
+  filter: blur(5px);
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+/* 3+4) إضاءة الحافة والظلّ السفلي على الجسم نفسه */
+.lx-obj img {
+  object-fit: contain;
+  filter:
+    drop-shadow(0 -1px 0 rgba(255, 244, 224, 0.34))
+    drop-shadow(0 1px 0 rgba(255, 233, 199, 0.22))
+    drop-shadow(0 20px 26px rgba(0, 0, 0, 0.62));
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1), filter 0.55s ease;
+  will-change: transform;
+}
+/* الحركة: الجسم يرتفع، الهالة تتّسع، ظلّ التلامس يتّسع ويخفت */
+.lx-obj:hover img,
+.lx-obj:focus-visible img,
+.lx-obj:active img {
+  transform: translateY(-9px) scale(1.035);
+  filter:
+    drop-shadow(0 -1px 0 rgba(255, 244, 224, 0.5))
+    drop-shadow(0 1px 0 rgba(255, 233, 199, 0.3))
+    drop-shadow(0 30px 34px rgba(0, 0, 0, 0.7));
+}
+.lx-obj:hover::before, .lx-obj:active::before { opacity: 1; transform: scale(1.1); }
+.lx-obj:hover::after,  .lx-obj:active::after  { transform: scaleX(1.22); opacity: 0.62; }
+
+/* الجسم البطل (الدلّة) — عوم دائم بطيء جداً. 6px فقط: الحركة تُحسّ
+   ولا تُلاحظ، وهذا هو الفرق بين الأنيميشن الفاخر والمزعج. */
+.lx-obj--hero img { animation: lxFloat 7s ease-in-out infinite; }
+@keyframes lxFloat {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-6px); }
+}
+.lx-obj--hero::after { animation: lxFloatShadow 7s ease-in-out infinite; }
+@keyframes lxFloatShadow {
+  0%, 100% { transform: scaleX(1);    opacity: 1; }
+  50%      { transform: scaleX(0.88); opacity: 0.72; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lx-obj--hero img, .lx-obj--hero::after { animation: none; }
+  .lx-obj img { transition: none; }
 }
