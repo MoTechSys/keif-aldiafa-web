@@ -1,189 +1,135 @@
-# كيف الضيافة | Keif Al-Diafa
-
 <div align="center">
 
-**منصة تجربة فاخرة تعكس جودة وفخامة خدمات الضيافة السعودية**
+# كيف الضيافة — Keif Al-Diafa
 
-[![Next.js](https://img.shields.io/badge/Next.js-14-black?style=flat-square&logo=next.js)](https://nextjs.org/)
-[![React](https://img.shields.io/badge/React-18-blue?style=flat-square&logo=react)](https://react.dev/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.5-blue?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4-06B6D4?style=flat-square&logo=tailwindcss)](https://tailwindcss.com/)
+**موقع خدمات القهوجيين وصبابين القهوة والضيافة في السعودية**
 
-[الموقع المباشر](https://keifaldiafa.com) | [التوثيق](docs/PROJECT_ANALYSIS.md)
+`Next.js 14 App Router` · `TypeScript` · `Tailwind CSS 3.4` · `Vercel`
 
 </div>
 
 ---
 
-## نبذة عن المشروع
+## ما هذا المشروع؟
 
-موقع **كيف الضيافة** هو منصة تعريفية فاخرة لشركة خدمات الضيافة السعودية، مصمم بأعلى معايير الجودة البصرية والتقنية. يقدم الموقع خدمات الضيافة المتنوعة من مضيفين ومضيفات محترفين، وخدمات القهوة السعودية، والخدمات الفنية والتراثية.
+موقع تسويقي لشركة **كيف الضيافة** — خدمات القهوجيين، صبابين القهوة العربية، وضيافة المناسبات في مدن السعودية.
 
-### المميزات الرئيسية
-- **تصميم فاخر بالهوية السعودية**: (ذهبي + داكن) مع لمسات فنية راقية.
-- **نظام شبكة الأعمال المطور**: عرض مربعات (1:1) بتعبئة كاملة (Full Coverage) دون حواف سوداء.
-- **حماية الصور الذكية**: علامة مائية (Watermark) تظهر فقط عند التكبير (Lightbox) لحماية المحتوى بأناقة.
-- **تجربة مستخدم محسّنة (UI/UX)**: شريط تنقل سفلي فاخر، وضوح نصوص عالٍ، وتنسيقات موحدة.
-- **دعم كامل للغة العربية (RTL)** مع أنيميشن سلس باستخدام `motion`.
-- **SEO متقدم وأمان عالٍ**: (Schema.org, OpenGraph, Security Headers).
-- **أداء فائق**: تحميل كسول للصور وتحسينات سرعة الاستجابة.
+**هدف الموقع واحد لا يتعدّد:** أن يدخل الزائر ويتواصل عبر **واتساب أو اتصال**.
+ليس متجراً، وليس فيه سلّة ولا حساب مستخدم ولا حاسبة أسعار ولا باقات. كل قرار في هذا المستودع يُقاس بسؤال واحد: *هل يقرّب الزائر من زرّ التواصل أم يُبعده؟*
 
----
+### ثلاث حقائق تحكم كل سطر في المشروع
 
-## ✦ التحديثات الفاخرة (Manus Updates) ✦
-يمكنك الاطلاع على التوثيق التفصيلي لكافة التحديثات والتنسيقات الجديدة في مجلد:
-👉 [`manus-updates/SUMMARY.md`](manus-updates/SUMMARY.md)
+| الحقيقة | الأثر على الكود |
+|---|---|
+| **٩٥٪ من العملاء على الهاتف** | كل قياس واختبار يجري على ٣٩٠×٨٤٤ (iPhone) أوّلاً. الحاسوب ثانوي. |
+| **قاعدة الخمس ثوانٍ** | الزائر لا يقرأ. يتصفّح. فالطول عدوّ، والصور تتكلّم قبل النصّ. |
+| **لا باقات ولا أسعار** | نعرض *ماذا نقدّم*، والسعر يُحدَّد في المحادثة. `price: false` مقيسة آلياً على كل صفحة. |
 
+> 📖 **الفلسفة كاملة ولماذا اتُّخذ كل قرار:** [`docs/DESIGN-PHILOSOPHY.md`](docs/DESIGN-PHILOSOPHY.md)
 
 ---
 
-## التقنيات المستخدمة
+## البدء السريع
 
-| التقنية | الاستخدام |
-|---------|----------|
-| **Next.js 14** | App Router + SSG + Image Optimization |
-| **React 18** | واجهة المستخدم التفاعلية |
-| **TypeScript 5.5** | أمان الأنواع |
-| **Tailwind CSS 3.4** | التنسيق المرن |
-| **motion (Framer)** | الأنيميشن والحركات |
-| **Embla Carousel** | سلايدر الشركاء |
-| **Git LFS** | إدارة الصور الكبيرة |
-
----
-
-## التثبيت والتشغيل
-
-### المتطلبات
-- Node.js >= 18.x
-- npm أو yarn أو pnpm
-
-### التثبيت
 ```bash
-# استنساخ المستودع
-git clone https://github.com/moain2026/keif-aldiafa-website.git
-cd keif-aldiafa-website
-
-# تثبيت التبعيات
 npm install
-
-# تشغيل بيئة التطوير
-npm run dev
+npm run dev          # http://localhost:3000
+npm run build        # بناء الإنتاج
+npx tsc --noEmit     # فحص الأنواع
 ```
 
-### الأوامر المتاحة
+**متطلّبات أدوات البحث (اختيارية، بايثون):**
 ```bash
-npm run dev    # بيئة التطوير (http://localhost:3000)
-npm run build  # بناء الإنتاج
-npm run start  # تشغيل الإنتاج
-npm run lint   # فحص الكود
+pip install pillow numpy qrcode pyzbar playwright && playwright install chromium
 ```
 
 ---
 
-## هيكل المشروع
+## الخريطة السريعة — أين أعدّل ماذا؟
 
-```
-src/
-├── app/                    # صفحات App Router
-│   ├── layout.tsx          # التخطيط الجذري
-│   ├── template.tsx        # قالب مشترك
-│   ├── page.tsx            # الصفحة الرئيسية
-│   ├── services/           # خدماتنا
-│   ├── offerings/          # تقديماتنا
-│   ├── portfolio/          # معرض الأعمال
-│   ├── about/              # من نحن
-│   ├── contact/            # تواصل معنا
-│   ├── robots.ts           # robots.txt
-│   └── sitemap.ts          # خريطة الموقع
-├── components/             # المكونات المشتركة
-│   ├── Navbar.tsx           # شريط التنقل
-│   ├── Footer.tsx           # التذييل
-│   ├── ImageWithFallback.tsx # مكون صور محسّن
-│   ├── PartnersSlider.tsx   # سلايدر الشركاء
-│   └── ...
-├── lib/                    # المكتبات المساعدة
-│   ├── images.ts           # مسارات الصور
-│   ├── schema.ts           # بيانات Schema.org
-│   └── utils.ts            # أدوات مساعدة
-└── styles/
-    └── globals.css         # نظام التصميم
-```
+| أريد أن أعدّل… | الملف |
+|---|---|
+| نصّ صفحة خدمة/مدينة | `src/lib/localContent.tsx` |
+| إضافة مدينة أو خدمة جديدة | `src/lib/localPages.ts` |
+| شكل الصفحات الفرعية (الـ ٢٤) | `src/components/LocalServicePage.tsx` |
+| ستايل الفخامة (أزرار، بطاقات، حركة) | `src/styles/luxe.css` |
+| ستايل الصفحات الفرعية والصور | `src/styles/local.css` |
+| صفحة الحسابات والباركود | `src/app/social/` |
+| بيانات جوجل المُهيكلة (Schema) | `src/lib/schema.ts` |
+| ربط الصور بالصفحات | `src/lib/localImagery.ts` |
+
+> 🗺️ **الهيكل الكامل بشرح كل ملف:** [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md)
 
 ---
 
 ## الصفحات
 
-| الصفحة | المسار | الوصف |
-|--------|--------|-------|
-| الرئيسية | `/` | شاشة بطل + إحصائيات + أقسام متعددة |
-| خدماتنا | `/services` | 3 فئات (رجالية، نسائية، فنية) مع تفاصيل |
-| تقديماتنا | `/offerings` | مشروبات + حلويات + معدات للإيجار |
-| معرض الأعمال | `/portfolio` | معرض صور مع فلترة وتصفية |
-| من نحن | `/about` | قصة الشركة + القيم + الفريق + الجدول الزمني |
-| تواصل معنا | `/contact` | نموذج تواصل + واتساب + معلومات الاتصال |
+**٢٤ صفحة فرعية مُولَّدة تلقائياً** من مكوّن واحد — ٣ خدمات × ٨ مدن، عبر المسار الديناميكي `src/app/[serviceCity]/page.tsx` و`generateStaticParams()`. كلها ثابتة (SSG) وقت البناء.
+
+```
+/                          الرئيسية
+/[service]-[city]          ٢٤ صفحة: sababin-qahwa-jeddah · qahwajiin-riyadh · diyafa-munasabat-makkah …
+/services /offerings       الخدمات وما نقدّمه
+/portfolio                 معرض الأعمال
+/locations /locations/[city]  المدن
+/social                    ★ الحسابات + باركود QR
+/about /contact /legal      عن · تواصل · قانوني
+/sitemap.xml /robots.txt /image-sitemap.xml
+```
 
 ---
 
-## SEO والبيانات المنظمة
+## التوثيق
 
-الموقع يتضمن:
-- **Metadata** شامل لكل صفحة (title, description, keywords)
-- **OpenGraph + Twitter Cards** لمشاركة وسائل التواصل
-- **Schema.org JSON-LD**:
-  - Organization
-  - LocalBusiness
-  - WebSite
-  - BreadcrumbList
-  - FAQPage
-  - Service
-  - WebPage
-- **sitemap.xml** ديناميكي
-- **robots.txt** محسّن
-- **Canonical URLs** لكل صفحة
+| المستند | ماذا فيه |
+|---|---|
+| [`docs/DESIGN-PHILOSOPHY.md`](docs/DESIGN-PHILOSOPHY.md) | **أسلوب الفخامة**: الخطّ، اللون، الحركة، الصور، ولماذا رُفضت البدائل |
+| [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) | الهيكل التقني، توليد الصفحات، طبقة البيانات، نظام CSS |
+| [`docs/RESEARCH-LOG.md`](docs/RESEARCH-LOG.md) | **سجلّ الأعطاب**: كل عطب، كيف قِيس، ولماذا فشل الحلّ الأول |
+| [`docs/WATERMARK.md`](docs/WATERMARK.md) | العلامة المائية: ٥ إصدارات، والقياس الذي كشف خطأ الفرضية |
+| [`docs/QR-BARCODE.md`](docs/QR-BARCODE.md) | الباركود: لماذا لا يُحكم عليه بالعين، وكيف قتله مُحسِّن الصور |
+| [`docs/SEO.md`](docs/SEO.md) | الـ SEO: أسماء الصور، البيانات المُهيكلة، خرائط الموقع |
+| [`docs/TESTING.md`](docs/TESTING.md) | كيف تُقاس الصفحة وتُختبر بالأرقام لا بالانطباع |
+| [`docs/ROADMAP.md`](docs/ROADMAP.md) | ما تبقّى، ولماذا لم يُنجَز |
+| [`research/`](research/) | أدوات القياس (بايثون) + الأدلّة البصرية |
 
 ---
 
-## الأمان
+## ⚠️ قبل النشر — لازم يُقرأ
 
-- **Security Headers** شاملة في `next.config.js`:
-  - Strict-Transport-Security (HSTS)
-  - Content-Security-Policy (CSP)
-  - X-Frame-Options
-  - X-Content-Type-Options
-  - Referrer-Policy
-  - Permissions-Policy
-- إخفاء `X-Powered-By`
-- ضغط الردود (Compression)
-- ETag generation
+**روابط الحسابات في `src/app/social/SocialClient.tsx` مكتوبة بالتخمين** من نمط الاسم (`keifaldiafa`) ولم تُتحقَّق من صاحب المشروع.
 
----
+```
+instagram.com/keifaldiafa · tiktok.com/@keifaldiafa
+snapchat.com/add/keifaldiafa · x.com/keifaldiafa · facebook.com/keifaldiafa
+```
 
-## الأداء
+رابط خاطئ = العميل يمسح الباركود فتُفتح صفحة «غير موجود» — وهذا يضرّ الثقة أكثر من غياب الصفحة. **تحقّق من كل معرّف واحذف بطاقة أي منصّة بلا حساب.**
 
-- **SSG**: الصفحات تُبنى كصفحات ثابتة
-- **Image Optimization**: WebP/AVIF عبر next/image
-- **Lazy Loading**: تحميل كسول للصور
-- **Code Splitting**: تقسيم الكود تلقائياً
-- **Cache Headers**: تخزين مؤقت طويل للأصول الثابتة
-- **Font Display Swap**: عرض فوري للنصوص
+**والباركود يشير إلى `keifaldiafa.com/social`** — فلا يعمل قبل النشر. **لا تطبعه على كرت أو لوحة قبل التأكّد أن الصفحة حيّة**، لأن المطبوع لا يُعدَّل.
+
+> 🚀 **خطوات النشر كاملة:** [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md)
 
 ---
 
-## للوكلاء الذكيين
+## حالة المشروع
 
-> اقرأ ملف [`CLAUDE.md`](CLAUDE.md) للحصول على تعليمات مفصلة حول كيفية التعامل مع هذا المشروع.
+| البند | الحالة |
+|---|---|
+| البناء | ✅ ينجح · `npx tsc --noEmit` نظيف |
+| الصفحات الفرعية | ✅ ٢٤ صفحة SSG · ١٢٫٢ شاشة على الهاتف |
+| العلامة المائية | ✅ الإصدار ٥ (نقش) على ١٥ صورة |
+| الباركود | ✅ مُتحقَّق بـ `pyzbar` — يُفكّ حتى ١٨٠px |
+| صفحة الحسابات | ⚠️ جاهزة — تنتظر تأكيد المعرّفات |
+| **أداء الرئيسية على الهاتف** | 🔴 **0.53 · LCP 9.4s** — أخطر رقم، انظر [SEO.md](docs/SEO.md) |
+| صفحات جدة الجديدة | ⏳ لم تبدأ |
 
 ---
 
-## الترخيص
+<div align="center">
 
-جميع الحقوق محفوظة - كيف الضيافة 2024-2026
+**واتساب:** [0508252134](https://wa.me/966508252134) · **الموقع:** [keifaldiafa.com](https://keifaldiafa.com)
 
----
-
-## التواصل
-
-- **واتساب**: [+966508252134](https://wa.me/966508252134)
-- **البريد**: [keifaldiafa@gmail.com](mailto:keifaldiafa@gmail.com)
-- **إنستغرام**: [@keifdiafa](https://instagram.com/keifdiafa)
-- **الموقع**: [keifaldiafa.com](https://keifaldiafa.com)
+</div>
+</content>
+</invoke>
