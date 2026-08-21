@@ -132,8 +132,9 @@
 }
 
 .lx-h2 {
-  font-family: var(--font-cairo), "Cairo", sans-serif;
-  font-weight: 800;
+  /* El Messiri — نفس منطق الـh1: تباين سماكة يقرأه العين كنقش */
+  font-family: var(--font-messiri), "El Messiri", serif;
+  font-weight: 700;
   line-height: 1.25;
   font-size: clamp(1.5rem, 4.6vw, 2.35rem);
   color: var(--lx-cream);
@@ -931,10 +932,12 @@ body:has(.luxe) a[href*="wa.me"][class*="25D366"] svg { color: var(--lx-gold-hi)
    ══════════════════════════════════════════════════════════════════ */
 .lx-h1-main {
   display: block;
-  font-family: var(--font-cairo), "Cairo", sans-serif;
-  font-size: clamp(1.75rem, 7.4vw, 3.1rem);
-  font-weight: 900;
-  line-height: 1.18;
+  /* El Messiri: تباين سماكة حقيقي بدل تسطيح Cairo 900 */
+  font-family: var(--font-messiri), "El Messiri", serif;
+  font-size: clamp(1.8rem, 7.6vw, 3.2rem);
+  /* El Messiri أقصى وزنه 700؛ طلب 900 يجعل المتصفح يزوّر السماكة */
+  font-weight: 700;
+  line-height: 1.22;
   letter-spacing: -0.012em;
   /* 26ch يضمن سطرين على 390px بلا استثناء */
   max-inline-size: 26ch;
@@ -1002,3 +1005,45 @@ body:has(.luxe) a[href*="wa.me"][class*="25D366"] svg { color: var(--lx-gold-hi)
 .lx-fold-body p { margin-block-end: 0.5rem; }
 .lx-fold-body ul { display: grid; gap: 0.6rem; margin-block-start: 0.5rem; }
 .lx-fold-body li { display: flex; align-items: flex-start; gap: 0.6rem; }
+
+/* ══════════════════════════════════════════════════════════════════
+   .lx-offer-t — عنوان بطاقة الخدمة
+   ------------------------------------------------------------------
+   بديل عنوان بطاقة الباقة. الفرق ليس تجميلياً: عنوان الباقة كان
+   محاذىً للوسط بقياس كبير (يُقرأ كسعر معروض)، وعنوان الخدمة محاذى
+   للبداية بجانب الميدالية (يُقرأ كبند في قائمة قدرات).
+   ══════════════════════════════════════════════════════════════════ */
+.lx-offer-t {
+  font-family: var(--font-messiri), "El Messiri", serif;
+  font-weight: 700;
+  font-size: clamp(1.05rem, 4.4vw, 1.22rem);
+  line-height: 1.35;
+  color: var(--lx-gold-hi);
+  text-wrap: balance;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   .lx-offer-img — نافذة صورة الخدمة
+   ═══════════════════════════════════════════════════════════════════════
+   ارتفاع ثابت لكل البطاقات (لا نسبة تتبع الصورة هنا) — لأن البطاقات
+   تُقرأ كصفّ واحد، وأي فرق ارتفاع بينها يُقرأ كعطب. الحجاب السفلي
+   يربط الصورة بجسم البطاقة فلا تبدو ملصقة فوقها.
+   ═══════════════════════════════════════════════════════════════════════ */
+.lx-offer-img {
+  position: relative;
+  width: 100%;
+  height: 168px;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(216, 168, 119, 0.28);
+}
+@media (min-width: 640px) {
+  .lx-offer-img { height: 196px; }
+}
+.lx-offer-veil {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(to top, rgba(13, 10, 8, 0.86) 0%, rgba(13, 10, 8, 0.24) 46%, rgba(13, 10, 8, 0.05) 100%),
+    radial-gradient(ellipse 70% 60% at 50% 0%, rgba(216, 168, 119, 0.14), transparent 72%);
+}

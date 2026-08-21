@@ -1,8 +1,10 @@
 import type { Metadata, Viewport } from "next";
-import { Tajawal, Cairo, Marcellus } from "next/font/google";
+import { Tajawal, Cairo, Marcellus, El_Messiri } from "next/font/google";
 import "@/styles/globals.css";
 // طبقة الفخامة — إضافية بالكامل ومحصورة داخل .luxe فلا تؤثر على بقية الصفحات
 import "@/styles/luxe.css";
+// طبقة العمق والحركة للصفحات الفرعية — تبني على luxe.css ولا تعدّلها
+import "@/styles/local.css";
 import {
   generateLocalBusinessSchema,
   generateWebSiteSchema,
@@ -34,6 +36,34 @@ const cairo = Cairo({
    السبب: التحليل البصري لمراجع العميل أظهر أن كل تصميم فاخر يزاوج
    خط عرض serif مع sans للنص. الموقع كان يستخدم Cairo (sans) للجميع
    فبدا مسطّحاً. يُستخدم للأرقام والوسمات اللاتينية والميداليات فقط. */
+/* ═══════════════════════════════════════════════════════════════════
+   El Messiri — خط العناوين الفاخر. أُضيف بعد تشريح بكسلي للعنوان.
+   ───────────────────────────────────────────────────────────────────
+   العطب المقيس: العناوين كانت Cairo وزن 900. Cairo خط هندسي
+   (geometric sans) سماكة حروفه ثابتة تماماً بلا أي تباين. النتيجة
+   على شاشة الهاتف: كتلة سوداء متساوية السماكة تُقرأ كبنر تخفيضات
+   في سوق، لا كعلامة ضيافة فاخرة.
+
+   الاختبار: صُيّر نفس العنوان بثمانية خطوط عربية على 780px@2x
+   وقُوبل بصرياً (Amiri, Aref Ruqaa, Reem Kufi, El Messiri, Rakkas,
+   Marhey, Tajawal, Cairo). النتيجة:
+     • Aref Ruqaa / Rakkas: خطّان نسخيان جميلان لكن قراءتهما تحتاج
+       تركيزاً — يخالفان قاعدة الخمس ثوان.
+     • Reem Kufi: كوفي هندسي، تشابك الحروف يربك العين.
+     • Marhey: مستدير مرح — عكس الفخامة تماماً.
+     • Amiri: أنيق جداً لكن رفيع، يضعف على خلفية صورة.
+     • El Messiri: ✅ فيه تباين سماكة حقيقي (نهايات مدبّبة وأعناق
+       رفيعة) فيقرأه العين كخطّ محفور، ومع ذلك مقروء في لمحة.
+   ⇒ El Messiri للعناوين، Tajawal للنصّ. مزاوجة تباين لا تسطيح.
+   ═══════════════════════════════════════════════════════════════════ */
+const elMessiri = El_Messiri({
+  subsets: ["arabic", "latin"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+  variable: "--font-messiri",
+  preload: true,
+});
+
 const marcellus = Marcellus({
   subsets: ["latin"],
   weight: ["400"],
@@ -162,7 +192,7 @@ export default function RootLayout({
     <html
       lang="ar"
       dir="rtl"
-      className={`scroll-smooth ${tajawal.variable} ${cairo.variable} ${marcellus.variable}`}
+      className={`scroll-smooth ${tajawal.variable} ${cairo.variable} ${marcellus.variable} ${elMessiri.variable}`}
     >
       <head>
         {/* Google tag (gtag.js) — محقون مباشرة في <head> (ليظهر في HTML المُقدّم فوراً

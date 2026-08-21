@@ -1,0 +1,437 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   local.css — طبقة الفخامة والعمق لصفحات (خدمة × مدينة)
+   ═══════════════════════════════════════════════════════════════════════
+   تُحمّل بعد luxe.css وتبني عليها. القرار الهندسي: لا لوحة ألوان جديدة
+   ولا مفردات جديدة — نفس متغيّرات .luxe (البنّي الدخاني + ذهبي الشعار
+   + الكريمي) ونفس البدائيات (.lx-card / .lx-btn / .lx-medal / .lx-obj).
+   ما يضيفه هذا الملف هو ما لم يكن موجوداً: العمق ثلاثي الأبعاد الحقيقي
+   في إطارات الصور، وتوحيد الارتفاعات، والحركة عند الظهور والتمرير.
+
+   ── العطب الذي يعالجه ──
+   التصميم الأصلي للصفحات الفرعية كان مسطّحاً بالكامل:
+     • بطاقة = مستطيل بحدّ 1px بلا ظلّ ولا حافة مضيئة ⇒ ورق لا معدن.
+     • صورة = aspect-[4/3] ثابت على صور نسبها 0.47 → 2.91 ⇒ قصّ 70%.
+     • المعرض aspect-[4/5] لكل الصور بلا خطّ أساس ⇒ «بعضهن كبار
+       بعضهن صغار» حرفياً.
+     • حركة واحدة: fade/translateY. لا عمق، لا ميل، لا إضاءة تتبع.
+   القاعدة المعتمدة هنا: الفخامة في الحافة والظلّ والضوء — لا في الحدّ
+   المرسوم. كل سطح له ثلاث طبقات: حافة مضيئة (1px تتلاشى)، فِلّ بتدرّج
+   مائل 168°، وظلّ عميق مرتفع (-34px spread) يفصله عن الأرضية.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ═══════════════ 1) الهيرو — مسرح لا لافتة ═══════════════ */
+.ls-hero {
+  position: relative;
+  block-size: 78svh;
+  min-block-size: 520px;
+  max-block-size: 760px;
+  overflow: hidden;
+  isolation: isolate;
+  /* الزحف البطيء يكبّر الصورة خارج العرض؛ overflow:hidden يمنع ظهورها
+     لكن scrollWidth يبقى يحسبها. contain:paint يحصر الرسم فعلياً. */
+  contain: paint;
+}
+@media (min-width: 1024px) {
+  .ls-hero { block-size: 82svh; max-block-size: 820px; }
+}
+
+/* زحف بطيء للصورة (Ken Burns) — يمنح الشاشة الأولى حياة بلا فيديو */
+.ls-hero-img {
+  position: absolute;
+  inset: 0;
+  animation: lsDrift 26s ease-in-out infinite alternate;
+  will-change: transform;
+  /* الزحف يكبّر الصورة إلى 405.8px داخل 390px. الأب فيه overflow:hidden
+     فلا يظهر شريط تمرير، لكن الطبقة نفسها كانت تُبلّغ تجاوزاً (402>390)
+     في كل قياس. contain يحصر التجاوز داخل الطبقة نهائياً. */
+  overflow: hidden;
+  contain: paint;
+}
+@keyframes lsDrift {
+  from { transform: scale(1.04) translate3d(0, 0, 0); }
+  to   { transform: scale(1.13) translate3d(-1.4%, -1.8%, 0); }
+}
+
+/* حجاب مركّب: قاعدة معتمة للنصّ + توهّج ذهبي جانبي + إطار داخلي */
+.ls-scrim {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  /* تدرّج القاعدة: يبدأ معتماً تماماً تحت النصّ ولا يفتح أبداً فوق 0.62
+     — القياس أثبت أن صورة القاعة سطوعها 135/255، فأي فتحة أوسع تُنتج
+     ذلك اللبن الباهت الذي رأيته. والتعتيم العلوي يبقي الشريط الأعلى
+     داكناً كي يقرأ الشعار عليه. */
+  background:
+    linear-gradient(to top,
+      rgba(11, 8, 6, 0.985) 0%,
+      rgba(11, 8, 6, 0.93) 18%,
+      rgba(11, 8, 6, 0.7) 40%,
+      rgba(11, 8, 6, 0.52) 62%,
+      rgba(11, 8, 6, 0.74) 100%),
+    /* فينييت جانبي — يحصر العين في المركز ويطفئ الحواف الساخنة */
+    radial-gradient(ellipse 96% 78% at 50% 46%,
+      transparent 26%, rgba(11, 8, 6, 0.34) 62%, rgba(11, 8, 6, 0.78) 100%);
+}
+/* التوهّج الذهبي في طبقة منفصلة بـ soft-light: يُدفئ الصورة ولا يبيّضها.
+   في النسخة السابقة كان تدرّجاً عادياً فوق صورة فاتحة ⇒ يضيف ضوءاً على
+   ضوء = بيج باهت. */
+.ls-scrim::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  mix-blend-mode: soft-light;
+  background: radial-gradient(ellipse 70% 52% at 78% 26%,
+    rgba(216, 168, 119, 0.5), transparent 72%);
+}
+/* إطار شعري داخلي — التفصيل الذي يفصل «صورة غلاف» عن «مسرح مؤطَّر» */
+.ls-scrim::after {
+  content: "";
+  position: absolute;
+  inset: 13px;
+  border-radius: 4px;
+  /* أربع زوايا فقط لا مستطيل كامل: الإطار الكامل بحدّ 1px شفّاف يُقرأ
+     كخطّ عابر في الصورة (عطب)، أما الزوايا فتُقرأ كتأطير مقصود. */
+  border: 1px solid rgba(240, 217, 168, 0.34);
+  -webkit-mask:
+    linear-gradient(#000 0 0) top left / 34px 34px no-repeat,
+    linear-gradient(#000 0 0) top right / 34px 34px no-repeat,
+    linear-gradient(#000 0 0) bottom left / 34px 34px no-repeat,
+    linear-gradient(#000 0 0) bottom right / 34px 34px no-repeat;
+  mask:
+    linear-gradient(#000 0 0) top left / 34px 34px no-repeat,
+    linear-gradient(#000 0 0) top right / 34px 34px no-repeat,
+    linear-gradient(#000 0 0) bottom left / 34px 34px no-repeat,
+    linear-gradient(#000 0 0) bottom right / 34px 34px no-repeat;
+}
+@media (min-width: 768px) {
+  .ls-scrim::after {
+    inset: 22px;
+    -webkit-mask:
+      linear-gradient(#000 0 0) top left / 54px 54px no-repeat,
+      linear-gradient(#000 0 0) top right / 54px 54px no-repeat,
+      linear-gradient(#000 0 0) bottom left / 54px 54px no-repeat,
+      linear-gradient(#000 0 0) bottom right / 54px 54px no-repeat;
+    mask:
+      linear-gradient(#000 0 0) top left / 54px 54px no-repeat,
+      linear-gradient(#000 0 0) top right / 54px 54px no-repeat,
+      linear-gradient(#000 0 0) bottom left / 54px 54px no-repeat,
+      linear-gradient(#000 0 0) bottom right / 54px 54px no-repeat;
+  }
+}
+
+/* شارة ثقة زجاجية */
+/* لا بدّ من هذا السطر: .ls-badge تُحمَّل بعد Tailwind وبنفس الأولوية،
+   فكانت display:inline-flex تلغي الـ utility المسمّى hidden على الشارة
+   الثالثة ⇒ ثلاث شارات تتجاوز عرض الشاشة (قياس: 411 > 390). */
+.ls-badge.hidden { display: none; }
+@media (min-width: 640px) {
+  .ls-badge.hidden.sm\:inline-flex { display: inline-flex; }
+}
+.ls-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.34rem 0.72rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: var(--lx-gold-hi);
+  background: rgba(26, 20, 15, 0.62);
+  border: 1px solid rgba(216, 168, 119, 0.34);
+  backdrop-filter: blur(10px) saturate(1.2);
+  -webkit-backdrop-filter: blur(10px) saturate(1.2);
+  box-shadow: 0 1px 0 rgba(255, 226, 186, 0.12) inset;
+}
+
+/* ═══════════════ 2) إطار الصورة ثلاثي الأبعاد ═══════════════
+   ثلاث طبقات فعلية: منظور (perspective) + ميل محوري خفيف + ظلّ يتبع
+   جهة الميل. الميل 3° فقط — أكثر من ذلك يقرأه العين كخطأ لا كعمق.
+   عند اللمس (الهاتف) يستوي الإطار: الميل بلا فأرة يصبح التواءً بلا سبب.
+   ═══════════════════════════════════════════════════════════════ */
+.ls-fig {
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+  background: var(--lx-ink-2);
+  transform-style: preserve-3d;
+  box-shadow:
+    0 1px 0 rgba(255, 226, 186, 0.1) inset,
+    0 30px 66px -34px rgba(0, 0, 0, 0.96);
+  transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+/* حافة مضيئة تتلاشى — لا حدّ مسطّح */
+.ls-fig::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: inherit;
+  pointer-events: none;
+  padding: 1px;
+  background: linear-gradient(
+    148deg,
+    rgba(240, 217, 168, 0.62),
+    rgba(216, 168, 119, 0.16) 36%,
+    transparent 66%
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+/* ضوء زاوية يمرّ فوق الصورة — يحاكي انعكاس الزجاج */
+.ls-fig::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  background: linear-gradient(
+    122deg,
+    rgba(255, 246, 230, 0.16) 0%,
+    transparent 26%,
+    transparent 74%,
+    rgba(0, 0, 0, 0.3) 100%
+  );
+  mix-blend-mode: soft-light;
+}
+.ls-fig img,
+.ls-svc img {
+  transition: transform 1.3s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+  /* التدريج اللوني الموحّد — العطب كان أن بعض الصور مصوّرة على خلفية
+     بيضاء (قياس السطوع: من 85 إلى 226 = مدى 141 نقطة)، فتُقرأ داخل
+     صفحة بنّية داكنة كثقوب بيضاء لا كصور. هذا يخفض السطوع الأعلى،
+     ويميل الأبيض نحو ذهبي الصفحة، ويرفع التشبّع قليلاً كي يبقى
+     الطعام شهيّاً. */
+  filter: brightness(0.9) contrast(1.07) saturate(1.1) sepia(0.09);
+}
+/* حجاب دافئ خفيف داخل كل إطار — يوحّد حرارة اللون بين صورة قاعة ذهبية
+   وصورة تمر على خلفية بيضاء، فتُقرأ الصفحة كمجموعة واحدة. */
+.ls-tone {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+  background: linear-gradient(168deg,
+    rgba(58, 40, 26, 0.16), rgba(26, 19, 13, 0.36));
+}
+
+/* عمق ثابت على الهاتف — 95٪ من العملاء. الميل وحده يُقرأ كعطب، لكن
+   الميل مع ظلّ يتبع جهته يُقرأ كجسم مائل فعلاً. لذلك لكل جهة ظلّها. */
+.ls-fig--l {
+  transform: perspective(1200px) rotateY(2.4deg);
+  box-shadow:
+    0 1px 0 rgba(255, 226, 186, 0.1) inset,
+    -16px 26px 54px -30px rgba(0, 0, 0, 0.97);
+}
+.ls-fig--r {
+  transform: perspective(1200px) rotateY(-2.4deg);
+  box-shadow:
+    0 1px 0 rgba(255, 226, 186, 0.1) inset,
+    16px 26px 54px -30px rgba(0, 0, 0, 0.97);
+}
+
+@media (hover: hover) and (min-width: 768px) {
+  .ls-fig--l { transform: perspective(1400px) rotateY(3deg) translateZ(0); }
+  .ls-fig--r { transform: perspective(1400px) rotateY(-3deg) translateZ(0); }
+  .ls-fig--l:hover,
+  .ls-fig--r:hover {
+    transform: perspective(1400px) rotateY(0deg) translateY(-6px);
+    box-shadow:
+      0 1px 0 rgba(255, 226, 186, 0.16) inset,
+      0 40px 80px -32px rgba(0, 0, 0, 0.98),
+      0 0 0 1px rgba(216, 168, 119, 0.24);
+  }
+  .ls-fig:hover img { transform: scale(1.06); }
+}
+
+/* زخرفة زاوية ذهبية — تفصيل «مصنوع على المقاس» */
+.ls-corner {
+  position: absolute;
+  z-index: 4;
+  inline-size: 26px;
+  block-size: 26px;
+  pointer-events: none;
+  opacity: 0.72;
+}
+.ls-corner--tr { top: 10px; inset-inline-end: 10px; border-top: 1px solid var(--lx-gold-warm); border-inline-end: 1px solid var(--lx-gold-warm); }
+.ls-corner--bl { bottom: 10px; inset-inline-start: 10px; border-bottom: 1px solid var(--lx-gold-warm); border-inline-start: 1px solid var(--lx-gold-warm); }
+
+/* ═══════════════ 3) توحيد الارتفاعات ═══════════════
+   العطب المقيس: نسب الصور من 0.47 إلى 2.91. أي نسبة إطار واحدة تقصّ
+   بعضها 70%. الحل: ارتفاع ثابت بالبكسل + object-position مقيس لكل صورة،
+   فتتساوى الصفوف بصرياً ويبقى موضوع الصورة داخل الكادر.
+   ═══════════════════════════════════════════════════════════════ */
+.ls-h-sec { block-size: 260px; }
+.ls-h-svc { block-size: 176px; }
+.ls-h-gal { block-size: 208px; }
+@media (min-width: 640px) {
+  .ls-h-sec { block-size: 340px; }
+  .ls-h-svc { block-size: 200px; }
+  .ls-h-gal { block-size: 232px; }
+}
+@media (min-width: 1024px) {
+  .ls-h-sec { block-size: 430px; }
+  .ls-h-gal { block-size: 268px; }
+}
+
+/* حجاب سفلي لصور البطاقات — يربط الصورة بجسم البطاقة */
+.ls-veil {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(to top, rgba(20, 16, 12, 0.94) 0%, rgba(20, 16, 12, 0.28) 44%, transparent 100%),
+    radial-gradient(ellipse 72% 58% at 50% 0%, rgba(216, 168, 119, 0.16), transparent 72%);
+}
+
+/* ═══════════════ 4) بطاقة الخدمة — قدرة لا سعر ═══════════════
+   الفرق ليس تجميلياً: بطاقة الباقة كانت مركزيّة المحاذاة بعنوان كبير
+   ورقم — تُقرأ كعرض سعر فيدخل العميل في مقارنة. بطاقة القدرة محاذاة
+   للبداية بميدالية ورقم رومانيّ صغير — تُقرأ كبند في قائمة إمكانات،
+   فالسؤال الوحيد الذي يبقى: «هل تناسب مناسبتي؟» ⇒ يتواصل.
+   ═══════════════════════════════════════════════════════════════ */
+.ls-svc {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px;
+  overflow: hidden;
+  background: linear-gradient(168deg, #1d1712 0%, #14100c 60%, #100c09 100%);
+  box-shadow:
+    0 1px 0 rgba(255, 226, 186, 0.09) inset,
+    0 26px 60px -34px rgba(0, 0, 0, 0.95);
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.ls-svc::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  border-radius: inherit;
+  pointer-events: none;
+  padding: 1px;
+  background: linear-gradient(150deg, rgba(240, 217, 168, 0.5), rgba(216, 168, 119, 0.12) 34%, transparent 62%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+@media (hover: hover) and (min-width: 768px) {
+  .ls-svc:hover {
+    transform: translateY(-8px);
+    box-shadow:
+      0 1px 0 rgba(255, 226, 186, 0.16) inset,
+      0 42px 78px -32px rgba(0, 0, 0, 0.98);
+  }
+  .ls-svc:hover img { transform: scale(1.07); }
+}
+.ls-svc img { transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1); }
+
+/* رقم رومانيّ محفور فوق صورة البطاقة */
+.ls-idx {
+  position: absolute;
+  z-index: 2;
+  inset-block-start: 0.7rem;
+  inset-inline-start: 0.85rem;
+  font-family: var(--lx-display);
+  font-size: 1.72rem;
+  line-height: 1;
+  color: rgba(240, 217, 168, 0.34);
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.8);
+  letter-spacing: 0.04em;
+}
+
+/* نقطة ماسية لبنود القدرة (بدل الدائرة المسطّحة) */
+.ls-dot {
+  flex: 0 0 auto;
+  inline-size: 7px;
+  block-size: 7px;
+  margin-block-start: 0.52rem;
+  rotate: 45deg;
+  border: 1px solid rgba(216, 168, 119, 0.72);
+  background: linear-gradient(140deg, var(--lx-gold-hi), var(--lx-gold-deep));
+}
+
+/* ═══════════════ 5) شريط النداء الأخير ═══════════════ */
+.ls-band {
+  position: relative;
+  overflow: hidden;
+  border-radius: 24px;
+  padding: 2.4rem 1.25rem;
+  text-align: center;
+  background:
+    radial-gradient(ellipse 80% 100% at 50% 0%, rgba(120, 74, 38, 0.55), transparent 70%),
+    linear-gradient(168deg, #1e1712, #120e0a);
+  box-shadow: 0 1px 0 rgba(255, 226, 186, 0.1) inset, 0 30px 70px -36px rgba(0, 0, 0, 0.96);
+}
+.ls-band::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  padding: 1px;
+  background: linear-gradient(150deg, rgba(240, 217, 168, 0.55), transparent 58%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+@media (min-width: 768px) {
+  .ls-band { padding: 3.2rem 2.5rem; }
+}
+
+/* ═══════════════ 6) العنوان الرئيسي ═══════════════
+   نفس مبدأ .lx-h1-main: El Messiri (تباين سماكة حقيقي) بوزن 700 —
+   طلب 900 من خطّ أقصاه 700 يجعل المتصفح يزوّر السماكة فتتشوّه الحروف.
+   ═══════════════════════════════════════════════════════════════ */
+.ls-h1 {
+  display: block;
+  font-family: var(--font-messiri), "El Messiri", serif;
+  font-weight: 700;
+  font-size: clamp(1.82rem, 7.4vw, 3.35rem);
+  line-height: 1.24;
+  letter-spacing: -0.012em;
+  max-inline-size: 26ch;
+  text-wrap: balance;
+}
+.ls-h1-tail {
+  display: block;
+  margin-block-start: 0.65rem;
+  font-size: clamp(0.9rem, 3.4vw, 1.08rem);
+  font-weight: 500;
+  line-height: 1.7;
+  color: var(--lx-cream-75);
+  max-inline-size: 36ch;
+  text-wrap: pretty;
+}
+
+/* ═══════════════ 7) الحركة ═══════════════
+   .lx-rise موجودة في luxe.css (opacity + translateY). ما ينقصها العمق:
+   الظهور مع دوران محوري طفيف يقرأه العين كجسم يستقيم لا كنصّ ينزلق.
+   ═══════════════════════════════════════════════════════════════ */
+[data-rise3d] { perspective: 1200px; }
+.ls-rise3d {
+  opacity: 0;
+  transform: translateY(26px) rotateX(7deg) scale(0.985);
+  transform-origin: 50% 100%;
+  transition: opacity 0.95s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.95s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.ls-rise3d.is-in { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .ls-hero-img { animation: none; }
+  .ls-fig, .ls-fig img, .ls-svc, .ls-svc img { transition: none; }
+  .ls-fig--l, .ls-fig--r { transform: none; }
+  .ls-hero-img { transform: scale(1.04); }
+  .ls-rise3d { opacity: 1; transform: none; transition: none; }
+}

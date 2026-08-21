@@ -1,7 +1,6 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import LocalServicePage from "@/components/LocalServicePage";
-import LuxeServicePage from "@/components/luxe/LuxeServicePage";
 import { getLocalContent } from "@/lib/localContent";
 import { generatePageMetadata } from "@/components/SEO";
 import {
@@ -15,15 +14,14 @@ import { CITIES, SERVICES, LOCAL_PAGES, localSlug, parseServiceCity } from "@/li
 const SITE_URL = "https://keifaldiafa.com";
 
 /**
- * صفحات تستخدم الطبقة الفاخرة (LuxeServicePage) بدل القالب القديم.
+ * ملاحظة معمارية: لا يوجد هنا أي بوّابة سلاگات بعد الآن.
  *
- * لماذا قائمة صريحة بدل التبديل الشامل؟
- * هذا المسار يبني 24 صفحة منشورة الآن على Vercel. تفعيل التصميم الجديد
- * للكل دفعة واحدة = تغيير 24 صفحة قبل أن تراها. لذلك نبدأ بصفحة نموذج
- * واحدة، وعند الموافقة يُعمَّم التصميم بإضافة السلاگات هنا (أو بإرجاع
- * true دائماً من الدالة أدناه) — سطر واحد لا إعادة كتابة.
+ * سابقاً كانت الفخامة محصورة في صفحة نموذج واحدة عبر قائمة صريحة
+ * (LUXE_SLUGS) تُحوّلها إلى مكوّن مستقلّ. حُذفت البوّابة لأن الترقية
+ * أُنجزت داخل LocalServicePage نفسه — المكوّن الذي يخدم كل الصفحات
+ * الفرعية أصلاً. النتيجة: الفخامة والعمق والحركة تصل إلى الصفحات كلها
+ * بمكوّن واحد، بلا تصميمين متوازيين يتباعدان مع كل تعديل.
  */
-const LUXE_SLUGS = new Set<string>(["sababin-qahwa-jeddah"]);
 
 /** Pre-render every (service × city) page at build time (SSG). */
 export function generateStaticParams(): { serviceCity: string }[] {
@@ -71,7 +69,6 @@ export default function Page({ params }: Props) {
   const s = SERVICES[parsed.service];
   const slug = localSlug(parsed.service, parsed.city);
   const url = `${SITE_URL}/${slug}`;
-  const isLuxe = LUXE_SLUGS.has(slug);
 
   const breadcrumbSchema = generateBreadcrumbSchema(
     data.page.breadcrumbItems.map((b) => ({ name: b.label, url: `${SITE_URL}${b.href}` }))
@@ -97,7 +94,7 @@ export default function Page({ params }: Props) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }} />
-      {isLuxe ? <LuxeServicePage {...data.page} /> : <LocalServicePage {...data.page} />}
+      <LocalServicePage {...data.page} />
     </>
   );
 }

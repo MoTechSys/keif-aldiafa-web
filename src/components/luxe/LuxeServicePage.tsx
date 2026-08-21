@@ -33,8 +33,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { LocalServicePageProps } from "@/components/LocalServicePage";
-import { HERO, EQUIPMENT, DALLAH, DALLAH_SILVER, SECTIONS, FRAME } from "@/lib/luxeAssets";
-import { PROTOCOL, STANDARDS, KIT, BADGES } from "@/lib/luxeCopy";
+import { HERO, EQUIPMENT, DALLAH, DALLAH_SILVER, SECTIONS, SERVICE_IMGS, FRAME } from "@/lib/luxeAssets";
+import { PROTOCOL, STANDARDS, KIT, BADGES, OFFER } from "@/lib/luxeCopy";
 import LuxeReveal from "./LuxeReveal";
 import LuxeRequest from "./LuxeRequest";
 import {
@@ -338,32 +338,55 @@ export default function LuxeServicePage(props: LocalServicePageProps) {
 
       <Orn />
 
-      {/* ══════════ 6 / 8 — الباقات ══════════
-          الشعار المعلّق (.lx-crest) حُذف: كان يظهر كـ«لسان ذهبي» مزاح
-          عن المركز في RTL فيقرأه العميل كعطب برمجي لا كزخرفة. */}
+      {/* ══════════ 6 / 8 — خدماتنا ══════════
+          أمر صريح: «ليس لدينا باقات». الباقة تدفع للمقارنة والحساب
+          وتوحي بسعر ثابت. الخدمة تصف قدرة، فيسأل العميل «هل تناسب
+          مناسبتي؟» — وجوابها محادثة. البنية نفسها تنتج المكالمة.
+          كل بطاقة: اسم + سطر + 3 قدرات + إجراء واحد لا يتغيّر. */}
       <section className="max-w-6xl mx-auto px-4">
         <Head
-          eyebrow="الاختيارات"
+          eyebrow="ما نقدّمه"
           icon={<IconDallah className="w-4 h-4" />}
           center
-          lead="ثلاث صيغ للخدمة، تُفصَّل كل واحدة على مناسبتك بعد المحادثة."
+          lead="اختر ما يشبه مناسبتك، وكلّمنا — نفصّل الخدمة عليها بالتفصيل."
         >
-          صيغ <em>{props.serviceAr}</em>
+          خدماتنا في <em>{props.cityAr}</em>
         </Head>
 
-        <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
-          {props.packages.map((p) => (
-            <article key={p.name} data-rise className="lx-card lx-frame p-6 flex flex-col">
-              <h3 className="font-[family-name:var(--font-cairo)] text-lg font-extrabold text-[--lx-gold-hi] text-center mb-1.5">
-                {p.name}
-              </h3>
-              <p className="lx-note text-center mb-5">{p.desc}</p>
+        <div className="mt-10 grid sm:grid-cols-2 gap-5 sm:gap-6">
+          {OFFER.map((o, oi) => (
+            <article key={o.t} data-rise className="lx-card lx-frame overflow-hidden flex flex-col">
+              {/* صورة الخدمة — نافذة أفقية موحّدة الارتفاع لكل البطاقات.
+                  التوحيد مقصود: تباين الارتفاعات هو ما وصفه العميل
+                  «بعضهن كبار بعضهن صغار». والصورة مختومة بعلامتنا. */}
+              {SERVICE_IMGS[oi] && (
+                <div className="lx-offer-img">
+                  <Image
+                    src={SERVICE_IMGS[oi].src}
+                    alt={SERVICE_IMGS[oi].alt}
+                    fill
+                    sizes="(max-width:640px) 100vw, 50vw"
+                    className="object-cover"
+                  />
+                  <span aria-hidden="true" className="lx-offer-veil" />
+                </div>
+              )}
+
+              <div className="p-6 flex flex-col flex-1">
+              <div className="flex items-start gap-3 mb-3">
+                <span className="lx-medal shrink-0" aria-hidden="true">
+                  <i />
+                  {String(oi + 1).padStart(2, "0")}
+                </span>
+                <div className="min-w-0">
+                  <h3 className="lx-offer-t">{o.t}</h3>
+                  <p className="lx-note !mt-1">{o.d}</p>
+                </div>
+              </div>
+
               <ul className="space-y-2.5 mb-6">
-                {p.features.map((f) => (
-                  <li
-                    key={f}
-                    className="flex items-start gap-2.5 text-[0.93rem] text-[--lx-cream-75]"
-                  >
+                {o.points.map((f) => (
+                  <li key={f} className="flex items-start gap-2.5 text-[0.93rem] text-[--lx-cream-75]">
                     <span
                       aria-hidden="true"
                       className="mt-[9px] w-[6px] h-[6px] shrink-0 rotate-45 bg-[--lx-gold-warm]"
@@ -372,15 +395,24 @@ export default function LuxeServicePage(props: LocalServicePageProps) {
                   </li>
                 ))}
               </ul>
-              <a
-                href={wa(`السلام عليكم، أرغب بـ«${p.name}» — ${props.serviceAr} في ${props.cityAr}.`)}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="lx-btn lx-btn--ghost mt-auto w-full"
-              >
-                اطلب هذه الباقة
-                <IconArrow className="w-4 h-4" />
-              </a>
+
+              {/* الإجراء المزدوج: واتساب لمن يكتب، واتصال لمن يستعجل.
+                  لا «اطلب الباقة» — لا يوجد ما يُطلب، يوجد ما يُسأل عنه. */}
+              <div className="mt-auto grid grid-cols-[1fr_auto] gap-2.5">
+                <a
+                  href={wa(`السلام عليكم، أستفسر عن «${o.t}» في ${props.cityAr}.`)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="lx-btn lx-btn--gold !min-h-[52px]"
+                >
+                  <IconWhatsApp className="w-5 h-5" />
+                  استفسر عن الخدمة
+                </a>
+                <a href={tel} aria-label={`اتصل للاستفسار عن ${o.t}`} className="lx-btn lx-btn--ghost !px-4 !min-h-[52px]">
+                  <IconPhone className="w-5 h-5" />
+                </a>
+              </div>
+              </div>
             </article>
           ))}
         </div>
