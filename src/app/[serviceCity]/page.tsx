@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import LocalServicePage from "@/components/LocalServicePage";
+import LuxeServicePage from "@/components/luxe/LuxeServicePage";
 import { getLocalContent } from "@/lib/localContent";
 import { generatePageMetadata } from "@/components/SEO";
 import {
@@ -12,6 +13,17 @@ import {
 import { CITIES, SERVICES, LOCAL_PAGES, localSlug, parseServiceCity } from "@/lib/localPages";
 
 const SITE_URL = "https://keifaldiafa.com";
+
+/**
+ * صفحات تستخدم الطبقة الفاخرة (LuxeServicePage) بدل القالب القديم.
+ *
+ * لماذا قائمة صريحة بدل التبديل الشامل؟
+ * هذا المسار يبني 24 صفحة منشورة الآن على Vercel. تفعيل التصميم الجديد
+ * للكل دفعة واحدة = تغيير 24 صفحة قبل أن تراها. لذلك نبدأ بصفحة نموذج
+ * واحدة، وعند الموافقة يُعمَّم التصميم بإضافة السلاگات هنا (أو بإرجاع
+ * true دائماً من الدالة أدناه) — سطر واحد لا إعادة كتابة.
+ */
+const LUXE_SLUGS = new Set<string>(["sababin-qahwa-jeddah"]);
 
 /** Pre-render every (service × city) page at build time (SSG). */
 export function generateStaticParams(): { serviceCity: string }[] {
@@ -57,7 +69,9 @@ export default function Page({ params }: Props) {
   const data = getLocalContent(parsed.service, parsed.city);
   const c = CITIES[parsed.city];
   const s = SERVICES[parsed.service];
-  const url = `${SITE_URL}/${localSlug(parsed.service, parsed.city)}`;
+  const slug = localSlug(parsed.service, parsed.city);
+  const url = `${SITE_URL}/${slug}`;
+  const isLuxe = LUXE_SLUGS.has(slug);
 
   const breadcrumbSchema = generateBreadcrumbSchema(
     data.page.breadcrumbItems.map((b) => ({ name: b.label, url: `${SITE_URL}${b.href}` }))
@@ -83,7 +97,7 @@ export default function Page({ params }: Props) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }} />
-      <LocalServicePage {...data.page} />
+      {isLuxe ? <LuxeServicePage {...data.page} /> : <LocalServicePage {...data.page} />}
     </>
   );
 }

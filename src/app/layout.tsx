@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { Tajawal, Cairo } from "next/font/google";
 import "@/styles/globals.css";
+// طبقة الفخامة — إضافية بالكامل ومحصورة داخل .luxe فلا تؤثر على بقية الصفحات
+import "@/styles/luxe.css";
 import {
   generateLocalBusinessSchema,
   generateWebSiteSchema,
