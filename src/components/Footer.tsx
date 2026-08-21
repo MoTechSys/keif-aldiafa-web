@@ -33,7 +33,7 @@ export default function Footer() {
         }}
       />
       <div className="relative max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-7 md:gap-10 mb-8 md:mb-12">
           {/* Brand Info */}
           <div className="md:col-span-2">
             <div className="flex items-center gap-3 mb-5">
@@ -97,7 +97,7 @@ export default function Footer() {
             >
               خدماتنا في مدن المملكة
             </h3>
-            <ul className="space-y-2 max-h-56 overflow-y-auto pr-1" style={{ scrollbarWidth: "thin" }}>
+            <ul className="space-y-1.5 max-h-44 md:max-h-56 overflow-y-auto pr-1" style={{ scrollbarWidth: "thin" }}>
               {LOCAL_PAGES.map((p) => {
                 const c = SC_CITIES[p.city];
                 const s = SC_SERVICES[p.service];
@@ -151,7 +151,7 @@ export default function Footer() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.6 }}
-          className="py-8 mb-6 flex flex-col items-center gap-6"
+          className="py-6 mb-4 flex flex-col items-center gap-5"
           style={{ borderTop: "1px solid rgba(184,134,11,0.08)", borderBottom: "1px solid rgba(184,134,11,0.08)" }}
         >
           <p className="text-[#B8860B] text-xs" style={{ letterSpacing: "0.15em", fontWeight: 600 }}>شهادات التوثيق والاعتماد</p>

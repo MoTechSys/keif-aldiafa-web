@@ -94,7 +94,8 @@
   align-items: center;
   justify-content: center;
   gap: 0.85rem;
-  margin-block: clamp(2.25rem, 5vw, 3.5rem);
+  /* 6 فواصل × (36px×2) = 432px على الهاتف. الإيقاع يبقى، الهواء يُضبط. */
+  margin-block: clamp(1.6rem, 4vw, 3.25rem);
 }
 .lx-orn::before,
 .lx-orn::after {
@@ -158,8 +159,12 @@
 
 .lx-lead {
   color: var(--lx-cream-75);
-  line-height: 1.95;
+  /* 1.95 كان يمنح كل فقرة ضعف ارتفاعها الضروري: 519 كلمة أنتجت 11088px.
+     العربية تحتاج هواءً أكثر من اللاتينية، لكن 1.78 لا يزال مريحاً
+     ويحرّر ~9% من طول كل كتلة نصّية في الصفحة. */
+  line-height: 1.78;
   font-size: clamp(0.95rem, 2.4vw, 1.06rem);
+  text-wrap: pretty;
 }
 
 /* ═══════════════ البطاقة ═══════════════ */
@@ -880,7 +885,11 @@ body:has(.luxe) a[href*="wa.me"][class*="25D366"] svg { color: var(--lx-gold-hi)
 /* 3+4) إضاءة الحافة والظلّ السفلي على الجسم نفسه */
 .lx-obj img {
   object-fit: contain;
+  /* القياس: الدلّة الذهبية 226/255 لوما وميلها أزرق (228/226/224) —
+     أسطع جسم في الصفحة كلها. ولأنها قصّة شفّافة لا يجوز تركيب حجاب
+     فوقها (سيظهر مستطيلاً حول الجسم)، فالتدريج يدخل داخل الـfilter. */
   filter:
+    brightness(0.93) saturate(1.12) sepia(0.1) hue-rotate(-6deg)
     drop-shadow(0 -1px 0 rgba(255, 244, 224, 0.34))
     drop-shadow(0 1px 0 rgba(255, 233, 199, 0.22))
     drop-shadow(0 20px 26px rgba(0, 0, 0, 0.62));
@@ -892,7 +901,10 @@ body:has(.luxe) a[href*="wa.me"][class*="25D366"] svg { color: var(--lx-gold-hi)
 .lx-obj:focus-visible img,
 .lx-obj:active img {
   transform: translateY(-9px) scale(1.035);
+  /* التدريج يُكرَّر هنا حرفياً: filter يُعاد تعريفه بالكامل لا يُضاف
+     إليه، فإسقاطه كان يُقفز الجسم إلى سطوعه الأصلي عند أول لمسة. */
   filter:
+    brightness(0.93) saturate(1.12) sepia(0.1) hue-rotate(-6deg)
     drop-shadow(0 -1px 0 rgba(255, 244, 224, 0.5))
     drop-shadow(0 1px 0 rgba(255, 233, 199, 0.3))
     drop-shadow(0 30px 34px rgba(0, 0, 0, 0.7));

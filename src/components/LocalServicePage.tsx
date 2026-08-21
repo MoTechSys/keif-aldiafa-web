@@ -229,7 +229,7 @@ export default function LocalServicePage(props: LocalServicePageProps) {
             الدلّة قصّة شفّافة تطفو بلا صندوق (لا مربّع أبيض حول جسم).
             القياس أثبت أن كل صور المعدّات ذات الخلفية البيضاء أو الكحلية
             تُقرأ داخل صفحة بنّية داكنة كعطب لا كصورة منتج. */}
-        <section className="pt-14 sm:pt-20 grid md:grid-cols-[1.55fr_1fr] gap-8 md:gap-12 items-center">
+        <section className="pt-10 sm:pt-20 grid md:grid-cols-[1.55fr_1fr] gap-6 md:gap-12 items-center">
           <div data-rise>
             <p className="lx-eyebrow">
               <IconDallah className="w-4 h-4" />
@@ -254,7 +254,7 @@ export default function LocalServicePage(props: LocalServicePageProps) {
         {/* ══════════════ 3 — الأقسام النصية بإطارات ثلاثية الأبعاد ══════════════
             الإطارات تتبادل جهة الميل مع تبادل ترتيب الأعمدة، فيتولّد
             إيقاع بصري: العين تنزل متعرّجة لا مستقيمة. */}
-        <div className="space-y-16 sm:space-y-24">
+        <div className="space-y-12 sm:space-y-24">
           {props.sections.map((s, i) => {
             const shot = art.sections[i];
             const flip = i % 2 === 1;
@@ -332,6 +332,10 @@ export default function LocalServicePage(props: LocalServicePageProps) {
                         sizes="(max-width:640px) 100vw, (max-width:1024px) 50vw, 33vw"
                         className="object-cover"
                       />
+                      {/* حجاب النبرة: العين رصدت أن ls-veil يُعتم الأسفل فقط،
+                          فيبقى أعلى صورة القاعة (سطوعها 135/255) ساطعاً
+                          مقابل البوفيه تحتها — فتُقرأ البطاقتان من مصدرين. */}
+                      <span aria-hidden="true" className="ls-tone" />
                       <span aria-hidden="true" className="ls-veil" />
                       <span aria-hidden="true" className="ls-idx">
                         {ROMAN[pi] ?? pi + 1}
@@ -411,16 +415,16 @@ export default function LocalServicePage(props: LocalServicePageProps) {
             لماذا تختارنا في <em>{props.cityAr}</em>
           </Head>
 
-          <div className="mt-8 grid sm:grid-cols-2 gap-4">
+          <div className="mt-7 grid grid-cols-2 gap-2.5 sm:gap-4">
             {props.whyUs.map((w, wi) => {
               const Ico = WHY_ICONS[wi % WHY_ICONS.length];
               return (
-                <div key={w} className="lx-lift flex items-start gap-3.5 p-4 sm:p-5" data-rise>
+                <div key={w} className="lx-lift flex flex-col sm:flex-row items-start gap-2 sm:gap-3.5 p-3.5 sm:p-5" data-rise>
                   <span className="lx-medal" aria-hidden="true">
                     <i />
                     <Ico className="w-4 h-4" />
                   </span>
-                  <p className="text-sm sm:text-[0.95rem] leading-relaxed text-[color:var(--lx-cream-75)] pt-2">
+                  <p className="text-[0.8rem] sm:text-[0.95rem] leading-snug sm:leading-relaxed text-[color:var(--lx-cream-75)] sm:pt-2">
                     {w}
                   </p>
                 </div>
@@ -478,7 +482,7 @@ export default function LocalServicePage(props: LocalServicePageProps) {
         </section>
 
         {/* ══════════════ 9 — الأحياء (إشارة جغرافية) ══════════════ */}
-        <section className="mt-16">
+        <section className="mt-14">
           <Head eyebrow="تغطيتنا" icon={<IconPin className="w-4 h-4" />}>
             نصل إليك في كل <em>{props.cityAr}</em>
           </Head>
@@ -493,7 +497,7 @@ export default function LocalServicePage(props: LocalServicePageProps) {
 
         {/* ══════════════ 10 — النداء الأخير ══════════════
             هدف الصفحة كلها: أن يتواصل. لذلك آخر ما يراه زرّان لا نصّ. */}
-        <section className="mt-16 sm:mt-24">
+        <section className="mt-14 sm:mt-24">
           <div className="ls-band" data-rise3d>
             <p className="lx-eyebrow justify-center">
               <IconDallah className="w-4 h-4" />
@@ -520,7 +524,7 @@ export default function LocalServicePage(props: LocalServicePageProps) {
 
         {/* ══════════════ 11 — مدن أخرى (ربط داخلي) ══════════════ */}
         {props.otherCities.length > 0 && (
-          <section className="mt-16 pb-16 border-t border-[color:var(--lx-hair-soft)] pt-10">
+          <section className="mt-14 pb-6 border-t border-[color:var(--lx-hair-soft)] pt-8">
             <h2 className="lx-kicker mb-5">{props.serviceAr} في مدن أخرى</h2>
             <div className="flex flex-wrap gap-2.5">
               {props.otherCities.map((c) => (
