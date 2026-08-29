@@ -32,7 +32,7 @@ export function generateOrganizationSchema() {
       name: "Saudi Arabia",
     },
     },
-    sameAs: [SOCIAL.instagram, SOCIAL.whatsapp],
+    sameAs: [SOCIAL.instagram, SOCIAL.whatsapp, SOCIAL.googleMaps],
   };
 }
 
@@ -100,7 +100,7 @@ export function generateLocalBusinessSchema() {
     // النشاط يخدم حفلات ومؤسسات ومناسبات متنوّعة، لا باقات محددة — رمز جوجل «فاخر» $$$ ينقل الانطباع المحيط دون أرقام تنفّر.
     priceRange: "$$$",
     servesCuisine: "قهوة سعودية وضيافة عربية",
-    sameAs: [SOCIAL.instagram, SOCIAL.whatsapp],
+    sameAs: [SOCIAL.instagram, SOCIAL.whatsapp, SOCIAL.googleMaps],
     contactPoint: {
       "@type": "ContactPoint",
       telephone: PHONE,

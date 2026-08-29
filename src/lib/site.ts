@@ -40,4 +40,10 @@ export function waLink(message?: string): string {
 export const SOCIAL = {
   instagram: "https://www.instagram.com/keifaldiafa",
   whatsapp: `https://wa.me/${WHATSAPP_NUMBER}`,
+  /**
+   * ملف النشاط التجاري في خرائط جوجل (Google Business Profile)
+   * مؤكَّد من المالك 2026-08-29: «كيف الضيافة للأفراح والمناسبات» — 4.5⭐/49 مراجعة
+   * kgmid: /g/11vz4gzwn_ · CID: 15151944507933206223
+   */
+  googleMaps: "https://maps.google.com/maps?cid=15151944507933206223",
 } as const;

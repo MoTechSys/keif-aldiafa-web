@@ -174,7 +174,7 @@ npm run lint   # فحص الكود
 2. **Git LFS**: الصور تُتبّع عبر Git LFS (انظر `.gitattributes`)
 3. **Client Components**: معظم الصفحات تعتمد على Client Components (لاحظ `"use client"`)
 4. **Google Fonts**: الخطوط تُحمّل من `next/font/google` - قد تفشل في بيئات محظورة
-5. **رقم الواتساب**: `966508252134` — مصدر الحقيقة `src/lib/site.ts` (⚠️ كان مكتوباً هنا سابقاً 966535636933 خطأً — بانتظار تأكيد المالك للرقم التجاري الرسمي)
+5. **رقم الواتساب**: `966508252134` — مصدر الحقيقة `src/lib/site.ts`، **مؤكَّد** بملف Google Business الرسمي (2026-08-29)
 6. **SITE_URL**: `https://keifaldiafa.com` - معرّف في عدة ملفات
 
 ### المشاكل المعروفة:
@@ -211,13 +211,15 @@ npm run lint   # فحص الكود
 | 2026-08-29 | إصلاحات سيو من الفاحص: 14 عنواناً كان >60 حرفاً قُصّرت (قالب serviceCity + locations)، حذف تكرار البراند في legal/social (القالب يضيفه)، وصفان >158 حرفاً، ضغط counter-1.webp (264→190KB)، استثناء بكسل Meta noscript من CH5 | localContent.tsx, locations/[city]/page.tsx, legal/page.tsx, social/page.tsx |
 | 2026-08-29 | سجل إثبات الأرقام data/proof.json: الأرقام التسويقية (+500 مناسبة، +200 عميل، 100% رضا، 10 سنوات) مسجّلة verified_by_owner:false بانتظار تأكيد المالك — فاحص S10 يرصد أي رقم جديد غير موثّق | data/proof.json |
 | 2026-08-29 | استيعاب بحث خارجي (14 ملف): 13 مكسباً متبنّى (أبرزها GBP + PDPL + Dynamic OG + لهجة سعودية)، 9 توصيات مرفوضة/مشروطة (صفحات أحياء=N1 doorway، AggregateRating وهمي، شهادات مؤلفة، LCP 9.4s رقم قديم يحتاج إعادة قياس)، تصحيح رقم واتساب في التوثيق ليطابق site.ts | docs/RESEARCH-INTAKE-2026-08.md, CLAUDE.md |
+| 2026-08-29 | تحقق من المالك: **GBP موجود وفعّال** (4.5⭐/49 مراجعة — الباحث الخارجي أخطأ بادعاء غيابه) + حسم رقم الواتساب 0508252134 نهائياً + إضافة رابط Maps إلى SOCIAL وإلى sameAs في Organization/LocalBusiness Schema | src/lib/site.ts, src/lib/schema.ts, docs/RESEARCH-INTAKE-2026-08.md |
 
 ---
 
 ## 9. التواصل والمعلومات
 
 - **الموقع**: https://keifaldiafa.com
-- **واتساب**: +966508252134 (مطابق لـ src/lib/site.ts والموقع المنشور)
+- **واتساب**: +966508252134 (مؤكَّد بملف Google Business الرسمي)
+- **Google Business**: «كيف الضيافة للأفراح والمناسبات» — 4.5⭐/49 مراجعة، مفتوح 24/7، CID: 15151944507933206223
 - **البريد**: keifdiafa@gmail.com
 - **إنستغرام**: @keifdiafa
 - **العنوان**: الرياض، المملكة العربية السعودية
