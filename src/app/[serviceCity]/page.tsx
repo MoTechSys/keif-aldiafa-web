@@ -10,8 +10,8 @@ import {
   generateWebPageSchema,
 } from "@/lib/schema";
 import { CITIES, SERVICES, LOCAL_PAGES, localSlug, parseServiceCity } from "@/lib/localPages";
+import { SITE_URL } from "@/lib/site";
 
-const SITE_URL = "https://keifaldiafa.com";
 
 /**
  * ملاحظة معمارية: لا يوجد هنا أي بوّابة سلاگات بعد الآن.

@@ -3,8 +3,8 @@ import Link from "next/link";
 import { CITIES } from "@/lib/cities";
 import { generatePageMetadata } from "@/components/SEO";
 import { generateBreadcrumbSchema, generateWebPageSchema } from "@/lib/schema";
+import { SITE_URL } from "@/lib/site";
 
-const SITE_URL = "https://keifaldiafa.com";
 
 export const metadata: Metadata = generatePageMetadata({
   title: "مناطق خدمات الضيافة — تغطية كل مدن المملكة",

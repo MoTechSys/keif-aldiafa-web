@@ -6,16 +6,18 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "guard:seo": "node scripts/seo-guard.mjs",
+    "guard:similarity": "node scripts/similarity-check.mjs",
+    "guard:assets": "node scripts/check-assets.mjs",
+    "guard": "npm run guard:seo && npm run guard:similarity && npm run guard:assets"
   },
   "dependencies": {
-    "clsx": "^2.1.1",
     "embla-carousel-react": "^8.6.0",
     "motion": "^12.23.24",
     "next": "^14.2.15",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "tailwind-merge": "^3.2.0"
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
     "@types/node": "^20.14.0",

@@ -3,9 +3,9 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Suspense } from "react";
+import { SITE_URL } from "@/lib/site";
 
 // ثابت محلي — لا نستورد من imageCatalog (ملف server-side يستخدم node:fs)
-const SITE_URL = "https://keifaldiafa.com";
 
 interface BreadcrumbItem {
   label: string;

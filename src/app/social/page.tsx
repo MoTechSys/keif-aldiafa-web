@@ -2,13 +2,14 @@ import { Metadata } from "next";
 import SocialClient from "./SocialClient";
 import { generatePageMetadata } from "@/components/SEO";
 import { generateBreadcrumbSchema, generateWebPageSchema } from "@/lib/schema";
+import { SITE_URL } from "@/lib/site";
 
-const SITE_URL = "https://keifaldiafa.com";
 
 export const metadata: Metadata = generatePageMetadata({
-  title: "حسابات كيف الضيافة على مواقع التواصل — شاهد أعمالنا",
+  // بلا اسم البراند — قالب layout يضيف «| كيف الضيافة» تلقائياً (فاحصا S1/S2).
+  title: "حساباتنا على مواقع التواصل — شاهد أعمالنا",
   description:
-    "تابع كيف الضيافة على إنستغرام وتيك توك وسناب شات وإكس وفيسبوك، وشاهد ضيافتنا في المناسبات. امسح الباركود للوصول إلى كل حساباتنا، أو تواصل واتساب +966508252134.",
+    "تابع كيف الضيافة على إنستغرام وتيك توك وسناب وإكس وفيسبوك، وشاهد ضيافتنا في المناسبات. امسح الباركود للوصول إلى كل حساباتنا، أو تواصل واتساب +966508252134.",
   path: "/social",
   keywords: [
     "كيف الضيافة انستقرام",

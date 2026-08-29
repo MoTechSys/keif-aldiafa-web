@@ -14,9 +14,9 @@ import {
   generateFAQSchema,
   generateImageGallerySchema,
 } from "@/lib/schema";
+import { SITE_URL, WHATSAPP_NUMBER } from "@/lib/site";
 
-const SITE_URL = "https://keifaldiafa.com";
-const WHATSAPP = "https://wa.me/966508252134?text=";
+const WHATSAPP = `https://wa.me/${WHATSAPP_NUMBER}?text=`;
 
 interface Params {
   params: { city: string };
@@ -32,7 +32,8 @@ export function generateMetadata({ params }: Params): Metadata {
     return generatePageMetadata({ title: "غير موجود", description: "", path: "/locations", noIndex: true });
 
   return generatePageMetadata({
-    title: `ضيافة فاخرة في ${city.name} — خبرة +500 مناسبة`,
+    // ≤46 حرفاً قبل «| كيف الضيافة» (فاحص S1) — حتى مع «المدينة المنورة».
+    title: `ضيافة ${city.name} — خبرة +500 مناسبة`,
     description: `✓ خبرة +500 مناسبة ✓ طاقم سعودي محترف ✓ تغطية كل أحياء ${city.name}. قهوجيين وصبابين قهوة وتجهيز ضيافة متكامل. عرض سعر مجاني — واتساب 0508252134`,
     path: `/locations/${city.slug}`,
     keywords: city.keywords,

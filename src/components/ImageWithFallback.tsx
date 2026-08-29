@@ -69,9 +69,9 @@ function ImageWithFallbackInner({
     );
   }
 
+  // alt يُمرَّر صراحةً في JSX أدناه (لا داخل spread) ليتحقق منه فاحص a11y ساكناً.
   const commonProps = {
     src,
-    alt,
     className,
     style,
     sizes,
@@ -85,12 +85,13 @@ function ImageWithFallbackInner({
   };
 
   if (fill) {
-    return <Image {...commonProps} fill />;
+    return <Image {...commonProps} alt={alt} fill />;
   }
 
   return (
     <Image
       {...commonProps}
+      alt={alt}
       width={width || 800}
       height={height || 600}
     />

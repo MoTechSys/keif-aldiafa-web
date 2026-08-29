@@ -1,5 +1,6 @@
 "use client";
 
+import { WHATSAPP_NUMBER as WA } from "@/lib/site";
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence, useScroll } from "motion/react";
 import Image from "next/image";
@@ -17,7 +18,6 @@ import {
   FEMALE_SERVICES_IMAGES,
 } from "@/lib/images";
 
-const WA = "966508252134";
 
 interface OutfitItem { name: string; img: string; desc: string; }
 interface ServiceItem { id: string; title: string; subtitle: string; img: string; description: string; features: string[]; outfits: OutfitItem[]; }

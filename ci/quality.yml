@@ -1,0 +1,64 @@
+# منظومة الحماية الآلية — كيف الضيافة
+# تمنع دمج أي كود يكسر السيو أو الأداء أو يرفع تشابه الصفحات (خطر Doorway Pages).
+name: Quality Gate
+
+on:
+  push:
+    branches: [main, genspark_ai_developer]
+  pull_request:
+    branches: [main]
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Typecheck
+        run: npx tsc --noEmit
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Build
+        run: npm run build
+
+      - name: SEO Guard (S1–S14)
+        run: npm run guard:seo
+
+      - name: Similarity Check (Doorway protection)
+        run: npm run guard:similarity
+
+      - name: Asset Budget (CH1–CH8)
+        run: npm run guard:assets
+
+  lighthouse:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    # لا نفشل الدمج على Lighthouse بعدُ — مرحلة مراقبة أولى، ثم يُشدَّد لاحقاً
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Lighthouse CI
+        run: npx --yes @lhci/cli@0.14.x autorun

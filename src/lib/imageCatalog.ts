@@ -20,8 +20,10 @@
 
 import fs from "node:fs";
 import path from "node:path";
+import { SITE_URL } from "@/lib/site";
 
-export const SITE_URL = "https://keifaldiafa.com";
+// إعادة تصدير للملفات التي تستورد SITE_URL من هنا (routes خرائط الموقع)
+export { SITE_URL };
 
 export interface CatalogImage {
   /** Site-root-relative path, e.g. /images/events/foo.webp */

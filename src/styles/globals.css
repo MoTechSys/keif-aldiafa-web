@@ -39,7 +39,9 @@ html {
 body {
   background-color: var(--luxury-black);
   color: var(--text-primary);
-  font-family: 'Tajawal', sans-serif;
+  /* مربوط بمتغير next/font — الاسم الحرفي 'Tajawal' وحده لا يطابق
+     الاسم المُهجّن الذي يولّده next/font فيسقط النص على خط النظام. */
+  font-family: var(--font-tajawal), 'Tajawal', sans-serif;
   overflow-x: hidden;
   direction: rtl;
   -webkit-font-smoothing: antialiased;
@@ -48,7 +50,7 @@ body {
 
 /* CAIRO: Strictly for Headings (H1-H6) */
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Cairo', sans-serif;
+  font-family: var(--font-cairo), 'Cairo', sans-serif;
   font-weight: 700;
   color: var(--gold-matte);
   line-height: 1.3;

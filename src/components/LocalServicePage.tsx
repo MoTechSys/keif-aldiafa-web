@@ -44,6 +44,7 @@
  * عن Googlebot). العميل الوحيد: LocalReveal (مراقب ظهور) و ProtectedImage.
  */
 
+import { WHATSAPP_NUMBER as WA } from "@/lib/site";
 import Image from "next/image";
 import Link from "next/link";
 import ProtectedImage from "@/components/ProtectedImage";
@@ -62,7 +63,6 @@ import {
   IconPhone,
 } from "@/components/luxe/LuxeIcons";
 
-const WA = "966508252134";
 const WA_DISPLAY = "0508252134";
 
 /** يبقى مصدَّراً: localContent.tsx لا يزال يبني هذا الشكل. */

@@ -7,8 +7,8 @@ import {
   generateImageGallerySchema,
 } from "@/lib/schema";
 import { getImagesForPage } from "@/lib/imageCatalog";
+import { SITE_URL } from "@/lib/site";
 
-const SITE_URL = "https://keifaldiafa.com";
 
 export const metadata: Metadata = generatePageMetadata({
   title: "معرض أعمال الضيافة — +500 مناسبة ناجحة",

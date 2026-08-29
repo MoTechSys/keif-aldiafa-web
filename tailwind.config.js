@@ -15,10 +15,15 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        heading: ['Cairo', 'sans-serif'],
-        sans: ['Tajawal', 'sans-serif'],
-        tajawal: ['Tajawal', 'sans-serif'],
-        cairo: ['Cairo', 'sans-serif'],
+        // مربوطة بمتغيرات next/font في layout.tsx — الربط بالاسم النصي
+        // ('Cairo') كان مكسوراً: next/font يسمّي الخط باسم مُهجّن داخلي
+        // فكانت كل الكلاسات تسقط على خط النظام رغم تحميل الخطوط.
+        heading: ['var(--font-cairo)', 'Cairo', 'sans-serif'],
+        sans: ['var(--font-tajawal)', 'Tajawal', 'sans-serif'],
+        tajawal: ['var(--font-tajawal)', 'Tajawal', 'sans-serif'],
+        cairo: ['var(--font-cairo)', 'Cairo', 'sans-serif'],
+        messiri: ['var(--font-messiri)', 'El Messiri', 'serif'],
+        marcellus: ['var(--font-marcellus)', 'Marcellus', 'serif'],
       },
       colors: {
         'luxury-black': '#1A1A1A',

@@ -3,8 +3,8 @@ import { HomePageClient } from "./HomePageClient";
 
 import { generateBreadcrumbSchema, generateFAQSchema } from "@/lib/schema";
 import { HOME_FAQS } from "@/lib/homeFaqs";
+import { SITE_URL } from "@/lib/site";
 
-const SITE_URL = "https://keifaldiafa.com";
 
 export const metadata: Metadata = {
   title: { absolute: "كيف الضيافة | قهوجيين وصبابين قهوة لضيافة فاخرة في السعودية" },

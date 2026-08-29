@@ -1,5 +1,6 @@
 "use client";
 
+import { WHATSAPP_NUMBER as WA } from "@/lib/site";
 import { useState, useCallback, useEffect, useRef } from "react";
 import { motion, AnimatePresence, useMotionValue, useTransform, animate, useScroll } from "motion/react";
 
@@ -18,7 +19,6 @@ import {
   NUTS_IMAGES,
 } from "@/lib/images";
 
-const WA = "966508252134";
 
 interface OfferingItem {
   name: string;
