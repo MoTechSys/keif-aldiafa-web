@@ -11,11 +11,13 @@ import {
   generateOrganizationSchema,
 } from "@/lib/schema";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
+import { SITE_URL } from "@/lib/site";
 
-const SITE_URL = "https://keifaldiafa.com";
 
-// ملاحظة: تضمين وزن 800 (Tajawal لا يدعم 900) و900 لـCairo لأن الواجهة
-// تستخدم font-extrabold/font-black — بدونها يزوّر المتصفح الوزن (faux-bold) ويبدو رديئاً.
+// أوزان مُقلّصة لما يُستخدم فعلاً فقط (مُدقّق بمسح كامل للكود 2026-08-29):
+// كل وزن إضافي = ملف woff2 إضافي يُحمّل على الجوال ويؤخّر العرض.
+// • Tajawal (نص الجسم): 300 (font-light) · 400 (افتراضي) · 500 · 700 · 800
+//   (800 مطلوب: عناصر p/span في Footer/Navbar/الهيرو تستخدم fontWeight:800 على خط الجسم)
 const tajawal = Tajawal({
   subsets: ["arabic", "latin"],
   weight: ["300", "400", "500", "700", "800"],
@@ -24,9 +26,11 @@ const tajawal = Tajawal({
   preload: true,
 });
 
+// • Cairo (العناوين): 400 (نصوص ثانوية) · 700/800/900 (h1–h6 والهيرو)
+//   — وزنا 300 و500 حُذفا: غير مستخدمين في أي ملف.
 const cairo = Cairo({
   subsets: ["arabic", "latin"],
-  weight: ["300", "400", "500", "700", "800", "900"],
+  weight: ["400", "700", "800", "900"],
   display: "swap",
   variable: "--font-cairo",
   preload: true,
@@ -56,12 +60,15 @@ const cairo = Cairo({
        رفيعة) فيقرأه العين كخطّ محفور، ومع ذلك مقروء في لمحة.
    ⇒ El Messiri للعناوين، Tajawal للنصّ. مزاوجة تباين لا تسطيح.
    ═══════════════════════════════════════════════════════════════════ */
+// وزن 700 فقط — كل استخدامات El Messiri في luxe.css/local.css بوزن 700
+// (أوزان 400/500/600 كانت تُحمّل بلا أي استخدام — 3 ملفات خط مهدورة).
+// preload:false — يُستخدم في الصفحات الفرعية فقط لا في الرئيسية.
 const elMessiri = El_Messiri({
   subsets: ["arabic", "latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["700"],
   display: "swap",
   variable: "--font-messiri",
-  preload: true,
+  preload: false,
 });
 
 const marcellus = Marcellus({
@@ -197,7 +204,10 @@ export default function RootLayout({
       <head>
         {/* Google tag (gtag.js) — محقون مباشرة في <head> (ليظهر في HTML المُقدّم فوراً
             ويُكتشف من فحص Google Ads الآلي — يحل تحذير "لا تتوفر علامة تتبّع").
-            async يحمي الأداء. GA4 + Ads معاً. التتبّع المتقدّم (Pixels + التحويلات) يبقى في GoogleAnalytics. */}
+            async يحمي الأداء. GA4 + Ads معاً. التتبّع المتقدّم (Pixels + التحويلات) يبقى في GoogleAnalytics.
+            استثناء مقصود من قاعدة next/script: الفحص الآلي لا يرى سكربتات
+            تُحقن بعد التفاعل (كوميت af96b9a في الأرشيف يوثّق العطب الأصلي). */}
+        {/* eslint-disable-next-line @next/next/next-script-for-ga */}
         <script
           async
           src="https://www.googletagmanager.com/gtag/js?id=AW-11081441847"

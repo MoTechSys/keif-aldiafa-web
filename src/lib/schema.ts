@@ -1,13 +1,14 @@
 // Centralized Schema.org structured data generators
-
-const SITE_URL = "https://keifaldiafa.com";
-const SITE_NAME = "كيف الضيافة";
-const PHONE = "+966508252134";
-const EMAIL = "info@keifaldiafa.com";
-
-// البيانات النطامية من شهادة السجل التجاري (نشط — صدر 2023/01/29)
-const LEGAL_NAME = "مؤسسة كيف الضيافة للأفراح والمناسبات";
-const UNIFIED_NUMBER = "7033069720"; // الرقم الوطني الموحّد
+// كل الثوابت من المصدر المركزي — لا نسخ محلية.
+import {
+  SITE_URL,
+  SITE_NAME,
+  PHONE,
+  EMAIL,
+  LEGAL_NAME,
+  UNIFIED_NUMBER,
+  SOCIAL,
+} from "@/lib/site";
 
 export function generateOrganizationSchema() {
   return {
@@ -31,10 +32,7 @@ export function generateOrganizationSchema() {
       name: "Saudi Arabia",
     },
     },
-    sameAs: [
-      "https://www.instagram.com/keifaldiafa",
-      `https://wa.me/966508252134`,
-    ],
+    sameAs: [SOCIAL.instagram, SOCIAL.whatsapp],
   };
 }
 
@@ -102,10 +100,7 @@ export function generateLocalBusinessSchema() {
     // النشاط يخدم حفلات ومؤسسات ومناسبات متنوّعة، لا باقات محددة — رمز جوجل «فاخر» $$$ ينقل الانطباع المحيط دون أرقام تنفّر.
     priceRange: "$$$",
     servesCuisine: "قهوة سعودية وضيافة عربية",
-    sameAs: [
-      "https://www.instagram.com/keifaldiafa",
-      "https://wa.me/966508252134",
-    ],
+    sameAs: [SOCIAL.instagram, SOCIAL.whatsapp],
     contactPoint: {
       "@type": "ContactPoint",
       telephone: PHONE,

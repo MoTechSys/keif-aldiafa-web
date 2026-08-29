@@ -8,8 +8,8 @@ import {
   generateImageGallerySchema,
 } from "@/lib/schema";
 import { getImagesForPage } from "@/lib/imageCatalog";
+import { SITE_URL } from "@/lib/site";
 
-const SITE_URL = "https://keifaldiafa.com";
 const servicesImages = getImagesForPage("/services");
 
 export const metadata: Metadata = generatePageMetadata({

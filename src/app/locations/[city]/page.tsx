@@ -14,9 +14,9 @@ import {
   generateFAQSchema,
   generateImageGallerySchema,
 } from "@/lib/schema";
+import { SITE_URL, WHATSAPP_NUMBER } from "@/lib/site";
 
-const SITE_URL = "https://keifaldiafa.com";
-const WHATSAPP = "https://wa.me/966508252134?text=";
+const WHATSAPP = `https://wa.me/${WHATSAPP_NUMBER}?text=`;
 
 interface Params {
   params: { city: string };

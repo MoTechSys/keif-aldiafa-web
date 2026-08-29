@@ -2,8 +2,8 @@ import { Metadata } from "next";
 import SocialClient from "./SocialClient";
 import { generatePageMetadata } from "@/components/SEO";
 import { generateBreadcrumbSchema, generateWebPageSchema } from "@/lib/schema";
+import { SITE_URL } from "@/lib/site";
 
-const SITE_URL = "https://keifaldiafa.com";
 
 export const metadata: Metadata = generatePageMetadata({
   title: "حسابات كيف الضيافة على مواقع التواصل — شاهد أعمالنا",

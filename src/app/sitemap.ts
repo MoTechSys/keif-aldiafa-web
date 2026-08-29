@@ -1,8 +1,8 @@
 import { MetadataRoute } from "next";
 import { CITIES } from "@/lib/cities";
 import { LOCAL_PAGES, localSlug } from "@/lib/localPages";
+import { SITE_URL } from "@/lib/site";
 
-const SITE_URL = "https://keifaldiafa.com";
 
 // خريطة تواريخ lastmod ثابتة — تعكس آخر تعديل حقيقي لكل قسم (من سجل git).
 // ثابتة ومتنوّعة: لا تتغيّر عند كل زحف = صادقة مع Google. تُحدّث يدوياً عند تعديل قسم.

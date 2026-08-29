@@ -45,9 +45,10 @@ import {
   IconStar,
   IconArrow,
 } from "@/components/luxe/LuxeIcons";
+import { WHATSAPP_NUMBER, PHONE } from "@/lib/site";
 
-const WA = "https://wa.me/966508252134";
-const TEL = "tel:+966508252134";
+const WA = `https://wa.me/${WHATSAPP_NUMBER}`;
+const TEL = `tel:${PHONE}`;
 
 type Net = {
   name: string;

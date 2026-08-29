@@ -200,6 +200,12 @@ npm run lint   # فحص الكود
 | 2026-03-08 | إنشاء ملف CLAUDE.md وملفات التوثيق | CLAUDE.md, README.md, docs/ |
 | 2026-03-08 | إصلاح robots.ts (إزالة حظر `/_next/`) | src/app/robots.ts |
 | 2026-03-08 | تحليل شامل وتوثيق المشروع | docs/PROJECT_ANALYSIS.md |
+| 2026-08-29 | **إصلاح جذري لربط الخطوط**: كانت `globals.css` و`tailwind.config.js` تطلب `'Tajawal'`/`'Cairo'` بالاسم الحرفي بينما next/font يولّد اسماً مُهجّناً (`__Tajawal_xxx`) — فكانت النصوص تسقط على خط النظام رغم تحميل ملفات الخط. رُبطت كلها بـ`var(--font-*)` | globals.css, tailwind.config.js |
+| 2026-08-29 | تقليص أوزان الخطوط: Cairo 6→4 أوزان، El Messiri 4→1 (وزن 700 فقط المستخدم فعلاً) — كل وزن محذوف = ملف woff2 أقل على الجوال | src/app/layout.tsx |
+| 2026-08-29 | **مصدر واحد للحقيقة** `src/lib/site.ts`: كان SITE_URL منسوخاً في 16 ملفاً ورقم الواتساب في 10+ — وحّدت كلها في ملف ثوابت مركزي | src/lib/site.ts + 25 ملفاً |
+| 2026-08-29 | حذف كود ميت مؤكد (غير مستورد من أي ملف): LuxeServicePage, LuxeRequest, LuxeReveal, luxeCopy, luxeAssets, OptimizedImage, ImageSkeleton, utils.ts + إزالة clsx/tailwind-merge من التبعيات | src/components, src/lib, package.json |
+| 2026-08-29 | ضغط 17 صورة كانت فوق 250KB (أسوأها 1.1MB→239KB) + تحسين SVG بـsvgo (74KB→58KB) + حذف 4 أيقونات غير مستخدمة — توفير ~2.8MB | public/images, public/icons |
+| 2026-08-29 | تصفير تحذيرات ESLint: alt صريح في ImageWithFallback، أبعاد صريحة في DallahLogo، توثيق استثناء gtag في head | ImageWithFallback, DallahLogo, layout.tsx |
 
 ---
 

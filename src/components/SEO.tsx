@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
+import { SITE_URL, SITE_NAME, PHONE, EMAIL, WHATSAPP_NUMBER, SOCIAL } from "@/lib/site";
 
-const SITE_URL = "https://keifaldiafa.com";
-const SITE_NAME = "كيف الضيافة";
 const DEFAULT_OG_IMAGE = `${SITE_URL}/og-cover-v2.jpg`;
 
 export interface SEOProps {
@@ -126,10 +125,10 @@ export const SEO_CONSTANTS = {
   SITE_URL,
   SITE_NAME,
   DEFAULT_OG_IMAGE,
-  PHONE: "+966508252134",
-  EMAIL: "info@keifaldiafa.com",
-  WHATSAPP: "966508252134",
-  INSTAGRAM: "https://www.instagram.com/keifaldiafa",
+  PHONE,
+  EMAIL,
+  WHATSAPP: WHATSAPP_NUMBER,
+  INSTAGRAM: SOCIAL.instagram,
   ADDRESS: {
     // نشاط وطني يغطي كل المملكة (ليس محصوراً بمدينة)
     region: "المملكة العربية السعودية",
