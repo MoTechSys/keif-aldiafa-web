@@ -206,6 +206,10 @@ npm run lint   # فحص الكود
 | 2026-08-29 | حذف كود ميت مؤكد (غير مستورد من أي ملف): LuxeServicePage, LuxeRequest, LuxeReveal, luxeCopy, luxeAssets, OptimizedImage, ImageSkeleton, utils.ts + إزالة clsx/tailwind-merge من التبعيات | src/components, src/lib, package.json |
 | 2026-08-29 | ضغط 17 صورة كانت فوق 250KB (أسوأها 1.1MB→239KB) + تحسين SVG بـsvgo (74KB→58KB) + حذف 4 أيقونات غير مستخدمة — توفير ~2.8MB | public/images, public/icons |
 | 2026-08-29 | تصفير تحذيرات ESLint: alt صريح في ImageWithFallback، أبعاد صريحة في DallahLogo، توثيق استثناء gtag في head | ImageWithFallback, DallahLogo, layout.tsx |
+| 2026-08-29 | **المرحلة 1 — منظومة الحماية الآلية** (منقولة من osoul-aldiafa-v2): فاحص سيو S1–S14 (عناوين/أوصاف/H1/canonical/JSON-LD/كلمات محظورة/أرقام غير موثّقة E-E-A-T/تشابه Doorway) + فاحص تشابه بعتبة 60% مع تحييد أسماء المدن + فاحص أصول CH1–CH8 (ميزانية 250KB/صورة، تنسيقات، بصمات مكررة) — كلها بوضع baseline-diff: تفشل فقط على المخالفات **الجديدة**. خط الأساس: seo=156، similarity=118، assets=29 دَيناً موثّقاً يُصفّى في المراحل 2–5 | scripts/{seo-guard,similarity-check,check-assets,baseline}.mjs, scripts/baselines/ |
+| 2026-08-29 | Lighthouse CI بعتبات ملزمة (أداء≥0.9، وصولية≥0.95، سيو=1.0) + GitHub Actions يشغّل typecheck+lint+build+الفواحص الثلاثة على كل push/PR | lighthouserc.json, .github/workflows/quality.yml, package.json |
+| 2026-08-29 | إصلاحات سيو من الفاحص: 14 عنواناً كان >60 حرفاً قُصّرت (قالب serviceCity + locations)، حذف تكرار البراند في legal/social (القالب يضيفه)، وصفان >158 حرفاً، ضغط counter-1.webp (264→190KB)، استثناء بكسل Meta noscript من CH5 | localContent.tsx, locations/[city]/page.tsx, legal/page.tsx, social/page.tsx |
+| 2026-08-29 | سجل إثبات الأرقام data/proof.json: الأرقام التسويقية (+500 مناسبة، +200 عميل، 100% رضا، 10 سنوات) مسجّلة verified_by_owner:false بانتظار تأكيد المالك — فاحص S10 يرصد أي رقم جديد غير موثّق | data/proof.json |
 
 ---
 

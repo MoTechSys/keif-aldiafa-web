@@ -6,7 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "guard:seo": "node scripts/seo-guard.mjs",
+    "guard:similarity": "node scripts/similarity-check.mjs",
+    "guard:assets": "node scripts/check-assets.mjs",
+    "guard": "npm run guard:seo && npm run guard:similarity && npm run guard:assets"
   },
   "dependencies": {
     "embla-carousel-react": "^8.6.0",
