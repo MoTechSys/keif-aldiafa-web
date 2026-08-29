@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useCallback, useEffect } from "react";
-import { motion, AnimatePresence, useMotionValue, useTransform, animate, useScroll } from "motion/react";
+import { m, AnimatePresence, useMotionValue, useTransform, animate, useScroll } from "motion/react";
 
 import ProtectedImage from "@/components/ProtectedImage";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
@@ -136,14 +136,14 @@ function Lightbox({
   };
 
   return (
-    <motion.div
+    <m.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       className="fixed inset-0 z-[90] flex items-center justify-center"
       onClick={onClose}
     >
-      <motion.div
+      <m.div
         className="absolute inset-0"
         style={{ background: "rgba(5,4,2,0.95)", backdropFilter: "blur(24px)", opacity: bgOpacity }}
       />
@@ -165,7 +165,7 @@ function Lightbox({
 
       <div className="relative z-10 w-full h-full flex items-center justify-center px-2 md:px-4" onClick={(e) => e.stopPropagation()}>
         <AnimatePresence mode="wait" custom={direction}>
-          <motion.div
+          <m.div
             key={item.id}
             custom={direction}
             variants={variants}
@@ -190,10 +190,10 @@ function Lightbox({
                 showWatermark={true}
               />
             </div>
-          </motion.div>
+          </m.div>
         </AnimatePresence>
       </div>
-    </motion.div>
+    </m.div>
   );
 }
 
@@ -225,7 +225,7 @@ function RoyalTrioNav({ activeFilter, onFilterChange }: { activeFilter: FilterTy
 
   return (
     <div ref={containerRef} className="w-full">
-      <motion.section
+      <m.section
         ref={navRef}
         className={`w-full ${isSticky ? 'fixed top-0 left-0 right-0 z-50' : 'relative'}`}
         style={{
@@ -241,7 +241,7 @@ function RoyalTrioNav({ activeFilter, onFilterChange }: { activeFilter: FilterTy
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex justify-center gap-2 sm:gap-3">
             {filters.map((filter) => (
-              <motion.button
+              <m.button
                 key={filter.key}
                 onClick={() => onFilterChange(filter.key)}
                 className="relative group flex-1 max-w-sm"
@@ -249,7 +249,7 @@ function RoyalTrioNav({ activeFilter, onFilterChange }: { activeFilter: FilterTy
                 whileTap={{ scale: 0.95 }}
               >
                 {/* Background with Glassmorphism */}
-                <motion.div
+                <m.div
                   className="absolute inset-0 rounded-3xl transition-all duration-300"
                   animate={{
                     background: activeFilter === filter.key
@@ -267,7 +267,7 @@ function RoyalTrioNav({ activeFilter, onFilterChange }: { activeFilter: FilterTy
                 {/* Content Container */}
                 <div className="relative flex flex-col items-center justify-center p-2 sm:p-4 h-full min-h-[65px] sm:min-h-[80px]">
                   {/* Icon with Animation */}
-                  <motion.span 
+                  <m.span 
                     className="text-lg sm:text-xl mb-1.5"
                     animate={{ 
                       scale: activeFilter === filter.key ? 1.2 : 1,
@@ -275,8 +275,8 @@ function RoyalTrioNav({ activeFilter, onFilterChange }: { activeFilter: FilterTy
                     }}
                   >
                     {filter.icon}
-                  </motion.span>
-                  <motion.p
+                  </m.span>
+                  <m.p
                     className="text-[10px] sm:text-[12px] text-center font-bold leading-tight"
                     style={{
                       textShadow: '0 1px 4px rgba(0, 0, 0, 0.5), 0 0 8px rgba(184, 134, 11, 0.2)',
@@ -288,23 +288,23 @@ function RoyalTrioNav({ activeFilter, onFilterChange }: { activeFilter: FilterTy
                     transition={{ type: 'spring', stiffness: 280, damping: 20, mass: 0.8, delay: 0.05 }}
                   >
                     {filter.label}
-                  </motion.p>
+                  </m.p>
                 </div>
 
                 {/* Active Indicator Line */}
                 {activeFilter === filter.key && (
-                  <motion.div
+                  <m.div
                     layoutId="activeIndicator"
                     className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[#B8860B] via-[#D4A017] to-[#B8860B]"
                     style={{ borderRadius: '2px' }}
                     transition={{ type: 'spring', stiffness: 300, damping: 30 }}
                   />
                 )}
-              </motion.button>
+              </m.button>
             ))}
           </div>
         </div>
-      </motion.section>
+      </m.section>
       {/* Spacer: reserves the nav height when it goes `fixed` so content below
           does not jump up (eliminates the large CLS on this page). */}
       {isSticky && navHeight > 0 && <div style={{ height: navHeight }} aria-hidden="true" />}
@@ -342,9 +342,9 @@ export default function PortfolioClient() {
         <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at 50% 20%, rgba(184,134,11,0.08) 0%, transparent 60%)" }} />
         <div className="max-w-5xl mx-auto text-center relative z-10">
           <Breadcrumbs />
-          <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-[#B8860B] mb-3 mt-8" style={{ fontSize: "0.75rem", letterSpacing: "0.35em" }}>✦ معرض أعمالنا ✦</motion.p>
-          <motion.h1 initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.1 }} className="text-[#F5F5DC] mb-4 font-tajawal" style={{ fontSize: "clamp(2rem, 6vw, 3.5rem)", fontWeight: 900, lineHeight: 1.15}}>معرض أعمالنا: مناسبات ضيافة<br /><span className="gold-gradient-text">في مدن المملكة</span></motion.h1>
-          <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }} className="text-[#F5F5DC]/55 max-w-xl mx-auto text-sm leading-relaxed">توثيق للحظات الفخامة والتميز — استعرض أفضل لحظاتنا من الفعاليات والأعراس والمعدات الفاخرة التي تعكس جودة خدماتنا</motion.p>
+          <m.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-[#B8860B] mb-3 mt-8" style={{ fontSize: "0.75rem", letterSpacing: "0.35em" }}>✦ معرض أعمالنا ✦</m.p>
+          <m.h1 initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.1 }} className="text-[#F5F5DC] mb-4 font-tajawal" style={{ fontSize: "clamp(2rem, 6vw, 3.5rem)", fontWeight: 900, lineHeight: 1.15}}>معرض أعمالنا: مناسبات ضيافة<br /><span className="gold-gradient-text">في مدن المملكة</span></m.h1>
+          <m.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }} className="text-[#F5F5DC]/55 max-w-xl mx-auto text-sm leading-relaxed">توثيق للحظات الفخامة والتميز — استعرض أفضل لحظاتنا من الفعاليات والأعراس والمعدات الفاخرة التي تعكس جودة خدماتنا</m.p>
         </div>
       </section>
 
@@ -357,7 +357,7 @@ export default function PortfolioClient() {
         <h2 className="text-center text-[#F5F5DC]/85 mb-8 font-tajawal" style={{ fontSize: "clamp(1.05rem, 2.5vw, 1.4rem)", fontWeight: 700 }}>{categoryHeadings[activeFilter]}</h2>
         <div className="columns-2 md:columns-3 lg:columns-4 gap-4 sm:gap-6 space-y-4 sm:space-y-6">
           {displayedItems.map((item, idx) => (
-            <motion.div
+            <m.div
               key={item.id}
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
@@ -382,14 +382,14 @@ export default function PortfolioClient() {
                   </svg>
                 </div>
               </div>
-            </motion.div>
+            </m.div>
           ))}
         </div>
 
         {/* Load More Button */}
         {hasMore && (
           <div className="flex justify-center mt-16">
-            <motion.button
+            <m.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={handleLoadMore}
@@ -400,7 +400,7 @@ export default function PortfolioClient() {
               }}
             >
               عرض المزيد ({filteredItems.length - displayCount} متبقي)
-            </motion.button>
+            </m.button>
           </div>
         )}
 

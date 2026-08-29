@@ -2,7 +2,7 @@
 
 import { WHATSAPP_NUMBER as WA } from "@/lib/site";
 import { useState, useCallback, useEffect, useRef } from "react";
-import { motion, AnimatePresence, useMotionValue, useTransform, animate, useScroll } from "motion/react";
+import { m, AnimatePresence, useMotionValue, useTransform, animate, useScroll } from "motion/react";
 
 import { ImageWithFallback } from "@/components/ImageWithFallback";
 import ProtectedImage from "@/components/ProtectedImage";
@@ -216,14 +216,14 @@ function Lightbox({
   };
 
   return (
-    <motion.div
+    <m.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       className="fixed inset-0 z-[90] flex items-center justify-center"
       onClick={onClose}
     >
-      <motion.div
+      <m.div
         className="absolute inset-0"
         style={{ background: "rgba(5,4,2,0.95)", backdropFilter: "blur(24px)", opacity: bgOpacity }}
       />
@@ -244,7 +244,7 @@ function Lightbox({
       </div>
 
       <AnimatePresence initial={false} custom={direction} mode="wait">
-        <motion.div
+        <m.div
           key={index}
           custom={direction}
           variants={variants}
@@ -275,9 +275,9 @@ function Lightbox({
             <h3 className="text-2xl font-amiri text-[#D4A017] mb-2">{item.name}</h3>
             <p className="text-[#F5F5DC]/70 text-sm max-w-md mx-auto">{item.description}</p>
           </div>
-        </motion.div>
+        </m.div>
       </AnimatePresence>
-    </motion.div>
+    </m.div>
   );
 }
 
@@ -329,7 +329,7 @@ function RoyalTrioNav({ activeTab, onTabChange }: { activeTab: string; onTabChan
 
   return (
     <div ref={containerRef} className="w-full">
-      <motion.section
+      <m.section
         ref={navRef}
         className={`w-full transition-all duration-300 ${isSticky ? 'fixed top-0 left-0 right-0 z-50' : 'relative'}`}
         animate={{
@@ -359,14 +359,14 @@ function RoyalTrioNav({ activeTab, onTabChange }: { activeTab: string; onTabChan
               style={{ WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none', msOverflowStyle: 'none' }}
             >
               {categories.map((category) => (
-                <motion.button
+                <m.button
                   key={category.id}
                   onClick={() => onTabChange(category.id)}
                   className="relative group min-w-[72px] sm:min-w-0 sm:flex-1 max-w-sm flex-shrink-0 sm:flex-shrink"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <motion.div
+                  <m.div
                     className="absolute inset-0 rounded-3xl overflow-hidden transition-all duration-300"
                     animate={{
                       background: activeTab === category.id
@@ -384,7 +384,7 @@ function RoyalTrioNav({ activeTab, onTabChange }: { activeTab: string; onTabChan
                     }}
                   />
                   <div className="relative flex flex-col items-center justify-center p-2 sm:p-4 h-full min-h-[65px] sm:min-h-[80px]">
-                    <motion.span
+                    <m.span
                       className="text-lg sm:text-xl mb-1.5"
                       animate={{
                         scale: activeTab === category.id ? 1.2 : 1,
@@ -392,8 +392,8 @@ function RoyalTrioNav({ activeTab, onTabChange }: { activeTab: string; onTabChan
                       }}
                     >
                       {category.icon}
-                    </motion.span>
-                    <motion.p
+                    </m.span>
+                    <m.p
                       className="text-[10px] sm:text-[12px] text-center font-bold leading-tight"
                       style={{
                         textShadow: '0 1px 4px rgba(0, 0, 0, 0.5), 0 0 8px rgba(184, 134, 11, 0.2)',
@@ -406,22 +406,22 @@ function RoyalTrioNav({ activeTab, onTabChange }: { activeTab: string; onTabChan
                       layout
                     >
                       {category.label}
-                    </motion.p>
+                    </m.p>
                   </div>
                   {activeTab === category.id && (
-                    <motion.div
+                    <m.div
                       layoutId="activeIndicator"
                       className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[#B8860B] via-[#D4A017] to-[#B8860B]"
                       style={{ borderRadius: '2px' }}
                       transition={{ type: 'spring', stiffness: 300, damping: 30 }}
                     />
                   )}
-                </motion.button>
+                </m.button>
               ))}
             </div>
           </div>
         </div>
-      </motion.section>
+      </m.section>
     </div>
   );
 }
@@ -445,9 +445,9 @@ export default function OfferingsClient() {
           <section className="relative pt-4 pb-6 px-4 overflow-hidden">
             <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at 50% 20%, rgba(184,134,11,0.08) 0%, transparent 60%)" }} />
             <div className="max-w-5xl mx-auto text-center relative z-10">
-              <motion.p initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} className="text-[#B8860B] mb-3" style={{ fontSize: "0.75rem", letterSpacing: "0.35em" }}>✦ تقديماتنا ✦</motion.p>
-              <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="text-[#F5F5DC] mb-4 font-tajawal" style={{ fontSize: "clamp(2rem, 6vw, 3.5rem)", fontWeight: 900, lineHeight: 1.15}}>تقديمات الضيافة: قهوة سعودية، شاي،<br /><span className="gold-gradient-text">حلويات وتمور فاخرة</span></motion.h1>
-              <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="text-[#F5F5DC]/55 max-w-xl mx-auto text-sm leading-relaxed">تشكيلة فاخرة من الضيافة الأصيلة — نقدم لكم أجود المشروبات والتمور والحلويات التي تعكس كرم الضيافة السعودية الأصيلة</motion.p>
+              <m.p initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} className="text-[#B8860B] mb-3" style={{ fontSize: "0.75rem", letterSpacing: "0.35em" }}>✦ تقديماتنا ✦</m.p>
+              <m.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="text-[#F5F5DC] mb-4 font-tajawal" style={{ fontSize: "clamp(2rem, 6vw, 3.5rem)", fontWeight: 900, lineHeight: 1.15}}>تقديمات الضيافة: قهوة سعودية، شاي،<br /><span className="gold-gradient-text">حلويات وتمور فاخرة</span></m.h1>
+              <m.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="text-[#F5F5DC]/55 max-w-xl mx-auto text-sm leading-relaxed">تشكيلة فاخرة من الضيافة الأصيلة — نقدم لكم أجود المشروبات والتمور والحلويات التي تعكس كرم الضيافة السعودية الأصيلة</m.p>
             </div>
           </section>
         </div>
@@ -467,7 +467,7 @@ export default function OfferingsClient() {
         {/* Items Grid */}
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
           {currentCategory.items.map((item, idx) => (
-            <motion.div
+            <m.div
               key={item.name}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -492,7 +492,7 @@ export default function OfferingsClient() {
                 <h3 className="text-[#F5F5DC]" style={{ fontSize: "1.1rem", fontWeight: 700 }}>{item.name}</h3>
                 <p className="text-[#F5F5DC]/50 text-xs mt-1 line-clamp-2">{item.description}</p>
               </div>
-            </motion.div>
+            </m.div>
           ))}
         </div>
       </div>

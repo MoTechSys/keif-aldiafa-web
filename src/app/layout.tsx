@@ -11,6 +11,8 @@ import {
   generateOrganizationSchema,
 } from "@/lib/schema";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
+// مزوّد الحركة الكسول (المرحلة 3): يخرج محرك motion من المسار الحرج — راجع MotionProvider.tsx
+import MotionProvider from "@/components/MotionProvider";
 import { SITE_URL } from "@/lib/site";
 
 
@@ -248,7 +250,7 @@ export default function RootLayout({
         >
           تخطي إلى المحتوى الرئيسي
         </a>
-        {children}
+        <MotionProvider>{children}</MotionProvider>
         <GoogleAnalytics />
       </body>
     </html>

@@ -2,7 +2,7 @@
 
 import { WHATSAPP_NUMBER as WA } from "@/lib/site";
 import { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence, useScroll } from "motion/react";
+import { m, AnimatePresence, useScroll } from "motion/react";
 import Image from "next/image";
 import { ImageWithFallback } from "@/components/ImageWithFallback";
 
@@ -121,9 +121,9 @@ function ServiceModal({ service, onClose }: { service: ServiceItem; onClose: () 
   };
 
   return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-[80] flex items-center justify-center p-1 sm:p-4" onClick={onClose} role="dialog" aria-modal="true" aria-label={`تفاصيل خدمة ${service.title}`}>
+    <m.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-[80] flex items-center justify-center p-1 sm:p-4" onClick={onClose} role="dialog" aria-modal="true" aria-label={`تفاصيل خدمة ${service.title}`}>
       <div className="absolute inset-0 bg-black/80 backdrop-blur-md" />
-      <motion.div initial={{ opacity: 0, scale: 0.92, y: 30 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.92, y: 30 }} transition={{ type: "spring", damping: 25, stiffness: 250 }} onClick={(e) => e.stopPropagation()} className="relative w-[98%] sm:max-w-4xl max-h-[90vh] overflow-hidden rounded-3xl flex flex-col md:flex-row" style={{ background: "linear-gradient(160deg, rgba(25,20,8,0.98), rgba(15,12,5,0.99))", border: "1px solid rgba(184,134,11,0.25)", boxShadow: "0 40px 80px rgba(0,0,0,0.8)" }}>
+      <m.div initial={{ opacity: 0, scale: 0.92, y: 30 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.92, y: 30 }} transition={{ type: "spring", damping: 25, stiffness: 250 }} onClick={(e) => e.stopPropagation()} className="relative w-[98%] sm:max-w-4xl max-h-[90vh] overflow-hidden rounded-3xl flex flex-col md:flex-row" style={{ background: "linear-gradient(160deg, rgba(25,20,8,0.98), rgba(15,12,5,0.99))", border: "1px solid rgba(184,134,11,0.25)", boxShadow: "0 40px 80px rgba(0,0,0,0.8)" }}>
         <button onClick={onClose} className="absolute top-4 left-4 z-20 w-10 h-10 rounded-full flex items-center justify-center text-[#F5F5DC]/60 hover:text-[#F5F5DC] transition-colors" style={{ background: "rgba(0,0,0,0.5)", backdropFilter: "blur(10px)" }}>✕</button>
         
         {/* Image Section with Gallery Swipe */}
@@ -155,7 +155,7 @@ function ServiceModal({ service, onClose }: { service: ServiceItem; onClose: () 
           </div>
           
           {/* Swipe Overlay */}
-          <motion.div 
+          <m.div 
             drag="x" 
             dragConstraints={{ left: 0, right: 0 }} 
             onDragEnd={handleDragEnd}
@@ -211,8 +211,8 @@ function ServiceModal({ service, onClose }: { service: ServiceItem; onClose: () 
             </a>
           </div>
         </div>
-      </motion.div>
-    </motion.div>
+      </m.div>
+    </m.div>
   );
 }
 
@@ -260,7 +260,7 @@ function RoyalTrioNav({ activeTab, onTabChange }: { activeTab: number; onTabChan
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex justify-center gap-2 sm:gap-3">
             {categories.map((cat, idx) => (
-              <motion.button
+              <m.button
                 key={cat.key}
                 onClick={() => onTabChange(idx)}
                 className="relative group flex-1 max-w-sm"
@@ -268,7 +268,7 @@ function RoyalTrioNav({ activeTab, onTabChange }: { activeTab: number; onTabChan
                 whileTap={{ scale: 0.95 }}
               >
                 {/* Background with Glassmorphism */}
-                <motion.div
+                <m.div
                   className="absolute inset-0 rounded-3xl transition-all duration-300"
                   animate={{
                     background: activeTab === idx
@@ -285,7 +285,7 @@ function RoyalTrioNav({ activeTab, onTabChange }: { activeTab: number; onTabChan
                 {/* Content Container */}
                 <div className="relative flex flex-col items-center justify-center p-2 sm:p-4 h-full min-h-[65px] sm:min-h-[80px]">
                   {/* Icon with Animation */}
-                  <motion.span 
+                  <m.span 
                     className="text-lg sm:text-xl mb-1.5"
                     animate={{ 
                       scale: activeTab === idx ? 1.2 : 1,
@@ -293,9 +293,9 @@ function RoyalTrioNav({ activeTab, onTabChange }: { activeTab: number; onTabChan
                     }}
                   >
                     {cat.icon}
-                  </motion.span>
+                  </m.span>
                   {/* Label Only - Text-based Design with Text Shadow */}
-                  <motion.p
+                  <m.p
                     className="text-[10px] sm:text-[12px] text-center font-bold leading-tight"
                     style={{
                       textShadow: '0 1px 4px rgba(0, 0, 0, 0.5), 0 0 8px rgba(184, 134, 11, 0.2)',
@@ -307,18 +307,18 @@ function RoyalTrioNav({ activeTab, onTabChange }: { activeTab: number; onTabChan
                     transition={{ type: 'spring', stiffness: 280, damping: 20, mass: 0.8, delay: 0.05 }}
                   >
                     {cat.label}
-                  </motion.p>
+                  </m.p>
                 </div>
                 {/* Active Indicator Line */}
                 {activeTab === idx && (
-                  <motion.div
+                  <m.div
                     layoutId="activeIndicator"
                     className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[#B8860B] via-[#D4A017] to-[#B8860B]"
                     style={{ borderRadius: '2px' }}
                     transition={{ type: 'spring', stiffness: 300, damping: 30 }}
                   />
                 )}
-              </motion.button>
+              </m.button>
             ))}
           </div>
         </div>
@@ -371,9 +371,9 @@ export default function ServicesClient() {
       <section className="relative pt-4 pb-6 px-4 overflow-hidden">
         <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at 50% 20%, rgba(184,134,11,0.08) 0%, transparent 60%)" }} />
         <div className="max-w-5xl mx-auto text-center relative z-10">
-          <motion.p initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} className="text-[#B8860B] mb-3" style={{ fontSize: "0.75rem", letterSpacing: "0.35em" }}>✦ خدماتنا ✦</motion.p>
-          <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="text-[#F5F5DC] mb-4 font-tajawal" style={{ fontSize: "clamp(2rem, 6vw, 3.5rem)", fontWeight: 900, lineHeight: 1.15}}>خدمات قهوجية وصبابين وصبابات<br /><span className="gold-gradient-text">ضيافة VIP لكل المناسبات</span></motion.h1>
-          <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="text-[#F5F5DC]/55 max-w-xl mx-auto text-sm leading-relaxed">باقة متكاملة من الضيافة الفاخرة — قهوجيين وصبابين قهوة، صبابات ومباشرات، وخدمات فنية وتراثية مصممة لتلبية جميع احتياجات الضيافة في مناسباتكم</motion.p>
+          <m.p initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} className="text-[#B8860B] mb-3" style={{ fontSize: "0.75rem", letterSpacing: "0.35em" }}>✦ خدماتنا ✦</m.p>
+          <m.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="text-[#F5F5DC] mb-4 font-tajawal" style={{ fontSize: "clamp(2rem, 6vw, 3.5rem)", fontWeight: 900, lineHeight: 1.15}}>خدمات قهوجية وصبابين وصبابات<br /><span className="gold-gradient-text">ضيافة VIP لكل المناسبات</span></m.h1>
+          <m.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="text-[#F5F5DC]/55 max-w-xl mx-auto text-sm leading-relaxed">باقة متكاملة من الضيافة الفاخرة — قهوجيين وصبابين قهوة، صبابات ومباشرات، وخدمات فنية وتراثية مصممة لتلبية جميع احتياجات الضيافة في مناسباتكم</m.p>
         </div>
       </section>
 
@@ -385,7 +385,7 @@ export default function ServicesClient() {
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 auto-rows-[300px] sm:auto-rows-[350px] lg:auto-rows-[400px]">
             {currentCategory.services.map((service) => (
-              <motion.div
+              <m.div
                 key={service.id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -393,7 +393,7 @@ export default function ServicesClient() {
                 transition={{ duration: 0.4 }}
               >
                 <ServiceCard service={service} onClick={() => setSelectedService(service)} />
-              </motion.div>
+              </m.div>
             ))}
           </div>
 

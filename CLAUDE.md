@@ -215,6 +215,7 @@ npm run lint   # فحص الكود
 | 2026-08-29 | **قياس Lighthouse حقيقي (موبايل، بناء إنتاجي)**: الأساس 49/100 — LCP 4.2s (أسطورة 9.4s ماتت رسمياً)، العنق الحقيقي TBT 3,540ms سببه حركات motion لا نهائية (repeat:Infinity) تشغّل JS كل إطار | /tmp/lh-home-mobile.json (تقرير الأساس) |
 | 2026-08-29 | **إصلاح أداء المرحلة 2**: تحويل كل الحركات اللانهائية (جسيمات + شرارات HomePageClient، توهج شعار Navbar) من motion/JS إلى CSS keyframes على خيط الـ compositor مع حماية prefers-reduced-motion — **النتيجة المقاسة: Perf 49→62، TBT 3,540→1,830ms (-48%)، SI 7.6→3.2s، LCP 4.2→3.6s، TTI 12.9→8.7s** | src/styles/luxe.css, src/app/HomePageClient.tsx, src/components/Navbar.tsx |
 | 2026-08-29 | أيقونات PWA maskable (192+512 بمنطقة أمان 72% على خلفية سوداء) مضافة إلى manifest.json — خط أساس assets حُدّث 29→31 (استثناء PNG مقصود: معيار maskable يتطلب PNG) | public/icon-maskable-*.png, public/manifest.json, بصمة الفاحص |
+| 2026-08-29 | **المرحلة 3 — LazyMotion strict**: فصل محرك motion (حزمة 148 ~135KB، كانت 3.2s على الخيط الرئيسي) عن المسار الحرج — MotionProvider يلف التطبيق بـ LazyMotion وdomMax يُحمَّل كسولاً بعد الترطيب؛ تحويل 12 ملفاً من motion.X إلى m.X (strict يمنع الرجوع)؛ domMax وليس domAnimation لأن drag/layoutId مستخدمة — **النتيجة (متوسط قياسين مستقرين): TBT 1,830→~1,400ms، SI 3.2→2.7s، Perf ~61 (عنق الزجاجة انتقل إلى LCP النصي/الخط) — فحص كونسول 5 صفحات نظيف** | src/components/MotionProvider.tsx, src/lib/motion-features.ts, src/app/layout.tsx, +12 ملف m.X |
 
 ---
 
