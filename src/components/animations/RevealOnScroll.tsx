@@ -8,7 +8,7 @@
  * Respects prefers-reduced-motion.
  */
 
-import { motion, useReducedMotion } from "motion/react";
+import { m, useReducedMotion } from "motion/react";
 import type { ElementType, ReactNode } from "react";
 
 export function RevealOnScroll({
@@ -26,7 +26,7 @@ export function RevealOnScroll({
   immediate?: boolean;
 }) {
   const reduce = useReducedMotion();
-  const MotionTag = motion[as as keyof typeof motion] as typeof motion.div;
+  const MotionTag = m[as as keyof typeof m] as typeof m.div;
 
   if (reduce) {
     const Tag = as;

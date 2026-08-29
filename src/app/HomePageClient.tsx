@@ -3,7 +3,7 @@
 import { useRef, useEffect, lazy, Suspense } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { motion, useScroll, useTransform } from "motion/react";
+import { m, useScroll, useTransform } from "motion/react";
 import { HERO_IMG } from "@/lib/images";
 import { HOME_FAQS } from "@/lib/homeFaqs";
 import { WHATSAPP_NUMBER as WA } from "@/lib/site";
@@ -21,11 +21,11 @@ const whyCards = [
 
 function SectionHeader({ label, title, center = true }: { label?: string; title: string; center?: boolean }) {
   return (
-    <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 0.6 }} className={`mb-14 ${center ? "text-center" : ""}`}>
+    <m.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 0.6 }} className={`mb-14 ${center ? "text-center" : ""}`}>
       {label && <p className={`text-gold-matte mb-3 ${center ? "text-center" : ""}`} style={{ fontSize: "0.75rem", letterSpacing: "0.35em" }}>✦ {label} ✦</p>}
       <h2 className={`text-text-primary font-cairo ${center ? "text-center" : ""}`} style={{ fontSize: "clamp(1.6rem, 4.5vw, 2.4rem)", fontWeight: 800, lineHeight: 1.3 }}>{title}</h2>
       <div className="mt-4 mb-1 rounded-full" style={{ width: center ? 90 : 70, height: 2, background: "linear-gradient(90deg, transparent, #C5A059 30%, #E2C68E 60%, transparent)", margin: "12px auto 0" }} />
-    </motion.div>
+    </m.div>
   );
 }
 
@@ -107,7 +107,7 @@ export function HomePageClient() {
     <div>
       {/* HERO */}
       <section ref={heroRef} className="relative h-screen min-h-[600px] max-h-[950px] overflow-hidden" aria-label="الشاشة الرئيسية">
-        <motion.div className="absolute inset-0" style={{ y: heroY }}>
+        <m.div className="absolute inset-0" style={{ y: heroY }}>
           {/* LCP element: صورة الهيرو بأولوية عالية (تُحمّل فوراً، لا يحظرها CSS).
               نسخة جوال أخفّ للشاشات الصغيرة عبر sizes. */}
           <Image
@@ -132,7 +132,7 @@ export function HomePageClient() {
           >
             <source src="/videos/hero-bg.mp4" type="video/mp4" />
           </video>
-        </motion.div>
+        </m.div>
         
         {/* Charcoal Overlays */}
         <div className="absolute inset-0 bg-gradient-to-b from-luxury-black/80 via-luxury-deep/40 to-luxury-rich" />
@@ -140,11 +140,11 @@ export function HomePageClient() {
         <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at 50% 50%, rgba(197,160,89,0.1) 0%, transparent 70%)" }} />
         <Particles />
         
-        <motion.div 
+        <m.div 
           className="absolute inset-0 flex flex-col items-center justify-start sm:justify-center text-center px-4 sm:px-6 pt-12 sm:pt-0" 
           style={{ opacity: heroOpacity }}
         >
-          <motion.div
+          <m.div
             initial={{ scale: 0.9, y: 30 }}
             animate={{ scale: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
@@ -160,7 +160,7 @@ export function HomePageClient() {
               <GoldenSparkle key={i} delay={i * 0.25} x={15 + (i % 2) * 70} y={10 + Math.floor(i / 2) * 25} />
             ))}
 
-            <motion.div
+            <m.div
               initial={{ y: -10 }}
               animate={{ y: 0 }}
               transition={{ duration: 0.7, delay: 0.4 }}
@@ -169,9 +169,9 @@ export function HomePageClient() {
               <div className="h-px w-8 sm:w-10 bg-gradient-to-l from-gold-matte to-transparent" />
               <span className="text-gold-highlight font-medium" style={{ fontSize: "0.7rem", letterSpacing: "0.3em" }}>SINCE 2016</span>
               <div className="h-px w-8 sm:w-10 bg-gradient-to-r from-gold-matte to-transparent" />
-            </motion.div>
+            </m.div>
 
-            <motion.p
+            <m.p
               initial={{ y: 20 }}
               animate={{ y: 0 }}
               transition={{ duration: 0.9, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
@@ -185,9 +185,9 @@ export function HomePageClient() {
               }}
             >
               كيف الضيافة
-            </motion.p>
+            </m.p>
 
-            <motion.div
+            <m.div
               initial={{ scaleX: 0 }}
               animate={{ scaleX: 1 }}
               transition={{ duration: 0.8, delay: 0.6 }}
@@ -200,7 +200,7 @@ export function HomePageClient() {
               }}
             />
 
-            <motion.div
+            <m.div
               initial={{ y: 10 }}
               animate={{ y: 0 }}
               transition={{ duration: 0.7, delay: 0.7 }}
@@ -212,15 +212,15 @@ export function HomePageClient() {
                 <span className="text-gold-matte" style={{ fontSize: "0.65rem", letterSpacing: "0.2em", fontWeight: 500 }}>LUXURY HOSPITALITY</span>
                 <div className="h-px w-6 bg-gradient-to-r from-gold-matte to-transparent" />
               </div>
-            </motion.div>
+            </m.div>
 
-            <motion.div
+            <m.div
               initial={{ y: 15 }}
               animate={{ y: 0 }}
               transition={{ duration: 0.7, delay: 0.8 }}
               className="max-w-2xl mx-auto w-full px-4"
             >
-              <motion.h1
+              <m.h1
                 initial={{ y: 10 }}
                 animate={{ y: 0 }}
                 transition={{ duration: 0.7, delay: 0.75 }}
@@ -228,7 +228,7 @@ export function HomePageClient() {
                 style={{ fontSize: "clamp(1.5rem, 4.5vw, 2.1rem)", fontWeight: 800, lineHeight: 1.4 }}
               >
                 قهوجيين وصبابين قهوة لضيافة فاخرة في السعودية
-              </motion.h1>
+              </m.h1>
               <p className="text-text-primary/90 mb-6 font-tajawal text-[clamp(1rem,2vw,1.15rem)] leading-[1.8] font-light">
                 نبتكر تجارب ضيافة استثنائية تلبي تطلعات النخبة، مع أفضل طاقم قهوجيين وصبابين قهوة، صبابات ومباشرات زواجات، ومباشرين بزي فاخر لفعاليات الشركات والمحافل الحكومية والخاصة.
               </p>
@@ -250,9 +250,9 @@ export function HomePageClient() {
                   اكتشف خدماتنا
                 </Link>
               </div>
-            </motion.div>
-          </motion.div>
-        </motion.div>
+            </m.div>
+          </m.div>
+        </m.div>
       </section>
 
       {/* PARTNERS */}
@@ -269,13 +269,13 @@ export function HomePageClient() {
           <SectionHeader label="لماذا نحن" title="ضيافة مناسبات VIP نصنع فيها الفرق" />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {whyCards.map((card, i) => (
-              <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="card-luxury p-8 rounded-3xl group">
+              <m.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="card-luxury p-8 rounded-3xl group">
                 <div className="w-14 h-14 rounded-2xl bg-gold-matte/10 flex items-center justify-center text-gold-matte mb-6 group-hover:bg-gold-matte group-hover:text-luxury-black transition-all duration-500">
                   {card.icon}
                 </div>
                 <h3 className="text-xl font-cairo font-bold text-text-primary mb-3">{card.title}</h3>
                 <p className="text-text-secondary leading-relaxed text-sm">{card.desc}</p>
-              </motion.div>
+              </m.div>
             ))}
           </div>
         </div>
@@ -287,10 +287,10 @@ export function HomePageClient() {
           <SectionHeader label="أسئلة شائعة" title="أسئلة شائعة عن كيف الضيافة" />
           <div className="space-y-6">
             {HOME_FAQS.map((f, i) => (
-              <motion.div key={i} initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.05 }}>
+              <m.div key={i} initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.05 }}>
                 <h3 className="text-text-primary font-cairo font-bold mb-2">{f.question}</h3>
                 <p className="text-text-secondary leading-relaxed text-sm">{f.answer}</p>
-              </motion.div>
+              </m.div>
             ))}
           </div>
         </div>

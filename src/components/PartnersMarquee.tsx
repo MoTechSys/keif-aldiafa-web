@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useAnimationFrame, useMotionValue, useTransform } from "motion/react";
+import { m, useAnimationFrame, useMotionValue, useTransform } from "motion/react";
 import { useRef, useState, useEffect, useMemo } from "react";
 import { ImageWithFallback } from "@/components/ImageWithFallback";
 
@@ -127,7 +127,7 @@ function MarqueeRow({ items, baseVelocity = 1, direction = "rtl" }: MarqueeRowPr
   return (
     // السر الأكبر هنا هو إجبار الحاوية على (dir="ltr") لفصل رياضيات الحركة عن اتجاه الموقع العربي
     <div className="relative overflow-hidden py-2 touch-pan-y" dir="ltr">
-      <motion.div
+      <m.div
         className="flex whitespace-nowrap will-change-transform w-max cursor-grab active:cursor-grabbing"
         style={{ x }}
         // onPan يسمح بالسحب اليدوي بسلاسة تامة ويحدث القيمة الحركية دون كسر الدوران
@@ -146,7 +146,7 @@ function MarqueeRow({ items, baseVelocity = 1, direction = "rtl" }: MarqueeRowPr
             ))}
           </div>
         ))}
-      </motion.div>
+      </m.div>
     </div>
   );
 }
@@ -158,7 +158,7 @@ export function PartnersMarquee() {
   return (
     <section className="py-12 sm:py-16 px-4 overflow-hidden contain-paint bg-[#0f0f0f]">
       <div className="max-w-7xl mx-auto mb-8 sm:mb-12">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
@@ -182,7 +182,7 @@ export function PartnersMarquee() {
               background: "linear-gradient(90deg, transparent, #B8860B 30%, #D4A017 60%, transparent)",
             }}
           />
-        </motion.div>
+        </m.div>
       </div>
 
       <div className="relative space-y-4 sm:space-y-6">
@@ -197,13 +197,13 @@ export function PartnersMarquee() {
         <MarqueeRow items={secondRow} baseVelocity={0.6} direction="ltr" />
       </div>
       
-      <motion.p 
+      <m.p 
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         className="text-[#F5F5DC]/30 text-[10px] sm:text-xs text-center mt-8 font-cairo tracking-wide"
       >
         يمكنك سحب الشريط يدوياً لاستكشاف المزيد من الشركاء
-      </motion.p>
+      </m.p>
     </section>
   );
 }
