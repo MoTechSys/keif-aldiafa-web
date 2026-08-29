@@ -212,6 +212,9 @@ npm run lint   # فحص الكود
 | 2026-08-29 | سجل إثبات الأرقام data/proof.json: الأرقام التسويقية (+500 مناسبة، +200 عميل، 100% رضا، 10 سنوات) مسجّلة verified_by_owner:false بانتظار تأكيد المالك — فاحص S10 يرصد أي رقم جديد غير موثّق | data/proof.json |
 | 2026-08-29 | استيعاب بحث خارجي (14 ملف): 13 مكسباً متبنّى (أبرزها GBP + PDPL + Dynamic OG + لهجة سعودية)، 9 توصيات مرفوضة/مشروطة (صفحات أحياء=N1 doorway، AggregateRating وهمي، شهادات مؤلفة، LCP 9.4s رقم قديم يحتاج إعادة قياس)، تصحيح رقم واتساب في التوثيق ليطابق site.ts | docs/RESEARCH-INTAKE-2026-08.md, CLAUDE.md |
 | 2026-08-29 | تحقق من المالك: **GBP موجود وفعّال** (4.5⭐/49 مراجعة — الباحث الخارجي أخطأ بادعاء غيابه) + حسم رقم الواتساب 0508252134 نهائياً + إضافة رابط Maps إلى SOCIAL وإلى sameAs في Organization/LocalBusiness Schema | src/lib/site.ts, src/lib/schema.ts, docs/RESEARCH-INTAKE-2026-08.md |
+| 2026-08-29 | **قياس Lighthouse حقيقي (موبايل، بناء إنتاجي)**: الأساس 49/100 — LCP 4.2s (أسطورة 9.4s ماتت رسمياً)، العنق الحقيقي TBT 3,540ms سببه حركات motion لا نهائية (repeat:Infinity) تشغّل JS كل إطار | /tmp/lh-home-mobile.json (تقرير الأساس) |
+| 2026-08-29 | **إصلاح أداء المرحلة 2**: تحويل كل الحركات اللانهائية (جسيمات + شرارات HomePageClient، توهج شعار Navbar) من motion/JS إلى CSS keyframes على خيط الـ compositor مع حماية prefers-reduced-motion — **النتيجة المقاسة: Perf 49→62، TBT 3,540→1,830ms (-48%)، SI 7.6→3.2s، LCP 4.2→3.6s، TTI 12.9→8.7s** | src/styles/luxe.css, src/app/HomePageClient.tsx, src/components/Navbar.tsx |
+| 2026-08-29 | أيقونات PWA maskable (192+512 بمنطقة أمان 72% على خلفية سوداء) مضافة إلى manifest.json — خط أساس assets حُدّث 29→31 (استثناء PNG مقصود: معيار maskable يتطلب PNG) | public/icon-maskable-*.png, public/manifest.json, بصمة الفاحص |
 
 ---
 

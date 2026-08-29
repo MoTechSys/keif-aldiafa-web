@@ -111,12 +111,14 @@ function NavbarContent({ deferredPrompt, setDeferredPrompt }: NavbarProps) {
               className="relative"
             >
               <DallahLogo size={60} />
-              <motion.div
-                className="absolute -inset-1 rounded-full"
-                style={{ background: "radial-gradient(circle, rgba(197,160,89,0.15) 0%, transparent 70%)" }}
-                animate={{ opacity: [0.5, 1, 0.5] }}
-                transition={{ duration: 3, repeat: Infinity }}
-              />
+              {/*
+                توهج الشعار — تحويل أداء (قياس 2026-08-29):
+                كان motion.div بحركة لا نهائية (repeat: Infinity) تشغّل JS كل إطار
+                على الخيط الرئيسي وتساهم في TBT (كان 3,540ms).
+                الحل: كلاس CSS بـ keyframes يعمل على خيط الـ compositor بدون أي JS.
+                التعريف في src/styles/luxe.css (.lx-logo-glow) مع حماية prefers-reduced-motion.
+              */}
+              <div className="lx-logo-glow absolute -inset-1 rounded-full" />
             </motion.div>
             <div className="block">
               <span className="block gold-shine-text" style={{ fontSize: "1.15rem", fontWeight: 800, lineHeight: 1.1 }}>

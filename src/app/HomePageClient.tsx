@@ -29,35 +29,44 @@ function SectionHeader({ label, title, center = true }: { label?: string; title:
   );
 }
 
+/**
+ * Particles — جسيمات ذهبية عائمة في الهيرو.
+ * ⚡ أداء (2026-08-29): كانت motion.div بأنيميشن لانهائي يُحسب بالجافاسكربت
+ * كل إطار (مساهم في TBT 3,540ms بقياس Lighthouse هاتف) — تحوّلت إلى
+ * CSS خالص (.lx-particle في luxe.css) تعمل على خيط المُركّب بصفر كلفة JS.
+ */
 function Particles() {
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
       {[...Array(6)].map((_, i) => (
-        <motion.div key={i} className="absolute w-1 h-1 rounded-full bg-gold-matte" style={{ left: `${15 + i * 15}%`, top: `${20 + (i % 3) * 25}%` }} animate={{ y: [0, -30, 0], opacity: [0.15, 0.5, 0.15], scale: [1, 1.5, 1] }} transition={{ duration: 4 + i, repeat: Infinity, delay: i * 0.8, ease: "easeInOut" }} />
+        <div
+          key={i}
+          className="lx-particle"
+          style={{
+            left: `${15 + i * 15}%`,
+            top: `${20 + (i % 3) * 25}%`,
+            ["--lx-p-dur" as string]: `${4 + i}s`,
+            ["--lx-p-delay" as string]: `${i * 0.8}s`,
+          }}
+        />
       ))}
     </div>
   );
 }
 
+/**
+ * GoldenSparkle — وميض ذهبي داخل بطاقة الهيرو.
+ * ⚡ أداء (2026-08-29): نفس تحويل Particles — من motion لانهائي إلى
+ * CSS خالص (.lx-sparkle في luxe.css). 8 نسخ × أنيميشن JS لانهائي كانت عبئاً دائماً على الخيط الرئيسي.
+ */
 function GoldenSparkle({ delay, x, y }: { delay: number; x: number; y: number }) {
   return (
-    <motion.div
-      className="absolute w-1 h-1 rounded-full"
+    <div
+      className="lx-sparkle"
       style={{
         left: `${x}%`,
         top: `${y}%`,
-        background: "radial-gradient(circle, #E2C68E 0%, #C5A059 100%)",
-        boxShadow: "0 0 8px rgba(197, 160, 89, 0.8)",
-      }}
-      animate={{
-        opacity: [0, 1, 0],
-        scale: [0, 1, 0],
-      }}
-      transition={{
-        duration: 2,
-        repeat: Infinity,
-        delay,
-        ease: "easeInOut",
+        ["--lx-s-delay" as string]: `${delay}s`,
       }}
     />
   );
