@@ -115,6 +115,27 @@ export const LOCAL_PAGES: { service: string; city: string }[] = Object.keys(
   SERVICES
 ).flatMap((service) => Object.keys(CITIES).map((city) => ({ service, city })));
 
+/**
+ * صفحات النوايا المستقلة (W1) — نية واحدة × مدينة واحدة، خارج مصفوفة
+ * (خدمة × مدينة) عمداً: التوسيع الأفقي للمدن هنا = doorway مؤكد
+ * (تشابه 88.3% مُقاس — allpro تقرير 11). كل صفحة تُضاف هنا يجب أن
+ * تكون لنية مستقلة بطلب مُقاس (Ads/GSC) ومحتوى فريد مكتوب يدوياً.
+ * تُستهلك في: sitemap.ts + locations/[city] (روابط) + localContent (ربط داخلي).
+ */
+export const INTENT_PAGES: {
+  slug: string;
+  ar: string;
+  city: string; // مفتاح في CITIES
+  short: string;
+}[] = [
+  {
+    slug: "mubashirin-qahwa-jeddah",
+    ar: "مباشرين قهوة جدة",
+    city: "jeddah",
+    short: "مباشرون ومباشرات ينظّمون حركة تقديم القهوة في مناسبات جدة الكبيرة",
+  },
+];
+
 export function localSlug(service: string, city: string): string {
   return `${service}-${CITIES[city].slug}`;
 }

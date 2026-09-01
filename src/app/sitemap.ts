@@ -1,6 +1,6 @@
 import { MetadataRoute } from "next";
 import { CITIES } from "@/lib/cities";
-import { LOCAL_PAGES, localSlug } from "@/lib/localPages";
+import { LOCAL_PAGES, INTENT_PAGES, localSlug } from "@/lib/localPages";
 import { SITE_URL } from "@/lib/site";
 
 
@@ -18,6 +18,7 @@ const DATES = {
   cityPage: "2026-07-06",
   serviceCity: "2026-07-06",
   legal: "2026-07-08", // صفحة قانونية أُنشئت 2026-07-08
+  intentPages: "2026-09-01", // صفحات النوايا المستقلة (W1) — أولها مباشرين قهوة جدة
 };
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -36,6 +37,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: DATES.serviceCity,
   }));
 
+  // صفحات النوايا المستقلة (W1) — نية مُقاسة × مدينة واحدة، لا مصفوفة
+  const intentRoutes = INTENT_PAGES.map((p) => ({
+    path: `/${p.slug}`,
+    priority: 0.8,
+    changeFrequency: "monthly" as const,
+    lastModified: DATES.intentPages,
+  }));
+
   const routes = [
     { path: "/", priority: 1.0, changeFrequency: "weekly" as const, lastModified: DATES.home },
     { path: "/services", priority: 0.9, changeFrequency: "weekly" as const, lastModified: DATES.services },
@@ -48,6 +57,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/legal", priority: 0.3, changeFrequency: "yearly" as const, lastModified: DATES.legal },
     ...cityRoutes,
     ...serviceCityRoutes,
+    ...intentRoutes,
   ];
 
   return routes.map((route) => ({

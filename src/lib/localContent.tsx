@@ -5,16 +5,23 @@
  * أول 100 كلمة وبلا حشو (يدمج المرادفات طبيعياً: صبابين/قهوجيين/مباشرين/صبابات).
  */
 import { getAllImages, type CatalogImage } from "@/lib/imageCatalog";
-import { CITIES, SERVICES, LOCAL_PAGES, localSlug } from "@/lib/localPages";
+import { CITIES, SERVICES, LOCAL_PAGES, INTENT_PAGES, localSlug } from "@/lib/localPages";
 import type { LocalServicePageProps, FAQ } from "@/components/LocalServicePage";
 
 const WA_DISPLAY = "0508252134";
 
 function otherCitiesLinks(service: string, currentCity: string) {
-  return LOCAL_PAGES.filter((p) => p.service === service && p.city !== currentCity).map((p) => ({
+  const cityLinks = LOCAL_PAGES.filter((p) => p.service === service && p.city !== currentCity).map((p) => ({
     label: `${SERVICES[service].ar} ${CITIES[p.city].ar}`,
     href: `/${localSlug(service, p.city)}`,
   }));
+  // ربط داخلي لصفحات النوايا المستقلة (W1) التابعة لنفس المدينة — تظهر أولاً
+  // (مثال: مباشرين قهوة جدة تُربَط من صفحات جدة الثلاث — تمرير سلطة لصفحة المال الجديدة).
+  const intentLinks = INTENT_PAGES.filter((p) => p.city === currentCity).map((p) => ({
+    label: p.ar,
+    href: `/${p.slug}`,
+  }));
+  return [...intentLinks, ...cityLinks];
 }
 
 /** يختار صوراً من الكتالوج تناسب فئات الخدمة (deterministic per service+city). */

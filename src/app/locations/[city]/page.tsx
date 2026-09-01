@@ -4,7 +4,7 @@ import Link from "next/link";
 import ProtectedImage from "@/components/ProtectedImage";
 import { RevealOnScroll } from "@/components/animations/RevealOnScroll";
 import { CITIES, getCity } from "@/lib/cities";
-import { CITIES as SC_CITIES, SERVICES as SC_SERVICES, localSlug } from "@/lib/localPages";
+import { CITIES as SC_CITIES, SERVICES as SC_SERVICES, INTENT_PAGES, localSlug } from "@/lib/localPages";
 import { getAllImages } from "@/lib/imageCatalog";
 import { generatePageMetadata } from "@/components/SEO";
 import {
@@ -236,6 +236,17 @@ export default function CityPage({ params }: Params) {
                     >
                       <span className="block text-[#F5F5DC] font-tajawal font-bold mb-1 group-hover:text-[#C5A059] transition">{SC_SERVICES[svc].ar} في {city.name}</span>
                       <span className="block text-[#F5F5DC]/55 text-xs leading-relaxed">{SC_SERVICES[svc].short}</span>
+                    </Link>
+                  ))}
+                  {/* صفحات النوايا المستقلة (W1) التابعة لهذه المدينة — ربط داخلي لصفحات المال */}
+                  {INTENT_PAGES.filter((p) => p.city === scKey).map((p) => (
+                    <Link
+                      key={p.slug}
+                      href={`/${p.slug}`}
+                      className="block rounded-2xl p-5 bg-[#1a1a1a] border border-[#C5A059]/15 hover:border-[#C5A059]/40 transition group"
+                    >
+                      <span className="block text-[#F5F5DC] font-tajawal font-bold mb-1 group-hover:text-[#C5A059] transition">{p.ar}</span>
+                      <span className="block text-[#F5F5DC]/55 text-xs leading-relaxed">{p.short}</span>
                     </Link>
                   ))}
                 </div>
