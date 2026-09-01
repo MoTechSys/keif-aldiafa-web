@@ -36,9 +36,33 @@ export function waLink(message?: string): string {
   return message ? `${base}?text=${encodeURIComponent(message)}` : base;
 }
 
-/** حسابات التواصل المؤكّدة (تُستخدم في Schema sameAs) */
+/**
+ * حسابات التواصل المؤكّدة (تُستخدم في Schema sameAs).
+ *
+ * منهجية التحقق (2026-09-01 — موثقة في allpro تقرير 16):
+ *   فحص شبكي حي لكل حساب + فحص «ضبط» بحساب وهمي لكشف المنصات
+ *   التي ترجع 200 دائماً، إضافةً لتأكيد المالك الحرفي:
+ *   «كل حساباتي صحيحة، هي نفس كلهن بنفس اسم الدومين».
+ *
+ *   - x: متحقق قطعياً — <title> الصفحة: «كيف الضيافة | قهوجي جدة … (@keifaldiafa)»
+ *   - tiktok: متحقق قطعياً — uniqueId:"keifaldiafa" + nickname:"كيف الضيافة | قهوجيين جدة"
+ *   - snapchat: متحقق بالضبط — 200 بينما الحساب الوهمي 404
+ *   - facebook: FB يحجب التحقق الآلي (الوهمي أيضاً 200) — أُدرج بشهادة المالك
+ *   - youtube: @keifaldiafa وبدائله = 404 → لا يُدرج حتى يزوّدنا المالك بالرابط الصحيح
+ *     (قاعدة: لا نخترع روابط أبداً)
+ */
 export const SOCIAL = {
   instagram: "https://www.instagram.com/keifaldiafa",
+  x: "https://x.com/keifaldiafa",
+  tiktok: "https://www.tiktok.com/@keifaldiafa",
+  snapchat: "https://www.snapchat.com/add/keifaldiafa",
+  facebook: "https://www.facebook.com/keifaldiafa",
+  /**
+   * wa.me: رابط «فعل» (بدء محادثة) لا صفحة ملف تعريفي — يبقى هنا لأزرار
+   * التواصل، لكنه لا يدخل sameAs. التعريف الرسمي (وثيقة Organization):
+   * "URL of a page on another website with additional information about your
+   *  organization... profile page on a social media or review site".
+   */
   whatsapp: `https://wa.me/${WHATSAPP_NUMBER}`,
   /**
    * ملف النشاط التجاري في خرائط جوجل (Google Business Profile)
@@ -47,3 +71,16 @@ export const SOCIAL = {
    */
   googleMaps: "https://maps.google.com/maps?cid=15151944507933206223",
 } as const;
+
+/**
+ * روابط sameAs للـSchema — صفحات ملفات تعريفية فقط (بلا روابط أفعال مثل wa.me).
+ * مصدر واحد يستهلكه Organization وCateringService معاً.
+ */
+export const SAME_AS: readonly string[] = [
+  SOCIAL.instagram,
+  SOCIAL.x,
+  SOCIAL.tiktok,
+  SOCIAL.snapchat,
+  SOCIAL.facebook,
+  SOCIAL.googleMaps,
+];

@@ -6,7 +6,6 @@ import { generatePageMetadata } from "@/components/SEO";
 import {
   generateBreadcrumbSchema,
   generateServiceSchema,
-  generateFAQSchema,
   generateWebPageSchema,
 } from "@/lib/schema";
 import { CITIES, SERVICES, LOCAL_PAGES, localSlug, parseServiceCity } from "@/lib/localPages";
@@ -80,7 +79,8 @@ export default function Page({ params }: Props) {
     cityAr: c.ar,
     serviceType: s.ar,
   });
-  const faqSchema = generateFAQSchema(data.faqs);
+  // FAQPage JSON-LD حُذف (2026-09-01) — الميزة متوقفة رسمياً منذ 2026-05-07.
+  // الأسئلة المرئية (data.faqs ← LocalServicePage) باقية. allpro تقرير 14.
   const webPageSchema = generateWebPageSchema({
     name: data.metaTitle,
     description: data.metaDescription,
@@ -92,7 +92,6 @@ export default function Page({ params }: Props) {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }} />
       <LocalServicePage {...data.page} />
     </>

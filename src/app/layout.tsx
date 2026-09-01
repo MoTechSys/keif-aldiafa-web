@@ -162,9 +162,13 @@ export const metadata: Metadata = {
   },
   manifest: "/manifest.json",
   icons: {
+    // ترتيب مقصود: ICO أولاً — تحديث Google 2026-08-28 حصر صيغ favicon
+    // المدعومة في البحث بـ BMP/GIF/ICO/PNG/JPEG/PPM/TIFF (SVG غير مدعومة لجوجل؛
+    // تبقى ثانيةً للمتصفحات الحديثة فقط). الملف أُعيد توليده فعلياً بمقاسات
+    // 16+32+48 (كان يعلن 48x48 والملف يحوي 16+32 فقط). allpro تقرير 15.
     icon: [
+      { url: "/favicon.ico", sizes: "16x16 32x32 48x48" },
       { url: "/icon.svg", type: "image/svg+xml" },
-      { url: "/favicon.ico", sizes: "48x48" },
     ],
     apple: [
       { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },

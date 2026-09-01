@@ -11,7 +11,6 @@ import {
   generateBreadcrumbSchema,
   generateServiceSchema,
   generateWebPageSchema,
-  generateFAQSchema,
   generateImageGallerySchema,
 } from "@/lib/schema";
 import { SITE_URL, WHATSAPP_NUMBER } from "@/lib/site";
@@ -85,7 +84,8 @@ export default function CityPage({ params }: Params) {
     cityAr: city.name,
     serviceType: "خدمات الضيافة",
   });
-  const faqSchema = generateFAQSchema(city.faqs);
+  // FAQPage JSON-LD حُذف (2026-09-01) — الميزة متوقفة رسمياً منذ 2026-05-07.
+  // الأسئلة المرئية (city.faqs أدناه) باقية. allpro تقرير 14.
   const gallerySchema = generateImageGallerySchema(
     url,
     imgs.gallery.map((g, i) => ({
@@ -99,7 +99,6 @@ export default function CityPage({ params }: Params) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(gallerySchema) }} />
 
       <main dir="rtl" className="bg-[#0f0f0f] text-[#F5F5DC]">

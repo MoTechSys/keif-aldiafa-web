@@ -7,7 +7,7 @@ import {
   EMAIL,
   LEGAL_NAME,
   UNIFIED_NUMBER,
-  SOCIAL,
+  SAME_AS,
 } from "@/lib/site";
 
 export function generateOrganizationSchema() {
@@ -32,7 +32,9 @@ export function generateOrganizationSchema() {
       name: "Saudi Arabia",
     },
     },
-    sameAs: [SOCIAL.instagram, SOCIAL.whatsapp, SOCIAL.googleMaps],
+    // sameAs: صفحات ملفات تعريفية متحقق منها فقط — انظر SAME_AS في site.ts
+    // (wa.me أُزيل: رابط فعل لا صفحة ملف — التعريف الرسمي في وثيقة Organization).
+    sameAs: SAME_AS,
   };
 }
 
@@ -97,10 +99,14 @@ export function generateLocalBusinessSchema() {
       opens: "00:00",
       closes: "23:59",
     },
-    // النشاط يخدم حفلات ومؤسسات ومناسبات متنوّعة، لا باقات محددة — رمز جوجل «فاخر» $$$ ينقل الانطباع المحيط دون أرقام تنفّر.
-    priceRange: "$$$",
+    // priceRange (خاصية Recommended في وثيقة LocalBusiness الرسمية — أثرها
+    // «عرض» فقط لا ترتيب): نطاق "$$-$$$$" = من المتوسط إلى الأفخم، بقرار
+    // المالك 2026-09-01: «يظهر لكل الناس ولكل فئات المجتمع سوا فقير او غني VIP».
+    // لم نستخدم "$" (توحي «رخيص جداً» وتناقض هوية الفخامة). مؤشر نسبي بلا
+    // أرقام — لا يخالف قاعدة «لا أسعار». التوثيق: allpro تقرير 13.
+    priceRange: "$$-$$$$",
     servesCuisine: "قهوة سعودية وضيافة عربية",
-    sameAs: [SOCIAL.instagram, SOCIAL.whatsapp, SOCIAL.googleMaps],
+    sameAs: SAME_AS,
     contactPoint: {
       "@type": "ContactPoint",
       telephone: PHONE,
@@ -242,22 +248,15 @@ export function generateServiceSchema(service: {
   };
 }
 
-export function generateFAQSchema(
-  faqs: { question: string; answer: string }[]
-) {
-  return {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqs.map((faq) => ({
-      "@type": "Question",
-      name: faq.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: faq.answer,
-      },
-    })),
-  };
-}
+/*
+ * generateFAQSchema — حُذفت نهائياً (2026-09-01).
+ * السبب الرسمي: Google أوقفت FAQ rich results — changelog:
+ *   2026-05-08: "This feature will no longer appear in Google Search starting May 7, 2026"
+ *   2026-06-15: حذف وثائق FAQPage نفسها.
+ * القرار موثق (allpro تقرير 14) ومعتمد من المالك. المحتوى المرئي للأسئلة
+ * بقي كما هو في الصفحات (قيمته للزائر ولـAI Overviews قائمة) — المحذوف
+ * هو بث JSON-LD فقط.
+ */
 
 export function generateWebSiteSchema() {
   return {

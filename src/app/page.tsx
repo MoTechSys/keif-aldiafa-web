@@ -1,8 +1,7 @@
 import { Metadata } from "next";
 import { HomePageClient } from "./HomePageClient";
 
-import { generateBreadcrumbSchema, generateFAQSchema } from "@/lib/schema";
-import { HOME_FAQS } from "@/lib/homeFaqs";
+import { generateBreadcrumbSchema } from "@/lib/schema";
 import { SITE_URL } from "@/lib/site";
 
 
@@ -46,10 +45,9 @@ const breadcrumbSchema = generateBreadcrumbSchema([
   { name: "الرئيسية", url: SITE_URL },
 ]);
 
-// FAQPage schema — يطابق الأسئلة المرئية في HomePageClient.
-// ملاحظة: FAQ rich results ألغتها Google (مايو 2026)، لكن الـschema لا يزال يفيد
-// فهم المحتوى + AI Overviews (يقتبس من الأسئلة المهيكلة) — غير ضار.
-const faqSchema = generateFAQSchema(HOME_FAQS);
+// FAQPage JSON-LD حُذف نهائياً (2026-09-01) — Google أوقفت FAQ rich results
+// رسمياً (changelog 2026-05-08 + حذف الوثائق 2026-06-15). الأسئلة المرئية
+// في HomePageClient باقية (قيمتها للزائر وAI قائمة). allpro تقرير 14.
 
 export default function HomePage() {
   return (
@@ -60,10 +58,6 @@ export default function HomePage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
       <HomePageClient />
     </>
