@@ -7,8 +7,7 @@
 import { getAllImages, type CatalogImage } from "@/lib/imageCatalog";
 import { CITIES, SERVICES, LOCAL_PAGES, INTENT_PAGES, localSlug } from "@/lib/localPages";
 import type { LocalServicePageProps, FAQ } from "@/components/LocalServicePage";
-
-const WA_DISPLAY = "0508252134";
+import { WHATSAPP_DISPLAY as WA_DISPLAY } from "@/lib/site";
 
 function otherCitiesLinks(service: string, currentCity: string) {
   const cityLinks = LOCAL_PAGES.filter((p) => p.service === service && p.city !== currentCity).map((p) => ({

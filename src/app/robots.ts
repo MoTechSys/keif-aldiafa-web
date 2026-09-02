@@ -1,4 +1,5 @@
 import { MetadataRoute } from "next";
+import { SITE_URL } from "@/lib/site";
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -10,9 +11,9 @@ export default function robots(): MetadataRoute.Robots {
       },
     ],
     sitemap: [
-      "https://keifaldiafa.com/sitemap.xml",
-      "https://keifaldiafa.com/image-sitemap.xml",
-      "https://keifaldiafa.com/sitemap_index.xml",
+      `${SITE_URL}/sitemap.xml`,
+      `${SITE_URL}/image-sitemap.xml`,
+      `${SITE_URL}/sitemap_index.xml`,
     ],
   };
 }

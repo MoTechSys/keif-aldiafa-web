@@ -40,10 +40,12 @@ export default function AboutClient() {
             <p className="text-[#F5F5DC]/55 text-sm leading-8 mb-6">بدأنا رحلتنا عام ٢٠١٦ برؤية واضحة: تقديم خدمات ضيافة فاخرة تعكس أصالة الثقافة السعودية مع لمسة عصرية مبتكرة. منذ ذلك الحين، قدمنا خدماتنا لأكثر من ٥٠٠ مناسبة، من حفلات الزفاف الفاخرة إلى الفعاليات الحكومية الكبرى، بطاقم يضم نخبة من القهوجيين وصبابي القهوة السعودية والصبابات والمباشرات المدربات على أرقى أصول الضيافة.</p>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
               {[
+                // قاعدة المالك (E-E-A-T): لا رقم يُعرض إلا إن كان verified_by_owner:true في data/proof.json.
+                // «+200 عميل» و«100% رضا» أُزيلا (غير موثقَين) — تقرير allpro 18 §1.1.
                 { num: "+500", label: "مناسبة نفّذناها بفريقنا" },
-                { num: `+${new Date().getFullYear() - 2016}`, label: "سنوات خبرة" },
-                { num: "+200", label: "عميل" },
-                { num: "100%", label: "رضا" },
+                { num: "منذ 2016", label: "نخدم مناسبات جدة" },
+                { num: "رجالي ونسائي", label: "طاقم قهوجيين وصبابات" },
+                { num: "جدة", label: "والمنطقة الغربية" },
               ].map((s, i) => (
                 <m.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ delay: i * 0.1 }} className="text-center p-4 rounded-2xl" style={{ background: "rgba(184,134,11,0.06)", border: "1px solid rgba(184,134,11,0.12)" }}>
                   <p className="gold-gradient-text" style={{ fontSize: "1.5rem", fontWeight: 900 }}>{s.num}</p>

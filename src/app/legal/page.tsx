@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
   // بلا اسم البراند — قالب layout يضيف «| كيف الضيافة» تلقائياً (فاحص S2).
   title: "الحقوق القانونية والملكية الفكرية",
   description:
     "معلومات الحقوق القانونية والملكية الفكرية لصور ومحتوى موقع كيف الضيافة — شركة سعودية لخدمات الضيافة الفاخرة.",
-  alternates: { canonical: "https://keifaldiafa.com/legal" },
+  alternates: { canonical: `${SITE_URL}/legal` },
   robots: { index: true, follow: true },
 };
 

@@ -38,7 +38,7 @@ diyafa-buffet-…-keif-aldiafa.webp
 | `generateLocalBusinessSchema` | `CateringService` — **نشاط بمنطقة خدمة (SAB)** |
 | `generateBreadcrumbSchema` | `BreadcrumbList` |
 | `generateWebPageSchema` | `WebPage` |
-| `generateFAQSchema` | `FAQPage` |
+| ~~`generateFAQSchema`~~ | ~~`FAQPage`~~ — **حُذفت 2026-09-01** (Google أوقفت النتائج المنسّقة للأسئلة الشائعة نهائياً 2026-05-07؛ الأسئلة تبقى كنص HTML عادي فقط) |
 
 ### لماذا SAB لا نشاطاً بعنوان؟
 الفريق **يتنقّل لموقع العميل** لا العكس. فالتصميم يتبع توجيهات Google:

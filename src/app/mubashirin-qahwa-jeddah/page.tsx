@@ -21,7 +21,7 @@ import {
   generateServiceSchema,
   generateWebPageSchema,
 } from "@/lib/schema";
-import { SITE_URL, WHATSAPP_NUMBER } from "@/lib/site";
+import { SITE_URL, WHATSAPP_NUMBER, WHATSAPP_DISPLAY as WA_DISPLAY } from "@/lib/site";
 import { HALL, COUNTER, TAWZEEAT, MAJLIS, BUFFET, CUT_DALLAH_GOLD } from "@/lib/localImagery";
 
 /**
@@ -42,7 +42,6 @@ import { HALL, COUNTER, TAWZEEAT, MAJLIS, BUFFET, CUT_DALLAH_GOLD } from "@/lib/
  * Server Component بالكامل: كل النص في HTML الـ SSR.
  */
 
-const WA_DISPLAY = "0508252134";
 const PATH = "/mubashirin-qahwa-jeddah";
 
 // العنوان: 49 حرفاً شامل «| كيف الضيافة» (حد S1 = 60) — الكلمة المفتاحية أولاً ثم خطّاف.
