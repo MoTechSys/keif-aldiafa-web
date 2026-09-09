@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from "next";
-import { Tajawal, Cairo, Marcellus, El_Messiri } from "next/font/google";
+import localFont from "next/font/local";
 import "@/styles/globals.css";
+// شِل النموذج v6.9 (المرحلة 2 — D115): المتغيرات + الهيدر + الفوتر + الأزرار + المعرض — 1:1
+import "@/styles/v7.css";
 // طبقة الفخامة — إضافية بالكامل ومحصورة داخل .luxe فلا تؤثر على بقية الصفحات
 import "@/styles/luxe.css";
 // طبقة العمق والحركة للصفحات الفرعية — تبني على luxe.css ولا تعدّلها
@@ -16,68 +18,33 @@ import MotionProvider from "@/components/MotionProvider";
 import { SITE_URL } from "@/lib/site";
 
 
-// أوزان مُقلّصة لما يُستخدم فعلاً فقط (مُدقّق بمسح كامل للكود 2026-08-29):
-// كل وزن إضافي = ملف woff2 إضافي يُحمّل على الجوال ويؤخّر العرض.
-// • Tajawal (نص الجسم): 300 (font-light) · 400 (افتراضي) · 500 · 700 · 800
-//   (800 مطلوب: عناصر p/span في Footer/Navbar/الهيرو تستخدم fontWeight:800 على خط الجسم)
-const tajawal = Tajawal({
-  subsets: ["arabic", "latin"],
-  weight: ["300", "400", "500", "700", "800"],
+/* الخطوط (المرحلة 2 — D115): ثلاثة ملفات woff2 محلية مُقلَّصة من النموذج
+   (allpro/prototype-home/fonts — build/fonts.py): Amiri 700 ≈42KB للعناوين ·
+   Noto Naskh Arabic متغيّر 400–700 ≈21KB للنص · Marcellus ≈9KB للاتيني.
+   بدل Tajawal/Cairo/El Messiri من Google Fonts (4 عائلات × أوزان = 12+ ملفاً).
+   adjustFontFallback:false — الخطوط عربية والقياس الآلي مبني على Arial/Times فقط. */
+const amiri = localFont({
+  src: "../../public/fonts/amiri-700.woff2",
+  weight: "700",
   display: "swap",
-  variable: "--font-tajawal",
+  variable: "--font-amiri",
   preload: true,
+  adjustFontFallback: false,
 });
-
-// • Cairo (العناوين): 400 (نصوص ثانوية) · 700/800/900 (h1–h6 والهيرو)
-//   — وزنا 300 و500 حُذفا: غير مستخدمين في أي ملف.
-const cairo = Cairo({
-  subsets: ["arabic", "latin"],
-  weight: ["400", "700", "800", "900"],
+const naskh = localFont({
+  src: "../../public/fonts/noto-naskh.woff2",
+  weight: "400 700",
   display: "swap",
-  variable: "--font-cairo",
+  variable: "--font-naskh",
   preload: true,
+  adjustFontFallback: false,
 });
-
-/* Marcellus — خط عرض لاتيني بروماني رفيع (serif).
-   السبب: التحليل البصري لمراجع العميل أظهر أن كل تصميم فاخر يزاوج
-   خط عرض serif مع sans للنص. الموقع كان يستخدم Cairo (sans) للجميع
-   فبدا مسطّحاً. يُستخدم للأرقام والوسمات اللاتينية والميداليات فقط. */
-/* ═══════════════════════════════════════════════════════════════════
-   El Messiri — خط العناوين الفاخر. أُضيف بعد تشريح بكسلي للعنوان.
-   ───────────────────────────────────────────────────────────────────
-   العطب المقيس: العناوين كانت Cairo وزن 900. Cairo خط هندسي
-   (geometric sans) سماكة حروفه ثابتة تماماً بلا أي تباين. النتيجة
-   على شاشة الهاتف: كتلة سوداء متساوية السماكة تُقرأ كبنر تخفيضات
-   في سوق، لا كعلامة ضيافة فاخرة.
-
-   الاختبار: صُيّر نفس العنوان بثمانية خطوط عربية على 780px@2x
-   وقُوبل بصرياً (Amiri, Aref Ruqaa, Reem Kufi, El Messiri, Rakkas,
-   Marhey, Tajawal, Cairo). النتيجة:
-     • Aref Ruqaa / Rakkas: خطّان نسخيان جميلان لكن قراءتهما تحتاج
-       تركيزاً — يخالفان قاعدة الخمس ثوان.
-     • Reem Kufi: كوفي هندسي، تشابك الحروف يربك العين.
-     • Marhey: مستدير مرح — عكس الفخامة تماماً.
-     • Amiri: أنيق جداً لكن رفيع، يضعف على خلفية صورة.
-     • El Messiri: ✅ فيه تباين سماكة حقيقي (نهايات مدبّبة وأعناق
-       رفيعة) فيقرأه العين كخطّ محفور، ومع ذلك مقروء في لمحة.
-   ⇒ El Messiri للعناوين، Tajawal للنصّ. مزاوجة تباين لا تسطيح.
-   ═══════════════════════════════════════════════════════════════════ */
-// وزن 700 فقط — كل استخدامات El Messiri في luxe.css/local.css بوزن 700
-// (أوزان 400/500/600 كانت تُحمّل بلا أي استخدام — 3 ملفات خط مهدورة).
-// preload:false — يُستخدم في الصفحات الفرعية فقط لا في الرئيسية.
-const elMessiri = El_Messiri({
-  subsets: ["arabic", "latin"],
-  weight: ["700"],
-  display: "swap",
-  variable: "--font-messiri",
-  preload: false,
-});
-
-const marcellus = Marcellus({
-  subsets: ["latin"],
-  weight: ["400"],
+const marcellus = localFont({
+  src: "../../public/fonts/marcellus.woff2",
+  weight: "400",
   display: "swap",
   variable: "--font-marcellus",
+  preload: false,
 });
 
 export const metadata: Metadata = {
@@ -187,8 +154,8 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: dark)", color: "#0f0f0f" },
-    { media: "(prefers-color-scheme: light)", color: "#0f0f0f" },
+    { media: "(prefers-color-scheme: dark)", color: "#0D0D0D" },
+    { media: "(prefers-color-scheme: light)", color: "#0D0D0D" },
   ],
   width: "device-width",
   initialScale: 1,
@@ -205,7 +172,7 @@ export default function RootLayout({
     <html
       lang="ar"
       dir="rtl"
-      className={`scroll-smooth ${tajawal.variable} ${cairo.variable} ${marcellus.variable} ${elMessiri.variable}`}
+      className={`scroll-smooth ${amiri.variable} ${naskh.variable} ${marcellus.variable}`}
     >
       <head>
         {/* Google tag (gtag.js) — محقون مباشرة في <head> (ليظهر في HTML المُقدّم فوراً

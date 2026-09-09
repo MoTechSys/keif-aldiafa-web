@@ -116,7 +116,9 @@ for (const file of srcFiles) {
   // CH5 — <img> خام. تُستثنى أغلفة الصور المعتمدة (فيها eslint-disable موثّق)
   // وGoogleAnalytics: بكسل Meta الرسمي داخل <noscript> — ليس صورة محتوى
   // وnext/image لا يعمل بلا JavaScript أصلاً.
-  const IMG_WRAPPERS = ["ImageWithFallback", "DallahLogo", "GoogleAnalytics"];
+  // وLightbox (المرحلة 2): يعرض src الجاهز من DOM (رابط _next/image محسّن أصلاً)
+  // — تمريره عبر next/image ثانيةً = تحسين مضاعف بلا فائدة (نفس النموذج v6.9).
+  const IMG_WRAPPERS = ["ImageWithFallback", "DallahLogo", "GoogleAnalytics", "v7/Lightbox"];
   const isWrapper = IMG_WRAPPERS.some((w) => rel.endsWith(`${w}.tsx`));
   const rawImg = code.match(/<img\b[^>]*>/g);
   if (rawImg && !isWrapper) {

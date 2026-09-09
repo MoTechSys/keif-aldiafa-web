@@ -1,47 +1,27 @@
 "use client";
 
-import { memo, useEffect, useState } from "react";
-import dynamic from "next/dynamic";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import { memo } from "react";
+import Header from "@/components/v7/Header";
+import Footer from "@/components/v7/Footer";
+import WhatsAppFab from "@/components/v7/WhatsAppFab";
+import Reveal from "@/components/v7/Reveal";
+import Lightbox from "@/components/v7/Lightbox";
 
-const FloatingWhatsApp = dynamic(() => import("@/components/FloatingWhatsApp"), {
-  ssr: false,
-});
-
-interface BeforeInstallPromptEvent extends Event {
-  readonly platforms: string[];
-  readonly userChoice: Promise<{
-    outcome: "accepted" | "dismissed";
-    platform: string;
-  }>;
-  prompt(): Promise<void>;
-}
-
+/**
+ * الشِل (المرحلة 2 — D115): هيدر النموذج + المحتوى + فوتر النموذج + واتساب طافٍ
+ * واحد + المعرض الموحّد + حركة الظهور. حلّ محل Navbar/Footer/FloatingWhatsApp
+ * القديمة (وطلب تثبيت PWA الذي كان معها — أُزيل: ليس في النموذج، D115).
+ */
 function ClientLayoutInner({ children }: { children: React.ReactNode }) {
-  const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null);
-
-  useEffect(() => {
-    const handleBeforeInstallPrompt = (e: Event) => {
-      const promptEvent = e as BeforeInstallPromptEvent;
-      promptEvent.preventDefault();
-      setDeferredPrompt(promptEvent);
-    };
-
-    window.addEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
-
-    return () => {
-      window.removeEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
-    };
-  }, []);
-
   return (
-    <div className="min-h-screen bg-[#0f0f0f] text-[#F5F5DC]" dir="rtl">
-      <Navbar deferredPrompt={deferredPrompt} setDeferredPrompt={setDeferredPrompt} />
+    <>
+      <Header />
       <main id="main-content">{children}</main>
       <Footer />
-      <FloatingWhatsApp />
-    </div>
+      <WhatsAppFab />
+      <Lightbox />
+      <Reveal />
+    </>
   );
 }
 

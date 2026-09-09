@@ -1,7 +1,7 @@
 # PLAN.md — خطة إعادة بناء موقع «كيف الضيافة» على Next.js
 
 > **هذا الملف هو المرجع الوحيد لأي وكيل أو جلسة جديدة.** اقرأه كاملاً قبل أي عمل.
-> آخر تحديث: 2026-09-08 · الحالة: **المرحلة 1 ✅ منجزة** · التالي: **المرحلة 2 — الشِل**
+> آخر تحديث: 2026-09-09 · الحالة: **المرحلة 2 ✅ منجزة** · التالي: **المرحلة 3 — الصفحة الرئيسية**
 > عند أي تعارض بين هذا الملف وملف آخر في هذا المستودع (CLAUDE.md، README، التقارير القديمة) → **هذا الملف يفوز**.
 
 ---
@@ -38,7 +38,7 @@
 - **المشكلة الثانية (شكوى العميل):** الرئيسية بلا صورة أعمال واحدة، الفوتر 41% من الارتفاع، 3 أزرار واتساب متزاحمة.
 - **ما هو قوي ويُحفظ:** Schema.org كامل (CateringService SAB + Service + Breadcrumb + WebPage + ImageGallery) · 3 sitemaps بـ lastmod صادق · middleware (www→non-www + روابط WordPress) · CSP/HSTS · next/image في كل مكان · فاحصات سيو/تشابه/أصول · `data/proof.json`.
 - **الإنتاج متأخر:** keifaldiafa.com لا يعرف آخر 3 commits (`/mubashirin-qahwa-jeddah` = 404 حياً).
-- CI غير مفعّل (`ci/quality.yml` موجود لكن بلا `.github/workflows/`) — **رُفض دفع الوكيل مرتين 2026-09-08** (`without workflows permission`)؛ يبقى يدوياً من المالك.
+- **CI مفعّل 2026-09-09** (`.github/workflows/quality.yml` = `ci/quality.yml`، دُفع بتوكن المالك ذي صلاحية workflow — التوكن ليس محفوظاً في أي ملف). أول تشغيل: quality ✅ · lighthouse ❌ (continue-on-error، مراقبة فقط — سقف desktop 0.9 لا يتحقق قبل المرحلة 3).
 
 ### 2.2 النموذج (allpro/prototype-home v6.9)
 - 43 صفحة بنفس مسارات Next + صفحة **`/links`** جديدة (باركود موحّد، 9 بطاقات، تأثير الأومنتريكس).
@@ -121,11 +121,14 @@ npx tsc --noEmit  &&  npm run lint  &&  npm run build  &&  npm run guard
 - **بوابة الخروج (مقاسة):** tsc ✅ · lint ✅ · build ✅ · guards ✅ (seo 118 · sim 118 · assets 27) · زحف 42 صفحة = **0 صورة مكسورة** من 315 مرجعاً · Playwright 4 مقاسات × 4 صفحات = 16/16 (0 console · 0 تمرير أفقي · 0 مكسورة) · لقطات `docs/shots/phase-1/`
 - **لم أفحصه:** Lighthouse (يُقاس في المرحلة 3 حين يتغيّر الشكل فعلاً).
 
-### ⬜ المرحلة 2 — الشِل (ما يظهر في كل صفحة)
-- الخطوط: نسخ 3 woff2 → `public/fonts/` + `next/font/local` في `layout.tsx` · حذف Tajawal/Cairo/El Messiri
-- `src/styles/v7.css` = CSS النموذج (المتغيرات + الشِل) منقول 1:1 — لا Tailwind لهذا الجزء (القرار: الدقة البصرية 1:1 أهم من إعادة الكتابة)
-- مكوّنات: `Header` (صفّان على الجوال) · `Footer` (خريطة موقع مصغّرة + ثقة + س.ت) · `WhatsAppFab` (واحد فقط، يختفي في الهيرو والتواصل) · `Lightbox` (موحّد `data-g`) · `Reveal` (يحترم reduced-motion)
-- **بوابة الخروج:** كل صفحة تعرض الهيدر/الفوتر الجديدين · 4 مقاسات نظيفة · a11y 100.
+### ✅ المرحلة 2 — الشِل (ما يظهر في كل صفحة) — 2026-09-09
+- [x] الخطوط: 3 woff2 من النموذج → `public/fonts/` (amiri-700 43KB · noto-naskh 22KB · marcellus 9KB) + `next/font/local` في `layout.tsx` · **حُذف** Tajawal/Cairo/El Messiri (Google Fonts) — 0 طلبات إلى fonts.googleapis
+- [x] `src/styles/v7.css` = CSS الشِل من النموذج منقول 1:1 (المتغيرات · الأساس · عناوين الأقسام · `.rv` · الهيدر · الأزرار · الفوتر · `.fab` · `.lb`) — اختلافان موثقان: بلا `@font-face` (next/font) وبلا شريط `.proto`
+- [x] `src/components/v7/`: `Header` (صفّان على الجوال 107px / صف واحد 65px من 900) · `Footer` (خادم صرف: علامة+تواصل / خدمات / 8 مدن / doormat / 3 شهادات / الرقم الموحّد) · `WhatsAppFab` (واحد، يختفي في `.hero` و`#contact`) · `Lightbox` (data-g، تفويض أحداث، لوحة مفاتيح، سحب) · `Reveal` (`.rv`, reduced-motion)
+- [x] `ClientLayout` على الشِل الجديد · **حُذف** `Navbar.tsx` `Footer.tsx` `FloatingWhatsApp.tsx` القديمة (وطلب PWA معها)
+- [x] `check-assets` CH5: استثناء موثق لـ `v7/Lightbox` (يعرض src جاهزاً من DOM)
+- **بوابة الخروج (مقاسة):** tsc ✅ · lint ✅ · build ✅ · guards ✅ (seo 118 · sim 118 · assets 27) · Playwright 4 مقاسات × 6 صفحات = **24/24** (0 console · 0 مكسورة · 0 تمرير أفقي · هيدر+فوتر جديدان · fab=1 في كل صفحة) · axe على الشِل = **0 مخالفات** WCAG 2.1 AA · اختبار Lightbox e2e (فتح بالفهرس الصحيح · أسهم + التفاف · Esc · استعادة التركيز · Enter · ×) ✅ · Lighthouse جوال الرئيسية: **A11y 100 · SEO 100** · Perf 40 / BP 77 (جسم الرئيسية القديم — المرحلة 3) · لقطات `docs/shots/phase-2/`
+- **ملاحظة:** الصفحات الداخلية ما زالت بجسمها القديم (Tailwind/luxe) تحت الشِل الجديد — متوقَّع حتى المراحل 3–5.
 
 ### ⬜ المرحلة 3 — الصفحة الرئيسية
 - `HomePageClient.tsx` → أقسام النموذج بالترتيب: هيرو (picture/srcset، فيديو `hero-bg.mp4` على الجوال) → لمن نخدم (3 فئات) → أعمالنا (شريط 12 لقطة، المستوى 1 أولاً) → شركاء النجاح (كريمي، 46 شعاراً بالأولوية، +500) → الزي ×5 → التقديمات ×13 → الخدمات 12 في 3 مجموعات → الأسئلة → تواصل → فوتر
@@ -165,10 +168,10 @@ npx tsc --noEmit  &&  npm run lint  &&  npm run build  &&  npm run guard
 
 | | |
 |---|---|
-| **آخر ما أُنجز** | المرحلة 1 كاملة: استيراد الكتالوج (314 صورة + 49 شعاراً) · `imageCatalog.data.ts` + `partners.ts` · sitemap 274 · CH9 · D118–D120 |
+| **آخر ما أُنجز** | المرحلة 2 كاملة: خطوط محلية · `v7.css` · Header/Footer/WhatsAppFab/Lightbox/Reveal · حذف الشِل القديم · CI مفعّل · D121–D123 |
 | **الجاري** | لا شيء |
-| **التالي فوراً** | المرحلة 2 — الشِل: الخطوط الثلاثة woff2 من `prototype-home/fonts` · `src/styles/v7.css` · Header/Footer/WhatsAppFab/Lightbox/Reveal |
-| **ينتظر المالك** | **تفعيل CI يدوياً** (نسخ `ci/quality.yml` → `.github/workflows/quality.yml` من واجهة GitHub) · لوكيل التحليل: 4 alt بأقواس (#53 #202 #207 #208) |
+| **التالي فوراً** | المرحلة 3 — الرئيسية: نقل أقسام النموذج (`index.html` §هيرو → تواصل) إلى `HomePageClient.tsx` بصور الكتالوج (المستوى 1 أولاً) وشعارات `partners.ts`، ثم Lighthouse ≥90 واعتماد المالك |
+| **ينتظر المالك** | **حذف التوكن `ghp_…` من GitHub** (كُشف في المحادثة) · لوكيل التحليل: 4 alt بأقواس (#53 #202 #207 #208) · **اعتماد الرئيسية** بعد المرحلة 3 |
 
 ## 6. كيف تبدأ جلسة جديدة (للمالك)
 
