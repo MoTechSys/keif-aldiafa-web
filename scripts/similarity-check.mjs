@@ -48,6 +48,44 @@ const CITY_TOKENS = [
  */
 const CHROME_TAGS = ["header", "nav", "footer"];
 
+/**
+ * D128 — وحدات «هيكل» إضافية داخل <main> تُعلَّم بـ data-sim="chrome":
+ * أقسام مشتركة حرفياً بين كل الصفحات (شركاء النجاح، الطاقم، التجهيزات، التواصل،
+ * تابعنا، بطاقات الخدمات المكمّلة). ليست محتوى محلياً، فوجودها يُضخّم التشابه
+ * زوراً تماماً كالـ header/footer. تُزال بمطابقة متوازنة للوسم (عمق) لا بـ regex
+ * غير جشع، لأن الغلاف قد يحوي وسوماً متداخلة من نفس النوع (div داخل div).
+ * يُعاد عدد الوحدات المُزالة ليُطبع في المخرجات (شفافية القياس).
+ */
+const CHROME_ATTR = /<(section|div|aside|article)\b[^>]*\bdata-sim="chrome"[^>]*>/gi;
+export function stripChromeUnits(html) {
+  let s = html;
+  let removed = 0;
+  for (;;) {
+    CHROME_ATTR.lastIndex = 0;
+    const m = CHROME_ATTR.exec(s);
+    if (!m) break;
+    const tag = m[1].toLowerCase();
+    const open = new RegExp(`<${tag}\\b[^>]*>`, "gi");
+    const close = new RegExp(`</${tag}\\s*>`, "gi");
+    let depth = 1;
+    let pos = m.index + m[0].length;
+    let end = -1;
+    while (depth > 0) {
+      open.lastIndex = pos;
+      close.lastIndex = pos;
+      const o = open.exec(s);
+      const c = close.exec(s);
+      if (!c) break; // HTML غير متوازن — أزل حتى النهاية
+      if (o && o.index < c.index) { depth++; pos = o.index + o[0].length; }
+      else { depth--; pos = c.index + c[0].length; end = pos; }
+    }
+    if (end < 0) end = s.length;
+    s = s.slice(0, m.index) + " " + s.slice(end);
+    removed++;
+  }
+  return { html: s, removed };
+}
+
 export function extractVisibleText(html) {
   let s = html;
   s = s.replace(/<script[\s\S]*?<\/script>/gi, " ");
@@ -55,6 +93,7 @@ export function extractVisibleText(html) {
   for (const tag of CHROME_TAGS) {
     s = s.replace(new RegExp(`<${tag}\\b[\\s\\S]*?<\\/${tag}>`, "gi"), " ");
   }
+  s = stripChromeUnits(s).html;
   s = s.replace(/<[^>]+>/g, " ");
   s = s.replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">")
        .replace(/&quot;/g, '"').replace(/&#\d+;/g, " ").replace(/&nbsp;/g, " ");
@@ -97,8 +136,10 @@ function walk(dir, out = []) {
 
 export function computePairs() {
   const files = walk(APP_DIR);
+  let chromeUnits = 0;
   const pages = files.map((f) => {
     const html = readFileSync(f, "utf8");
+    chromeUnits += stripChromeUnits(html).removed;
     const norm = neutralize(extractVisibleText(html));
     return { file: relative(ROOT, f), tokens: norm.split(" ").filter(Boolean) };
   }).filter((p) => p.tokens.length > 30); // تجاهل الصفحات شبه الفارغة (404/loading)
@@ -113,7 +154,7 @@ export function computePairs() {
     }
   }
   results.sort((x, y) => y.ratio - x.ratio);
-  return { pageCount: pages.length, results };
+  return { pageCount: pages.length, results, chromeUnits };
 }
 
 // تشغيل مباشر — وضع baseline-diff: يفشل فقط على أزواج **جديدة** فوق العتبة.
@@ -124,9 +165,10 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     console.error("❌ لم يُعثر على .next/server/app — شغّل `npm run build` أولاً.");
     process.exit(1);
   }
-  const { pageCount, results } = computePairs();
+  const { pageCount, results, chromeUnits } = computePairs();
   const violations = results.filter((r) => r.ratio > SIM_MAX);
   const warn = [];
+  warn.push(`وحدات data-sim="chrome" المُستثناة من القياس (D128): ${chromeUnits}`);
   if (results.length) {
     warn.push("أعلى الأزواج تشابهاً:");
     results.slice(0, 10).forEach((r) =>

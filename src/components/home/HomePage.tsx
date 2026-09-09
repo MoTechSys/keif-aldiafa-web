@@ -6,12 +6,13 @@ import HeroPicture from "@/components/home/HeroPicture";
 import HeroVideo from "@/components/home/HeroVideo";
 import PartnersMore from "@/components/home/PartnersMore";
 import Strip from "@/components/home/Strip";
+import { HINT, OfferingTiles, SvcCard, UniformFigures } from "@/components/home/shared";
 import { WaIcon } from "@/components/v7/WaIcon";
 import { WA_DEFAULT_MSG } from "@/components/v7/nav";
 import { SOCIAL_ICONS } from "@/components/v7/socialIcons";
 import { CITIES } from "@/lib/cities";
 import {
-  CONTACT_WA, FAQS, HERO, OFFERINGS, PACKAGES, ROLES, ROLES_WA, SERVICE_GROUPS, UNIFORMS, WHO, WHY, WORKS, packageWa,
+  CONTACT_WA, FAQS, HERO, PACKAGES, ROLES, ROLES_WA, SERVICE_GROUPS, WHO, WHY, WORKS, packageWa,
 } from "@/lib/homeContent";
 import { PARTNERS, partnerSrc } from "@/lib/partners";
 import { PHONE, WHATSAPP_DISPLAY, waLink } from "@/lib/site";
@@ -23,15 +24,6 @@ import { PHONE, WHATSAPP_DISPLAY, waLink } from "@/lib/site";
  * مكوّن خادم؛ "use client" فقط في Strip/HeroVideo/PartnersMore (+ Lightbox/Reveal
  * من الشِل). الصور من الكتالوج عبر CatalogImg (D111/CH9)، الشعارات من partners.ts.
  */
-
-const HINT = (
-  <span className="hint rv">
-    اسحب لليسار
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M19 12H5m7-7-7 7 7 7" />
-    </svg>
-  </span>
-);
 
 /** ترتيب المدن كما في النموذج — جدة أولاً (main) */
 const CITY_ORDER = ["جدة", "مكة-المكرمة", "المدينة-المنورة", "الرياض", "الطائف", "الدمام", "أبها", "ينبع"];
@@ -152,14 +144,7 @@ function Staff() {
           <p className="rv">قهوجيين وصبابين ومباشرين بزي موحد — وطاقم نسائي للمناسبات النسائية.</p>
           {HINT}
         </div>
-        <Strip>
-          {UNIFORMS.map((u) => (
-            <figure key={u.img.src} className="uni" data-g="uni" data-go={u.go} data-go-txt="تفاصيل الزي والطاقم">
-              <CatalogImg img={u.img} sizes="(max-width:899px) 46vw, 210px" cap={u.b} sub={u.sub} />
-              <b>{u.b}</b>
-            </figure>
-          ))}
-        </Strip>
+        <Strip><UniformFigures /></Strip>
         <div className="works-foot rv"><Link className="btn btn-glass" href="/services#hosts">كل الأزياء والطاقم</Link></div>
       </div>
     </section>
@@ -175,14 +160,7 @@ function Offerings() {
           <h2 className="rv">ما الذي يصل إلى ضيوفك؟</h2>
           {HINT}
         </div>
-        <Strip>
-          {OFFERINGS.map((o) => (
-            <figure key={o.img.src + o.b} className="tile" data-g="off" data-go={o.go} data-go-txt="صفحة التقديمات">
-              <CatalogImg img={o.img} sizes="(max-width:899px) 42vw, 200px" cap={o.b} />
-              <span>{o.b}</span>
-            </figure>
-          ))}
-        </Strip>
+        <Strip><OfferingTiles /></Strip>
       </div>
     </section>
   );
@@ -212,13 +190,7 @@ function SvcGroup({ title, items }: { title: string; items: (typeof SERVICE_GROU
   return (
     <>
       <h3 className="svc-grp rv">{title}</h3>
-      {items.map((s) => (
-        // <a> عادي (لا Link): Lightbox يفتح الصورة ويمنع التنقّل — كما في النموذج
-        <a key={s.href + s.b} className="svc rv" href={s.href} data-g="svc" data-go-txt="صفحة الخدمة">
-          <CatalogImg img={s.img} sizes="(max-width:899px) 48vw, 370px" cap={s.b} sub={s.small} />
-          <div><b>{s.b}</b><small>{s.small}</small></div>
-        </a>
-      ))}
+      {items.map((s) => <SvcCard key={s.href + s.b} {...s} />)}
     </>
   );
 }

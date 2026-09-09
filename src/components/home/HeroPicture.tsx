@@ -9,16 +9,24 @@ import type { CatalogImage } from "@/lib/imageCatalog";
  * والحاوية aria-hidden في النموذج فلا تُقرأ مرتين.
  * preload حسب المقاس: React يرفع <link rel=preload media> إلى <head>.
  */
-export default function HeroPicture({ mobile, desktop }: { mobile: CatalogImage; desktop: CatalogImage }) {
+export default function HeroPicture({ mobile, desktop }: { mobile: CatalogImage; desktop?: CatalogImage }) {
   const common = { sizes: "100vw", quality: 70, priority: true } as const;
   const { props: m } = getImageProps({ ...common, alt: mobile.alt, src: mobile.src, width: mobile.width, height: mobile.height });
-  const { props: d } = getImageProps({ ...common, alt: desktop.alt, src: desktop.src, width: desktop.width, height: desktop.height });
+  // صورة واحدة لكل المقاسات (الصفحات المحلية) → لا <source> ولا preload ثانٍ
+  const dsk = desktop && desktop.src !== mobile.src ? desktop : null;
+  const d = dsk ? getImageProps({ ...common, alt: dsk.alt, src: dsk.src, width: dsk.width, height: dsk.height }).props : null;
   return (
     <>
-      <link rel="preload" as="image" imageSrcSet={m.srcSet} imageSizes="100vw" media="(max-width:899px)" fetchPriority="high" />
-      <link rel="preload" as="image" imageSrcSet={d.srcSet} imageSizes="100vw" media="(min-width:900px)" fetchPriority="high" />
+      {d ? (
+        <>
+          <link rel="preload" as="image" imageSrcSet={m.srcSet} imageSizes="100vw" media="(max-width:899px)" fetchPriority="high" />
+          <link rel="preload" as="image" imageSrcSet={d.srcSet} imageSizes="100vw" media="(min-width:900px)" fetchPriority="high" />
+        </>
+      ) : (
+        <link rel="preload" as="image" imageSrcSet={m.srcSet} imageSizes="100vw" fetchPriority="high" />
+      )}
       <picture>
-        <source media="(min-width:900px)" srcSet={d.srcSet} sizes={d.sizes} width={desktop.width} height={desktop.height} />
+        {d && dsk && <source media="(min-width:900px)" srcSet={d.srcSet} sizes={d.sizes} width={dsk.width} height={dsk.height} />}
         {/* eslint-disable-next-line @next/next/no-img-element -- <picture> بتوجيه فني؛ srcset من getImageProps */}
         <img {...m} alt={mobile.alt} decoding="async" />
       </picture>

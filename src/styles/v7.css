@@ -417,3 +417,131 @@ body.lb-lock{overflow:hidden}
   .socrow{gap:22px}.socrow a{flex:0 0 90px;font-size:.82rem}.socrow .ic{width:60px;height:60px}.socrow .ic svg{width:27px;height:27px}
 }
 @media (prefers-reduced-motion:reduce){.socrow .ic::after{animation:none}}
+
+/* =====================================================================
+   المرحلة 4 — الصفحات المحلية (خدمة×مدينة · المدينة · النيّة) + الصفحات
+   الداخلية العامة: CSS النموذج v6.9 (build.py: phero · LOCAL_CSS · MASTER_CSS)
+   منقول 1:1 بلا القواعد المكرّرة مع أقسام الرئيسية (.split/.pk/.why/.roles).
+   ===================================================================== */
+/* ===== v6 — الصفحات الداخلية ===== */
+.phero{position:relative;min-height:46svh;display:flex;align-items:flex-end;overflow:hidden;background:var(--rich);padding:0}
+.phero picture{display:contents}
+.phero img.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%}
+.phero::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,13,13,.5),rgba(13,13,13,.8) 50%,var(--rich) 100%)}   /* v6.1: تعتيم أقوى — الصور الفاتحة (بوفيه/معرض) كانت تُضعف قراءة العنوان */
+.phero h1,.phero p,.phero .label,.phero .crumb{text-shadow:0 1px 2px rgba(0,0,0,.6),0 2px 14px rgba(0,0,0,.5)}
+.phero .wrap{position:relative;z-index:1;padding-block:28px 26px;text-align:center}
+.phero .label{display:inline-flex;align-items:center;gap:12px;font-size:.74rem;letter-spacing:.3em;color:var(--gold);margin-bottom:8px}
+.phero .label::before,.phero .label::after{content:"✦";font-size:.7rem;letter-spacing:0}
+.phero h1{font-size:clamp(1.7rem,6vw,2.7rem);color:var(--cream);text-wrap:balance;line-height:1.35}
+.phero h1 em{font-style:normal;background:var(--grad-gold);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;text-shadow:none;filter:drop-shadow(0 2px 6px rgba(0,0,0,.75))}   /* v6.1: text-shadow يطمس النص المتدرّج → drop-shadow */
+.phero p{margin:10px auto 0;max-width:56ch;color:var(--cream-2);font-size:.98rem}
+.phero .cta{display:flex;gap:10px;justify-content:center;margin-top:18px;flex-wrap:wrap}
+.crumb{display:flex;justify-content:center;gap:8px;font-size:.78rem;color:var(--cream-3);margin-bottom:8px}
+.crumb a{color:var(--gold-hi)}
+@media (min-width:900px){.phero{min-height:400px}.phero .wrap{padding-block:48px 44px}}
+/* ===== v6.3 — المدن / خدمة×مدينة / social / legal ===== */
+.phero.noimg{min-height:auto;background:radial-gradient(ellipse at 50% 0%,rgba(197,160,89,.14),transparent 60%),var(--rich)}
+.phero.noimg::before{background:none}
+.badges-l{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:14px}
+.badges-l span{border:1px solid rgba(197,160,89,.35);border-radius:999px;padding:5px 13px;font-size:.8rem;color:var(--gold-hi);background:rgba(13,13,13,.45)}
+.lsec{padding-block:40px}
+.lsec+.lsec{border-top:1px solid var(--line)}
+.split .btn{margin-top:14px}
+.eq{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.eq figure{text-align:center;border:1px solid var(--line);border-radius:14px;padding:10px 6px;background:radial-gradient(circle at 50% 35%,rgba(197,160,89,.12),transparent 70%)}
+.eq img{width:100%;max-width:120px;height:auto;aspect-ratio:1;margin-inline:auto;display:block}
+.eq figcaption{font-size:.78rem;color:var(--cream-2);margin-top:4px}
+.lgal{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.lgal figure{position:relative;border-radius:12px;overflow:hidden;aspect-ratio:1;cursor:zoom-in;background:var(--black);border:1px solid var(--line)}
+.lgal img{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.22,1,.36,1)}
+.lgal figure:hover img{transform:scale(1.05)}
+.lgal .zoom{position:absolute;bottom:8px;inset-inline-end:8px;width:28px;height:28px;border-radius:50%;background:rgba(13,13,13,.6);border:1px solid var(--line-2);display:grid;place-items:center;color:var(--gold-hi);font-size:.9rem}
+.dist{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.dist span,.lnk a{border:1px solid rgba(197,160,89,.3);border-radius:999px;padding:6px 14px;font-size:.86rem;color:var(--cream-2)}
+.lnk{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.lnk a{color:var(--gold-hi);transition:.25s}
+.lnk a:hover{background:rgba(197,160,89,.1);border-color:var(--line-hi)}
+.band{text-align:center;padding-block:44px}
+.band h2{font-size:clamp(1.4rem,5vw,2rem);color:var(--cream)}
+.band p{color:var(--cream-2);margin:10px auto 18px;max-width:56ch}
+.cgrid-l{display:grid;gap:12px}
+.cgrid-l a{display:block;border:1px solid var(--line-2);border-radius:18px;padding:18px;background:rgba(36,36,36,.55);transition:.3s}
+.cgrid-l a:hover{border-color:var(--line-hi);transform:translateY(-3px)}
+.cgrid-l b{display:block;font-family:var(--f-head);font-size:1.15rem;color:var(--gold-hi)}
+.cgrid-l small{display:block;color:var(--cream-3);font-size:.8rem;margin-top:2px}
+.cgrid-l p{color:var(--cream-2);font-size:.9rem;margin-top:8px}
+.cgrid-l .more{display:inline-block;margin-top:10px;color:var(--gold);font-size:.86rem}
+.qr{display:grid;gap:16px;justify-items:center;text-align:center;border:1px solid var(--line-2);border-radius:20px;padding:22px;background:rgba(36,36,36,.55)}
+.qr img{width:220px;height:220px;border-radius:14px;background:#fff;padding:8px}
+.qr p{color:var(--cream-2);font-size:.92rem;max-width:48ch}
+.qr .num{direction:ltr;unicode-bidi:isolate;font-family:var(--f-latin);color:var(--gold-hi);letter-spacing:.06em}
+.prose{max-width:70ch;margin-inline:auto}
+.prose h2{font-size:1.25rem;color:var(--gold-hi);margin-top:28px}
+.prose p,.prose li{color:var(--cream-2);font-size:.95rem;line-height:1.9;margin-top:8px}
+.prose ul{padding-inline-start:20px}
+.prose .foot{margin-top:28px;color:var(--cream-3);font-size:.86rem;border-top:1px solid var(--line);padding-top:14px}
+@media (min-width:900px){
+  .lsec{padding-block:56px}
+  .split{grid-template-columns:1fr 1fr;gap:36px}
+  .split.rev figure{order:-1}
+  .pk{grid-template-columns:repeat(3,1fr);gap:16px}
+  .eq{grid-template-columns:repeat(6,1fr);gap:12px}
+  .why{grid-template-columns:repeat(3,1fr);gap:14px}
+  .lgal{grid-template-columns:repeat(6,1fr);gap:10px}
+  .cgrid-l{grid-template-columns:repeat(4,1fr);gap:16px}
+  .qr{grid-template-columns:auto 1fr;text-align:start;justify-items:start;align-items:center;gap:28px}
+}
+/* ===== v6.4 — الصفحة النموذجية (خدمة×مدينة) ===== */
+.hero.hero-l{min-height:0;height:auto;max-height:none;padding:40px 0 36px}
+.hero.hero-l::before{background:linear-gradient(180deg,rgba(13,13,13,.62) 0%,rgba(13,13,13,.55) 45%,rgba(13,13,13,.9) 85%,var(--rich) 100%)}
+.hero.hero-l .bg img{object-position:center 35%}
+.hero.hero-l .crumb{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;font-size:.78rem;color:var(--cream-3);margin-bottom:16px;text-shadow:0 1px 2px rgba(0,0,0,.6)}
+.hero.hero-l .crumb a{color:var(--gold-hi)}
+.hero.hero-l .crumb span:last-child{color:var(--cream)}
+.hero.hero-l .hcard{max-width:560px}
+.hero.hero-l h1{font-size:clamp(1.45rem,5vw,2.15rem);line-height:1.45}
+.hero.hero-l h1 em{font-style:normal;background:var(--grad-gold);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.hero.hero-l .badges-l{margin-top:14px}
+.hero.hero-l .badges-l span{background:rgba(13,13,13,.55)}
+.hero.hero-l .cta .btn-glass{white-space:nowrap}
+@media (min-width:900px){.hero.hero-l{padding:56px 0 48px}.hero.hero-l .hcard{max-width:660px}.hero.hero-l h1{font-size:2.4rem}}
+/* أعمالنا: وسم المدينة بالذهبي على يسار الصورة */
+.shot .tag.city{inset-inline-start:auto;inset-inline-end:10px;background:var(--grad-gold);color:var(--black);border-color:transparent;font-weight:700}
+/* لمن نخدم: وصف قصير يظهر على الجوال أيضًا */
+.who-l .who small{display:block;font-size:.7rem;margin-top:2px}
+@media (min-width:900px){.who-l .who small{font-size:.86rem}}
+/* الخدمات: بطاقات المدينة (محلية) مميّزة */
+.svc.local{border-color:var(--line-hi);box-shadow:0 0 34px rgba(197,160,89,.1)}
+.svc.local b::after{content:" ✦";color:var(--gold);font-size:.75em}
+/* الترتيبات: زر أسفل كل بطاقة */
+/* ===== v6.5 — إعادة الهيكلة (D71–D78) ===== */
+/* شركاء النجاح — نسخة مضغوطة بلا فراغ (D73): 6 شعارات بالجوال، 12 بالحاسوب، بلا .rv (تظهر فورًا) */
+.partners.compact{padding-block:28px}
+.partners.compact .sec-head{margin-bottom:14px}
+.partners.compact .sec-head h2{font-size:clamp(1.15rem,3.8vw,1.6rem)}
+.partners.compact .logos{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.partners.compact .logo{height:72px;padding:10px}
+.partners.compact .logo img{inset:10px;width:calc(100% - 20px);height:calc(100% - 20px)}
+.partners.compact .logos.collapsed .logo:nth-child(n+7){display:none}
+.partners.compact .logos:not(.collapsed) .logo{animation:up .5s both}
+.partners.compact .works-foot{margin-top:14px}
+.partners.compact .works-foot .btn{border:1px solid rgba(197,160,89,.5);color:var(--ink);background:#fff}
+@media (min-width:900px){.partners.compact{padding-block:40px}.partners.compact .logos{grid-template-columns:repeat(6,1fr);gap:12px}.partners.compact .logo{height:92px}.partners.compact .logos.collapsed .logo:nth-child(n+7){display:grid}.partners.compact .logos.collapsed .logo:nth-child(n+13){display:none}}
+/* الخدمات: صور صغيرة 16:10 دائمًا (D74 — لا width/height على .svc img) */
+#services .svc img{height:auto;aspect-ratio:16/10}
+/* كيف نعمل: ثلاثة صفوف نص/صورة في قسم واحد (D75) */
+.roles .split figure{aspect-ratio:16/10}
+@media (min-width:900px){.roles .split{margin-top:40px}.roles .split figure{aspect-ratio:4/3}}
+/* التقديمات والعدّة: المقصوصات تحت الشريط */
+#offerings .eq{margin-top:18px}
+/* صف الأيقونات — آخر الصفحة (D76) */
+/* الهيرو المتحرك (D84): شرائح تتبدّل فوق صورة الهيرو بتلاشٍ + تقريب بطيء — الصورة الأولى تبقى LCP */
+.hero-anim .slides{position:absolute;inset:0;z-index:0;pointer-events:none}
+.hero-anim .slides img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 35%;opacity:0;transition:opacity 1.6s ease}
+.hero-anim .slides img.on{opacity:1;animation:kbz 9s ease-in-out both}
+.hero-anim .bg picture img{transition:opacity 1.6s ease}.hero-anim.away .bg picture img{opacity:0}
+@keyframes kbz{from{transform:scale(1)}to{transform:scale(1.08)}}
+@media (prefers-reduced-motion:reduce){.hero-anim .slides{display:none}.hero-anim.away .bg picture img{opacity:1}}
+/* مسافات الجوال بين الأقسام المتتالية — أخفّ من الرئيسية (48px) */
+@media (max-width:899px){#works,#services,#offerings,#faq{padding-block:40px}}
+/* ملاحظة أداء (D124): .lsec وأقسام الصفحة المحلية تحت الطية ترث content-visibility من .v7 section:not(.hero) */

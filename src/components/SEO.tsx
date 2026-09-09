@@ -9,6 +9,9 @@ export interface SEOProps {
   path: string;
   ogImage?: string;
   ogImageAlt?: string;
+  /** أبعاد صورة المشاركة الحقيقية — إن غابت تُفترض 1200×630 (صورة الغلاف الافتراضية) */
+  ogImageWidth?: number;
+  ogImageHeight?: number;
   ogType?: "website" | "article" | "profile";
   twitterCard?: "summary" | "summary_large_image";
   keywords?: string[];
@@ -38,6 +41,8 @@ export function generatePageMetadata({
   path,
   ogImage = DEFAULT_OG_IMAGE,
   ogImageAlt = `${SITE_NAME} - ${title}`,
+  ogImageWidth = 1200,
+  ogImageHeight = 630,
   ogType = "website",
   twitterCard = "summary_large_image",
   keywords = [],
@@ -85,10 +90,11 @@ export function generatePageMetadata({
       images: [
         {
           url: ogImage,
-          width: 1200,
-          height: 630,
+          width: ogImageWidth,
+          height: ogImageHeight,
           alt: ogImageAlt,
-          type: "image/jpeg",
+          // النوع من الامتداد الحقيقي (كان "image/jpeg" ثابتاً حتى لصور WebP)
+          type: /\.webp(\?|$)/i.test(ogImage) ? "image/webp" : /\.png(\?|$)/i.test(ogImage) ? "image/png" : "image/jpeg",
         },
       ],
       ...(publishedTime && { publishedTime }),
