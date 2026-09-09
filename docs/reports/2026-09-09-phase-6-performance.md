@@ -29,3 +29,7 @@
 ## دَين معلوم بعد هذه المرحلة
 - الهدف ≥90 على الجوال **لم يتحقق** في القياس المحاكى؛ المسار الواقعي: (1) قياس على الاستضافة الفعلية مع CDN (LCP المحاكى ينزل)، (2) إن أراد المالك: نقل GA4 إلى تحميل عند التفاعل فقط وإبقاء AW فقط مؤجّلاً — قرار أعمال لا تقني.
 - `public/images/brand/qr-keif-aldiafa.png` وأيقونات PNG (CH8 ×10) — مطلوبة للـmanifest/favicon، تبقى.
+
+## الفحص الشامل (بداية — 2026-09-09 مساءً)
+- **HTML الناتج — 42/42 ✅** (`scripts/html-audit.mjs`، المسارات من `sitemap.xml`): status 200 · title · description · canonical مطابق · لا noindex · h1 واحد · JSON-LD صالح (Organization/CateringService/WebSite/BreadcrumbList + Service/WebPage/ImageGallery حسب الصفحة) · og:image · `lang="ar" dir="rtl"`. robots.txt يعلن 3 خرائط، وكلها 200.
+- **Playwright 42 مسار × 4 مقاسات — غير مكتمل**: 31/168 فحصاً نُفّذ (25 ✅)؛ 6 علامات `brokenImgs` على `/qahwajiin-abha` و`/qahwajiin-dammam` كانت **عابرة** (محسّن `_next/image` بارد تحت حمل متوازٍ) — أُعيد الفحص المباشر لنفس الصفحة @1024: 0 صور مكسورة. ثم سقط الفحص بـ`page.goto: Timeout 30000ms` (نفس السبب: الساندبوكس بلا CDN ومحسّن الصور يعالج أول طلب لكل صورة). **يُعاد** مع `networkidle`→`load` وإحماء الصور مسبقاً (`curl` على `_next/image` لكل مسار قبل الفحص) أو على الاستضافة الفعلية.
