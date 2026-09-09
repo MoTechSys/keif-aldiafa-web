@@ -5,7 +5,7 @@ import ProtectedImage from "@/components/ProtectedImage";
 import { RevealOnScroll } from "@/components/animations/RevealOnScroll";
 import { CITIES, getCity } from "@/lib/cities";
 import { CITIES as SC_CITIES, SERVICES as SC_SERVICES, INTENT_PAGES, localSlug } from "@/lib/localPages";
-import { getAllImages } from "@/lib/imageCatalog";
+import { getAllImages, getImagesForPage } from "@/lib/imageCatalog";
 import { generatePageMetadata } from "@/components/SEO";
 import {
   generateBreadcrumbSchema,
@@ -40,16 +40,23 @@ export function generateMetadata({ params }: Params): Metadata {
 }
 
 /**
- * اختيار صور مناسبة لكل مدينة من كتالوج الصور الحقيقي (deterministic حسب المدينة
- * حتى تختلف الصور بين المدن لكنها ثابتة لكل مدينة). فئات فاخرة: فعاليات/أعراس/
- * خدمات/توزيعات. كل الصور تُعرض بمكوّن ProtectedImage مع العلامة المائية.
+ * اختيار صور لكل مدينة من الكتالوج (المرحلة 1): الصور التي يستهدف الكتالوج بها
+ * صفحات هذه المدينة (خدمة×مدينة) أولاً — المستوى 1 قبل غيره — ثم احتياط من
+ * الكتالوج كله بتدوير ثابت حسب المدينة (تختلف بين المدن وتثبت بين البناءات).
+ * alt حرفي من الكتالوج (D111). الصور مدموجة بالشعار أصلاً — لا علامة برمجية (D113).
  */
-function cityImages(seed: number) {
-  const cats = ["events", "weddings", "services", "distributions"];
-  const all = getAllImages().filter((im) => cats.includes(im.category));
-  const pool = all.length >= 12 ? all : getAllImages();
-  const start = (seed * 5) % Math.max(pool.length, 1);
-  const pick = (i: number) => pool[(start + i * 3) % pool.length];
+function cityImages(cityKey: string | undefined, seed: number) {
+  const targeted = cityKey
+    ? Object.keys(SC_SERVICES).flatMap((svc) => getImagesForPage(`/${localSlug(svc, cityKey)}`))
+    : [];
+  const uniq = targeted.filter((im, i) => targeted.findIndex((x) => x.src === im.src) === i);
+  const all = getAllImages();
+  const start = (seed * 5) % Math.max(all.length, 1);
+  for (let i = 0; uniq.length < 9 && all.length > 0; i++) {
+    const im = all[(start + i * 3) % all.length];
+    if (!uniq.some((x) => x.src === im.src)) uniq.push(im);
+  }
+  const pick = (i: number) => uniq[i];
   return {
     hero: pick(0),
     s1: pick(1),
@@ -63,7 +70,8 @@ export default function CityPage({ params }: Params) {
   if (!city) notFound();
 
   const url = `${SITE_URL}/locations/${city.slug}`;
-  const imgs = cityImages(city.name.length + city.slug.length);
+  const scKey = Object.keys(SC_CITIES).find((k) => SC_CITIES[k].ar === city.name);
+  const imgs = cityImages(scKey, city.name.length + city.slug.length);
   const wa = (msg: string) => `${WHATSAPP}${encodeURIComponent(msg)}`;
 
   const breadcrumbSchema = generateBreadcrumbSchema([
@@ -88,10 +96,7 @@ export default function CityPage({ params }: Params) {
   // الأسئلة المرئية (city.faqs أدناه) باقية. allpro تقرير 14.
   const gallerySchema = generateImageGallerySchema(
     url,
-    imgs.gallery.map((g, i) => ({
-      url: `${SITE_URL}${g.src}`,
-      alt: `من أعمال كيف الضيافة في ${city.name} (${i + 1})`,
-    }))
+    imgs.gallery.map((g) => ({ url: g.url, alt: g.alt, title: g.title, width: g.width, height: g.height }))
   );
 
   return (
@@ -107,7 +112,7 @@ export default function CityPage({ params }: Params) {
           <div className="absolute inset-0">
             <ProtectedImage
               src={imgs.hero.src}
-              alt={`خدمات الضيافة الفاخرة في ${city.name} — كيف الضيافة`}
+              alt={imgs.hero.alt}
               fill
               priority
               sizes="100vw"
@@ -152,14 +157,14 @@ export default function CityPage({ params }: Params) {
               <p className="text-[#F5F5DC]/80 leading-loose">{city.body}</p>
             </div>
             <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-[#C5A059]/15">
-              <ProtectedImage src={imgs.s1.src} alt={`ضيافة فاخرة في ${city.name}`} fill showWatermark sizes="(max-width:768px) 100vw, 50vw" className="object-cover" />
+              <ProtectedImage src={imgs.s1.src} alt={imgs.s1.alt} fill sizes="(max-width:768px) 100vw, 50vw" className="object-cover" />
             </div>
           </RevealOnScroll>
 
           {/* Why us + image */}
           <RevealOnScroll as="section" className="grid md:grid-cols-2 gap-8 items-center">
             <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-[#C5A059]/15 md:order-1">
-              <ProtectedImage src={imgs.s2.src} alt={`قهوجيين وصبابين قهوة في ${city.name}`} fill showWatermark sizes="(max-width:768px) 100vw, 50vw" className="object-cover" />
+              <ProtectedImage src={imgs.s2.src} alt={imgs.s2.alt} fill sizes="(max-width:768px) 100vw, 50vw" className="object-cover" />
             </div>
             <div className="md:order-2">
               <h2 className="text-[#C5A059] font-tajawal text-2xl sm:text-3xl font-bold mb-4">لماذا نخدم {city.region}؟</h2>
@@ -187,9 +192,8 @@ export default function CityPage({ params }: Params) {
                 >
                   <ProtectedImage
                     src={g.src}
-                    alt={`من أعمال كيف الضيافة في ${city.name} — لقطة ${i + 1}`}
+                    alt={g.alt}
                     fill
-                    showWatermark
                     sizes="(max-width:640px) 100vw, (max-width:1024px) 50vw, 33vw"
                     className="object-cover object-[center_30%] transition-transform duration-700 group-hover:scale-105"
                   />
@@ -222,7 +226,6 @@ export default function CityPage({ params }: Params) {
 
           {/* روابط داخلية لصفحات الخدمة×المدينة (يربط صفحات المال — مهم للسيو) */}
           {(() => {
-            const scKey = Object.keys(SC_CITIES).find((k) => SC_CITIES[k].ar === city.name);
             if (!scKey) return null;
             return (
               <RevealOnScroll as="section">

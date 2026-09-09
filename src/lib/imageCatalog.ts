@@ -1,191 +1,117 @@
 /**
- * imageCatalog.ts — Centralized image catalog for SEO / archiving / indexing.
+ * imageCatalog.ts — واجهة كتالوج الصور للسيو/الفهرسة/الـ schema.
  *
- * Source of truth: the actual files under public/images/** (scanned on the
- * server at build/request time). This guarantees EVERY image is discoverable
- * for the image sitemap and structured data, regardless of how it is wired in
- * component code.
+ * مصدر الحقيقة (المرحلة 1 — D118): `imageCatalog.data.ts` المولَّد من
+ * `catalog.json` في مستودع MoTechSys/catalog-keif-aldiafa-photots عبر
+ * `scripts/import-catalog.mjs`. لا مسح للمجلد ولا اشتقاق alt من اسم الملف
+ * (كان يخالف D111: الوكيل المبرمج لا يسمّي الصور).
  *
- * Grounded in Google's OFFICIAL current guidance (Google Search Central):
- *   - Image SEO best practices:
- *     https://developers.google.com/search/docs/appearance/google-images
- *   - Image sitemaps (note: image:title / image:caption were DEPRECATED in
- *     2022 — only image:loc is used in the sitemap; descriptive text lives in
- *     alt text + structured data instead):
- *     https://developers.google.com/search/docs/crawling-indexing/sitemaps/image-sitemaps
+ * الواجهة العامة (getAllImages / getImagesByPage / getImagesForPage / SITE_URL)
+ * محفوظة كما هي كي تنتقل خرائط الصور والـ ImageGallery في كل الصفحات تلقائياً.
  *
- * Alt/caption text is intentionally NATURAL and human-readable (Arabic), NOT a
- * raw keyword dump, to avoid Google's keyword-stuffing penalty.
+ * قواعد Google المعتمدة (Search Central):
+ *  - image sitemap: <image:loc> فقط (title/caption متوقفة 2022).
+ *  - ImageObject: contentUrl + name + caption + width/height الحقيقية.
+ *  - الزخرفي (publish=decorative) مستثنى من الخريطة والـ schema.
  */
 
-import fs from "node:fs";
-import path from "node:path";
 import { SITE_URL } from "@/lib/site";
+import { CATALOG, type CatalogRecord } from "@/lib/imageCatalog.data";
+import { LOCAL_PAGES, INTENT_PAGES, localSlug } from "@/lib/localPages";
 
 // إعادة تصدير للملفات التي تستورد SITE_URL من هنا (routes خرائط الموقع)
 export { SITE_URL };
+export type { CatalogRecord };
 
 export interface CatalogImage {
-  /** Site-root-relative path, e.g. /images/events/foo.webp */
+  /** مسار من جذر الموقع: /images/catalog/<file> */
   src: string;
-  /** Absolute URL used in the image sitemap + structured data */
+  /** رابط مطلق للخريطة والـ schema */
   url: string;
-  /** Human-readable Arabic alt/caption (natural phrase, no keyword stuffing) */
+  /** alt حرفي من الكتالوج (D111) */
   alt: string;
-  /** Short title */
+  /** العنوان من الكتالوج → ImageObject.name */
   title: string;
-  /** Top-level category folder (events, weddings, dates, ...) */
+  width: number;
+  height: number;
+  /** مستوى قوة الإثبات 1→6 (D110) — الترتيب الافتراضي */
+  tier: number;
+  /** الفئة القديمة (مجلد) — تُبقى للتوافق مع pickImages/cityImages: هنا = القطاع */
   category: string;
-  /** The landing page this image is most relevant to */
+  /** الصفحة المضيفة الأولى الموجودة فعلاً في الموقع (لـ <loc> في الخريطة) */
   pageUrl: string;
+  /** كل الصفحات التي يستهدفها الكتالوج، بما فيها غير المبنية بعدُ */
+  pages: string[];
+  decorative: boolean;
 }
 
-const IMAGES_DIR = path.join(process.cwd(), "public", "images");
-const INDEXABLE_EXT = new Set([".webp", ".jpg", ".jpeg", ".png", ".avif"]);
-// SVGs (logos/watermarks/icons) are decorative — excluded from image search indexing.
+export const CATALOG_DIR = "/images/catalog";
 
-/**
- * Map a top-level image category folder to the most relevant landing page.
- * This tells Google which page "hosts" each image (the <loc> in the sitemap).
- */
-function categoryToPage(category: string): string {
-  switch (category) {
-    case "hero":
-    case "partners":
-    case "badges":
-      return "/";
-    case "hot-drinks":
-    case "cold-drinks":
-    case "dates":
-    case "sweets":
-    case "pastry":
-    case "snacks":
-    case "sandwiches":
-    case "fruits":
-    case "nuts":
-    case "serving-equipment":
-    case "equipment":
-      return "/offerings";
-    case "events":
-    case "weddings":
-    case "distributions":
-      return "/portfolio";
-    case "services":
-      return "/services";
-    default:
-      return "/services";
-  }
+/** المسارات الموجودة فعلاً في الموقع الآن — أي مسار خارجها يحتاط إلى /portfolio. */
+const EXISTING_PAGES: ReadonlySet<string> = new Set([
+  "/", "/services", "/offerings", "/portfolio", "/about", "/contact", "/locations", "/social", "/legal",
+  ...LOCAL_PAGES.map((p) => `/${localSlug(p.service, p.city)}`),
+  ...INTENT_PAGES.map((p) => `/${p.slug}`),
+]);
+
+/** صفحات المرحلة 7 (لم تُبنَ) تؤوي صورها مؤقتاً في /portfolio — الصور تُفهرَس من اليوم. */
+const FALLBACK_PAGE = "/portfolio";
+
+function hostPage(pages: string[]): string {
+  return pages.find((p) => EXISTING_PAGES.has(p)) ?? FALLBACK_PAGE;
 }
 
-/** Arabic labels for the primary categories (used to enrich natural alt text). */
-const CATEGORY_AR: Record<string, string> = {
-  hero: "كيف الضيافة",
-  events: "فعالية",
-  weddings: "حفل زفاف",
-  distributions: "توزيعات ضيافة",
-  dates: "تمور فاخرة",
-  sweets: "حلويات",
-  pastry: "معجنات",
-  snacks: "مقبلات",
-  sandwiches: "ساندويتشات",
-  fruits: "فواكه",
-  nuts: "مكسرات",
-  "hot-drinks": "مشروبات ساخنة",
-  "cold-drinks": "مشروبات باردة",
-  "serving-equipment": "أدوات تقديم",
-  equipment: "معدات ضيافة",
-  partners: "شركاء النجاح",
-  services: "خدمات الضيافة",
-};
-
-/**
- * Convert a kebab-case filename into a short, NATURAL readable phrase.
- * We keep it concise (Google penalizes keyword-stuffed alt text): take the
- * meaningful words, drop trailing numeric indices, and prepend a brand/category
- * hint so the phrase reads like a caption rather than a keyword list.
- */
-export function filenameToText(filePath: string, category: string): string {
-  const base = filePath.split("/").pop() || filePath;
-  const stem = base.replace(/\.[a-z0-9]+$/i, "");
-
-  const words = stem
-    .split(/[-_]+/)
-    .filter(Boolean)
-    // drop pure numeric indices like "1", "2" that carry no meaning
-    .filter((w) => !/^\d+$/.test(w));
-
-  // Keep it human-length: cap at ~7 words to avoid stuffing.
-  const trimmed = words.slice(0, 7).join(" ");
-  const readable = trimmed.charAt(0).toUpperCase() + trimmed.slice(1);
-
-  const arLabel = CATEGORY_AR[category] || "كيف الضيافة";
-  // Natural bilingual caption: Arabic context + descriptive English keywords
-  // (Google reads both; the English words come from the descriptive filenames).
-  if (!readable.trim()) return `${arLabel} — كيف الضيافة`;
-  return `${arLabel} — ${readable}`;
+function toImage(r: CatalogRecord): CatalogImage {
+  const src = `${CATALOG_DIR}/${r.file}`;
+  return {
+    src,
+    url: `${SITE_URL}${src}`,
+    alt: r.alt,
+    title: r.title,
+    width: r.width,
+    height: r.height,
+    tier: r.tier,
+    category: r.sector,
+    pageUrl: hostPage(r.pages),
+    pages: r.pages,
+    decorative: r.publish === "decorative",
+  };
 }
 
-let _cache: CatalogImage[] | null = null;
+// الكتالوج مرتب مسبقاً tier↑ ثم id↑ (D112) — نحافظ على الترتيب.
+const ALL: readonly CatalogImage[] = CATALOG.map(toImage);
+const INDEXABLE: readonly CatalogImage[] = ALL.filter((i) => !i.decorative);
 
-function walk(dir: string, out: string[]): void {
-  let entries: fs.Dirent[];
-  try {
-    entries = fs.readdirSync(dir, { withFileTypes: true });
-  } catch {
-    return;
-  }
-  for (const entry of entries) {
-    const full = path.join(dir, entry.name);
-    if (entry.isDirectory()) {
-      walk(full, out);
-    } else if (INDEXABLE_EXT.has(path.extname(entry.name).toLowerCase())) {
-      out.push(full);
-    }
-  }
-}
-
-/** Return every indexable image on the site, with SEO metadata. */
+/** كل الصور القابلة للفهرسة (publish=yes) — 274. الزخرفي مستثنى. */
 export function getAllImages(): CatalogImage[] {
-  if (_cache) return _cache;
+  return [...INDEXABLE];
+}
 
-  const files: string[] = [];
-  walk(IMAGES_DIR, files);
+/** الصور الزخرفية (خلفيات) — للاستخدام البصري فقط، لا تدخل الخريطة. */
+export function getDecorativeImages(): CatalogImage[] {
+  return ALL.filter((i) => i.decorative);
+}
 
-  const images: CatalogImage[] = files
-    .map((abs) => {
-      const rel = "/" + path.relative(path.join(process.cwd(), "public"), abs).split(path.sep).join("/");
-      // rel looks like /images/<category>/.../file.webp
-      const parts = rel.split("/").filter(Boolean); // ["images", category, ...]
-      const category = parts[1] || "misc";
-      const alt = filenameToText(rel, category);
-      return {
-        src: rel,
-        url: `${SITE_URL}${rel}`,
-        alt,
-        title: alt,
-        category,
-        pageUrl: categoryToPage(category),
-      };
-    })
-    .sort((a, b) => a.src.localeCompare(b.src));
-
-  _cache = images;
-  return images;
+/** صورة واحدة برقمها في الكتالوج (أي حالة نشر). */
+export function getImageById(id: number): CatalogImage | undefined {
+  const r = CATALOG.find((x) => x.id === id);
+  return r ? toImage(r) : undefined;
 }
 
 /**
- * Group all images by the landing page they belong to (for the sitemap).
- * Returns an array of [pageUrl, images] tuples (avoids Map iteration target issues).
+ * تجميع الصور حسب الصفحة المضيفة (للخريطة). صورة واحدة تظهر تحت صفحة واحدة
+ * فقط (المضيفة) — لا تكرار في الخريطة.
  */
 export function getImagesByPage(): Array<[string, CatalogImage[]]> {
   const map: Record<string, CatalogImage[]> = {};
-  for (const img of getAllImages()) {
-    (map[img.pageUrl] ||= []).push(img);
-  }
-  return Object.keys(map).map((pageUrl) => [pageUrl, map[pageUrl]]);
+  for (const img of INDEXABLE) (map[img.pageUrl] ||= []).push(img);
+  return Object.keys(map).sort().map((pageUrl) => [pageUrl, map[pageUrl]]);
 }
 
-/** Images relevant to a specific landing page (for per-page structured data). */
+/**
+ * الصور التي يستهدفها الكتالوج لصفحة معيّنة (للـ ImageGallery في الصفحة).
+ * تشمل كل صورة تذكر الصفحة في `pages` (لا المضيفة فقط) — المستوى 1 أولاً.
+ */
 export function getImagesForPage(pageUrl: string): CatalogImage[] {
-  return getAllImages().filter((i) => i.pageUrl === pageUrl);
+  return INDEXABLE.filter((i) => i.pages.includes(pageUrl));
 }

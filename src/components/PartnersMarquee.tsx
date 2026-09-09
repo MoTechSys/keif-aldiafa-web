@@ -3,40 +3,12 @@
 import { m, useAnimationFrame, useMotionValue, useTransform } from "motion/react";
 import { useRef, useState, useEffect, useMemo } from "react";
 import { ImageWithFallback } from "@/components/ImageWithFallback";
+import { PARTNERS, partnerSrc } from "@/lib/partners";
 
-// Partner logos (30 total)
-const allPartners = [
-  { id: 1, name: "Olayan Group", logo: "/images/partners/01_Olayan_Group.webp" },
-  { id: 2, name: "Schneider Electric", logo: "/images/partners/02_Schneider_Electric.webp" },
-  { id: 3, name: "Najeeb Auto Suzuki", logo: "/images/partners/03_Najeeb_Auto_Suzuki.webp" },
-  { id: 4, name: "WSM Digital", logo: "/images/partners/04_WSM_Digital.webp" },
-  { id: 5, name: "Mokab", logo: "/images/partners/05_Mokab.webp" },
-  { id: 6, name: "MyClinic", logo: "/images/partners/06_MyClinic.webp" },
-  { id: 7, name: "Al Ahli FC", logo: "/images/partners/07_Al_Ahli_FC.webp" },
-  { id: 8, name: "Benchmark", logo: "/images/partners/08_Benchmark.webp" },
-  { id: 9, name: "Fuchs KSA", logo: "/images/partners/09_Fuchs_KSA.webp" },
-  { id: 10, name: "Milia Travel", logo: "/images/partners/10_Milia_Travel.webp" },
-  { id: 11, name: "Al Mousa Group", logo: "/images/partners/11_Al_Mousa_Group.webp" },
-  { id: 12, name: "Damanat", logo: "/images/partners/12_Damanat.webp" },
-  { id: 13, name: "Daam Broker", logo: "/images/partners/13_Daam_Broker.webp" },
-  { id: 14, name: "Munera Alessa", logo: "/images/partners/14_Munera_Alessa.webp" },
-  { id: 15, name: "Somer", logo: "/images/partners/15_Somer.webp" },
-  { id: 16, name: "Napco National", logo: "/images/partners/16_Napco_National.webp" },
-  { id: 17, name: "Saudi Binladen Group", logo: "/images/partners/17_Saudi_Binladen_Group.webp" },
-  { id: 18, name: "Glamera", logo: "/images/partners/18_Glamera.webp" },
-  { id: 19, name: "Sharq Jeddah Association", logo: "/images/partners/19_Sharq_Jeddah_Association.webp" },
-  { id: 20, name: "Olayan Group Alt", logo: "/images/partners/20_Olayan_Group_Alt.webp" },
-  { id: 21, name: "Najeeb Auto Suzuki Alt", logo: "/images/partners/21_Najeeb_Auto_Suzuki_Alt.webp" },
-  { id: 22, name: "WSM Digital Alt", logo: "/images/partners/22_WSM_Digital_Alt.webp" },
-  { id: 23, name: "Benchmark Strategy", logo: "/images/partners/23_Benchmark_Strategy.webp" },
-  { id: 24, name: "Fuchs KSA Alt", logo: "/images/partners/24_Fuchs_KSA_Alt.webp" },
-  { id: 25, name: "Damanat Alt", logo: "/images/partners/25_Damanat_Alt.webp" },
-  { id: 26, name: "Napco National Alt", logo: "/images/partners/26_Napco_National_Alt.webp" },
-  { id: 27, name: "Binladin Holding", logo: "/images/partners/27_Binladin_Holding.webp" },
-  { id: 28, name: "Glamera Alt", logo: "/images/partners/28_Glamera_Alt.webp" },
-  { id: 29, name: "Bahja Events", logo: "/images/partners/29_Bahja_Events.webp" },
-  { id: 30, name: "Hamat Leading", logo: "/images/partners/30_Hamat_Leading.webp" },
-];
+// شعارات شركاء النجاح — من الكتالوج (المرحلة 1): 46 شعاراً «يُعرض = نعم»
+// مرتبة بالأولوية (حكومي أولاً — D109) ثم الرقم. alt حرفي من الكتالوج (D111).
+const allPartners = PARTNERS.map((p) => ({ id: p.id, name: p.alt, logo: partnerSrc(p) }));
+const HALF = Math.ceil(allPartners.length / 2);
 
 // دالة رياضية فائقة الدقة لضمان التفاف المسبحة (Seamless Wrap) بدون أي فراغات
 const wrap = (min: number, max: number, v: number) => {
@@ -63,8 +35,8 @@ function PartnerCard({ partner }: { partner: (typeof allPartners)[0] }) {
             alt={partner.name}
             className="max-w-full max-h-full w-auto h-auto object-contain brightness-110 contrast-110 transition-all duration-500 pointer-events-none rounded-md"
             loading="lazy"
-            width={160}
-            height={80}
+            width={400}
+            height={400}
             quality={85}
             disableBlur
           />
@@ -152,8 +124,8 @@ function MarqueeRow({ items, baseVelocity = 1, direction = "rtl" }: MarqueeRowPr
 }
 
 export function PartnersMarquee() {
-  const firstRow = useMemo(() => allPartners.slice(0, 15), []);
-  const secondRow = useMemo(() => allPartners.slice(15, 30), []);
+  const firstRow = useMemo(() => allPartners.slice(0, HALF), []);
+  const secondRow = useMemo(() => allPartners.slice(HALF), []);
 
   return (
     <section className="py-12 sm:py-16 px-4 overflow-hidden contain-paint bg-[#0f0f0f]">

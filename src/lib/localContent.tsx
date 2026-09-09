@@ -4,7 +4,7 @@
  * محتوى عربي غني (1000+ كلمة/صفحة) ومخصّص لكل مدينة، مع الكلمة المفتاحية في
  * أول 100 كلمة وبلا حشو (يدمج المرادفات طبيعياً: صبابين/قهوجيين/مباشرين/صبابات).
  */
-import { getAllImages, type CatalogImage } from "@/lib/imageCatalog";
+import { getAllImages, getImagesForPage, type CatalogImage } from "@/lib/imageCatalog";
 import { CITIES, SERVICES, LOCAL_PAGES, INTENT_PAGES, localSlug } from "@/lib/localPages";
 import type { LocalServicePageProps, FAQ } from "@/components/LocalServicePage";
 import { WHATSAPP_DISPLAY as WA_DISPLAY } from "@/lib/site";
@@ -23,18 +23,22 @@ function otherCitiesLinks(service: string, currentCity: string) {
   return [...intentLinks, ...cityLinks];
 }
 
-/** يختار صوراً من الكتالوج تناسب فئات الخدمة (deterministic per service+city). */
-function pickImages(service: string, seed: number, count: number): CatalogImage[] {
-  const cats = SERVICES[service].imageCategories;
+/**
+ * يختار صوراً من الكتالوج للصفحة (deterministic per service+city).
+ * الأولوية: الصور التي يستهدف الكتالوج بها هذه الصفحة تحديداً (حقل «الصفحات»)
+ * — مرتبة المستوى 1 أولاً. إن لم تكفِ، احتياط إلى الكتالوج كله بتدوير ثابت.
+ */
+function pickImages(slug: string, seed: number, count: number): CatalogImage[] {
+  const targeted = getImagesForPage(`/${slug}`);
+  if (targeted.length >= count) return targeted.slice(0, count);
   const all = getAllImages();
-  const pool = all.filter((im) => cats.includes(im.category));
-  const source = pool.length >= count ? pool : all;
-  const out: CatalogImage[] = [];
-  if (source.length === 0) return out;
-  // stable pseudo-rotation so different cities get different (but fixed) images
-  const start = (seed * 7) % source.length;
-  for (let i = 0; i < count; i++) {
-    out.push(source[(start + i * 3) % source.length]);
+  const out: CatalogImage[] = [...targeted];
+  if (all.length === 0) return out;
+  // تدوير ثابت لتختلف الصور بين المدن مع ثباتها بين البناءات
+  const start = (seed * 7) % all.length;
+  for (let i = 0; out.length < count; i++) {
+    const im = all[(start + i * 3) % all.length];
+    if (!out.includes(im)) out.push(im);
   }
   return out;
 }
@@ -59,7 +63,7 @@ export function getLocalContent(service: string, cityKey: string): {
 
   const slug = localSlug(service, cityKey);
   const seed = cityKey.length + service.length;
-  const imgs = pickImages(service, seed, 9);
+  const imgs = pickImages(slug, seed, 9);
   const heroImg = imgs[0]?.src || "/images/hero/hero-desktop.webp";
 
   const isMunasabat = service === "diyafa-munasabat";
@@ -270,7 +274,8 @@ export function getLocalContent(service: string, cityKey: string): {
     serviceAr: s.ar,
     intro,
     heroImage: heroImg,
-    heroAlt: `${s.ar} في ${c.ar} — كيف الضيافة`,
+    // alt حرفي من الكتالوج (D111) — لا تركيب نصّي
+    heroAlt: imgs[0]?.alt ?? `${s.ar} في ${c.ar} — كيف الضيافة`,
     sections,
     districts: c.districts,
     packages,
@@ -279,10 +284,7 @@ export function getLocalContent(service: string, cityKey: string): {
     pricingNote: `أخبرنا بتاريخ مناسبتك في ${c.ar} وعدد الضيوف، ونرتّب لك كل شيء — واتساب ${WA_DISPLAY}.`,
     whyUs,
     faqs,
-    gallery: imgs.slice(4, 9).map((im, gi) => ({
-      src: im.src,
-      alt: `من أعمال ${s.ar} في ${c.ar} — كيف الضيافة (${gi + 1})`,
-    })),
+    gallery: imgs.slice(4, 9).map((im) => ({ src: im.src, alt: im.alt })),
     otherCities: otherCitiesLinks(service, cityKey),
     breadcrumbItems: cityStandardBreadcrumb(s.ar, c.ar, slug),
   };

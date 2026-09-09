@@ -175,7 +175,7 @@ export function generateWebPageSchema(page: {
  */
 export function generateImageGallerySchema(
   pageUrl: string,
-  images: { url: string; alt: string; title?: string }[]
+  images: { url: string; alt: string; title?: string; width?: number; height?: number }[]
 ) {
   return {
     "@context": "https://schema.org",
@@ -196,9 +196,9 @@ export function generateImageGallerySchema(
       "@type": "ImageObject",
       contentUrl: img.url,
       url: img.url,
-      // Google prefers width/height on ImageObject; images are standardized WebP.
-      width: 1200,
-      height: 900,
+      // الأبعاد الحقيقية من الكتالوج (المرحلة 1) — لا قيم ثابتة كاذبة.
+      // إن غابت (صور قديمة خارج الكتالوج) لا نُصدر الحقلين بدل اختراعهما.
+      ...(img.width && img.height ? { width: img.width, height: img.height } : {}),
       name: img.title || img.alt,
       caption: img.alt,
       // مرجع بـ@id بدل تضمين Organization كاملة (يقلّص حجم HTML بشدة).

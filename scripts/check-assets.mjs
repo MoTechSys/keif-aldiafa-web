@@ -11,6 +11,8 @@
  *   CH5  <img> خام في src/ (استخدم next/image عبر الأغلفة المعتمدة)
  *   CH7  alt مكرّر حرفياً (heuristic، تحذير)
  *   CH8  صورة بتنسيق غير WebP/SVG/ICO في public/ (خطأ)
+ *   CH9  صورة كتالوج (/images/catalog/*) في HTML المبني بـ alt ≠ alt الكتالوج حرفياً
+ *        (خطأ — D111: الوكيل المبرمج لا يغيّر alt). يعمل إن وُجد .next/server/app.
  *
  * استثناء موثّق: public/og-image.jpg و public/og/** أصول اجتماعية — تُطلب من
  * مُكشِّطات المنصات عند مشاركة رابط ولا تدخل وزن أي صفحة، وصيغة JPEG فيها
@@ -133,6 +135,37 @@ for (const file of srcFiles) {
       }
     }
   }
+}
+
+// ---- CH9: alt صور الكتالوج في HTML المبني يطابق الكتالوج حرفياً (D111) ----
+const APP_DIR = join(ROOT, ".next", "server", "app");
+const DATA_TS = join(ROOT, "src", "lib", "imageCatalog.data.ts");
+if (existsSync(APP_DIR) && existsSync(DATA_TS)) {
+  // الملف المولَّد = ثابت JSON بعد `CATALOG: readonly CatalogRecord[] =` — نقرأه بلا TS.
+  const ts = readFileSync(DATA_TS, "utf8");
+  const jsonStart = ts.indexOf("= [", ts.indexOf("export const CATALOG")) + 2;
+  const jsonEnd = ts.lastIndexOf("]");
+  const catalog = JSON.parse(ts.slice(jsonStart, jsonEnd + 1));
+  const altByFile = new Map(catalog.map((r) => [r.file, r.alt]));
+  const decode = (s) =>
+    s.replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, '"').replace(/&#x27;|&#39;/g, "'");
+  const htmlFiles = walk(APP_DIR).filter((f) => f.endsWith(".html"));
+  let checked = 0;
+  for (const file of htmlFiles) {
+    const html = readFileSync(file, "utf8");
+    const page = relative(APP_DIR, file).replace(/\.html$/, "");
+    for (const tag of html.match(/<img\b[^>]*>/g) || []) {
+      const src = tag.match(/\b(?:src|srcSet)="([^"]*)"/i)?.[1] ?? "";
+      const fm = decodeURIComponent(src).match(/\/images\/catalog\/([^\s"&?]+\.webp)/);
+      if (!fm) continue;
+      checked++;
+      const expected = altByFile.get(fm[1]);
+      const alt = decode(tag.match(/\balt="([^"]*)"/)?.[1] ?? "");
+      if (expected === undefined) errors.push(`CH9 · ${page}: صورة خارج الكتالوج ${fm[1]}`);
+      else if (alt !== expected) errors.push(`CH9 · ${page}: alt مختلف عن الكتالوج لـ ${fm[1]}`);
+    }
+  }
+  warn.push(`CH9 · فُحص ${checked} <img> من الكتالوج في ${htmlFiles.length} صفحة مبنية`);
 }
 
 // ---- التقرير ----

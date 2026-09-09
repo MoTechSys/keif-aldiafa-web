@@ -1,7 +1,7 @@
 # PLAN.md — خطة إعادة بناء موقع «كيف الضيافة» على Next.js
 
 > **هذا الملف هو المرجع الوحيد لأي وكيل أو جلسة جديدة.** اقرأه كاملاً قبل أي عمل.
-> آخر تحديث: 2026-09-07 · الحالة: **المرحلة 0 ✅ منجزة** · التالي: **المرحلة 1 — الصور**
+> آخر تحديث: 2026-09-08 · الحالة: **المرحلة 1 ✅ منجزة** · التالي: **المرحلة 2 — الشِل**
 > عند أي تعارض بين هذا الملف وملف آخر في هذا المستودع (CLAUDE.md، README، التقارير القديمة) → **هذا الملف يفوز**.
 
 ---
@@ -38,7 +38,7 @@
 - **المشكلة الثانية (شكوى العميل):** الرئيسية بلا صورة أعمال واحدة، الفوتر 41% من الارتفاع، 3 أزرار واتساب متزاحمة.
 - **ما هو قوي ويُحفظ:** Schema.org كامل (CateringService SAB + Service + Breadcrumb + WebPage + ImageGallery) · 3 sitemaps بـ lastmod صادق · middleware (www→non-www + روابط WordPress) · CSP/HSTS · next/image في كل مكان · فاحصات سيو/تشابه/أصول · `data/proof.json`.
 - **الإنتاج متأخر:** keifaldiafa.com لا يعرف آخر 3 commits (`/mubashirin-qahwa-jeddah` = 404 حياً).
-- CI غير مفعّل (`ci/quality.yml` موجود لكن بلا `.github/workflows/`).
+- CI غير مفعّل (`ci/quality.yml` موجود لكن بلا `.github/workflows/`) — **رُفض دفع الوكيل مرتين 2026-09-08** (`without workflows permission`)؛ يبقى يدوياً من المالك.
 
 ### 2.2 النموذج (allpro/prototype-home v6.9)
 - 43 صفحة بنفس مسارات Next + صفحة **`/links`** جديدة (باركود موحّد، 9 بطاقات، تأثير الأومنتريكس).
@@ -108,15 +108,18 @@ npx tsc --noEmit  &&  npm run lint  &&  npm run build  &&  npm run guard
 - [x] commit + push إلى main
 - **بوابة الخروج:** الملفات موجودة، الفرع الاحتياطي مرفوع، tsc/lint/build خضراء.
 
-### ⬜ المرحلة 1 — الصور والشعارات (البيانات قبل الشكل)
-- سكربت `scripts/import-catalog.mjs` يقرأ `catalog.json` + `partners.json` من استنساخ محلي للكتالوج ويولّد:
-  - `src/lib/imageCatalog.ts` — `{ id, file, tier, alt, title, pages[], publish, width, height, decorative }` (من `web_العرض/web_الارتفاع` لتفادي CLS)
-  - `src/lib/partners.ts` — مرتب بالأولوية ثم الرقم، `يُعرض=نعم` فقط (46)
-- نسخ `web/**` (314) → `public/images/catalog/` (مسطّح) · `logos/web/*` (49) → `public/images/partners/`
-- حذف الصور القديمة غير المُشار إليها من `public/images/` (بعد جرد ما يستخدمه الكود)
-- `image-sitemap` من `publish=نعم` فقط · `ImageObject`: `name=العنوان`, `description=alt` · الزخرفي مستثنى
-- تحديث خط أساس فاحص الأصول
-- **بوابة الخروج:** 0 صورة مكسورة · فاحص الأصول أخضر · كل `<Image>` له alt من الكتالوج حرفياً.
+### ✅ المرحلة 1 — الصور والشعارات (البيانات قبل الشكل) — 2026-09-08
+- [x] `scripts/import-catalog.mjs` يقرأ `catalog.json` + `partners.json` من استنساخ محلي (`/tmp/catalog`) ويولّد:
+  - [x] `src/lib/imageCatalog.data.ts` — 314 سجلاً `{ id, tier, file, width, height, alt, title, entity, sector, pages[], publish }` (أبعاد `web_*` مُتحقَّقة بـ `identify` 314/314)
+  - [x] `src/lib/partners.ts` — 49 شعاراً بالأولوية ثم الرقم · `PARTNERS` = 46 يُعرض
+- [x] `web/**` (314) → `public/images/catalog/` (مسطّح، 29MB) · `logos/web/*` (49) → `public/images/partners/` (680KB) — 67 شعاراً قديماً حُذف
+- [x] `src/lib/imageCatalog.ts` أُعيدت كتابته على المصدر المولَّد **بنفس الواجهة** (D118) — sitemap/ImageGallery انتقلت تلقائياً · `PartnersMarquee` على `partners.ts`
+- [x] `image-sitemap` = **274** صورة (publish=نعم فقط) تحت 11 صفحة · `ImageObject` بأبعاد حقيقية · الزخرفي (40) مستثنى
+- [x] `locations/[city]` + `localContent` (24 صفحة): صور الكتالوج المستهدفة للمدينة أولاً + alt حرفي (D111) + إزالة العلامة البرمجية (D113)
+- [x] حذف 10 صور قديمة لا يشير إليها كود · 349 باقية لأن الصفحات القديمة تستهلكها (تُحذف مع المراحل 3–5)
+- [x] فاحص الأصول: **CH9** (alt الكتالوج حرفياً في HTML المبني، مُختبَر سلباً) · خط الأساس 31 → **27**
+- **بوابة الخروج (مقاسة):** tsc ✅ · lint ✅ · build ✅ · guards ✅ (seo 118 · sim 118 · assets 27) · زحف 42 صفحة = **0 صورة مكسورة** من 315 مرجعاً · Playwright 4 مقاسات × 4 صفحات = 16/16 (0 console · 0 تمرير أفقي · 0 مكسورة) · لقطات `docs/shots/phase-1/`
+- **لم أفحصه:** Lighthouse (يُقاس في المرحلة 3 حين يتغيّر الشكل فعلاً).
 
 ### ⬜ المرحلة 2 — الشِل (ما يظهر في كل صفحة)
 - الخطوط: نسخ 3 woff2 → `public/fonts/` + `next/font/local` في `layout.tsx` · حذف Tajawal/Cairo/El Messiri
@@ -162,12 +165,10 @@ npx tsc --noEmit  &&  npm run lint  &&  npm run build  &&  npm run guard
 
 | | |
 |---|---|
-| **آخر ما أُنجز** | تحليل المستودعات الأربعة · قياس التشابه (97%) · قراءة كتالوج v4 (325) · قرارات D113–D117 · كتابة هذا الملف |
-| **الجاري** | لا شيء — المرحلة 0 مكتملة |
-| **التالي فوراً** | المرحلة 1 — سكربت استيراد الكتالوج |
-| **ينتظر المالك** | **تفعيل CI يدوياً** (انظر المرحلة 0) — الوكيل لا يملك صلاحية إنشاء workflows |
-
----
+| **آخر ما أُنجز** | المرحلة 1 كاملة: استيراد الكتالوج (314 صورة + 49 شعاراً) · `imageCatalog.data.ts` + `partners.ts` · sitemap 274 · CH9 · D118–D120 |
+| **الجاري** | لا شيء |
+| **التالي فوراً** | المرحلة 2 — الشِل: الخطوط الثلاثة woff2 من `prototype-home/fonts` · `src/styles/v7.css` · Header/Footer/WhatsAppFab/Lightbox/Reveal |
+| **ينتظر المالك** | **تفعيل CI يدوياً** (نسخ `ci/quality.yml` → `.github/workflows/quality.yml` من واجهة GitHub) · لوكيل التحليل: 4 alt بأقواس (#53 #202 #207 #208) |
 
 ## 6. كيف تبدأ جلسة جديدة (للمالك)
 
@@ -178,9 +179,12 @@ npx tsc --noEmit  &&  npm run lint  &&  npm run build  &&  npm run guard
 ## 7. أوامر الجلسة (للوكيل)
 
 ```bash
-# استنساخ المصادر (للقراءة)
+# استنساخ المصادر (للقراءة) — الكتالوج لازم لإعادة توليد imageCatalog.data.ts
 git clone --depth 1 --filter=blob:none --sparse https://github.com/MoTechSys/allpro /tmp/allpro && cd /tmp/allpro && git sparse-checkout set prototype-home 01-keif-aldiafa/data
 git clone --depth 1 https://github.com/MoTechSys/catalog-keif-aldiafa-photots /tmp/catalog
+
+# إعادة استيراد الكتالوج عند تحديثه (المرحلة 1)
+node scripts/import-catalog.mjs /tmp/catalog
 
 # بوابة الجودة
 cd /home/user/webapp && npx tsc --noEmit && npm run lint && npm run build && npm run guard
