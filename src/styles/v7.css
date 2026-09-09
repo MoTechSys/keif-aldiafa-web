@@ -719,6 +719,9 @@ body.ch-flash::after{content:"";position:fixed;inset:0;z-index:9998;pointer-even
 /* phero عبر HeroPicture (المرحلة 5): الحاوية .bg تعادل img.bg في النموذج — نفس القصّ والموضع */
 .phero .bg{position:absolute;inset:0;z-index:0}
 .phero .bg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%}
+/* التعتيم (::before) يجب أن يعلو الصورة لا أن يسبقها في التراص؛ النص فوق الاثنين */
+.phero::before{z-index:1}
+.phero .wrap{z-index:2}
 /* ملاحظة صغيرة تحت رأس الفئة (النموذج: inline style في build_offerings) */
 .cat-note{text-align:center;color:var(--cream-3);font-size:.82rem;margin-top:-6px;margin-bottom:12px}
 /* من نحن — التوثيق (النموذج: inline styles في build_about) */
