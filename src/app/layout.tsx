@@ -3,18 +3,12 @@ import localFont from "next/font/local";
 import "@/styles/globals.css";
 // شِل النموذج v6.9 (المرحلة 2 — D115): المتغيرات + الهيدر + الفوتر + الأزرار + المعرض — 1:1
 import "@/styles/v7.css";
-// طبقة الفخامة — إضافية بالكامل ومحصورة داخل .luxe فلا تؤثر على بقية الصفحات
-import "@/styles/luxe.css";
-// طبقة العمق والحركة للصفحات الفرعية — تبني على luxe.css ولا تعدّلها
-import "@/styles/local.css";
 import {
   generateLocalBusinessSchema,
   generateWebSiteSchema,
   generateOrganizationSchema,
 } from "@/lib/schema";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
-// مزوّد الحركة الكسول (المرحلة 3): يخرج محرك motion من المسار الحرج — راجع MotionProvider.tsx
-import MotionProvider from "@/components/MotionProvider";
 import { SITE_URL } from "@/lib/site";
 
 
@@ -221,7 +215,7 @@ export default function RootLayout({
         >
           تخطي إلى المحتوى الرئيسي
         </a>
-        <MotionProvider>{children}</MotionProvider>
+        {children}
         <GoogleAnalytics />
       </body>
     </html>

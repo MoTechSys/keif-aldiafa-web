@@ -1,51 +1,37 @@
-import { Metadata } from "next";
-import AboutClient from "./AboutClient";
+import type { Metadata } from "next";
+import AboutPage, { ABOUT_HERO } from "@/components/pages/AboutPage";
 import { generatePageMetadata } from "@/components/SEO";
-import {
-  generateBreadcrumbSchema,
-  generateWebPageSchema,
-} from "@/lib/schema";
+import { generateBreadcrumbSchema, generateWebPageSchema } from "@/lib/schema";
 import { SITE_URL } from "@/lib/site";
 
+const PATH = "/about";
+const URL = `${SITE_URL}${PATH}`;
+const TITLE = "من نحن — مؤسسة سعودية للضيافة الفاخرة منذ 2016";
+const DESC = "كيف الضيافة — مؤسسة سعودية مسجّلة للضيافة الفاخرة منذ 2016: قهوجيين وصبابين وصبابات، تقديمات ومعدات، لأكثر من 500 مناسبة للجهات والشركات والأفراد.";
 
 export const metadata: Metadata = generatePageMetadata({
-  title: "من نحن",
-  description:
-    "تعرف على كيف الضيافة - خبرة منذ 2016 في تقديم خدمات الضيافة الفاخرة في المملكة العربية السعودية. فريق محترف وتغطية شاملة لجميع المناطق.",
-  path: "/about",
-  keywords: [
-    "عن كيف الضيافة",
-    "شركة ضيافة سعودية",
-    "خبرة ضيافة",
-    "فريق ضيافة محترف",
-    "تاريخ كيف الضيافة",
-  ],
+  title: TITLE,
+  description: DESC,
+  path: PATH,
+  keywords: ["عن كيف الضيافة", "مؤسسة ضيافة سعودية", "قهوجيين منذ 2016", "فريق ضيافة محترف", "مؤسسة كيف الضيافة للأفراح والمناسبات"],
+  ogImage: ABOUT_HERO.url,
+  ogImageAlt: ABOUT_HERO.alt,
+  ogImageWidth: ABOUT_HERO.width,
+  ogImageHeight: ABOUT_HERO.height,
 });
 
-const breadcrumbSchema = generateBreadcrumbSchema([
-  { name: "الرئيسية", url: SITE_URL },
-  { name: "من نحن", url: `${SITE_URL}/about` },
-]);
+const schemas = [
+  generateBreadcrumbSchema([{ name: "الرئيسية", url: SITE_URL }, { name: "من نحن", url: URL }]),
+  generateWebPageSchema({ name: `${TITLE} | كيف الضيافة`, description: DESC, url: URL, primaryImage: ABOUT_HERO.url }),
+];
 
-const webPageSchema = generateWebPageSchema({
-  name: "من نحن - كيف الضيافة",
-  description:
-    "تعرف على كيف الضيافة - خبرة منذ 2016 في تقديم خدمات الضيافة الفاخرة",
-  url: `${SITE_URL}/about`,
-});
-
-export default function AboutPage() {
+export default function Page() {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }}
-      />
-      <AboutClient />
+      {schemas.map((s, i) => (
+        <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(s) }} />
+      ))}
+      <AboutPage />
     </>
   );
 }

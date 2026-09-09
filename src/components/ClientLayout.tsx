@@ -6,6 +6,7 @@ import Footer from "@/components/v7/Footer";
 import WhatsAppFab from "@/components/v7/WhatsAppFab";
 import Reveal from "@/components/v7/Reveal";
 import Lightbox from "@/components/v7/Lightbox";
+import PageFx from "@/components/pages/PageFx";
 
 /**
  * الشِل (المرحلة 2 — D115): هيدر النموذج + المحتوى + فوتر النموذج + واتساب طافٍ
@@ -21,6 +22,7 @@ function ClientLayoutInner({ children }: { children: React.ReactNode }) {
       <WhatsAppFab />
       <Lightbox />
       <Reveal />
+      <PageFx />
     </>
   );
 }

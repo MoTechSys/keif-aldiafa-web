@@ -1,83 +1,40 @@
-import { Metadata } from "next";
-import ServicesClient from "./ServicesClient";
+import type { Metadata } from "next";
+import ServicesPage from "@/components/pages/ServicesPage";
 import { generatePageMetadata } from "@/components/SEO";
-import {
-  generateBreadcrumbSchema,
-  generateServiceSchema,
-  generateWebPageSchema,
-  generateImageGallerySchema,
-} from "@/lib/schema";
-import { getImagesForPage } from "@/lib/imageCatalog";
+import { generateBreadcrumbSchema, generateImageGallerySchema, generateServiceSchema, generateWebPageSchema } from "@/lib/schema";
+import { SERVICES, SERVICES_HERO, SERVICES_IMAGES } from "@/lib/servicesContent";
 import { SITE_URL } from "@/lib/site";
 
-const servicesImages = getImagesForPage("/services");
+const PATH = "/services";
+const URL = `${SITE_URL}${PATH}`;
+const TITLE = "الخدمات — قهوجيين وصبابين وطاقم نسائي وتجهيز";
+const DESC = "خدمات كيف الضيافة: قهوجيين وصبابين ومباشرين، سقّاء زمزم، سفرجية، صبابات ومباشرات، خطاط ورسّام، فرقة شعبية، خيمة تراثية، كاونترات، ركن تصوير وبوفيه.";
 
 export const metadata: Metadata = generatePageMetadata({
-  title: "قهوجيين وصبابين قهوة — خدمات ضيافة فاخرة",
-  description:
-    "قهوجيين وصبابين قهوة سعودية، صبابات ومباشرات زواجات، سقاء زمزم، خدمات فنية وتراثية، ومعدات فاخرة. طاقم بزي فاخر ببروتوكول VIP — تغطية كل مناطق المملكة.",
-  path: "/services",
-  keywords: [
-    "قهوجيين",
-    "قهوجي",
-    "صبابين قهوة",
-    "مباشرين قهوة",
-    "صبابات زواجات",
-    "سقاء زمزم",
-    "خدمات فنية",
-    "خطاط",
-    "رسام",
-    "فرقة شعبية",
-    "خيمة تراثية",
-    "ضيافة مناسبات",
-  ],
+  title: TITLE,
+  description: DESC,
+  path: PATH,
+  keywords: ["قهوجيين", "صبابين قهوة", "مباشرين", "صبابات زواجات", "سقاء زمزم", "سفرجية", "سواس", "خطاط", "رسام بورتريه", "فرقة شعبية", "خيمة تراثية", "كاونتر قهوة", "ركن تصوير", "بوفيه", "طاولة متنقلة"],
+  ogImage: SERVICES_HERO.url,
+  ogImageAlt: SERVICES_HERO.alt,
+  ogImageWidth: SERVICES_HERO.width,
+  ogImageHeight: SERVICES_HERO.height,
 });
 
-const breadcrumbSchema = generateBreadcrumbSchema([
-  { name: "الرئيسية", url: SITE_URL },
-  { name: "خدماتنا", url: `${SITE_URL}/services` },
-]);
+const schemas = [
+  generateBreadcrumbSchema([{ name: "الرئيسية", url: SITE_URL }, { name: "الخدمات", url: URL }]),
+  ...Object.values(SERVICES).map((s) => generateServiceSchema({ name: s.title, description: s.desc, url: `${URL}#${s.id}`, serviceType: s.latin })),
+  generateWebPageSchema({ name: `${TITLE} | كيف الضيافة`, description: DESC, url: URL, primaryImage: SERVICES_HERO.url }),
+  generateImageGallerySchema(URL, SERVICES_IMAGES),
+];
 
-const serviceSchema = generateServiceSchema({
-  name: "قهوجيين وصبابين قهوة وخدمات ضيافة فاخرة",
-  description:
-    "قهوجيين وصبابين قهوة سعودية، صبابات ومباشرات، سقاء زمزم، خدمات فنية وتراثية، معدات فاخرة",
-  url: `${SITE_URL}/services`,
-});
-
-const webPageSchema = generateWebPageSchema({
-  name: "خدماتنا - كيف الضيافة",
-  description:
-    "استعرض مجموعة خدمات الضيافة الفاخرة لدينا - مضيفون، قهوة سعودية، خدمات فنية والمزيد",
-  url: `${SITE_URL}/services`,
-  primaryImage: servicesImages[0]?.url,
-});
-
-const imageGallerySchema = generateImageGallerySchema(
-  `${SITE_URL}/services`,
-  servicesImages
-);
-
-export default function ServicesPage() {
+export default function Page() {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(imageGallerySchema) }}
-      />
-      <ServicesClient />
+      {schemas.map((s, i) => (
+        <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(s) }} />
+      ))}
+      <ServicesPage />
     </>
   );
 }

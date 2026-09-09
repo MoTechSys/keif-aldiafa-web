@@ -1,50 +1,33 @@
-import { Metadata } from "next";
-import SocialClient from "./SocialClient";
+import type { Metadata } from "next";
+import SocialPage from "@/components/pages/SocialPage";
 import { generatePageMetadata } from "@/components/SEO";
 import { generateBreadcrumbSchema, generateWebPageSchema } from "@/lib/schema";
-import { SITE_URL } from "@/lib/site";
+import { SITE_URL, WHATSAPP_DISPLAY } from "@/lib/site";
 
+const PATH = "/social";
+const URL = `${SITE_URL}${PATH}`;
+const TITLE = "تابعنا — حساباتنا على مواقع التواصل";
+const DESC = `حسابات كيف الضيافة على إنستغرام وتيك توك وسناب شات وإكس وفيسبوك — صور وفيديوهات من مناسبات نفّذناها، وباركود للتواصل عبر واتساب ${WHATSAPP_DISPLAY}.`;
 
 export const metadata: Metadata = generatePageMetadata({
-  // بلا اسم البراند — قالب layout يضيف «| كيف الضيافة» تلقائياً (فاحصا S1/S2).
-  title: "حساباتنا على مواقع التواصل — شاهد أعمالنا",
-  description:
-    "تابع كيف الضيافة على إنستغرام وتيك توك وسناب وإكس وفيسبوك، وشاهد ضيافتنا في المناسبات. امسح الباركود للوصول إلى كل حساباتنا، أو تواصل واتساب +966508252134.",
-  path: "/social",
-  keywords: [
-    "كيف الضيافة انستقرام",
-    "كيف الضيافة تيك توك",
-    "كيف الضيافة سناب",
-    "حسابات كيف الضيافة",
-    "باركود كيف الضيافة",
-    "صور ضيافة مناسبات",
-  ],
+  title: TITLE,
+  description: DESC,
+  path: PATH,
+  keywords: ["كيف الضيافة انستقرام", "كيف الضيافة تيك توك", "كيف الضيافة سناب", "حسابات كيف الضيافة", "باركود كيف الضيافة"],
 });
 
-const breadcrumbSchema = generateBreadcrumbSchema([
-  { name: "الرئيسية", url: SITE_URL },
-  { name: "مواقع التواصل", url: `${SITE_URL}/social` },
-]);
+const schemas = [
+  generateBreadcrumbSchema([{ name: "الرئيسية", url: SITE_URL }, { name: "حساباتنا", url: URL }]),
+  generateWebPageSchema({ name: `${TITLE} | كيف الضيافة`, description: DESC, url: URL }),
+];
 
-const webPageSchema = generateWebPageSchema({
-  name: "مواقع التواصل الاجتماعي - كيف الضيافة",
-  description:
-    "حسابات كيف الضيافة الرسمية على إنستغرام وتيك توك وسناب شات وإكس وفيسبوك، مع باركود للوصول السريع",
-  url: `${SITE_URL}/social`,
-});
-
-export default function SocialPage() {
+export default function Page() {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }}
-      />
-      <SocialClient />
+      {schemas.map((s, i) => (
+        <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(s) }} />
+      ))}
+      <SocialPage />
     </>
   );
 }

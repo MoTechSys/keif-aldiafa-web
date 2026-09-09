@@ -1,52 +1,33 @@
-import { Metadata } from "next";
-import ContactClient from "./ContactClient";
+import type { Metadata } from "next";
+import ContactPage from "@/components/pages/ContactPage";
 import { generatePageMetadata } from "@/components/SEO";
-import {
-  generateBreadcrumbSchema,
-  generateWebPageSchema,
-} from "@/lib/schema";
-import { SITE_URL } from "@/lib/site";
+import { generateBreadcrumbSchema, generateWebPageSchema } from "@/lib/schema";
+import { SITE_URL, WHATSAPP_DISPLAY } from "@/lib/site";
 
+const PATH = "/contact";
+const URL = `${SITE_URL}${PATH}`;
+const TITLE = "تواصل معنا — واتساب واتصال ونموذج طلب عرض";
+const DESC = `تواصل مع كيف الضيافة: واتساب ${WHATSAPP_DISPLAY}، اتصال مباشر، إنستغرام وتيك توك وسناب شات وإكس وفيسبوك، خرائط Google، ونموذج طلب عرض يُرسل عبر واتساب.`;
 
 export const metadata: Metadata = generatePageMetadata({
-  title: "احجز قهوجيين وطاقم ضيافة — استشارة مجانية",
-  description:
-    "تواصل مع كيف الضيافة - واتساب +966508252134، بريد إلكتروني info@keifaldiafa.com. احصل على استشارة مجانية لتصميم تجربة ضيافة فاخرة لمناسبتك.",
-  path: "/contact",
-  keywords: [
-    "تواصل كيف الضيافة",
-    "واتساب ضيافة",
-    "حجز ضيافة",
-    "استشارة مجانية",
-    "طلب خدمة ضيافة",
-    "رقم كيف الضيافة",
-  ],
+  title: TITLE,
+  description: DESC,
+  path: PATH,
+  keywords: ["تواصل كيف الضيافة", "واتساب قهوجيين", "حجز طاقم ضيافة", "طلب عرض سعر ضيافة", "رقم كيف الضيافة"],
 });
 
-const breadcrumbSchema = generateBreadcrumbSchema([
-  { name: "الرئيسية", url: SITE_URL },
-  { name: "تواصل معنا", url: `${SITE_URL}/contact` },
-]);
+const schemas = [
+  generateBreadcrumbSchema([{ name: "الرئيسية", url: SITE_URL }, { name: "تواصل", url: URL }]),
+  generateWebPageSchema({ name: `${TITLE} | كيف الضيافة`, description: DESC, url: URL }),
+];
 
-const webPageSchema = generateWebPageSchema({
-  name: "تواصل معنا - كيف الضيافة",
-  description:
-    "تواصل مع كيف الضيافة للحصول على استشارة مجانية وحجز خدمات الضيافة",
-  url: `${SITE_URL}/contact`,
-});
-
-export default function ContactPage() {
+export default function Page() {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }}
-      />
-      <ContactClient />
+      {schemas.map((s, i) => (
+        <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(s) }} />
+      ))}
+      <ContactPage />
     </>
   );
 }

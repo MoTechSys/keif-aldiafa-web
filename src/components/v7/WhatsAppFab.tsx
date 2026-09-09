@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
 import { waLink } from "@/lib/site";
 import { WA_DEFAULT_MSG } from "./nav";
 import { WaIcon } from "./WaIcon";
@@ -9,9 +10,12 @@ import { WaIcon } from "./WaIcon";
  * WhatsAppFab — واتساب طافٍ: الإجراء الوحيد (D29)، منقول من النموذج v6.9.
  * يختفي حين يكون الهيرو (.hero — فيه زر واتساب) أو قسم التواصل (#contact)
  * ظاهراً في الشاشة — نفس عتبات النموذج (.15 / .2). عنصر واحد في الموقع كله.
+ * المرحلة 5: يراقب .phero (هيرو الصفحات الداخلية، PAGE_JS) أيضاً، ويُعاد ربطه
+ * عند تغيّر المسار (كان يُربط مرة واحدة فقط → لا يختفي في الصفحات التالية).
  */
 export default function WhatsAppFab() {
   const ref = useRef<HTMLAnchorElement>(null);
+  const pathname = usePathname();
 
   useEffect(() => {
     const fab = ref.current;
@@ -28,11 +32,11 @@ export default function WhatsAppFab() {
       io.observe(el);
       observers.push(io);
     };
-    watch(document.querySelector(".hero"), "hero", 0.15);
+    watch(document.querySelector(".hero, .phero"), "hero", 0.15);
     watch(document.querySelector("#contact"), "contact", 0.2);
     apply();
     return () => observers.forEach((o) => o.disconnect());
-  }, []);
+  }, [pathname]);
 
   return (
     <a ref={ref} className="fab" id="fab" data-ev="wa_fab" href={waLink(WA_DEFAULT_MSG)} target="_blank" rel="noopener" aria-label="تواصل واتساب">

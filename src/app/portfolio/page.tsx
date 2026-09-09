@@ -1,66 +1,39 @@
-import { Metadata } from "next";
-import PortfolioClient from "./PortfolioClient";
+import type { Metadata } from "next";
+import PortfolioPage from "@/components/pages/PortfolioPage";
 import { generatePageMetadata } from "@/components/SEO";
-import {
-  generateBreadcrumbSchema,
-  generateWebPageSchema,
-  generateImageGallerySchema,
-} from "@/lib/schema";
-import { getImagesForPage } from "@/lib/imageCatalog";
+import { generateBreadcrumbSchema, generateImageGallerySchema, generateWebPageSchema } from "@/lib/schema";
+import { PORTFOLIO_HERO, PORTFOLIO_IMAGES, SHOTS } from "@/lib/portfolioContent";
 import { SITE_URL } from "@/lib/site";
 
+const PATH = "/portfolio";
+const URL = `${SITE_URL}${PATH}`;
+const TITLE = "أعمالنا — صور من مناسبات نفّذناها";
+const DESC = `معرض أعمال كيف الضيافة: ${SHOTS.length} صورة من فعاليات الجهات الحكومية والرسمية، الشركات والمعارض، الزواجات والمناسبات الخاصة، وتجهيزات الضيافة في قاعات وفنادق وأجنحة.`;
 
 export const metadata: Metadata = generatePageMetadata({
-  title: "معرض أعمال الضيافة — +500 مناسبة ناجحة",
-  description:
-    "استعرض أعمالنا السابقة في الضيافة الفاخرة - حفلات زفاف، مؤتمرات، فعاليات حكومية وتجارية. أكثر من 500 مناسبة ناجحة في جميع مناطق المملكة.",
-  path: "/portfolio",
-  keywords: [
-    "معرض أعمال ضيافة",
-    "حفلات زفاف",
-    "مؤتمرات",
-    "فعاليات حكومية",
-    "مناسبات فاخرة",
-    "ضيافة فعاليات",
-  ],
+  title: TITLE,
+  description: DESC,
+  path: PATH,
+  keywords: ["معرض أعمال ضيافة", "فعاليات حكومية", "معارض", "مؤتمرات", "زواجات", "مناسبات خاصة", "تجهيزات ضيافة", "قهوجيين في فعاليات", "ضيافة شركات"],
+  ogImage: PORTFOLIO_HERO.url,
+  ogImageAlt: PORTFOLIO_HERO.alt,
+  ogImageWidth: PORTFOLIO_HERO.width,
+  ogImageHeight: PORTFOLIO_HERO.height,
 });
 
-const breadcrumbSchema = generateBreadcrumbSchema([
-  { name: "الرئيسية", url: SITE_URL },
-  { name: "معرض الأعمال", url: `${SITE_URL}/portfolio` },
-]);
+const schemas = [
+  generateBreadcrumbSchema([{ name: "الرئيسية", url: SITE_URL }, { name: "أعمالنا", url: URL }]),
+  generateWebPageSchema({ name: `${TITLE} | كيف الضيافة`, description: DESC, url: URL, primaryImage: PORTFOLIO_HERO.url }),
+  generateImageGallerySchema(URL, PORTFOLIO_IMAGES),
+];
 
-const portfolioImages = getImagesForPage("/portfolio");
-
-const webPageSchema = generateWebPageSchema({
-  name: "معرض الأعمال - كيف الضيافة",
-  description:
-    "استعرض أعمالنا السابقة في الضيافة الفاخرة - حفلات زفاف ومؤتمرات وفعاليات",
-  url: `${SITE_URL}/portfolio`,
-  primaryImage: portfolioImages[0]?.url,
-});
-
-const imageGallerySchema = generateImageGallerySchema(
-  `${SITE_URL}/portfolio`,
-  portfolioImages
-);
-
-export default function PortfolioPage() {
+export default function Page() {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(imageGallerySchema) }}
-      />
-      <PortfolioClient />
+      {schemas.map((s, i) => (
+        <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(s) }} />
+      ))}
+      <PortfolioPage />
     </>
   );
 }

@@ -1,84 +1,40 @@
-import { Metadata } from "next";
-import OfferingsClient from "./OfferingsClient";
+import type { Metadata } from "next";
+import OfferingsPage from "@/components/pages/OfferingsPage";
 import { generatePageMetadata } from "@/components/SEO";
-import {
-  generateBreadcrumbSchema,
-  generateServiceSchema,
-  generateWebPageSchema,
-  generateImageGallerySchema,
-} from "@/lib/schema";
-import { getImagesForPage } from "@/lib/imageCatalog";
+import { generateBreadcrumbSchema, generateImageGallerySchema, generateServiceSchema, generateWebPageSchema } from "@/lib/schema";
+import { OFFERINGS_HERO, OFFERINGS_REAL_IMAGES } from "@/lib/offeringsContent";
 import { SITE_URL } from "@/lib/site";
 
-const offeringsImages = getImagesForPage("/offerings");
+const PATH = "/offerings";
+const URL = `${SITE_URL}${PATH}`;
+const TITLE = "التقديمات والمعدات — قهوة وتمور وحلويات ودلال";
+const DESC = "تقديمات كيف الضيافة: مشروبات حارة وباردة، تمور فاخرة، حلويات ومعجنات، سناكات وسندوتشات وفواكه ومكسرات، أركان ضيافة، ومعدات تقديم ذهبية وتوزيعات VIP.";
 
 export const metadata: Metadata = generatePageMetadata({
-  title: "تقديمات ضيافة: قهوة سعودية وشاي وحلويات فاخرة",
-  description:
-    "أرقى التقديمات والمشروبات - قهوة سعودية أصيلة، شاي فاخر، حلويات شرقية وغربية، تمور فاخرة ومعدات ضيافة للإيجار. جودة لا مثيل لها.",
-  path: "/offerings",
-  keywords: [
-    "قهوة سعودية",
-    "شاي فاخر",
-    "حلويات",
-    "تمور فاخرة",
-    "مشروبات باردة",
-    "تقديمات مناسبات",
-    "ضيافة عربية",
-    "معدات ضيافة",
-    "سناكات",
-    "سندوتشات",
-    "فواكه مشكلة",
-    "مكسرات",
-    "وجبات خفيفة",
-  ],
+  title: TITLE,
+  description: DESC,
+  path: PATH,
+  keywords: ["تقديمات ضيافة", "قهوة سعودية", "شاي", "تمور فاخرة", "حلويات مناسبات", "معجنات", "سناكات", "سندوتشات", "فواكه", "مكسرات", "معدات ضيافة", "دلال ذهبية", "فناجين", "توزيعات VIP", "بوفيه ضيافة"],
+  ogImage: OFFERINGS_HERO.desktop.url,
+  ogImageAlt: OFFERINGS_HERO.desktop.alt,
+  ogImageWidth: OFFERINGS_HERO.desktop.width,
+  ogImageHeight: OFFERINGS_HERO.desktop.height,
 });
 
-const breadcrumbSchema = generateBreadcrumbSchema([
-  { name: "الرئيسية", url: SITE_URL },
-  { name: "تقديماتنا", url: `${SITE_URL}/offerings` },
-]);
+const schemas = [
+  generateBreadcrumbSchema([{ name: "الرئيسية", url: SITE_URL }, { name: "التقديمات", url: URL }]),
+  generateServiceSchema({ name: "تقديمات ومعدات الضيافة", description: DESC, url: URL, serviceType: "Catering" }),
+  generateWebPageSchema({ name: `${TITLE} | كيف الضيافة`, description: DESC, url: URL, primaryImage: OFFERINGS_HERO.desktop.url }),
+  generateImageGallerySchema(URL, OFFERINGS_REAL_IMAGES),
+];
 
-const serviceSchema = generateServiceSchema({
-  name: "تقديمات الضيافة الفاخرة",
-  description:
-    "قهوة سعودية أصيلة، شاي فاخر، حلويات شرقية وغربية، تمور فاخرة ومعدات ضيافة",
-  url: `${SITE_URL}/offerings`,
-});
-
-const webPageSchema = generateWebPageSchema({
-  name: "تقديماتنا - كيف الضيافة",
-  description:
-    "استعرض مجموعة التقديمات الفاخرة من المشروبات والحلويات والتمور",
-  url: `${SITE_URL}/offerings`,
-  primaryImage: offeringsImages[0]?.url,
-});
-
-const imageGallerySchema = generateImageGallerySchema(
-  `${SITE_URL}/offerings`,
-  offeringsImages
-);
-
-export default function OfferingsPage() {
+export default function Page() {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(imageGallerySchema) }}
-      />
-      <OfferingsClient />
+      {schemas.map((s, i) => (
+        <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(s) }} />
+      ))}
+      <OfferingsPage />
     </>
   );
 }

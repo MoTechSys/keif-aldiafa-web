@@ -1,111 +1,63 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { SITE_URL } from "@/lib/site";
+import { PageHero } from "@/components/pages/shared";
+import { generatePageMetadata } from "@/components/SEO";
+import { generateBreadcrumbSchema, generateWebPageSchema } from "@/lib/schema";
+import { EMAIL, LEGAL_NAME, SITE_URL, UNIFIED_NUMBER, WHATSAPP_DISPLAY } from "@/lib/site";
 
-export const metadata: Metadata = {
-  // بلا اسم البراند — قالب layout يضيف «| كيف الضيافة» تلقائياً (فاحص S2).
-  title: "الحقوق القانونية والملكية الفكرية",
-  description:
-    "معلومات الحقوق القانونية والملكية الفكرية لصور ومحتوى موقع كيف الضيافة — شركة سعودية لخدمات الضيافة الفاخرة.",
-  alternates: { canonical: `${SITE_URL}/legal` },
-  robots: { index: true, follow: true },
-};
+/**
+ * /legal — الحقوق القانونية = النموذج v6.9 build_legal 1:1 (D115): phero بلا صورة → .prose.
+ * النصوص من LEGAL_SECTIONS حرفياً (مع «المؤسسة» لا «الشركة» — الكيان مؤسسة).
+ * ملاحظة D113: لا علامة مائية برمجية في الموقع؛ عبارة «الصور تحمل علامة مائية» في النموذج
+ * وصفٌ للصور الأصلية كما يسلّمها المالك، لا لمعالجة في الموقع — أُبقيت بصياغة دقيقة.
+ */
+const PATH = "/legal";
+const URL = `${SITE_URL}${PATH}`;
+const TITLE = "الحقوق القانونية والملكية الفكرية";
+const DESC = "الحقوق القانونية والملكية الفكرية لصور ومحتوى موقع كيف الضيافة: شروط استخدام الصور، الحصول على ترخيص، العلامة التجارية، والتواصل القانوني.";
+
+export const metadata: Metadata = generatePageMetadata({ title: TITLE, description: DESC, path: PATH, keywords: ["حقوق الصور", "الملكية الفكرية", "ترخيص استخدام الصور", "العلامة التجارية كيف الضيافة"] });
+
+const schemas = [
+  generateBreadcrumbSchema([{ name: "الرئيسية", url: SITE_URL }, { name: "الحقوق القانونية", url: URL }]),
+  generateWebPageSchema({ name: `${TITLE} | كيف الضيافة`, description: DESC, url: URL }),
+];
 
 export default function LegalPage() {
   const year = new Date().getFullYear();
-
   return (
-    <main className="min-h-screen bg-[#0a0a0a] text-[#F5F5DC] py-24 md:py-32" dir="rtl">
-      <div className="mx-auto max-w-3xl px-6 md:px-10">
-        <h1 className="text-gold-highlight text-3xl md:text-4xl font-bold mb-8 font-cairo">
-          الحقوق القانونية والملكية الفكرية
-        </h1>
-
-        <div className="space-y-8 leading-loose text-[#F5F5DC]/85">
-          <section>
-            <h2 className="text-gold-matte text-xl font-bold mb-3 font-cairo">
-              حقوق الصور والمحتوى
-            </h2>
-            <p>
-              جميع الصور ومقاطع الفيديو والنصوص المنشورة على موقع
-              <strong className="text-gold-highlight"> كيف الضيافة </strong>
-              محمية بموجب قوانين حقوق النشر والملكية الفكرية في المملكة العربية السعودية والاتفاقيات الدولية.
-            </p>
-            <p className="mt-3">
-              © {year} كيف الضيافة للأفراح والمناسبات — جميع الحقوق محفوظة.
-            </p>
-          </section>
-
-          <section>
-            <h2 className="text-gold-matte text-xl font-bold mb-3 font-cairo">
-              شروط استخدام الصور
-            </h2>
-            <p>
-              يُمنع نسخ أو إعادة نشر أو استخدام أي صورة من صور موقعنا لأغراض تجارية أو غير تجارية
-              دون الحصول على إذن كتابي مسبق من إدارة الشركة.
-            </p>
-            <p className="mt-3">
-              الصور تحمل علامة مائية مسجّلة للحماية من الاستخدام غير المصرّح به.
-              أي استخدام غير مرخّص يعرّض المستخدم للمساءلة القانونية.
-            </p>
-          </section>
-
-          <section>
-            <h2 className="text-gold-matte text-xl font-bold mb-3 font-cairo">
-              الحصول على ترخيص استخدام
-            </h2>
-            <p>
-              للحصول على ترخيص استخدام أي من صور أو مقاطع الموقع لأغراض
-              تسويقية، إعلامية، أو تحريرية، يرجى التواصل معنا مباشرة عبر:
-            </p>
-            <ul className="list-disc list-inside mt-3 space-y-1 marker:text-gold-highlight">
-              <li>
-                البريد الإلكتروني: <span dir="ltr">info@keifaldiafa.com</span>
-              </li>
-              <li>
-                واتساب: <span dir="ltr">+966 50 825 2134</span>
-              </li>
-              <li>
-                <Link
-                  href="/contact"
-                  className="text-gold-highlight underline hover:opacity-80 transition-opacity"
-                >
-                  صفحة التواصل الرسمية
-                </Link>
-              </li>
-            </ul>
-          </section>
-
-          <section>
-            <h2 className="text-gold-matte text-xl font-bold mb-3 font-cairo">
-              العلامة التجارية
-            </h2>
-            <p>
-              «كيف الضيافة» و«Keif Al-Diafa» علامات تجارية للشركة.
-              الشعار وهوية العلامة البصرية محمية ومسجّلة، ويُمنع استخدامها إلا بإذن رسمي.
-            </p>
-          </section>
-
-          <section>
-            <h2 className="text-gold-matte text-xl font-bold mb-3 font-cairo">
-              التواصل القانوني
-            </h2>
-            <p>
-              لأي استفسار قانوني، طلب ترخيص، أو الإبلاغ عن استخدام غير مصرّح به،
-              يرجى مراسلتنا على <span dir="ltr">info@keifaldiafa.com</span>
-              أو زيارة{" "}
-              <Link href="/contact" className="text-gold-highlight underline hover:opacity-80">
-                صفحة التواصل
-              </Link>
-              .
-            </p>
-          </section>
-        </div>
-
-        <div className="mt-12 pt-8 border-t border-white/10 text-xs text-[#F5F5DC]/40 text-center">
-          آخر تحديث: {year} · كيف الضيافة للأفراح والمناسبات · جدة، المملكة العربية السعودية
-        </div>
+    <>
+      {schemas.map((s, i) => (
+        <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(s) }} />
+      ))}
+      <div className="v7">
+        <PageHero
+          label="الحقوق"
+          h1={<>الحقوق القانونية <em>والملكية الفكرية</em></>}
+          p="معلومات الحقوق القانونية والملكية الفكرية لصور ومحتوى موقع كيف الضيافة."
+          crumbs={[{ label: "الحقوق القانونية" }]}
+        />
+        <section className="lsec on-deep" id="legal">
+          <div className="wrap">
+            <div className="prose rv">
+              <h2>حقوق الصور والمحتوى</h2>
+              <p>جميع الصور ومقاطع الفيديو والنصوص المنشورة على موقع <b>كيف الضيافة</b> محمية بموجب قوانين حقوق النشر والملكية الفكرية في المملكة العربية السعودية والاتفاقيات الدولية.</p>
+              <p>© {year} {LEGAL_NAME} — جميع الحقوق محفوظة.</p>
+              <h2>شروط استخدام الصور</h2>
+              <p>يُمنع نسخ أو إعادة نشر أو استخدام أي صورة من صور موقعنا لأغراض تجارية أو غير تجارية دون الحصول على إذن كتابي مسبق من إدارة المؤسسة.</p>
+              <p>الصور الأصلية موثّقة لدى المؤسسة، وأي استخدام غير مرخّص يعرّض المستخدم للمساءلة القانونية.</p>
+              <h2>الحصول على ترخيص استخدام</h2>
+              <p>للحصول على ترخيص استخدام أي من صور أو مقاطع الموقع لأغراض تسويقية، إعلامية، أو تحريرية، يرجى التواصل معنا مباشرة عبر البريد الإلكتروني <span dir="ltr">{EMAIL}</span> أو واتساب <span dir="ltr">{WHATSAPP_DISPLAY}</span> أو <Link href="/contact">صفحة التواصل</Link>.</p>
+              <h2>العلامة التجارية</h2>
+              <p>«كيف الضيافة» و«Keif Al-Diafa» علامات تجارية للمؤسسة.</p>
+              <p>الشعار وهوية العلامة البصرية محمية ومسجّلة، ويُمنع استخدامها إلا بإذن رسمي.</p>
+              <h2>التواصل القانوني</h2>
+              <p>لأي استفسار قانوني، طلب ترخيص، أو الإبلاغ عن استخدام غير مصرّح به، يرجى مراسلتنا على <span dir="ltr">{EMAIL}</span> أو زيارة <Link href="/contact">صفحة التواصل</Link>.</p>
+              <p className="foot">{LEGAL_NAME} — الرقم الوطني الموحّد <span dir="ltr">{UNIFIED_NUMBER}</span> · آخر تحديث {year}.</p>
+            </div>
+          </div>
+        </section>
       </div>
-    </main>
+    </>
   );
 }
