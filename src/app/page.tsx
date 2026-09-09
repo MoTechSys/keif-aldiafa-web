@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { HomePageClient } from "./HomePageClient";
+import HomePage from "@/components/home/HomePage";
 
 import { generateBreadcrumbSchema } from "@/lib/schema";
 import { SITE_URL } from "@/lib/site";
@@ -47,19 +47,18 @@ const breadcrumbSchema = generateBreadcrumbSchema([
 
 // FAQPage JSON-LD حُذف نهائياً (2026-09-01) — Google أوقفت FAQ rich results
 // رسمياً (changelog 2026-05-08 + حذف الوثائق 2026-06-15). الأسئلة المرئية
-// في HomePageClient باقية (قيمتها للزائر وAI قائمة). allpro تقرير 14.
+// في قسم الأسئلة باقية (قيمتها للزائر وAI قائمة). allpro تقرير 14.
 
-export default function HomePage() {
+// المرحلة 3 (D115): الجسم = أقسام النموذج v6.9 في components/home/HomePage
+// (مكوّن خادم؛ العميل فقط للأشرطة والفيديو وزر الشركاء).
+export default function Page() {
   return (
     <>
-      {/* ملاحظة: لا preload يدوي للهيرو — مكوّن next/image بـpriority في HomePageClient
-          يولّد preload تلقائياً مع srcset مستجيب. إضافة preload يدوي هنا كانت
-          تُحمّل الصورة مرتين (هدر نطاق على الجوال). */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      <HomePageClient />
+      <HomePage />
     </>
   );
 }

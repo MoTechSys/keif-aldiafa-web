@@ -38,6 +38,12 @@ export interface CatalogImage {
   tier: number;
   /** الفئة القديمة (مجلد) — تُبقى للتوافق مع pickImages/cityImages: هنا = القطاع */
   category: string;
+  /** الجهة/العميل كما في الكتالوج (حرفي) */
+  entity: string;
+  /** الخدمة الظاهرة في الصورة كما في الكتالوج (حرفي) — تُستخدم سطراً ثانياً في المعرض */
+  service: string;
+  /** المكان/المناسبة كما في الكتالوج (حرفي) */
+  place: string;
   /** الصفحة المضيفة الأولى الموجودة فعلاً في الموقع (لـ <loc> في الخريطة) */
   pageUrl: string;
   /** كل الصفحات التي يستهدفها الكتالوج، بما فيها غير المبنية بعدُ */
@@ -72,6 +78,9 @@ function toImage(r: CatalogRecord): CatalogImage {
     height: r.height,
     tier: r.tier,
     category: r.sector,
+    entity: r.entity,
+    service: r.service,
+    place: r.place,
     pageUrl: hostPage(r.pages),
     pages: r.pages,
     decorative: r.publish === "decorative",

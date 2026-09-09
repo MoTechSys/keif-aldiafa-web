@@ -1,0 +1,27 @@
+import { getImageProps } from "next/image";
+import type { CatalogImage } from "@/lib/imageCatalog";
+
+/**
+ * HeroPicture — خلفية الهيرو بتوجيه فني (النموذج v6.9): صورة عمودية على الجوال
+ * وعريضة من 900px عبر <picture>/<source media>. next/image لا يدعم <picture>،
+ * لذا نأخذ srcset المحسّن من getImageProps ونكتب <img> خاماً هنا فقط
+ * (استثناء موثّق في check-assets CH5). alt = alt الكتالوج حرفياً (D111/CH9)
+ * والحاوية aria-hidden في النموذج فلا تُقرأ مرتين.
+ * preload حسب المقاس: React يرفع <link rel=preload media> إلى <head>.
+ */
+export default function HeroPicture({ mobile, desktop }: { mobile: CatalogImage; desktop: CatalogImage }) {
+  const common = { sizes: "100vw", quality: 70, priority: true } as const;
+  const { props: m } = getImageProps({ ...common, alt: mobile.alt, src: mobile.src, width: mobile.width, height: mobile.height });
+  const { props: d } = getImageProps({ ...common, alt: desktop.alt, src: desktop.src, width: desktop.width, height: desktop.height });
+  return (
+    <>
+      <link rel="preload" as="image" imageSrcSet={m.srcSet} imageSizes="100vw" media="(max-width:899px)" fetchPriority="high" />
+      <link rel="preload" as="image" imageSrcSet={d.srcSet} imageSizes="100vw" media="(min-width:900px)" fetchPriority="high" />
+      <picture>
+        <source media="(min-width:900px)" srcSet={d.srcSet} sizes={d.sizes} width={desktop.width} height={desktop.height} />
+        {/* eslint-disable-next-line @next/next/no-img-element -- <picture> بتوجيه فني؛ srcset من getImageProps */}
+        <img {...m} alt={mobile.alt} decoding="async" />
+      </picture>
+    </>
+  );
+}

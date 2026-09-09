@@ -118,7 +118,9 @@ for (const file of srcFiles) {
   // وnext/image لا يعمل بلا JavaScript أصلاً.
   // وLightbox (المرحلة 2): يعرض src الجاهز من DOM (رابط _next/image محسّن أصلاً)
   // — تمريره عبر next/image ثانيةً = تحسين مضاعف بلا فائدة (نفس النموذج v6.9).
-  const IMG_WRAPPERS = ["ImageWithFallback", "DallahLogo", "GoogleAnalytics", "v7/Lightbox"];
+  // وHeroPicture (المرحلة 3): <picture> بتوجيه فني (عمودية/عريضة) لا يدعمه
+  // next/image — يأخذ srcset المحسّن من getImageProps ويكتب <img> واحداً.
+  const IMG_WRAPPERS = ["ImageWithFallback", "DallahLogo", "GoogleAnalytics", "v7/Lightbox", "home/HeroPicture"];
   const isWrapper = IMG_WRAPPERS.some((w) => rel.endsWith(`${w}.tsx`));
   const rawImg = code.match(/<img\b[^>]*>/g);
   if (rawImg && !isWrapper) {
