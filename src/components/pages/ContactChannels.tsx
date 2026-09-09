@@ -43,7 +43,7 @@ export default function ContactChannels({ src = "contact" }: { src?: "contact" |
           <div className="lh-row">
             <div className="emblem" aria-hidden="true">
               <span className="emblem-orbit" /><span className="emblem-orbit o2" />
-              <Image src="/images/brand/logo-emblem.webp" alt="" width={225} height={270} sizes="(min-width:900px) 90px, 74px" priority />
+              <Image src="/images/brand/logo-emblem.webp" alt="" width={225} height={270} priority unoptimized />
             </div>
             <div className="lh-tx">
               <span className="label">تواصل معنا</span>
@@ -63,7 +63,7 @@ export default function ContactChannels({ src = "contact" }: { src?: "contact" |
                 <span className="ch-shine" aria-hidden="true" /><span className="ch-ring" aria-hidden="true" />
                 <span className="ch-ic" aria-hidden="true">
                   <span className="ch-dial" />
-                  <Image src={`/images/links/icon-${c.k}.webp`} alt="" width={256} height={256} sizes="56px" loading={i < 3 ? "eager" : "lazy"} />
+                  <Image src={`/images/links/icon-${c.k}.webp`} alt="" width={256} height={256} loading={i < 3 ? "eager" : "lazy"} unoptimized />
                 </span>
                 <span className="ch-tx"><span className="ch-name"><b>{c.en}</b><i>— {c.ar}</i></span><small dir="ltr">{c.handle}</small></span>
                 <span className="ch-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 6l-6 6 6 6" /></svg></span>
