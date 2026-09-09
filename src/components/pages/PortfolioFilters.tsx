@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect } from "react";
-import { FILTERS, type ShotType } from "@/lib/portfolioContent";
-
-type F = ShotType | "all";
+// D140: لا استيراد من portfolioContent (يجرّ الكتالوج كاملاً 172KB إلى حزمة العميل) — الأزرار تأتي props من الخادم.
+type F = "government" | "corporate" | "private" | "equipment" | "all";
+export type FilterItem = { f: F; label: string };
 const NAMES: Record<F, string> = { all: "كل الأعمال", government: "جهات حكومية ورسمية", corporate: "شركات", private: "مناسبات خاصة وزواجات", equipment: "تجهيزات ومعدات" };
 const ALIAS: Record<string, F> = { events: "corporate", weddings: "private", equipment: "equipment", government: "government", corporate: "corporate", private: "private", all: "all" };
 
@@ -13,7 +13,7 @@ const ALIAS: Record<string, F> = { events: "corporate", weddings: "private", equ
  * ملاحظة الجهات الحكومية عند تصفيتها، ومزامنة ?type= في العنوان (replaceState).
  * الشبكة نفسها مُصيَّرة في الخادم (SEO) — هذا المكوّن لا يرسم صوراً.
  */
-export default function PortfolioFilters() {
+export default function PortfolioFilters({ filters }: { filters: FilterItem[] }) {
   useEffect(() => {
     const btns = Array.from(document.querySelectorAll<HTMLButtonElement>(".filters button"));
     const figs = Array.from(document.querySelectorAll<HTMLElement>("#pgrid .shot"));
@@ -32,7 +32,7 @@ export default function PortfolioFilters() {
   }, []);
   return (
     <div className="filters rv" role="group" aria-label="تصفية الأعمال">
-      {FILTERS.map((x) => <button key={x.f} type="button" data-f={x.f} aria-pressed={x.f === "all"}>{x.label}</button>)}
+      {filters.map((x) => <button key={x.f} type="button" data-f={x.f} aria-pressed={x.f === "all"}>{x.label}</button>)}
     </div>
   );
 }

@@ -2,7 +2,6 @@
 
 import { useEffect, useRef } from "react";
 import { WaIcon } from "@/components/v7/WaIcon";
-import { SERVICES, SERVICE_GROUPS } from "@/lib/servicesContent";
 import { WHATSAPP_NUMBER } from "@/lib/site";
 
 const CITIES = ["جدة", "مكة المكرمة", "المدينة المنورة", "الرياض", "الطائف", "الدمام", "أبها", "ينبع"];
@@ -12,7 +11,10 @@ const CITIES = ["جدة", "مكة المكرمة", "المدينة المنور�
  * تُفتح رسالة واتساب مُعدّة بالتفاصيل. ?service= يملأ الاختيار مسبقاً.
  * ChannelFx (الأومنتريكس) يُربط هنا أيضاً لأنه في نفس مسار العميل.
  */
-export default function ContactForm() {
+// D140: قائمة الخدمات تأتي props من الخادم — استيراد servicesContent هنا كان يجرّ الكتالوج كاملاً إلى حزمة العميل.
+export type ServiceGroupOpt = { key: string; label: string; items: { id: string; title: string }[] };
+
+export default function ContactForm({ groups }: { groups: ServiceGroupOpt[] }) {
   const ref = useRef<HTMLFormElement>(null);
   const err = useRef<HTMLParagraphElement>(null);
   const sel = useRef<HTMLSelectElement>(null);
@@ -76,8 +78,8 @@ export default function ContactForm() {
       <label>الخدمة المطلوبة
         <select name="service" id="svcSel" ref={sel} defaultValue="">
           <option value="">اختر الخدمة</option>
-          {SERVICE_GROUPS.map((g) => (
-            <optgroup key={g.key} label={g.label}>{g.ids.map((i) => <option key={i} value={i}>{SERVICES[i].title}</option>)}</optgroup>
+          {groups.map((g) => (
+            <optgroup key={g.key} label={g.label}>{g.items.map((i) => <option key={i.id} value={i.id}>{i.title}</option>)}</optgroup>
           ))}
           <optgroup label="أخرى"><option value="offerings">تقديمات ومعدات</option><option value="package">باقة متكاملة · طاقم + تقديمات + تجهيز</option></optgroup>
         </select>

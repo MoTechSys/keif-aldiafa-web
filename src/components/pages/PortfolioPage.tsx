@@ -1,7 +1,7 @@
 import CatalogImg from "@/components/home/CatalogImg";
 import { ContactBlock, PageHero, WaBtn } from "@/components/pages/shared";
 import PortfolioFilters from "@/components/pages/PortfolioFilters";
-import { PORTFOLIO_HERO, PORTFOLIO_WA, SHOTS } from "@/lib/portfolioContent";
+import { FILTERS, PORTFOLIO_HERO, PORTFOLIO_WA, SHOTS } from "@/lib/portfolioContent";
 
 /**
  * PortfolioPage — معرض الأعمال = النموذج v6.9 build_portfolio 1:1 (D115):
@@ -21,7 +21,7 @@ export default function PortfolioPage() {
       />
       <section className="on-rich" id="gallery" style={{ paddingTop: 28 }}>
         <div className="wrap">
-          <PortfolioFilters />
+          <PortfolioFilters filters={FILTERS} />
           <p className="pcount" id="pcount" aria-live="polite">{SHOTS.length} · كل الأعمال</p>
           <div className="pgrid" id="pgrid">
             {SHOTS.map((s) => (

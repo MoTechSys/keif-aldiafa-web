@@ -4,7 +4,7 @@ import Link from "next/link";
 import CatalogImg from "@/components/home/CatalogImg";
 import HeroPicture from "@/components/home/HeroPicture";
 import Strip from "@/components/home/Strip";
-import { Em, OfferingTiles, SecHead, SvcCard, UniformFigures } from "@/components/home/shared";
+import { CutoutGrid, Em, OfferingTiles, SecHead, SvcCard, UniformFigures } from "@/components/home/shared";
 import HeroSlides from "@/components/local/HeroSlides";
 import PartnersCompact from "@/components/local/PartnersCompact";
 import { WaIcon } from "@/components/v7/WaIcon";
@@ -159,11 +159,12 @@ export default function LocalPage({ rec }: { rec: LocalPageRecord }) {
         </div>
       </section>
 
-      {/* 7) التقديمات والعدّة — 8 مربعات (D75) */}
+      {/* 7) التقديمات والعدّة — 8 مربعات + 6 مقصوصات في قسم واحد (D75 · D142) */}
       <section className="on-black grain" id="offerings" data-sim="chrome">
         <div className="wrap">
           <SecHead label="التقديمات والعدّة" h2={<Em a="ما الذي يصل إلى ضيوفك في" b={`${ar}؟`} />} p="تمور وقهوة وحلويات ومشروبات — والدلال والفناجين وأطقم التقديم تصل مع الطاقم." hint />
           <Strip><OfferingTiles count={8} /></Strip>
+          <CutoutGrid />
           <div className="works-foot rv"><Link className="btn btn-glass" href="/offerings">كل التقديمات والمعدات</Link></div>
         </div>
       </section>

@@ -169,19 +169,25 @@ export default function RootLayout({
       className={`scroll-smooth ${amiri.variable} ${naskh.variable} ${marcellus.variable}`}
     >
       <head>
-        {/* Google tag (gtag.js) — محقون مباشرة في <head> (ليظهر في HTML المُقدّم فوراً
-            ويُكتشف من فحص Google Ads الآلي — يحل تحذير "لا تتوفر علامة تتبّع").
-            async يحمي الأداء. GA4 + Ads معاً. التتبّع المتقدّم (Pixels + التحويلات) يبقى في GoogleAnalytics.
-            استثناء مقصود من قاعدة next/script: الفحص الآلي لا يرى سكربتات
-            تُحقن بعد التفاعل (كوميت af96b9a في الأرشيف يوثّق العطب الأصلي). */}
-        {/* eslint-disable-next-line @next/next/next-script-for-ga */}
-        <script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=AW-11081441847"
-        />
+        {/* Google tag (gtag.js) — GA4 + Ads معاً (D141):
+            • مقتطف الإعداد (dataLayer + gtag('config', G-… / AW-…)) يبقى في <head> حرفياً
+              في HTML المُقدّم — هو ما يفحصه Google Ads آلياً لاكتشاف العلامة (تحذير
+              «لا تتوفر علامة تتبّع» — كوميت af96b9a في الأرشيف). أي استدعاء gtag() قبل
+              التحميل يُصفّ في dataLayer ويُرسَل عند وصول المكتبة (لا تُفقد تحويلات).
+            • المُحمِّل (~350KB JS · ≈1.1s حجب للخيط الرئيسي على الجوال) يُحقَن بعد
+              اكتمال تحميل الصفحة + 2.5s ثم أول خمول للخيط الرئيسي (requestIdleCallback ≤3s)،
+              أو عند أول تفاعل (أسبق الاثنين) — لكل زائر،
+              لا بعد التفاعل فقط (ذلك ما عطّل الاكتشاف سابقاً). يقيس Core Web Vitals
+              للزائر الحقيقي (INP/TBT) لا Lighthouse وحده.
+            استثناء مقصود من قاعدة next/script (السبب أعلاه). */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-ZZHYDVVMT1');gtag('config','AW-11081441847');`,
+            __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-ZZHYDVVMT1');gtag('config','AW-11081441847');
+(function(){var d=0;function l(){if(d)return;d=1;var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=AW-11081441847';document.head.appendChild(s);}
+var ev=['pointerdown','keydown','touchstart','scroll'];function u(){ev.forEach(function(e){removeEventListener(e,u,{passive:true})});l();}
+ev.forEach(function(e){addEventListener(e,u,{passive:true})});
+function q(){setTimeout(function(){(window.requestIdleCallback||function(f){f()})(l,{timeout:3000});},2500);}
+if(document.readyState==='complete'){q();}else{addEventListener('load',q);}})();`,
           }}
         />
         {/* Organization Schema */}

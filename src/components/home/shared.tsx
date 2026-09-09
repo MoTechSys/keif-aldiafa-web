@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import Image from "next/image";
 import CatalogImg from "@/components/home/CatalogImg";
 import { OFFERINGS, UNIFORMS } from "@/lib/homeContent";
 import type { CatalogImage } from "@/lib/imageCatalog";
@@ -68,5 +69,29 @@ export function SvcCard({ href, img, b, small, local = false }: { href: string; 
       <CatalogImg img={img} sizes="(max-width:899px) 48vw, 370px" cap={b} sub={small} />
       <div><b>{b}</b><small>{small}</small></div>
     </a>
+  );
+}
+
+/** مقصوصات العدّة (النموذج v6.9 local.py CUTOUT_ITEMS — D142): 6 قصاصات 480×480 شفافة
+ *  من `img/cutouts/` بأسمائها حرفياً. ليست صور كتالوج (لا alt كتالوج) — عناصر تصميم. */
+export const CUTOUT_ITEMS: { f: string; n: string }[] = [
+  { f: "dallah-gold", n: "دلة ذهبية" },
+  { f: "cup-stripes", n: "فنجان مخطّط" },
+  { f: "cup-emblem", n: "فنجان بالشعار" },
+  { f: "cup-faceted", n: "فنجان مضلّع" },
+  { f: "cup-porcelain", n: "فنجان بورسلان" },
+  { f: "dallah-silver", n: "دلة فضية" },
+];
+
+export function CutoutGrid() {
+  return (
+    <div className="eq">
+      {CUTOUT_ITEMS.map((c) => (
+        <figure key={c.f} className="rv">
+          <Image src={`/images/cutouts/${c.f}.webp`} alt={c.n} width={480} height={480} sizes="(max-width:899px) 30vw, 120px" loading="lazy" />
+          <figcaption>{c.n}</figcaption>
+        </figure>
+      ))}
+    </div>
   );
 }
