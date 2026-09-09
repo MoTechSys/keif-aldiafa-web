@@ -1,4 +1,5 @@
 import Link from "next/link";
+import ClientLayout from "@/components/ClientLayout";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -9,6 +10,7 @@ export const metadata: Metadata = {
 
 export default function NotFound() {
   return (
+    <ClientLayout>
     <div className="min-h-[80vh] flex items-center justify-center px-4">
       <div className="text-center max-w-lg">
         <h1
@@ -47,5 +49,6 @@ export default function NotFound() {
         </Link>
       </div>
     </div>
+    </ClientLayout>
   );
 }

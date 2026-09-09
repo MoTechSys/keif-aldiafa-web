@@ -738,3 +738,16 @@ body.ch-flash::after{content:"";position:fixed;inset:0;z-index:9998;pointer-even
   .card .acts .btn,.phero .cta .btn{flex:1 1 0;min-width:0;padding-inline:14px;font-size:.92rem;white-space:nowrap}
   .card .acts,.phero .cta{flex-wrap:nowrap}
 }
+
+/* ===== /links (D101 · D145): صفحة مستقلة — لا شارة ولا رأس ولا فوتر — من النموذج LINKS_CSS 1:1
+   (body.links-page في النموذج → main.links-page هنا لأن body مشترك مع بقية الموقع) */
+.links-page .linkhead .label{font-size:.8rem}
+.links-page .orn b{font-size:.8rem}
+.links-page{padding-top:0;min-height:100dvh;background:radial-gradient(ellipse 120% 70% at 50% -10%,rgba(197,160,89,.16),transparent 60%),radial-gradient(ellipse 90% 60% at 50% 110%,rgba(197,160,89,.08),transparent 65%),var(--rich)}
+.links-page .linkhead{background:transparent;padding-block:22px 14px}
+.links-page .linkhead::after{display:none}
+.links-page #channels{background:transparent;padding-block:8px 28px}
+.links-page .chnote,.links-page .linkhead .sub{display:none}
+.lfoot{display:flex;justify-content:center;align-items:center;gap:10px;flex-wrap:wrap;padding:8px 20px calc(28px + env(safe-area-inset-bottom));font-size:.8rem;color:var(--cream-3);letter-spacing:.02em}
+.lfoot a{color:var(--gold);border-bottom:1px solid rgba(197,160,89,.35)}
+@media (min-width:900px){.links-page .chlist{max-width:560px;grid-template-columns:1fr}.links-page .linkhead{padding-block:30px 16px}}

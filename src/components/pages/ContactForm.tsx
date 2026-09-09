@@ -9,7 +9,7 @@ const CITIES = ["جدة", "مكة المكرمة", "المدينة المنور�
 /**
  * ContactForm — نموذج طلب عرض (النموذج v6.9 CONTACT_JS): لا يُخزَّن شيء؛ عند الإرسال
  * تُفتح رسالة واتساب مُعدّة بالتفاصيل. ?service= يملأ الاختيار مسبقاً.
- * ChannelFx (الأومنتريكس) يُربط هنا أيضاً لأنه في نفس مسار العميل.
+ * تأثير الأومنتريكس في مكوّن مستقل `ChannelFx` (D101).
  */
 // D140: قائمة الخدمات تأتي props من الخادم — استيراد servicesContent هنا كان يجرّ الكتالوج كاملاً إلى حزمة العميل.
 export type ServiceGroupOpt = { key: string; label: string; items: { id: string; title: string }[] };
@@ -22,21 +22,6 @@ export default function ContactForm({ groups }: { groups: ServiceGroupOpt[] }) {
   useEffect(() => {
     const pre = new URLSearchParams(location.search).get("service");
     if (pre && sel.current?.querySelector(`option[value="${pre}"]`)) sel.current.value = pre;
-
-    // الأومنتريكس — بطاقات القنوات
-    const rm = matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const cards = Array.from(document.querySelectorAll<HTMLAnchorElement>(".ch"));
-    const hs = cards.map((a) => {
-      const h = (e: MouseEvent) => {
-        if (rm || a.classList.contains("fire") || e.metaKey || e.ctrlKey || e.button) return;
-        e.preventDefault(); a.classList.add("fire"); document.body.classList.add("ch-flash");
-        document.body.style.setProperty("--tint", getComputedStyle(a).getPropertyValue("--tint"));
-        setTimeout(() => { if (a.target === "_blank") window.open(a.href, "_blank", "noopener"); else location.href = a.href; }, 620);
-        setTimeout(() => { a.classList.remove("fire"); document.body.classList.remove("ch-flash"); }, 1300);
-      };
-      a.addEventListener("click", h); return [a, h] as const;
-    });
-    return () => hs.forEach(([a, h]) => a.removeEventListener("click", h));
   }, []);
 
   const submit = (e: React.FormEvent<HTMLFormElement>) => {

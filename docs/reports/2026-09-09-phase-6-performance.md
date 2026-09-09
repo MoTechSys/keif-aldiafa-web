@@ -33,3 +33,16 @@
 ## الفحص الشامل (بداية — 2026-09-09 مساءً)
 - **HTML الناتج — 42/42 ✅** (`scripts/html-audit.mjs`، المسارات من `sitemap.xml`): status 200 · title · description · canonical مطابق · لا noindex · h1 واحد · JSON-LD صالح (Organization/CateringService/WebSite/BreadcrumbList + Service/WebPage/ImageGallery حسب الصفحة) · og:image · `lang="ar" dir="rtl"`. robots.txt يعلن 3 خرائط، وكلها 200.
 - **Playwright 42 مسار × 4 مقاسات — غير مكتمل**: 31/168 فحصاً نُفّذ (25 ✅)؛ 6 علامات `brokenImgs` على `/qahwajiin-abha` و`/qahwajiin-dammam` كانت **عابرة** (محسّن `_next/image` بارد تحت حمل متوازٍ) — أُعيد الفحص المباشر لنفس الصفحة @1024: 0 صور مكسورة. ثم سقط الفحص بـ`page.goto: Timeout 30000ms` (نفس السبب: الساندبوكس بلا CDN ومحسّن الصور يعالج أول طلب لكل صورة). **يُعاد** مع `networkidle`→`load` وإحماء الصور مسبقاً (`curl` على `_next/image` لكل مسار قبل الفحص) أو على الاستضافة الفعلية.
+
+## الفحص الشامل — مكتمل (2026-09-09 · بعد أمر المالك «تحقق من كل شي»)
+| الفحص | النتيجة | الأمر |
+|---|---|---|
+| Playwright 42 مسار × 4 مقاسات (390/768/1024/1440) | **168/168** — status 200 · h1=1 · overflowX 0 · console 0 · ≥400 = 0 | `node scripts/browser-sweep.mjs` (بعد إحماء `_next/image`: 4,129 نسخة) |
+| ↳ علامات `brokenImgs` (23 على 6 صفحات: qahwajiin-makkah/taif · sababin-qahwa-jeddah/makkah/taif/yanbu) | **كلها كاذبة** — إعادة الفحص بانتظار حدث `load` للصور غير الكسولة: 0 مكسورة على 12/12 (390+1440) | `/tmp/pw/recheck.mjs` |
+| axe WCAG 2.1 A/AA @390 | **0** مخالفة على 42 صفحة | ضمن السويب |
+| HTML الناتج (title/desc/canonical/robots/h1/JSON-LD/og/lang) | **43/43** (بعد إضافة `/links`) | `node scripts/html-audit.mjs` |
+| pixel-audit @390 | 0 نص ضيق · 0 صور صغيرة · 0 تمدد (المتبقي المعلوم: `.tag`/`.l2`/`<small>` مقاسات النموذج + `.contact .actions` عمود واحد — تصميم) | `node scripts/pixel-audit.mjs` |
+| `/links` الجديدة (D145) | 4 مقاسات: h1=1 · 9 بطاقات · 9/9 أيقونات · بلا هيدر/فوتر/fab · axe 0 · أومنتريكس يعمل · لقطات `docs/shots/phase-6/links-{390,1440}.png` | `/tmp/pw/links.mjs` |
+| بوابة الجودة | tsc ✓ · lint ✓ · build ✓ · guard ✅ (seo 185 · sim 185 · assets 11) | `npm run guard` |
+
+**اكتشاف من التدقيق:** `/links` كانت في خطة المرحلة 5 («+`/links`») ولم تُبنَ ولم تُعلَّم ناقصة — بُنيت الآن (D145). درس: بوابة خروج كل مرحلة تُقارَن بقائمة PLAN حرفياً، لا بالذاكرة.

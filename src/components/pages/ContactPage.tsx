@@ -1,5 +1,6 @@
 import Link from "next/link";
 import ContactChannels from "@/components/pages/ContactChannels";
+import ChannelFx from "@/components/pages/ChannelFx";
 import ContactForm from "@/components/pages/ContactForm";
 import { CITIES } from "@/lib/cities";
 import { SERVICES, SERVICE_GROUPS } from "@/lib/servicesContent";
@@ -16,6 +17,7 @@ export default function ContactPage() {
   return (
     <div className="v7">
       <ContactChannels src="contact" />
+      <ChannelFx />
       <section className="on-deep glow" id="form">
         <div className="wrap">
           <div className="sec-head">
