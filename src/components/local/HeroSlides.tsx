@@ -8,7 +8,8 @@ import type { CatalogImage } from "@/lib/imageCatalog";
  * HeroSlides — خلفية الهيرو المتغيّرة في الصفحات المحلية (النموذج D84):
  * شرائح تتبدّل فوق صورة الهيرو بتلاشٍ + تقريب بطيء (Ken Burns)، تبدأ بعد أول
  * خمول (لا تنافس LCP) وتتوقف حين يخرج الهيرو من الشاشة أو مع reduced-motion.
- * الصور من الكتالوج؛ alt="" لأنها زخرفية (الهيرو الأساسي يحمل alt الكتالوج).
+ * الصور من الكتالوج بـ alt الكتالوج حرفياً (D111/CH9) والحاوية aria-hidden لأنها
+ * خلفية زخرفية (نفس أسلوب هيرو الرئيسية D126) — لا تُقرأ لقارئ الشاشة ولا تُخالف الكتالوج.
  */
 export default function HeroSlides({ slides }: { slides: CatalogImage[] }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -33,9 +34,9 @@ export default function HeroSlides({ slides }: { slides: CatalogImage[] }) {
   }, []);
   if (!slides.length) return null;
   return (
-    <div className="slides" ref={ref}>
+    <div className="slides" ref={ref} aria-hidden="true">
       {slides.map((s) => (
-        <Image key={s.src} className="slide" src={s.src} alt="" width={s.width} height={s.height} sizes="100vw" quality={60} loading="lazy" />
+        <Image key={s.src} className="slide" src={s.src} alt={s.alt} width={s.width} height={s.height} sizes="100vw" quality={60} loading="lazy" />
       ))}
     </div>
   );
