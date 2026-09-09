@@ -180,7 +180,7 @@ npx tsc --noEmit  &&  npm run lint  &&  npm run build  &&  npm run guard
 
 الصق هذا السطر فقط:
 
-> **اقرأ `PLAN.md` و`docs/DECISIONS.md` في مستودع `MoTechSys/keif-aldiafa-web` كاملَين، ثم `docs/PROMPT-AGENT-BOOTSTRAP-v2.txt`، وأعطني تقرير الجاهزية، ثم كمّل من «أين توقفنا» بلا أي سؤال إلا عند الضرورة.**
+> **في مستودع `MoTechSys/keif-aldiafa-web` اقرأ `AGENTS.md` كاملاً ونفّذ ترتيب القراءة فيه (§0) حرفياً — كل الملفات، لا تختصر — ثم شغّل بوابة الجودة وأعطني تقرير الجاهزية، ولا تلمس المحتوى أو الصور أو النشر قبل أمري.**
 
 ## 7. أوامر الجلسة (للوكيل)
 
