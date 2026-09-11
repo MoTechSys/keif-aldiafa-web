@@ -168,3 +168,11 @@ h2 { font-weight: 800; }
 /* Hide scrollbar for category nav */
 .scrollbar-hide::-webkit-scrollbar { display: none; }
 .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* ── Cookie consent bar (D149 — PDPL) — خارج v7.css المستنسخ 1:1 من النموذج ── */
+.ck{position:fixed;inset-inline:12px;bottom:calc(88px + env(safe-area-inset-bottom));z-index:64;display:grid;gap:10px;padding:14px 16px;background:rgba(18,18,18,.96);border:1px solid rgba(197,160,89,.3);border-radius:16px;box-shadow:0 8px 30px rgba(0,0,0,.5);backdrop-filter:blur(8px);font-family:var(--font-naskh),'Noto Naskh Arabic',serif}
+.ck p{margin:0;font-size:.86rem;line-height:1.8;color:rgba(245,245,245,.85)}
+.ck p a{color:#E2C68E;border-bottom:1px solid rgba(226,198,142,.5)}
+.ck-a{display:flex;gap:8px;flex-wrap:wrap}
+.ck-no{background:transparent;color:#F5F5F5;border:1px solid rgba(245,245,245,.35)}
+@media (min-width:900px){.ck{bottom:24px;inset-inline:auto;inset-inline-start:24px;max-width:560px;grid-template-columns:1fr auto;align-items:center}}

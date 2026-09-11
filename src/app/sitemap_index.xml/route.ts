@@ -11,7 +11,8 @@ export const dynamic = "force-static";
 export const revalidate = 86400;
 
 export function GET(): Response {
-  const now = new Date().toISOString();
+  // lastmod ثابت = أحدث تاريخ حقيقي في sitemap.ts (D150) — لا «الآن» عند كل زحف (إشارة كاذبة).
+  const now = "2026-09-11";
   const sitemaps = [
     `${SITE_URL}/sitemap.xml`,
     `${SITE_URL}/image-sitemap.xml`,

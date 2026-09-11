@@ -117,7 +117,7 @@ export default function Footer() {
 
         <div className="bottom">
           <p>
-            © {year} كيف الضيافة. جميع الحقوق محفوظة. · <Link href="/legal">الحقوق القانونية</Link>
+            © {year} كيف الضيافة. جميع الحقوق محفوظة. · <Link href="/legal">الحقوق القانونية</Link> · <Link href="/privacy">سياسة الخصوصية</Link>
           </p>
           <p className="dev">
             Developed by <b>Alabbasi Soft</b>

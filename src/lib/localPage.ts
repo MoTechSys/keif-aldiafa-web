@@ -87,13 +87,20 @@ export function cityPath(cityKey: string): string {
 const uniq = (arr: CatalogImage[]) => arr.filter((im, i) => arr.findIndex((x) => x.src === im.src) === i);
 
 /**
- * مجمّع صور الصفحة: (1) ما يستهدفها الكتالوج، (2) ما يستهدف أخوات الخدمة
- * في المدن الأخرى (نفس الخدمة) — تدوير حسب المدينة، (3) احتياط عام.
+ * مجمّع صور الصفحة (D152): (1) ما يستهدف الصفحة نفسها في الكتالوج — **أولاً وبلا تدوير**
+ * (كانت الدورة القديمة تُزيح صور الصفحة المستهدفة لصالح المستعارة)، (2) ما يستهدف أخوات
+ * الخدمة في المدن الأخرى — بتدوير ثابت حسب المدينة كي لا تتطابق الشقيقات صورةً بصورة،
+ * (3) احتياط عام (tier ≤ 3). النتيجة: كل صورة تظهر مرة واحدة في الصفحة.
  */
 function poolFor(paths: string[], seed: number, n: number): CatalogImage[] {
-  const out: CatalogImage[] = [];
-  for (const p of paths) out.push(...getImagesForPage(p));
-  let pool = uniq(out);
+  const own = uniq(getImagesForPage(paths[0]));
+  const borrowedRaw: CatalogImage[] = [];
+  for (const p of paths.slice(1)) borrowedRaw.push(...getImagesForPage(p));
+  const borrowed = uniq(borrowedRaw).filter((im) => !own.some((x) => x.src === im.src));
+  // نافذة مختلفة من المستعار لكل مدينة: الإزاحة = (رتبة المدينة / عدد المدن) × طول المستعار —
+  // توزيع متساوٍ يمنع تصادم الإزاحات (القديم seed*5 % len أعطى مكة = الطائف 100%).
+  const rot = borrowed.length ? Math.floor(((seed % CITY_KEYS.length) / CITY_KEYS.length) * borrowed.length) : 0;
+  let pool = uniq([...own, ...borrowed.slice(rot), ...borrowed.slice(0, rot)]);
   if (pool.length < n) {
     const all = getAllImages().filter((im) => im.tier <= 3);
     const start = (seed * 7) % Math.max(all.length, 1);
@@ -103,9 +110,15 @@ function poolFor(paths: string[], seed: number, n: number): CatalogImage[] {
     }
     pool = uniq(pool);
   }
-  // تدوير ثابت حسب المدينة كي لا تتطابق الصفحات الشقيقة صورةً بصورة
-  const rot = pool.length ? (seed * 5) % pool.length : 0;
-  return [...pool.slice(rot), ...pool.slice(0, rot)].slice(0, n);
+  return pool.slice(0, n);
+}
+
+/** عدد الصور في القالب المحلي: هيرو 1 + لقطات 8 + شرائح 3 + أدوار 4 = 16 صورة **مختلفة** (D152) */
+const LOCAL_POOL = 16;
+/** تقسيم مجمّع الصور على خانات القالب — بلا تقاطع بين الخانات (كان roleImgs يعيد shots/slides) */
+function slots(imgs: CatalogImage[]) {
+  const rest = imgs.slice(1);
+  return { hero: imgs[0], shots: rest.slice(0, 8), slides: rest.slice(8, 11), roleImgs: rest.slice(11, 15) };
 }
 
 /** صورة بطاقة كل خدمة محلية — من الصور التي يستهدف بها الكتالوج صفحة جدة لتلك الخدمة (أغنى مجمّع) */
@@ -232,15 +245,13 @@ export function getServiceCityPage(service: string, cityKey: string): LocalPageR
   const t = svcText(service, c);
   // الصور: المستهدفة لهذه الصفحة أولاً، ثم أخوات الخدمة (أغنى مجمّع = جدة)، ثم احتياط
   const sisters = CITY_KEYS.filter((k) => k !== cityKey).map((k) => `/${localSlug(service, k)}`);
-  const imgs = poolFor([path, ...sisters], ci + service.length, 13);
-  const hero = imgs[0];
-  const rest = imgs.slice(1);
+  const { hero, shots, slides, roleImgs } = slots(poolFor([path, ...sisters], ci, LOCAL_POOL));
   return {
     kind: "svc", path, g: `l-${slug}`, cityAr: ar, cityLatin: LATIN[cityKey] ?? ar, serviceAr: s.ar, kicker: t.kicker,
     crumbs: [{ label: "الرئيسية", href: "/" }, { label: "المدن", href: "/locations" }, { label: ar, href: cityPath(cityKey) }, { label: `${s.ar} ${ar}`, href: path }],
     h1: t.h1, title: t.title, desc: t.desc, intro: t.intro,
     keywords: [`${s.ar} ${ar}`, ...s.synonyms.map((k) => `${k} ${ar}`), `ضيافة ${ar}`],
-    hero, slides: rest.slice(8, 11), shots: rest.slice(0, 8), roleImgs: [...rest.slice(8, 12), ...rest.slice(0, 3)],
+    hero, slides, shots, roleImgs,
     roles: t.roles, packages: t.packages, why: WHY_US(ar), faqs: t.faqs, districts: c.districts,
     localServices: localServiceCards(cityKey, path),
     related: {
@@ -258,8 +269,7 @@ export function getCityPage(cityKey: string): LocalPageRecord {
   const path = cityPath(cityKey);
   const rich = CITY_PAGES.find((x) => x.name === ar);
   const svcPaths = Object.keys(SERVICES).map((svc) => `/${localSlug(svc, cityKey)}`);
-  const imgs = poolFor([path, ...svcPaths, ...INTENT_PAGES.filter((p) => p.city === cityKey).map((p) => `/${p.slug}`), ...Object.keys(SERVICES).map((svc) => `/${localSlug(svc, "jeddah")}`)], ci, 13);
-  const hero = imgs[0]; const rest = imgs.slice(1);
+  const { hero, shots, slides, roleImgs } = slots(poolFor([path, ...svcPaths, ...INTENT_PAGES.filter((p) => p.city === cityKey).map((p) => `/${p.slug}`), ...Object.keys(SERVICES).map((svc) => `/${localSlug(svc, "jeddah")}`)], ci, LOCAL_POOL));
   // الأدوار = أول فقرة محلية لكل خدمة من الثلاث (محتوى فريد لكل مدينة) مع زر إلى صفحتها (D96)
   const roles: LocalRole[] = Object.values(SERVICES).map((s) => {
     const r = svcText(s.slug, c).roles[0];
@@ -274,7 +284,7 @@ export function getCityPage(cityKey: string): LocalPageRecord {
     desc: rich?.intro ?? `ضيافة فاخرة في ${ar} — قهوجيين وصبابين قهوة سعودية وتجهيز مناسبات بطاقم سعودي. واتساب ${WA_DISPLAY}`,
     intro: rich?.intro ?? c.intro,
     keywords: rich?.keywords ?? [`ضيافة ${ar}`, `قهوجيين ${ar}`, `صبابين قهوة ${ar}`],
-    hero, slides: rest.slice(8, 11), shots: rest.slice(0, 8), roleImgs: [...rest.slice(8, 12), ...rest.slice(0, 3)],
+    hero, slides, shots, roleImgs,
     roles, packages: null,
     why: [...(rich?.highlights ?? []), ...WHY_US(ar).slice(0, 3)],
     faqs: [...cityFaqs, { q: "هل تشمل الخدمة المعدات والتقديمات؟", a: "نعم — الدلال والفناجين والتمر والتقديمات ضمن الخدمة أو بحسب طلبك." }],
@@ -290,8 +300,7 @@ export function getIntentPage(slug: string): LocalPageRecord {
   const p = INTENT_PAGES.find((x) => x.slug === slug);
   if (!p) throw new Error(`localPage: صفحة نيّة غير معروفة ${slug}`);
   const c = CITIES[p.city]; const ar = c.ar; const path = `/${slug}`;
-  const imgs = poolFor([path, `/${localSlug("qahwajiin", p.city)}`, `/${localSlug("sababin-qahwa", p.city)}`], 3, 13);
-  const hero = imgs[0]; const rest = imgs.slice(1);
+  const { hero, shots, slides, roleImgs } = slots(poolFor([path, `/${localSlug("qahwajiin", p.city)}`, `/${localSlug("sababin-qahwa", p.city)}`], 3, LOCAL_POOL));
   return {
     kind: "intent", path, g: `l-${slug}`, cityAr: ar, cityLatin: LATIN[p.city] ?? ar, serviceAr: "مباشرين قهوة", kicker: "التنظيم",
     crumbs: [{ label: "الرئيسية", href: "/" }, { label: "المدن", href: "/locations" }, { label: ar, href: cityPath(p.city) }, { label: p.ar, href: path }],
@@ -300,7 +309,7 @@ export function getIntentPage(slug: string): LocalPageRecord {
     desc: `مباشرين ومباشرات قهوة في جدة يديرون حركة التقديم في مناسبتك — توزيع الصبّابين، خدمة كل ضيف بالترتيب، تجدّد القهوة بلا انقطاع. واتساب ${WA_DISPLAY}`,
     intro: "نوفّر مباشرين قهوة في جدة يديرون حركة التقديم في مناسبتك من أولها لآخرها: توزيع الصبّابين على أقسام القاعة، خدمة كل ضيف من اليمين وبالترتيب، ومتابعة تجدّد القهوة والشاي والتمر بلا انقطاع. مباشرون رجال للمجالس والفعاليات، ومباشرات للمناسبات النسائية — بزيّ موحّد وانضباط يليق بضيوفك.",
     keywords: ["مباشرين قهوة جدة", "مباشرين قهوه جده", "مباشرين جدة", "مباشرات قهوة جدة", "مباشرين ومباشرات جدة", "مباشرين قهوة للمناسبات", "تنظيم تقديم القهوة جدة"],
-    hero, slides: rest.slice(8, 11), shots: rest.slice(0, 8), roleImgs: [...rest.slice(8, 12), ...rest.slice(0, 3)],
+    hero, slides, shots, roleImgs,
     roles: [
       { kick: "الدور", h2: "ماذا يفعل مباشر القهوة في مناسبتك؟", p: "كثير من أصحاب المناسبات في جدة يحجزون صبّابين ويكتشفون ليلة المناسبة أن المشكلة ليست في الصبّ — بل في الحركة: جهة من القاعة تُخدَم مرتين وجهة تنتظر، وضيف كبير يُترَك آخر من يُقدَّم له. هنا عمل المباشر: يقسّم القاعة مناطق، يرسم مسار كل صبّاب، يقدّم أهل الصدارة أولاً، ويبقى عينه على الدلال والفناجين حتى لا يحمل صبّاب دلّة باردة. النتيجة التي تلمسها أنت: ضيافة تمشي وحدها، وأنت متفرّغ لضيوفك." },
       { kick: "رجالي", h2: "مباشرون للمجالس والأعراس والفعاليات الرسمية", p: "في مجالس الأعيان يحضر المباشر بالبشت المطرّز ويعرف بروتوكول الصدارة: من يُقدَّم له أولاً، ومتى تُعاد الجولة، ومتى يُرفَع الفنجان. وفي مؤتمرات جدة وفعاليات الشركات يتحوّل الزيّ إلى رسمي موحّد، ويتحوّل الدور إلى تقديم صامت منظّم لا يقاطع جلسة ولا كلمة متحدّث — تنسيقاً مسبقاً مع منظّم الفعالية على التوقيتات والمداخل." },

@@ -105,8 +105,8 @@ export function generatePageMetadata({
       title: `${title} | ${SITE_NAME}`,
       description,
       images: [ogImage],
-      creator: "@keifdiafa",
-      site: "@keifdiafa",
+      creator: "@keifaldiafa", // D154 — كان @keifdiafa (حرف ناقص)
+      site: "@keifaldiafa",
     },
     robots: noIndex
       ? { index: false, follow: false }

@@ -9,6 +9,7 @@ import {
   generateOrganizationSchema,
 } from "@/lib/schema";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
+import CookieConsent from "@/components/CookieConsent";
 import { SITE_URL } from "@/lib/site";
 
 
@@ -46,8 +47,9 @@ export const metadata: Metadata = {
     default: "كيف الضيافة | خدمات الضيافة الفاخرة في المملكة",
     template: "%s | كيف الضيافة",
   },
+  // الوصف الافتراضي (يظهر فقط في الصفحات بلا وصف خاص مثل 404) — بلا ادّعاء تفوّق «أفضل» (D154: سياسة Google Ads + S10)
   description:
-    "كيف الضيافة - أفضل صبابين قهوة وصبابات زواجات في المملكة. نقدم ضيافة مناسبات VIP، قهوجية ومباشرين بزي فاخر، وتجهيز طاولات استقبال ملكية لكافة المحافل.",
+    "كيف الضيافة — قهوجيين وصبابين قهوة سعوديون، صبابات ومباشرات للمناسبات النسائية، وتجهيز ضيافة VIP للأعراس والمؤتمرات في جدة ومدن المملكة. +500 مناسبة منذ 2016.",
   keywords: [
     "كيف الضيافة",
     "خدمات الضيافة",
@@ -90,7 +92,7 @@ export const metadata: Metadata = {
     locale: "ar_SA",
     title: "كيف الضيافة | خدمات الضيافة الفاخرة في المملكة",
     description:
-      "منصة تجربة فاخرة تعكس جودة وفخامة خدمات الضيافة السعودية - قهوة، شاي، تقديمات راقية وفريق احترافي.",
+      "قهوجيين وصبابين قهوة سعوديون وتجهيز ضيافة VIP للأعراس والمؤتمرات — كيف الضيافة، جدة ومدن المملكة، منذ 2016.",
     url: SITE_URL,
     images: [
       {
@@ -106,9 +108,11 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "كيف الضيافة | خدمات الضيافة الفاخرة في المملكة",
     description:
-      "منصة تجربة فاخرة تعكس جودة وفخامة خدمات الضيافة السعودية",
+      "قهوجيين وصبابين قهوة سعوديون وتجهيز ضيافة VIP للأعراس والمؤتمرات — منذ 2016.",
     images: [`${SITE_URL}/og-cover-v2.jpg`],
-    creator: "@keifdiafa",
+    // الحساب المتحقَّق (site.ts SOCIAL.x) = @keifaldiafa — كان @keifdiafa (حرف ناقص) D154
+    creator: "@keifaldiafa",
+    site: "@keifaldiafa",
   },
   robots: {
     index: true,
@@ -179,10 +183,19 @@ export default function RootLayout({
               أو عند أول تفاعل (أسبق الاثنين) — لكل زائر،
               لا بعد التفاعل فقط (ذلك ما عطّل الاكتشاف سابقاً). يقيس Core Web Vitals
               للزائر الحقيقي (INP/TBT) لا Lighthouse وحده.
-            استثناء مقصود من قاعدة next/script (السبب أعلاه). */}
+            استثناء مقصود من قاعدة next/script (السبب أعلاه).
+            • Consent Mode v2 (D149 — PDPL): الحالة الافتراضية «denied» لكل إشارات الموافقة
+              (analytics/ad_storage/ad_user_data/ad_personalization) قبل gtag('config')؛
+              gtag تعمل حينها بلا كوكيز (cookieless pings) حتى يقبل الزائر من شريط
+              الموافقة (CookieConsent.tsx) فتُرفَع إلى «granted» وتُحفَظ في localStorage
+              `kd_consent` وتُطبَّق عند كل زيارة. `url_passthrough` يحفظ نسب التحويل بلا كوكيز. */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-ZZHYDVVMT1');gtag('config','AW-11081441847');
+            __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',wait_for_update:500});
+gtag('set','url_passthrough',true);gtag('set','ads_data_redaction',true);
+try{var kc=localStorage.getItem('kd_consent');if(kc==='granted'){gtag('consent','update',{ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',analytics_storage:'granted'});}}catch(e){}
+gtag('js',new Date());gtag('config','G-ZZHYDVVMT1');gtag('config','AW-11081441847');
 (function(){var d=0;function l(){if(d)return;d=1;var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=AW-11081441847';document.head.appendChild(s);}
 var ev=['pointerdown','keydown','touchstart','scroll'];function u(){ev.forEach(function(e){removeEventListener(e,u,{passive:true})});l();}
 ev.forEach(function(e){addEventListener(e,u,{passive:true})});
@@ -223,6 +236,7 @@ if(document.readyState==='complete'){q();}else{addEventListener('load',q);}})();
         </a>
         {children}
         <GoogleAnalytics />
+        <CookieConsent />
       </body>
     </html>
   );

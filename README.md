@@ -10,7 +10,7 @@
 
 ---
 
-> 🤖 **للوكلاء:** نقطة الدخول الوحيدة `AGENTS.md` ← ثم `docs/AGENT-STATE.md` ← `PLAN.md` ← `docs/DECISIONS.md`. الملفات التحليلية في الجذر (`*_REPORT*`, `*AUDIT*`, `*ANALYSIS*`) تاريخية (≤ 2026-09-08).
+> 🤖 **للوكلاء:** نقطة الدخول الوحيدة `AGENTS.md` ← ثم `docs/AGENT-STATE.md` ← `PLAN.md` ← `docs/DECISIONS.md`. التقارير القديمة (≤ 2026-09-08) مؤرشفة في `docs/archive/root-reports-2026-09/` — لا تُعتمد.
 
 ## ما هذا المشروع؟
 

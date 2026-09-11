@@ -4,21 +4,24 @@ import { LOCAL_PAGES, INTENT_PAGES, localSlug } from "@/lib/localPages";
 import { SITE_URL } from "@/lib/site";
 
 
-// خريطة تواريخ lastmod ثابتة — تعكس آخر تعديل حقيقي لكل قسم (من سجل git).
-// ثابتة ومتنوّعة: لا تتغيّر عند كل زحف = صادقة مع Google. تُحدّث يدوياً عند تعديل قسم.
+// خريطة تواريخ lastmod ثابتة — آخر تعديل حقيقي لكل قسم من سجل git (D150):
+//   git log -1 --format=%cs -- <ملفات القسم>   (قيست 2026-09-11؛ كل الأقسام أُعيد بناؤها على v6.9 في 2026-09-09)
+// ثابتة ومتنوّعة: لا تتغيّر عند كل زحف = صادقة مع Google. تُحدَّث يدوياً عند تعديل قسم.
 // ملاحظة: Vercel يستنسخ git بعمق 1 (shallow)، فلا يُعوّل على git log per-file وقت البناء.
 const DATES = {
-  home: "2026-07-08", // آخر تعديل: الفوتر + روابط المدن + gtag head
-  services: "2026-07-06",
-  offerings: "2026-07-06",
-  portfolio: "2026-07-06",
-  about: "2026-07-06",
-  contact: "2026-07-06",
-  locations: "2026-07-06",
-  cityPage: "2026-07-06",
-  serviceCity: "2026-07-06",
-  legal: "2026-07-08", // صفحة قانونية أُنشئت 2026-07-08
-  intentPages: "2026-09-01", // صفحات النوايا المستقلة (W1) — أولها مباشرين قهوة جدة
+  home: "2026-09-09", // src/components/home · homeContent.ts · (site)/page.tsx
+  services: "2026-09-09", // ServicesPage.tsx · servicesContent.ts
+  offerings: "2026-09-09", // OfferingsPage.tsx · offeringsContent.ts
+  portfolio: "2026-09-09", // PortfolioPage.tsx · portfolioContent.ts
+  about: "2026-09-09", // (site)/about
+  contact: "2026-09-09", // (site)/contact · ContactChannels.tsx
+  locations: "2026-09-09", // (site)/locations/page.tsx
+  cityPage: "2026-09-09", // components/local · localPage.ts · cities.ts
+  serviceCity: "2026-09-09", // components/local · localPage.ts
+  social: "2026-09-09", // (site)/social
+  legal: "2026-09-09", // (site)/legal
+  privacy: "2026-09-11", // (site)/privacy — أُنشئت D149
+  intentPages: "2026-09-09", // (site)/mubashirin-qahwa-jeddah
 };
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -53,9 +56,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/about", priority: 0.7, changeFrequency: "monthly" as const, lastModified: DATES.about },
     { path: "/contact", priority: 0.8, changeFrequency: "monthly" as const, lastModified: DATES.contact },
     { path: "/locations", priority: 0.8, changeFrequency: "monthly" as const, lastModified: DATES.locations },
-    { path: "/social", priority: 0.6, changeFrequency: "monthly" as const, lastModified: DATES.contact },
-    { path: "/links", priority: 0.5, changeFrequency: "monthly" as const, lastModified: DATES.contact },
+    { path: "/social", priority: 0.6, changeFrequency: "monthly" as const, lastModified: DATES.social },
+    // /links (وجهة الباركود المطبوع — D145) تبقى قابلة للفهرسة لكنها خارج الخريطة (D150):
+    // يتيمة (0 روابط واردة) ونصّها نسخة من قسم القنوات في /contact — إدراجها يُضعف الخريطة لا يُقوّيها.
     { path: "/legal", priority: 0.3, changeFrequency: "yearly" as const, lastModified: DATES.legal },
+    { path: "/privacy", priority: 0.3, changeFrequency: "yearly" as const, lastModified: DATES.privacy },
     ...cityRoutes,
     ...serviceCityRoutes,
     ...intentRoutes,

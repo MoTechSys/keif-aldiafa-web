@@ -13,8 +13,6 @@
     "guard": "npm run guard:seo && npm run guard:similarity && npm run guard:assets"
   },
   "dependencies": {
-    "embla-carousel-react": "^8.6.0",
-    "motion": "^12.23.24",
     "next": "^14.2.15",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
