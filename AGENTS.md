@@ -8,7 +8,7 @@
 3. `PLAN.md` كاملاً — الخطة بالمراحل 0–7، بوابات الخروج، ملف المالك (§1)، القواعد (§2).
 4. `docs/DECISIONS.md` كاملاً — **D109–D146** قرار مرقّم لكل شيء؛ القرار لا يُعدَّل بل يُنسَخ بقرار جديد يذكر ما ألغاه. **التالي الحر مكتوب في رأس الملف** — استعمله ولا تكرّر رقماً.
 5. `docs/owner-messages/` — **كل** الملفات بترتيب الاسم (التاريخ ثم الموضوع). هذه كلمات المالك حرفياً؛ آخر 6 ملفات هي سياق الجلسة الأخيرة.
-6. `docs/reports/2026-09-09-phase-6-performance.md` — آخر تقرير أداء مُقاس · **ثم** `docs/reports/2026-09-11-project-history-deep-analysis.md` و`2026-09-11-competitors-and-global-standards-research.md` (فجوات G1–G13).
+6. `docs/reports/2026-09-09-phase-6-performance.md` — آخر تقرير أداء مُقاس · **ثم** `docs/reports/2026-09-11-project-history-deep-analysis.md` و`2026-09-11-competitors-and-global-standards-research.md` (فجوات G1–G13) و`2026-09-11-structure-images-content-deep-analysis.md` (تحليل ثلاثي هيكلية/صور/محتوى بأرقام من HTML المبني — قائمة مرتّبة §4).
 7. `docs/PROMPT-AGENT-BOOTSTRAP-v2.txt` — منهج العمل (أدوار الشركة البرمجية، بوابات، نقطة العمى).
 8. ثم شغّل بوابة الجودة (§4 في AGENT-STATE) **قبل أي تعديل** وسجّل الأرقام.
 
