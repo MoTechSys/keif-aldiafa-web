@@ -18,6 +18,7 @@
  */
 import { getAllImages, getImageById, getImagesForPage, type CatalogImage } from "@/lib/imageCatalog";
 import { INTENT_CONTENT } from "@/lib/intent";
+import { LOCAL_TEXT, type CityLocalText } from "@/lib/local";
 import type { IntentGuide } from "@/lib/intent/types";
 import { CITIES, SERVICES, LOCAL_PAGES, INTENT_PAGES, localSlug, type LocalCity } from "@/lib/localPages";
 import { CITIES as CITY_PAGES } from "@/lib/cities";
@@ -276,17 +277,22 @@ export function getServiceCityPage(service: string, cityKey: string): LocalPageR
   if (!c || !s) throw new Error(`localPage: خدمة/مدينة غير معروفة ${service}/${cityKey}`);
   const ar = c.ar; const ci = CITY_KEYS.indexOf(cityKey);
   const slug = localSlug(service, cityKey); const path = `/${slug}`;
-  const t = svcText(service, c);
-  // الصور: المستهدفة لهذه الصفحة أولاً، ثم أخوات الخدمة (أغنى مجمّع = جدة)، ثم احتياط
+  // D160: نص مكتوب يدوياً للمدينة إن وُجد، وإلا القالب القديم (يُصفّى تدريجياً)
+  const hand = LOCAL_TEXT[cityKey]?.[service as keyof CityLocalText];
+  const t = hand ?? svcText(service, c);
+  // الصور: المختارة يدوياً (D160) ثم المستهدفة لهذه الصفحة، ثم أخوات الخدمة (أغنى مجمّع = جدة)، ثم احتياط
   const sisters = CITY_KEYS.filter((k) => k !== cityKey).map((k) => `/${localSlug(service, k)}`);
-  const { hero, shots, slides, roleImgs, gallery } = slots(poolFor([path, ...sisters], ci, LOCAL_POOL));
+  const n = hand ? LOCAL_POOL + 12 : LOCAL_POOL;
+  const { hero, shots, slides, roleImgs, gallery } = slots(hand?.imageIds ? poolForIntent(hand.imageIds, [path, ...sisters], ci, n) : poolFor([path, ...sisters], ci, n));
   return {
     kind: "svc", path, g: `l-${slug}`, cityAr: ar, cityLatin: LATIN[cityKey] ?? ar, serviceAr: s.ar, kicker: t.kicker,
     crumbs: [{ label: "الرئيسية", href: "/" }, { label: "المدن", href: "/locations" }, { label: ar, href: cityPath(cityKey) }, { label: `${s.ar} ${ar}`, href: path }],
     h1: t.h1, title: t.title, desc: t.desc, intro: t.intro,
     keywords: [`${s.ar} ${ar}`, ...s.synonyms.map((k) => `${k} ${ar}`), `ضيافة ${ar}`],
+    pts: hand?.pts, badge3: hand?.badge3, servicesP: hand?.servicesP, packagesP: hand?.packagesP, districtsH2: hand?.districtsH2,
+    guide: hand ? { h2: hand.guideH2, p: hand.guideP, items: hand.guide } : undefined,
     hero, slides, shots, roleImgs, gallery,
-    roles: t.roles, packages: t.packages, why: WHY_US(ar), faqs: t.faqs, districts: c.districts,
+    roles: t.roles, packages: t.packages, why: hand?.why ?? WHY_US(ar), faqs: t.faqs, districts: c.districts,
     localServices: localServiceCards(cityKey, path),
     related: {
       h2: [`${s.ar} في`, "مدن أخرى"],
