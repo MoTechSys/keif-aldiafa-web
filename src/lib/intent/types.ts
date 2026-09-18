@@ -32,6 +32,10 @@ export interface IntentContent {
   /** «الدليل» — أقسام معرفية عميقة (h3 + فقرات) تُعرض بعد الترتيبات */
   guide: IntentGuide[];
   guideH2: [string, string];
+  /** فقرة قسم الخدمات (اختيارية — تُغني عن الفقرة القالبية) */
+  servicesP?: string;
+  /** فقرة قسم الأدوار (اختيارية) */
+  rolesP?: string;
   guideP?: string;
   packages: LocalPackage[] | null;
   packagesP?: string;
@@ -43,6 +47,6 @@ export interface IntentContent {
   districtLinks?: LocalLink[];
   related: { h2: [string, string]; links: LocalLink[] };
   wa: string;
-  images: { ids?: number[]; paths: string[]; seed: number; pool: number };
+  images: { ids?: number[]; /** معرّفات تُستثنى من التعبئة الآلية (تفادي تكرار الصور بين صفحتَي نيّة) */ exclude?: number[]; paths: string[]; seed: number; pool: number };
   schema: { serviceName: string; serviceType: string };
 }

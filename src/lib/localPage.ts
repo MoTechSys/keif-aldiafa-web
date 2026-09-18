@@ -74,6 +74,8 @@ export interface LocalPageRecord {
   districtLinks?: LocalLink[];
   /** فئات العملاء في الهيرو (3) */
   pts?: string[];
+  servicesP?: string;
+  rolesP?: string;
   /** الشارة الثالثة في الهيرو */
   badge3?: string;
   /** عنوان قسم «أعمالنا» */
@@ -144,11 +146,12 @@ function slots(imgs: CatalogImage[]) {
  * مجمّع صفحة النيّة (D156): معرّفات مختارة يدوياً أولاً (publish=yes فقط)، ثم مجمّع
  * poolFor (المستهدِفة → المستعارة → احتياط) لما تبقّى — بلا تكرار.
  */
-function poolForIntent(ids: number[], paths: string[], seed: number, n: number): CatalogImage[] {
+function poolForIntent(ids: number[], paths: string[], seed: number, n: number, exclude: number[] = []): CatalogImage[] {
   const picked: CatalogImage[] = [];
   for (const id of ids) { const im = getImageById(id); if (im && !im.decorative && !picked.some((x) => x.src === im.src)) picked.push(im); }
   if (picked.length >= n) return picked.slice(0, n);
-  const rest = poolFor(paths, seed, n + picked.length).filter((im) => !picked.some((x) => x.src === im.src));
+  const ex = new Set(exclude.map((id) => getImageById(id)?.src).filter(Boolean));
+  const rest = poolFor(paths, seed, n + picked.length + exclude.length).filter((im) => !ex.has(im.src) && !picked.some((x) => x.src === im.src));
   return [...picked, ...rest].slice(0, n);
 }
 
@@ -336,7 +339,7 @@ export function getIntentPage(slug: string): LocalPageRecord {
   const path = `/${slug}`;
   const city = c.city ? CITIES[c.city] : null;
   const ar = city?.ar ?? "السعودية";
-  const { hero, shots, slides, roleImgs, gallery } = slots(poolForIntent(c.images.ids ?? [], c.images.paths, c.images.seed, c.images.pool));
+  const { hero, shots, slides, roleImgs, gallery } = slots(poolForIntent(c.images.ids ?? [], c.images.paths, c.images.seed, c.images.pool, c.images.exclude));
   const crumbs: LocalLink[] = city
     ? [{ label: "الرئيسية", href: "/" }, { label: "المدن", href: "/locations" }, { label: ar, href: cityPath(c.city!) }, { label: c.ar, href: path }]
     : [{ label: "الرئيسية", href: "/" }, { label: "الخدمات", href: "/services" }, { label: c.ar, href: path }];
@@ -344,7 +347,7 @@ export function getIntentPage(slug: string): LocalPageRecord {
     kind: "intent", path, g: `l-${slug}`, cityAr: ar, cityLatin: city ? (LATIN[c.city!] ?? ar) : "Saudi Arabia", serviceAr: c.serviceAr, kicker: c.kicker,
     crumbs,
     h1: c.h1, title: c.title, desc: c.desc, intro: c.intro, keywords: c.keywords,
-    pts: c.pts, badge3: c.badge3, worksH2: c.worksH2,
+    pts: c.pts, badge3: c.badge3, worksH2: c.worksH2, servicesP: c.servicesP, rolesP: c.rolesP,
     hero, slides, shots, roleImgs, gallery,
     roles: c.roles,
     guide: { h2: c.guideH2, p: c.guideP, items: c.guide },

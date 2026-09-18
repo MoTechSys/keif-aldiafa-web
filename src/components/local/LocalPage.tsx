@@ -110,10 +110,13 @@ export default function LocalPage({ rec }: { rec: LocalPageRecord }) {
       {/* 4) الخدمات — بطاقات محلية ✦ + تكمّل مناسبتك */}
       <section className="on-deep glow" id="services">
         <div className="wrap">
-          <SecHead label="الخدمات" h2={<Em a={`كل ما تحتاجه مناسبتك في ${ar} —`} b="من طاقم واحد" />} p={`قهوجيين وصبابين ومباشرين، ومعهم كل ما يكمّل الضيافة: سقّاة زمزم، سفرجية، كاونترات وخيام وبوفيهات — طاقم واحد يصل إلى مناسبتك في ${ar} بعدّته كاملة.`} />
+          <SecHead label="الخدمات" h2={<Em a={`كل ما تحتاجه مناسبتك في ${ar} —`} b="من طاقم واحد" />} p={rec.servicesP ?? `قهوجيين وصبابين ومباشرين، ومعهم كل ما يكمّل الضيافة: سقّاة زمزم، سفرجية، كاونترات وخيام وبوفيهات — طاقم واحد يصل إلى مناسبتك في ${ar} بعدّته كاملة.`} />
           <div className="svcs">
             <h3 className="svc-grp rv">خدماتنا في {ar}</h3>
-            {rec.localServices.map((s) => <SvcCard key={s.href} {...s} local />)}
+            {/* بطاقات تنقّل متطابقة بين كل صفحات المدينة الواحدة (D160) — وحدة موقع لا محتوى */}
+            <div data-sim="chrome" style={{ display: "contents" }}>
+              {rec.localServices.map((s) => <SvcCard key={s.href} {...s} local />)}
+            </div>
             <h3 className="svc-grp rv">تكمّل مناسبتك</h3>
             {/* وحدة موقع متكررة (D128) — display:contents لا يغيّر الشبكة */}
             <div data-sim="chrome" style={{ display: "contents" }}>
@@ -129,7 +132,7 @@ export default function LocalPage({ rec }: { rec: LocalPageRecord }) {
         <div className="wrap">
           {isCity
             ? <SecHead label="خدماتنا" h2={<Em a="خدماتنا في" b={`${ar} — عن قرب`} />} p={`ثلاث خدمات محلية بطاقم واحد — اختر ما يناسب مناسبتك في ${ar} أو اجمعها.`} />
-            : <SecHead label="كيف نعمل" h2={<Em a="ماذا يفعل طاقمنا في مناسبتك" b={`في ${ar}؟`} />} p="أدوار واضحة يعرفها أهل الضيافة في السعودية — ونوزّعها على عدد ضيوفك." />}
+            : <SecHead label="كيف نعمل" h2={<Em a="ماذا يفعل طاقمنا في مناسبتك" b={`في ${ar}؟`} />} p={rec.rolesP ?? "أدوار واضحة يعرفها أهل الضيافة في السعودية — ونوزّعها على عدد ضيوفك."} />}
           {rec.roles.map((r, i) => {
             const im = roles[i % roles.length];
             return (
