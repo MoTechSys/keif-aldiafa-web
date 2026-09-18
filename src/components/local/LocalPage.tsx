@@ -19,8 +19,9 @@ import { PHONE, WHATSAPP_DISPLAY, waLink } from "@/lib/site";
  * v6.9 بأقسامه الـ14 بالترتيب وبثلاثة أنواع (svc · city · intent):
  *   1 هيرو (مسار + بطاقة + شارات + واتساب) → 2 أعمالنا (8) → 3 شركاء (مضغوط) →
  *   4 الخدمات (محلية ✦ + تكمّل مناسبتك) → 5 كيف نعمل (أدوار) → 6 الطاقم والزي →
- *   7 التقديمات والعدّة → 8 الترتيبات (svc فقط) → 9 لماذا نحن → 10 الأسئلة →
- *   11 التغطية (الأحياء) → 12 احجز → 13 روابط → 14 تابعنا.
+ *   7 التقديمات والعدّة → 8 الترتيبات (svc/intent) → 8ب الدليل (intent — D156) →
+ *   8ج المعرض الإضافي (إن فاضت الصور — D156) → 9 لماذا نحن → 10 الأسئلة →
+ *   11 التغطية (الأحياء أو روابط المدن) → 12 احجز → 13 روابط → 14 تابعنا.
  * مكوّن خادم؛ العميل: Strip · HeroSlides · PartnersCompact (+ Lightbox/Reveal من الشِل).
  */
 
@@ -61,8 +62,8 @@ export default function LocalPage({ rec }: { rec: LocalPageRecord }) {
             <div className="sub-latin latin"><span className="l1">Keif Al-Diafa</span><span className="l2">{rec.cityLatin}</span></div>
             <h1>{rec.h1[0]} <em>{rec.h1[1]}</em></h1>
             <p className="sub">{rec.intro}</p>
-            <div className="pts"><span>جهات وفعاليات رسمية</span><span>شركات ومعارض</span><span>أعراس ومناسبات خاصة</span></div>
-            <div className="badges-l"><span>+500 مناسبة منذ 2016</span><span>طاقم سعودي مدرّب</span><span>كل أحياء {ar}</span></div>
+            <div className="pts">{(rec.pts ?? ["جهات وفعاليات رسمية", "شركات ومعارض", "أعراس ومناسبات خاصة"]).map((t) => <span key={t}>{t}</span>)}</div>
+            <div className="badges-l"><span>+500 مناسبة منذ 2016</span><span>طاقم سعودي مدرّب</span><span>{rec.badge3 ?? `كل أحياء ${ar}`}</span></div>
           </div>
           <div className="cta">
             <WaBtn text={rec.wa} cls="btn btn-gold" label="احجز عبر واتساب" ev="wa_hero" />
@@ -78,7 +79,7 @@ export default function LocalPage({ rec }: { rec: LocalPageRecord }) {
       {/* 2) أعمالنا — 8 لقطات (لايت بوكس) */}
       <section className="on-black grain" id="works">
         <div className="wrap">
-          <SecHead label="أعمالنا" h2={isCity ? <Em a="من أعمالنا في" b={ar} /> : <Em a="من أعمالنا —" b={rec.serviceAr} />} p="لقطات حقيقية من مناسبات نفّذناها. اضغط على أي صورة لتكبيرها والتنقّل بين الباقي." hint />
+          <SecHead label="أعمالنا" h2={rec.worksH2 ? <Em a={rec.worksH2[0]} b={rec.worksH2[1]} /> : isCity ? <Em a="من أعمالنا في" b={ar} /> : <Em a="من أعمالنا —" b={rec.serviceAr} />} p="لقطات حقيقية من مناسبات نفّذناها. اضغط على أي صورة لتكبيرها والتنقّل بين الباقي." hint />
           <Strip>
             {rec.shots.map((im) => (
               <figure key={im.src} className="shot" data-g={rec.g} data-go="/portfolio" data-go-txt="معرض الأعمال">
@@ -173,7 +174,7 @@ export default function LocalPage({ rec }: { rec: LocalPageRecord }) {
       {rec.packages && (
         <section className="lsec on-rich glow" id="packages">
           <div className="wrap">
-            <SecHead label="الترتيبات" h2={<Em a={`كيف نرتّب ${rec.serviceAr} لمناسبتك في`} b={ar} />} p="ثلاثة أشكال شائعة — والتشكيل يُحسب على عدد ضيوفك وشكل المكان." />
+            <SecHead label="الترتيبات" h2={<Em a={`كيف نرتّب ${rec.serviceAr} لمناسبتك في`} b={ar} />} p={rec.packagesP ?? "ثلاثة أشكال شائعة — والتشكيل يُحسب على عدد ضيوفك وشكل المكان."} />
             <div className="pk">
               {rec.packages.map((p) => (
                 <article key={p.name} className="rv">
@@ -182,6 +183,40 @@ export default function LocalPage({ rec }: { rec: LocalPageRecord }) {
                   <ul className="feats">{p.features.map((f) => <li key={f}>{f}</li>)}</ul>
                   <WaBtn text={`السلام عليكم، أرغب بالاستفسار عن «${p.name}» في ${ar}:\nالتاريخ: \nالمكان: \nعدد الضيوف: `} cls="btn btn-gold btn-sm" label="اطلب هذا الترتيب" ev="wa_pk" />
                 </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* 8ب) الدليل المعرفي — intent فقط (D156): عمق نصّي يدوي ≥1,500 كلمة/صفحة */}
+      {rec.guide && rec.guide.items.length > 0 && (
+        <section className="lsec on-deep guide" id="guide">
+          <div className="wrap">
+            <SecHead label="الدليل" h2={<Em a={rec.guide.h2[0]} b={rec.guide.h2[1]} />} p={rec.guide.p} />
+            <div className="prose gd">
+              {rec.guide.items.map((g) => (
+                <article key={g.h3} className="rv">
+                  <h3>{g.h3}</h3>
+                  {g.ps.map((t, i) => <p key={i}>{t}</p>)}
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* 8ج) المعرض الإضافي — ما فاض عن خانات القالب (D156 «معي صور كثير») */}
+      {rec.gallery.length > 0 && (
+        <section className="on-black grain" id="gallery">
+          <div className="wrap">
+            <SecHead label="المعرض" h2={<Em a="مزيد من الصور —" b={rec.serviceAr} />} p="كل صورة من مناسبة حقيقية نفّذها طاقمنا — اضغط للتكبير." />
+            <div className="pgrid">
+              {rec.gallery.map((im) => (
+                <figure key={im.src} className="shot rv" data-g={rec.g} data-go="/portfolio" data-go-txt="معرض الأعمال">
+                  <CatalogImg img={im} sizes="(max-width:899px) 46vw, 300px" sub={im.service} />
+                  <figcaption><b>{im.title}</b><span>{im.service}</span></figcaption>
+                </figure>
               ))}
             </div>
           </div>
@@ -212,8 +247,10 @@ export default function LocalPage({ rec }: { rec: LocalPageRecord }) {
       {/* 11) التغطية */}
       <section className="lsec on-deep" id="districts">
         <div className="wrap">
-          <SecHead label="التغطية" h2={`نصل إلى كل أحياء ${ar}`} />
-          <div className="dist rv">{rec.districts.map((d) => <span key={d}>{d}</span>)}</div>
+          <SecHead label="التغطية" h2={rec.districtsH2 ?? `نصل إلى كل أحياء ${ar}`} />
+          {rec.districtLinks
+            ? <div className="lnk rv">{rec.districtLinks.map((l) => <Link key={l.href} href={l.href}>{l.label}</Link>)}</div>
+            : <div className="dist rv">{rec.districts.map((d) => <span key={d}>{d}</span>)}</div>}
         </div>
       </section>
 

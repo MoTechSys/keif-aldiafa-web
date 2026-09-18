@@ -4,7 +4,8 @@
  * يطابق `master_page(rec)` في النموذج v6.9 (build.py) بثلاثة أنواع:
  *   svc    = خدمة × مدينة (24 صفحة)         /qahwajiin-jeddah …
  *   city   = صفحة المدينة (8)               /locations/جدة …
- *   intent = صفحة نيّة مستقلة (1)           /mubashirin-qahwa-jeddah
+ *   intent = صفحة نيّة مستقلة (6)           /mubashirin-qahwa-jeddah · /qahwajiyat-sababat-jeddah …
+ *            (D156: محتوى كل نيّة في ملف مستقل `lib/intent/<slug>.ts`)
  *
  * النصوص = نصوص النموذج (local.py) وهي مُترجمة أصلاً من هذا المستودع
  * (localContent.tsx / cities.ts / mubashirin page) بعد تنقية D57: لا أسعار،
@@ -15,7 +16,9 @@
  * «الصفحات» أولاً (المستوى 1 قبل غيره)، ثم مجمّع الخدمة، ثم احتياط عام
  * بتدوير ثابت حسب المدينة كي تختلف الصور بين المدن وتثبت بين البناءات.
  */
-import { getAllImages, getImagesForPage, type CatalogImage } from "@/lib/imageCatalog";
+import { getAllImages, getImageById, getImagesForPage, type CatalogImage } from "@/lib/imageCatalog";
+import { INTENT_CONTENT } from "@/lib/intent";
+import type { IntentGuide } from "@/lib/intent/types";
 import { CITIES, SERVICES, LOCAL_PAGES, INTENT_PAGES, localSlug, type LocalCity } from "@/lib/localPages";
 import { CITIES as CITY_PAGES } from "@/lib/cities";
 import { WHATSAPP_DISPLAY as WA_DISPLAY } from "@/lib/site";
@@ -65,6 +68,22 @@ export interface LocalPageRecord {
   why: string[];
   faqs: LocalFaq[];
   districts: string[];
+  /** عنوان قسم التغطية (افتراضي «نصل إلى كل أحياء {المدينة}») */
+  districtsH2?: string;
+  /** بدل شارات الأحياء: روابط (الصفحات العامة بلا مدينة → المدن الثماني) */
+  districtLinks?: LocalLink[];
+  /** فئات العملاء في الهيرو (3) */
+  pts?: string[];
+  /** الشارة الثالثة في الهيرو */
+  badge3?: string;
+  /** عنوان قسم «أعمالنا» */
+  worksH2?: [string, string];
+  /** معرض إضافي (D156) — ما فاض عن خانات القالب الـ16 */
+  gallery: CatalogImage[];
+  /** الدليل المعرفي (intent فقط — D156) */
+  guide?: { h2: [string, string]; p?: string; items: IntentGuide[] };
+  /** نص تمهيدي لقسم الترتيبات */
+  packagesP?: string;
   /** روابط «خدماتنا في المدينة» (svc/intent) — بطاقات محلية مميّزة */
   localServices: { href: string; img: CatalogImage; b: string; small: string }[];
   /** قسم الروابط الأخير */
@@ -118,7 +137,19 @@ const LOCAL_POOL = 16;
 /** تقسيم مجمّع الصور على خانات القالب — بلا تقاطع بين الخانات (كان roleImgs يعيد shots/slides) */
 function slots(imgs: CatalogImage[]) {
   const rest = imgs.slice(1);
-  return { hero: imgs[0], shots: rest.slice(0, 8), slides: rest.slice(8, 11), roleImgs: rest.slice(11, 15) };
+  return { hero: imgs[0], shots: rest.slice(0, 8), slides: rest.slice(8, 11), roleImgs: rest.slice(11, 15), gallery: rest.slice(15) };
+}
+
+/**
+ * مجمّع صفحة النيّة (D156): معرّفات مختارة يدوياً أولاً (publish=yes فقط)، ثم مجمّع
+ * poolFor (المستهدِفة → المستعارة → احتياط) لما تبقّى — بلا تكرار.
+ */
+function poolForIntent(ids: number[], paths: string[], seed: number, n: number): CatalogImage[] {
+  const picked: CatalogImage[] = [];
+  for (const id of ids) { const im = getImageById(id); if (im && !im.decorative && !picked.some((x) => x.src === im.src)) picked.push(im); }
+  if (picked.length >= n) return picked.slice(0, n);
+  const rest = poolFor(paths, seed, n + picked.length).filter((im) => !picked.some((x) => x.src === im.src));
+  return [...picked, ...rest].slice(0, n);
 }
 
 /** صورة بطاقة كل خدمة محلية — من الصور التي يستهدف بها الكتالوج صفحة جدة لتلك الخدمة (أغنى مجمّع) */
@@ -245,13 +276,13 @@ export function getServiceCityPage(service: string, cityKey: string): LocalPageR
   const t = svcText(service, c);
   // الصور: المستهدفة لهذه الصفحة أولاً، ثم أخوات الخدمة (أغنى مجمّع = جدة)، ثم احتياط
   const sisters = CITY_KEYS.filter((k) => k !== cityKey).map((k) => `/${localSlug(service, k)}`);
-  const { hero, shots, slides, roleImgs } = slots(poolFor([path, ...sisters], ci, LOCAL_POOL));
+  const { hero, shots, slides, roleImgs, gallery } = slots(poolFor([path, ...sisters], ci, LOCAL_POOL));
   return {
     kind: "svc", path, g: `l-${slug}`, cityAr: ar, cityLatin: LATIN[cityKey] ?? ar, serviceAr: s.ar, kicker: t.kicker,
     crumbs: [{ label: "الرئيسية", href: "/" }, { label: "المدن", href: "/locations" }, { label: ar, href: cityPath(cityKey) }, { label: `${s.ar} ${ar}`, href: path }],
     h1: t.h1, title: t.title, desc: t.desc, intro: t.intro,
     keywords: [`${s.ar} ${ar}`, ...s.synonyms.map((k) => `${k} ${ar}`), `ضيافة ${ar}`],
-    hero, slides, shots, roleImgs,
+    hero, slides, shots, roleImgs, gallery,
     roles: t.roles, packages: t.packages, why: WHY_US(ar), faqs: t.faqs, districts: c.districts,
     localServices: localServiceCards(cityKey, path),
     related: {
@@ -269,7 +300,7 @@ export function getCityPage(cityKey: string): LocalPageRecord {
   const path = cityPath(cityKey);
   const rich = CITY_PAGES.find((x) => x.name === ar);
   const svcPaths = Object.keys(SERVICES).map((svc) => `/${localSlug(svc, cityKey)}`);
-  const { hero, shots, slides, roleImgs } = slots(poolFor([path, ...svcPaths, ...INTENT_PAGES.filter((p) => p.city === cityKey).map((p) => `/${p.slug}`), ...Object.keys(SERVICES).map((svc) => `/${localSlug(svc, "jeddah")}`)], ci, LOCAL_POOL));
+  const { hero, shots, slides, roleImgs, gallery } = slots(poolFor([path, ...svcPaths, ...INTENT_PAGES.filter((p) => p.city === cityKey).map((p) => `/${p.slug}`), ...Object.keys(SERVICES).map((svc) => `/${localSlug(svc, "jeddah")}`)], ci, LOCAL_POOL));
   // الأدوار = أول فقرة محلية لكل خدمة من الثلاث (محتوى فريد لكل مدينة) مع زر إلى صفحتها (D96)
   const roles: LocalRole[] = Object.values(SERVICES).map((s) => {
     const r = svcText(s.slug, c).roles[0];
@@ -284,7 +315,7 @@ export function getCityPage(cityKey: string): LocalPageRecord {
     desc: rich?.intro ?? `ضيافة فاخرة في ${ar} — قهوجيين وصبابين قهوة سعودية وتجهيز مناسبات بطاقم سعودي. واتساب ${WA_DISPLAY}`,
     intro: rich?.intro ?? c.intro,
     keywords: rich?.keywords ?? [`ضيافة ${ar}`, `قهوجيين ${ar}`, `صبابين قهوة ${ar}`],
-    hero, slides, shots, roleImgs,
+    hero, slides, shots, roleImgs, gallery,
     roles, packages: null,
     why: [...(rich?.highlights ?? []), ...WHY_US(ar).slice(0, 3)],
     faqs: [...cityFaqs, { q: "هل تشمل الخدمة المعدات والتقديمات؟", a: "نعم — الدلال والفناجين والتمر والتقديمات ضمن الخدمة أو بحسب طلبك." }],
@@ -295,45 +326,38 @@ export function getCityPage(cityKey: string): LocalPageRecord {
   };
 }
 
-/** الصفحة النيّة الوحيدة: مباشرين قهوة جدة (W1) — نصوص مكتوبة يدوياً */
+/**
+ * صفحات النيّة (D156): المحتوى اليدوي في `lib/intent/<slug>.ts`، وهنا التركيب فقط
+ * (الصور · مسار التنقّل · البطاقات المحلية · الافتراضيات).
+ */
 export function getIntentPage(slug: string): LocalPageRecord {
-  const p = INTENT_PAGES.find((x) => x.slug === slug);
-  if (!p) throw new Error(`localPage: صفحة نيّة غير معروفة ${slug}`);
-  const c = CITIES[p.city]; const ar = c.ar; const path = `/${slug}`;
-  const { hero, shots, slides, roleImgs } = slots(poolFor([path, `/${localSlug("qahwajiin", p.city)}`, `/${localSlug("sababin-qahwa", p.city)}`], 3, LOCAL_POOL));
+  const c = INTENT_CONTENT[slug];
+  if (!c) throw new Error(`localPage: صفحة نيّة غير معروفة ${slug}`);
+  const path = `/${slug}`;
+  const city = c.city ? CITIES[c.city] : null;
+  const ar = city?.ar ?? "السعودية";
+  const { hero, shots, slides, roleImgs, gallery } = slots(poolForIntent(c.images.ids ?? [], c.images.paths, c.images.seed, c.images.pool));
+  const crumbs: LocalLink[] = city
+    ? [{ label: "الرئيسية", href: "/" }, { label: "المدن", href: "/locations" }, { label: ar, href: cityPath(c.city!) }, { label: c.ar, href: path }]
+    : [{ label: "الرئيسية", href: "/" }, { label: "الخدمات", href: "/services" }, { label: c.ar, href: path }];
   return {
-    kind: "intent", path, g: `l-${slug}`, cityAr: ar, cityLatin: LATIN[p.city] ?? ar, serviceAr: "مباشرين قهوة", kicker: "التنظيم",
-    crumbs: [{ label: "الرئيسية", href: "/" }, { label: "المدن", href: "/locations" }, { label: ar, href: cityPath(p.city) }, { label: p.ar, href: path }],
-    h1: ["مباشرين قهوة في جدة", "تنظيم تقديم الضيافة لكبار الضيوف"],
-    title: "مباشرين قهوة جدة — تنظيم التقديم",
-    desc: `مباشرين ومباشرات قهوة في جدة يديرون حركة التقديم في مناسبتك — توزيع الصبّابين، خدمة كل ضيف بالترتيب، تجدّد القهوة بلا انقطاع. واتساب ${WA_DISPLAY}`,
-    intro: "نوفّر مباشرين قهوة في جدة يديرون حركة التقديم في مناسبتك من أولها لآخرها: توزيع الصبّابين على أقسام القاعة، خدمة كل ضيف من اليمين وبالترتيب، ومتابعة تجدّد القهوة والشاي والتمر بلا انقطاع. مباشرين رجال للمجالس والفعاليات، ومباشرات للمناسبات النسائية — بزيّ موحّد وانضباط يليق بضيوفك.",
-    keywords: ["مباشرين قهوة جدة", "مباشرين قهوه جده", "مباشرين جدة", "مباشرات قهوة جدة", "مباشرين ومباشرات جدة", "مباشرين قهوة للمناسبات", "تنظيم تقديم القهوة جدة"],
-    hero, slides, shots, roleImgs,
-    roles: [
-      { kick: "الدور", h2: "ماذا يفعل مباشر القهوة في مناسبتك؟", p: "كثير من أصحاب المناسبات في جدة يحجزون صبّابين ويكتشفون ليلة المناسبة أن المشكلة ليست في الصبّ — بل في الحركة: جهة من القاعة تُخدَم مرتين وجهة تنتظر، وضيف كبير يُترَك آخر من يُقدَّم له. هنا عمل المباشر: يقسّم القاعة مناطق، يرسم مسار كل صبّاب، يقدّم أهل الصدارة أولاً، ويبقى عينه على الدلال والفناجين حتى لا يحمل صبّاب دلّة باردة. النتيجة التي تلمسها أنت: ضيافة تمشي وحدها، وأنت متفرّغ لضيوفك." },
-      { kick: "رجالي", h2: "مباشرين للمجالس والأعراس والفعاليات الرسمية", p: "في مجالس الأعيان يحضر المباشر بالبشت المطرّز ويعرف بروتوكول الصدارة: من يُقدَّم له أولاً، ومتى تُعاد الجولة، ومتى يُرفَع الفنجان. وفي مؤتمرات جدة وفعاليات الشركات يتحوّل الزيّ إلى رسمي موحّد، ويتحوّل الدور إلى تقديم صامت منظّم لا يقاطع جلسة ولا كلمة متحدّث — تنسيقاً مسبقاً مع منظّم الفعالية على التوقيتات والمداخل." },
-      { kick: "نسائي", h2: "مباشرات قهوة للمناسبات النسائية في جدة", p: "القسم النسائي عندنا ليس امتداداً للرجالي — طاقم مستقل من المباشرات والقهوجيات تديره مشرفة، يدخل القاعة النسائية ويخرج منها دون أي احتكاك بالقسم الآخر. التنسيق كله يجري مع مسؤولة المناسبة: توقيت الجولات، ترتيب الصدارة، وطريقة التقديم التي تفضّلها صاحبة المناسبة." },
-      { kick: "التشكيل", h2: "كم مباشراً وصبّاباً تحتاج مناسبتك؟", p: "لا نرسل «رقماً جاهزاً» — نحسب التشكيل من ثلاثة أشياء: عدد الضيوف، شكل المكان (قاعة واحدة أم أقسام؟ استراحة مفتوحة؟)، وطبيعة المناسبة. أرسل التفاصيل على واتساب ويصلك التشكيل المقترح كاملاً: العدد، الزيّ، والعدّة." },
-    ],
-    packages: null,
-    why: ["+500 مناسبة نفّذها فريقنا بأنفسنا في جدة والمنطقة الغربية — خبرة ميدانية لا وساطة", "طاقم واحد ثابت: المباشر الذي تراه في المعاينة هو من يحضر مناسبتك", "جاهزية للطلبات العاجلة داخل جدة قدر التوفّر", "العدّة كاملة معنا: دلال نحاسية وفناجين وأطقم تقديم مذهّبة", "نغطي جدة كلها ونمتد للمنطقة الغربية عند الطلب", "قسم نسائي مستقل بمشرفة — لا يُدار من القسم الرجالي"],
-    faqs: [
-      { q: "وش يسوّي مباشر القهوة بالضبط في المناسبة؟", a: "المباشر هو منظّم حركة التقديم: يرتّب مسار الصبّابين بين الضيوف، يضمن أن كل ضيف يُخدَم من اليمين وبالترتيب دون انتظار، ويراقب امتلاء الدلال وتجدّد الفناجين طوال المناسبة. باختصار: الصبّاب يصبّ، والمباشر يدير الحركة حتى لا يتزاحم التقديم ولا ينقطع." },
-      { q: "متى أحتاج مباشرين إضافة إلى الصبّابين؟", a: "في المجالس الصغيرة يكفي صبّاب أو اثنان. لكن متى كبر عدد ضيوفك، أو كانت المناسبة رسمية (استقبال، مؤتمر، عرس)، يصبح المباشر ضرورة: هو من يمنع تكدّس التقديم في جهة وإهمال جهة، ويحفظ إيقاع الضيافة من أول ضيف إلى آخرهم." },
-      { q: "هل توفّرون مباشرات نساء للمناسبات النسائية في جدة؟", a: "نعم. نوفّر مباشرات وقهوجيات بطاقم نسائي كامل للمناسبات النسائية في جدة، بزيّ مرتّب موحّد وتنسيق مباشر مع مسؤولة المناسبة، وبخصوصية تامة من الدخول حتى الانصراف." },
-      { q: "كم مباشر يلزم لمناسبتي؟", a: "يُحسب التشكيل من عدد الضيوف وتوزيع القاعة وطبيعة المناسبة. أرسل لنا عدد ضيوفك وشكل المكان على واتساب ونحدد لك التشكيل الأنسب من المباشرين والصبّابين." },
-      { q: "هل المباشرين لديكم سعوديين وبأي زيّ يحضرون؟", a: "فريقنا سعودي مدرّب على أصول الضيافة. للمناسبات التراثية والأعراس يحضر المباشرين بالزيّ السعودي والبشوت المطرّزة، وللمؤتمرات والفعاليات الرسمية بزيّ رسمي موحّد — تختار ما يناسب طابع مناسبتك." },
-      { q: "كيف أحجز مباشرين قهوة في جدة؟", a: `أرسل لنا على واتساب ${WA_DISPLAY}: تاريخ المناسبة، مكانها في جدة، عدد الضيوف، ونوعها (رجالية/نسائية/مختلطة الأقسام). نرد عليك بالتشكيل المقترح. كلما بكّرت في مواسم الأعراس كان أفضل، ونلبّي الطلبات العاجلة قدر التوفّر.` },
-    ],
-    districts: [...c.districts, "الحمدانية", "المرجان", "النهضة", "الزهراء"],
-    localServices: localServiceCards(p.city, path),
-    related: { h2: ["خدمات أخرى في", ar], links: Object.values(SERVICES).map((s) => ({ label: `${s.ar} ${ar}`, href: `/${localSlug(s.slug, p.city)}` })) },
-    wa: "السلام عليكم، أرغب بحجز مباشرين قهوة لمناسبة في جدة:\nالتاريخ: \nالمكان: \nعدد الضيوف: ",
+    kind: "intent", path, g: `l-${slug}`, cityAr: ar, cityLatin: city ? (LATIN[c.city!] ?? ar) : "Saudi Arabia", serviceAr: c.serviceAr, kicker: c.kicker,
+    crumbs,
+    h1: c.h1, title: c.title, desc: c.desc, intro: c.intro, keywords: c.keywords,
+    pts: c.pts, badge3: c.badge3, worksH2: c.worksH2,
+    hero, slides, shots, roleImgs, gallery,
+    roles: c.roles,
+    guide: { h2: c.guideH2, p: c.guideP, items: c.guide },
+    packages: c.packages, packagesP: c.packagesP,
+    why: c.why, faqs: c.faqs,
+    districts: c.districts ?? city?.districts ?? [], districtsH2: c.districtsH2, districtLinks: c.districtLinks,
+    localServices: city ? localServiceCards(c.city!, path) : localServiceCards("jeddah", path),
+    related: c.related,
+    wa: c.wa,
   };
 }
 
-/** كل الصفحات المحلية (33) — لخرائط الموقع والفحوص */
+/** كل الصفحات المحلية (38) — لخرائط الموقع والفحوص */
 export function allLocalPaths(): string[] {
   return [
     ...LOCAL_PAGES.map((p) => `/${localSlug(p.service, p.city)}`),

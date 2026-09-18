@@ -125,15 +125,11 @@ export const LOCAL_PAGES: { service: string; city: string }[] = Object.keys(
 export const INTENT_PAGES: {
   slug: string;
   ar: string;
-  city: string; // مفتاح في CITIES
+  city: string; // مفتاح في CITIES — "" للصفحات العامة (بلا مدينة)
   short: string;
 }[] = [
-  {
-    slug: "mubashirin-qahwa-jeddah",
-    ar: "مباشرين قهوة جدة",
-    city: "jeddah",
-    short: "مباشرين ومباشرات ينظّمون حركة تقديم القهوة في مناسبات جدة الكبيرة",
-  },
+  { slug: "mubashirin-qahwa-jeddah", ar: "مباشرين قهوة جدة", city: "jeddah", short: "مباشرين ومباشرات ينظّمون حركة تقديم القهوة في مناسبات جدة الكبيرة" },
+  { slug: "qahwajiyat-sababat-jeddah", ar: "قهوجيات وصبابات جدة", city: "jeddah", short: "طاقم نسائي كامل بمشرفة مستقلة — قهوجيات وصبابات ومباشرات للمناسبات النسائية" },
 ];
 
 export function localSlug(service: string, city: string): string {

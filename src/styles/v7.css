@@ -751,3 +751,10 @@ body.ch-flash::after{content:"";position:fixed;inset:0;z-index:9998;pointer-even
 .lfoot{display:flex;justify-content:center;align-items:center;gap:10px;flex-wrap:wrap;padding:8px 20px calc(28px + env(safe-area-inset-bottom));font-size:.8rem;color:var(--cream-3);letter-spacing:.02em}
 .lfoot a{color:var(--gold);border-bottom:1px solid rgba(197,160,89,.35)}
 @media (min-width:900px){.links-page .chlist{max-width:560px;grid-template-columns:1fr}.links-page .linkhead{padding-block:30px 16px}}
+/* ===== الدليل المعرفي في صفحات النيّة (D156) ===== */
+.guide .prose.gd{max-width:76ch}
+.guide .gd article{border:1px solid var(--line);border-radius:18px;padding:18px 20px;background:rgba(36,36,36,.45)}
+.guide .gd article+article{margin-top:14px}
+.guide .gd h3{font-size:1.12rem;color:var(--gold-hi);line-height:1.5;font-family:var(--f-head)}
+.guide .gd p{color:var(--cream-2);font-size:.96rem;line-height:1.95;margin-top:10px}
+@media (min-width:900px){.guide .gd article{padding:24px 28px}.guide .gd h3{font-size:1.25rem}}
