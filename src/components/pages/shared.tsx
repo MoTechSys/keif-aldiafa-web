@@ -4,6 +4,7 @@ import CatalogImg from "@/components/home/CatalogImg";
 import HeroPicture from "@/components/home/HeroPicture";
 import { WaIcon } from "@/components/v7/WaIcon";
 import type { CatalogImage } from "@/lib/imageCatalog";
+import { INTENT_PAGES } from "@/lib/localPages";
 import { WHATSAPP_DISPLAY, PHONE, waLink } from "@/lib/site";
 
 /**
@@ -112,6 +113,25 @@ export function ContactBlock({ h2, p, wa }: { h2: ReactNode; p: string; wa: stri
         </div>
         <p className="tel rv">واتساب واتصال: <a href={`tel:${PHONE}`}>{WHATSAPP_DISPLAY}</a></p>
         <p className="assure rv">عروض أسعار وعقود وفواتير رسمية للجهات والشركات</p>
+      </div>
+    </section>
+  );
+}
+
+/**
+ * IntentLinks — روابط سياقية إلى صفحات النيّة (المرحلة 7 · D160):
+ * فقرة قصيرة بصياغة الصفحة المضيفة + روابط .lnk إلى الصفحات المختارة من INTENT_PAGES
+ * (النص = كلمات الباحث المُقاسة كما هي في INTENT_PAGES.ar). لا يُكرَّر نص الصفحة الهدف.
+ */
+export function IntentLinks({ label, h2, p, slugs, cls = "on-deep" }: {
+  label: string; h2: ReactNode; p: string; slugs: string[]; cls?: string;
+}) {
+  const links = slugs.map((s) => INTENT_PAGES.find((i) => i.slug === s)).filter((x): x is (typeof INTENT_PAGES)[number] => Boolean(x));
+  return (
+    <section className={`${cls} intent-links`} id="intent-links">
+      <div className="wrap">
+        <div className="sec-head"><span className="label rv">{label}</span><h2 className="rv">{h2}</h2><p className="rv">{p}</p></div>
+        <div className="lnk rv">{links.map((l) => <Link key={l.slug} href={`/${l.slug}`} title={l.short}>{l.ar}</Link>)}</div>
       </div>
     </section>
   );

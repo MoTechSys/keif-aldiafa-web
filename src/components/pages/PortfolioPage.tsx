@@ -1,5 +1,5 @@
 import CatalogImg from "@/components/home/CatalogImg";
-import { ContactBlock, PageHero, WaBtn } from "@/components/pages/shared";
+import { ContactBlock, IntentLinks, PageHero, WaBtn } from "@/components/pages/shared";
 import PortfolioFilters from "@/components/pages/PortfolioFilters";
 import { FILTERS, PORTFOLIO_HERO, PORTFOLIO_WA, SHOTS } from "@/lib/portfolioContent";
 
@@ -36,6 +36,12 @@ export default function PortfolioPage() {
           <p className="pnote rv">شعارات الشركات في الصور تُعرض بوصفها جزءًا من المناسبة نفسها، وتوسم بـ «شركة».</p>
         </div>
       </section>
+      <IntentLinks
+        label="أعجبتك لقطة؟"
+        h2={<>اطلب <em>مثلها</em> لمناسبتك</>}
+        p="كل نوع في المعرض له صفحة تشرح الطاقم والخطوات والأسعار التقريبية — زواج، شركات، يوم وطني، أو مناسبة نسائية."
+        slugs={["diyafa-a3ras-jeddah", "coffee-break-sharikat-jeddah", "diyafa-alyawm-alwatani", "qahwajiyat-sababat-jeddah", "qahwajiin"]}
+      />
       <ContactBlock h2={<>تريد مناسبة <em>بهذا المستوى؟</em></>} p="أرسل المدينة والتاريخ وعدد الضيوف — ونعود إليك بعرض." wa={PORTFOLIO_WA} />
     </div>
   );

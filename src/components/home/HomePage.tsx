@@ -11,6 +11,7 @@ import { WaIcon } from "@/components/v7/WaIcon";
 import { WA_DEFAULT_MSG } from "@/components/v7/nav";
 import { SOCIAL_ICONS } from "@/components/v7/socialIcons";
 import { CITIES } from "@/lib/cities";
+import { INTENT_PAGES } from "@/lib/localPages";
 import {
   CONTACT_WA, FAQS, HERO, PACKAGES, ROLES, ROLES_WA, SERVICE_GROUPS, WHO, WHY, WORKS, packageWa,
 } from "@/lib/homeContent";
@@ -27,6 +28,8 @@ import { PHONE, WHATSAPP_DISPLAY, waLink } from "@/lib/site";
 
 /** ترتيب المدن كما في النموذج — جدة أولاً (main) */
 const CITY_ORDER = ["جدة", "مكة-المكرمة", "المدينة-المنورة", "الرياض", "الطائف", "الدمام", "أبها", "ينبع"];
+/** المرحلة 7 (D160): روابط النيّة الخمس الجديدة + الدليل العام في شريط المدن — بكلمات الباحث */
+const HOME_INTENTS = ["qahwajiin", "diyafa-a3ras-jeddah", "qahwajiyat-sababat-jeddah", "coffee-break-sharikat-jeddah", "diyafa-alyawm-alwatani"].map((s) => INTENT_PAGES.find((i) => i.slug === s)).filter((i): i is NonNullable<typeof i> => !!i);
 const HOME_CITIES = CITY_ORDER.map((slug) => CITIES.find((c) => c.slug === slug)).filter((c): c is NonNullable<typeof c> => !!c);
 
 function Hero() {
@@ -269,6 +272,10 @@ function Cities() {
           <Link key={c.slug} className={i === 0 ? "main" : undefined} href={`/locations/${c.slug}`}>{c.name}</Link>
         ))}
         <Link href="/locations">كل المدن ›</Link>
+      </div>
+      <div className="wrap rv" style={{ marginTop: 10 }}>
+        <span className="lbl">وبحسب المناسبة:</span>
+        {HOME_INTENTS.map((i) => <Link key={i.slug} href={`/${i.slug}`} title={i.short}>{i.ar}</Link>)}
       </div>
     </section>
   );

@@ -1,5 +1,5 @@
 import CatalogImg from "@/components/home/CatalogImg";
-import { Chips, ContactBlock, FaqBlock, PageHero, WaBtn } from "@/components/pages/shared";
+import { Chips, ContactBlock, FaqBlock, IntentLinks, PageHero, WaBtn } from "@/components/pages/shared";
 import {
   DISTRIBUTIONS_WA, EQUIPMENT, EQUIPMENT_TOTAL, EQUIPMENT_WA, FAQ_OFFERINGS,
   OFFERINGS_CONTACT_WA, OFFERINGS_HERO, OFFERINGS_HERO_WA, OFFERING_CATEGORIES, type OfferingItem,
@@ -87,6 +87,13 @@ export default function OfferingsPage() {
         </div>
       </section>
 
+      <IntentLinks
+        cls="on-rich"
+        label="من يقدّمها؟"
+        h2={<>التقديمات تصل <em>مع طاقمها</em></>}
+        p="القهوة والحلا والتوزيعات لا تُرسل وحدها — يقدّمها قهوجيين أو طاقم نسائي أو فريق كوفي بريك بحسب مناسبتك. اعرف الطاقم المناسب:"
+        slugs={["qahwajiin", "coffee-break-sharikat-jeddah", "diyafa-alyawm-alwatani", "diyafa-a3ras-jeddah"]}
+      />
       <FaqBlock items={FAQ_OFFERINGS} h2="عن التقديمات والمعدات" />
       <ContactBlock h2={<>أرسل قائمتك <em>ونعود إليك بعرض</em></>} p="اختر الأصناف، وأخبرنا بالمدينة والتاريخ وعدد الضيوف." wa={OFFERINGS_CONTACT_WA} />
     </div>

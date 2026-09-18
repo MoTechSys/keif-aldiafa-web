@@ -1,6 +1,6 @@
 import Link from "next/link";
 import CatalogImg from "@/components/home/CatalogImg";
-import { Chips, ContactBlock, FaqBlock, Fig, PageHero, WaBtn } from "@/components/pages/shared";
+import { Chips, ContactBlock, FaqBlock, Fig, IntentLinks, PageHero, WaBtn } from "@/components/pages/shared";
 import {
   FAQ_SERVICES, SERVICES, SERVICES_CONTACT_WA, SERVICES_HERO, SERVICES_HERO_WA, SERVICE_GROUPS, chipLabel, serviceWa, type Service,
 } from "@/lib/servicesContent";
@@ -78,6 +78,13 @@ export default function ServicesPage() {
           </div>
         </section>
       ))}
+      <IntentLinks
+        cls="on-rich"
+        label="بحسب مناسبتك"
+        h2={<>تبحث عن طاقم لمناسبة <em>محدّدة؟</em></>}
+        p="جمعنا لكل نوع مناسبة صفحة مستقلة: من يعمل فيها، كم قهوجي تحتاج، وكيف يسير التقديم — بكلمات الباحث نفسها."
+        slugs={["qahwajiin", "diyafa-a3ras-jeddah", "qahwajiyat-sababat-jeddah", "coffee-break-sharikat-jeddah", "diyafa-alyawm-alwatani", "mubashirin-qahwa-jeddah"]}
+      />
       <FaqBlock items={FAQ_SERVICES} h2="قبل أن تختار الخدمة" />
       <ContactBlock h2={<>لم تجد ما تبحث عنه؟ <em>أخبرنا بمناسبتك</em></>} p="نقترح عليك الطاقم والزي والتقديمات المناسبة — بلا التزام." wa={SERVICES_CONTACT_WA} />
     </div>
