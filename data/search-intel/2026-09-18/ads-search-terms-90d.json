@@ -1,0 +1,5028 @@
+[
+{
+"term": "قهوجي",
+"impr": 5064,
+"clicks": 92,
+"cost_sar": 157.96,
+"conv": 4.7
+},
+{
+"term": "قهوجيين",
+"impr": 168,
+"clicks": 67,
+"cost_sar": 458.18,
+"conv": 50.9
+},
+{
+"term": "قهوجي جدة",
+"impr": 603,
+"clicks": 56,
+"cost_sar": 218.41,
+"conv": 6.9
+},
+{
+"term": "قهوجيين وصبابين جدة",
+"impr": 234,
+"clicks": 49,
+"cost_sar": 318.26,
+"conv": 29.7
+},
+{
+"term": "صبابين قهوة",
+"impr": 309,
+"clicks": 44,
+"cost_sar": 178.88,
+"conv": 3.3
+},
+{
+"term": "قهوجي في جدة",
+"impr": 387,
+"clicks": 37,
+"cost_sar": 144.54,
+"conv": 0.0
+},
+{
+"term": "قهوجي وصبابين جدة",
+"impr": 215,
+"clicks": 30,
+"cost_sar": 127.13,
+"conv": 0.0
+},
+{
+"term": "قهوجي الفيحاء",
+"impr": 207,
+"clicks": 25,
+"cost_sar": 200.02,
+"conv": 0.0
+},
+{
+"term": "قهوجيه",
+"impr": 116,
+"clicks": 24,
+"cost_sar": 51.36,
+"conv": 2.4
+},
+{
+"term": "مباشرين قهوة",
+"impr": 220,
+"clicks": 22,
+"cost_sar": 122.49,
+"conv": 3.0
+},
+{
+"term": "مباشرات ضيافة جدة",
+"impr": 72,
+"clicks": 21,
+"cost_sar": 82.4,
+"conv": 9.0
+},
+{
+"term": "مباشرين قهوة جدة",
+"impr": 207,
+"clicks": 21,
+"cost_sar": 52.71,
+"conv": 0.0
+},
+{
+"term": "صبابات قهوة جدة",
+"impr": 65,
+"clicks": 20,
+"cost_sar": 93.83,
+"conv": 5.0
+},
+{
+"term": "قهوجين",
+"impr": 67,
+"clicks": 17,
+"cost_sar": 142.95,
+"conv": 2.0
+},
+{
+"term": "قهوجيات جدة",
+"impr": 114,
+"clicks": 14,
+"cost_sar": 65.71,
+"conv": 8.0
+},
+{
+"term": "قهوجيين جده",
+"impr": 26,
+"clicks": 11,
+"cost_sar": 64.07,
+"conv": 9.1
+},
+{
+"term": "قهوجي جده",
+"impr": 116,
+"clicks": 10,
+"cost_sar": 23.72,
+"conv": 0.0
+},
+{
+"term": "قهوجي وصبابين",
+"impr": 153,
+"clicks": 10,
+"cost_sar": 36.46,
+"conv": 0.0
+},
+{
+"term": "صبابين قهوة بجدة",
+"impr": 57,
+"clicks": 8,
+"cost_sar": 38.98,
+"conv": 2.0
+},
+{
+"term": "صبابين قهوة جدة",
+"impr": 68,
+"clicks": 8,
+"cost_sar": 48.95,
+"conv": 0.9
+},
+{
+"term": "ضيافة للمناسبات",
+"impr": 22,
+"clicks": 8,
+"cost_sar": 21.35,
+"conv": 1.0
+},
+{
+"term": "صبابين زمزم",
+"impr": 27,
+"clicks": 7,
+"cost_sar": 15.05,
+"conv": 0.0
+},
+{
+"term": "ضيافة",
+"impr": 82,
+"clicks": 7,
+"cost_sar": 27.87,
+"conv": 2.0
+},
+{
+"term": "قهوجية جدة",
+"impr": 23,
+"clicks": 7,
+"cost_sar": 46.16,
+"conv": 3.0
+},
+{
+"term": "مباشرات قهوة",
+"impr": 18,
+"clicks": 7,
+"cost_sar": 20.81,
+"conv": 0.0
+},
+{
+"term": "صباب قهوة",
+"impr": 23,
+"clicks": 6,
+"cost_sar": 34.08,
+"conv": 0.0
+},
+{
+"term": "ضيافة رجال جدة",
+"impr": 9,
+"clicks": 6,
+"cost_sar": 16.99,
+"conv": 1.0
+},
+{
+"term": "خدمة الضيافة للمناسبات",
+"impr": 10,
+"clicks": 5,
+"cost_sar": 31.33,
+"conv": 3.0
+},
+{
+"term": "ضيافة جدة",
+"impr": 21,
+"clicks": 5,
+"cost_sar": 12.64,
+"conv": 0.0
+},
+{
+"term": "ضيافة للمناسبات جدة",
+"impr": 35,
+"clicks": 5,
+"cost_sar": 12.97,
+"conv": 1.0
+},
+{
+"term": "قهوجية ومباشرين في جدة",
+"impr": 65,
+"clicks": 4,
+"cost_sar": 17.47,
+"conv": 0.0
+},
+{
+"term": "قهوجيه في جدة",
+"impr": 27,
+"clicks": 4,
+"cost_sar": 17.28,
+"conv": 3.0
+},
+{
+"term": "مباشرات",
+"impr": 28,
+"clicks": 4,
+"cost_sar": 11.28,
+"conv": 1.0
+},
+{
+"term": "ضيافة زواجات جدة",
+"impr": 16,
+"clicks": 4,
+"cost_sar": 10.58,
+"conv": 1.0
+},
+{
+"term": "زفاف",
+"impr": 132,
+"clicks": 4,
+"cost_sar": 11.54,
+"conv": 0.0
+},
+{
+"term": "كيف الضيافه",
+"impr": 11,
+"clicks": 4,
+"cost_sar": 10.04,
+"conv": 0.0
+},
+{
+"term": "قهوجيين وصبابين في الرياض",
+"impr": 3,
+"clicks": 4,
+"cost_sar": 18.55,
+"conv": 3.0
+},
+{
+"term": "ضيافه",
+"impr": 13,
+"clicks": 3,
+"cost_sar": 12.43,
+"conv": 0.0
+},
+{
+"term": "قهوجي في جده",
+"impr": 30,
+"clicks": 3,
+"cost_sar": 11.47,
+"conv": 1.0
+},
+{
+"term": "مباشرات قهوة بجدة",
+"impr": 23,
+"clicks": 3,
+"cost_sar": 6.89,
+"conv": 1.0
+},
+{
+"term": "مباشرين قهوه",
+"impr": 20,
+"clicks": 3,
+"cost_sar": 30.64,
+"conv": 0.0
+},
+{
+"term": "صبابات جدة",
+"impr": 23,
+"clicks": 3,
+"cost_sar": 14.0,
+"conv": 1.0
+},
+{
+"term": "قهوجيات",
+"impr": 32,
+"clicks": 3,
+"cost_sar": 7.8,
+"conv": 0.0
+},
+{
+"term": "قهوه عربيه",
+"impr": 17,
+"clicks": 3,
+"cost_sar": 3.65,
+"conv": 0.0
+},
+{
+"term": "catering jeddah",
+"impr": 14,
+"clicks": 3,
+"cost_sar": 9.91,
+"conv": 0.0
+},
+{
+"term": "خدمات ضيافة",
+"impr": 3,
+"clicks": 3,
+"cost_sar": 9.52,
+"conv": 0.0
+},
+{
+"term": "ضيافات جدة",
+"impr": 5,
+"clicks": 3,
+"cost_sar": 12.13,
+"conv": 1.0
+},
+{
+"term": "coffee",
+"impr": 9,
+"clicks": 2,
+"cost_sar": 3.99,
+"conv": 0.0
+},
+{
+"term": "تقديمات ضيافه",
+"impr": 9,
+"clicks": 2,
+"cost_sar": 6.09,
+"conv": 0.0
+},
+{
+"term": "عنوان القهوة",
+"impr": 17,
+"clicks": 2,
+"cost_sar": 7.9,
+"conv": 0.0
+},
+{
+"term": "قهوجي الفيحاء جدة",
+"impr": 11,
+"clicks": 2,
+"cost_sar": 2.36,
+"conv": 0.0
+},
+{
+"term": "قهوجي المحمدية جدة",
+"impr": 31,
+"clicks": 2,
+"cost_sar": 1.88,
+"conv": 0.0
+},
+{
+"term": "قهوجية",
+"impr": 21,
+"clicks": 2,
+"cost_sar": 3.06,
+"conv": 0.0
+},
+{
+"term": "قهوجيه جده",
+"impr": 18,
+"clicks": 2,
+"cost_sar": 6.91,
+"conv": 0.0
+},
+{
+"term": "قهوجيين ومباشرين",
+"impr": 17,
+"clicks": 2,
+"cost_sar": 2.7,
+"conv": 1.0
+},
+{
+"term": "مباشرات جدة",
+"impr": 7,
+"clicks": 2,
+"cost_sar": 8.5,
+"conv": 2.0
+},
+{
+"term": "مباشرين",
+"impr": 30,
+"clicks": 2,
+"cost_sar": 3.7,
+"conv": 0.0
+},
+{
+"term": "catering services jeddah",
+"impr": 7,
+"clicks": 2,
+"cost_sar": 6.16,
+"conv": 0.0
+},
+{
+"term": "صبابات قهوه",
+"impr": 7,
+"clicks": 2,
+"cost_sar": 9.94,
+"conv": 0.0
+},
+{
+"term": "قهوجي مباشرين",
+"impr": 2,
+"clicks": 2,
+"cost_sar": 3.75,
+"conv": 0.0
+},
+{
+"term": "تجهيز حفلات ومناسبات",
+"impr": 4,
+"clicks": 2,
+"cost_sar": 4.25,
+"conv": 0.0
+},
+{
+"term": "شركات ضيافه",
+"impr": 2,
+"clicks": 2,
+"cost_sar": 8.04,
+"conv": 2.0
+},
+{
+"term": "شركة ضيافة للمناسبات",
+"impr": 1,
+"clicks": 2,
+"cost_sar": 4.7,
+"conv": 0.0
+},
+{
+"term": "ضيافة زواج رجال",
+"impr": 2,
+"clicks": 2,
+"cost_sar": 4.08,
+"conv": 0.0
+},
+{
+"term": "عاملة ضيافة",
+"impr": 3,
+"clicks": 2,
+"cost_sar": 8.64,
+"conv": 0.0
+},
+{
+"term": "مباشرين رجال",
+"impr": 4,
+"clicks": 2,
+"cost_sar": 13.3,
+"conv": 1.0
+},
+{
+"term": "black cup",
+"impr": 1,
+"clicks": 1,
+"cost_sar": 21.63,
+"conv": 0.0
+},
+{
+"term": "event planning company",
+"impr": 1,
+"clicks": 1,
+"cost_sar": 3.97,
+"conv": 1.0
+},
+{
+"term": "jacksepticeye coffee",
+"impr": 1,
+"clicks": 1,
+"cost_sar": 1.96,
+"conv": 0.0
+},
+{
+"term": "sitio",
+"impr": 1,
+"clicks": 1,
+"cost_sar": 3.1,
+"conv": 0.0
+},
+{
+"term": "افضل كوفي يبيع ماتشا",
+"impr": 1,
+"clicks": 1,
+"cost_sar": 37.72,
+"conv": 0.0
+},
+{
+"term": "اقرب قهوجي",
+"impr": 32,
+"clicks": 1,
+"cost_sar": 0.09,
+"conv": 0.0
+},
+{
+"term": "خدمه ضيافه",
+"impr": 2,
+"clicks": 1,
+"cost_sar": 3.02,
+"conv": 0.0
+},
+{
+"term": "صبابات",
+"impr": 14,
+"clicks": 1,
+"cost_sar": 8.25,
+"conv": 0.0
+},
+{
+"term": "صبابات قهوة",
+"impr": 12,
+"clicks": 1,
+"cost_sar": 17.25,
+"conv": 0.0
+},
+{
+"term": "صبابين القهوة",
+"impr": 3,
+"clicks": 1,
+"cost_sar": 2.42,
+"conv": 0.0
+},
+{
+"term": "صبابين قهوة في جدة",
+"impr": 2,
+"clicks": 1,
+"cost_sar": 2.74,
+"conv": 0.0
+},
+{
+"term": "صبابين قهوه",
+"impr": 7,
+"clicks": 1,
+"cost_sar": 36.27,
+"conv": 0.0
+},
+{
+"term": "صبابين وقهوجيين",
+"impr": 2,
+"clicks": 1,
+"cost_sar": 22.41,
+"conv": 0.0
+},
+{
+"term": "عنوان القهوه",
+"impr": 5,
+"clicks": 1,
+"cost_sar": 22.65,
+"conv": 0.0
+},
+{
+"term": "فن القهوة",
+"impr": 2,
+"clicks": 1,
+"cost_sar": 5.38,
+"conv": 0.0
+},
+{
+"term": "قهوة",
+"impr": 20,
+"clicks": 1,
+"cost_sar": 1.8,
+"conv": 0.0
+},
+{
+"term": "قهوة اسانتي مريم",
+"impr": 1,
+"clicks": 1,
+"cost_sar": 19.98,
+"conv": 0.0
+},
+{
+"term": "قهوجي الرياض",
+"impr": 6,
+"clicks": 1,
+"cost_sar": 2.66,
+"conv": 0.0
+},
+{
+"term": "قهوجي جدة المرجان",
+"impr": 12,
+"clicks": 1,
+"cost_sar": 2.16,
+"conv": 1.1
+},
+{
+"term": "قهوجي جده الزهراء",
+"impr": 7,
+"clicks": 1,
+"cost_sar": 16.02,
+"conv": 0.0
+},
+{
+"term": "قهوجي فرع الفيحاء",
+"impr": 1,
+"clicks": 1,
+"cost_sar": 0.88,
+"conv": 0.0
+},
+{
+"term": "قهوجي وقهوجين ومباشرين رجال ونساء جدة والعزاء اسمح الله",
+"impr": 31,
+"clicks": 1,
+"cost_sar": 5.8,
+"conv": 0.0
+},
+{
+"term": "قهوجية في جدة",
+"impr": 7,
+"clicks": 1,
+"cost_sar": 3.41,
+"conv": 1.0
+},
+{
+"term": "قهوه",
+"impr": 5,
+"clicks": 1,
+"cost_sar": 2.34,
+"conv": 0.0
+},
+{
+"term": "قهوه عربي",
+"impr": 18,
+"clicks": 1,
+"cost_sar": 0.98,
+"conv": 0.0
+},
+{
+"term": "قهوه مره",
+"impr": 4,
+"clicks": 1,
+"cost_sar": 0.33,
+"conv": 0.0
+},
+{
+"term": "قهوه هوس",
+"impr": 1,
+"clicks": 1,
+"cost_sar": 11.43,
+"conv": 0.0
+},
+{
+"term": "كيف",
+"impr": 3,
+"clicks": 1,
+"cost_sar": 4.56,
+"conv": 2.0
+},
+{
+"term": "مباشرين قهوة بجدة",
+"impr": 2,
+"clicks": 1,
+"cost_sar": 4.07,
+"conv": 0.0
+},
+{
+"term": "مقهى قهوجي جدة",
+"impr": 5,
+"clicks": 1,
+"cost_sar": 2.03,
+"conv": 0.0
+},
+{
+"term": "gahwaji قهوجي",
+"impr": 14,
+"clicks": 1,
+"cost_sar": 0.06,
+"conv": 0.0
+},
+{
+"term": "اجهزة تحضير القهوة",
+"impr": 1,
+"clicks": 1,
+"cost_sar": 2.46,
+"conv": 0.0
+},
+{
+"term": "اقرب قهوه عربي",
+"impr": 1,
+"clicks": 1,
+"cost_sar": 1.31,
+"conv": 0.0
+},
+{
+"term": "الدلة",
+"impr": 3,
+"clicks": 1,
+"cost_sar": 1.55,
+"conv": 0.0
+},
+{
+"term": "القهوه العربيه",
+"impr": 5,
+"clicks": 1,
+"cost_sar": 1.01,
+"conv": 0.0
+},
+{
+"term": "صبابات قهوه جده",
+"impr": 5,
+"clicks": 1,
+"cost_sar": 2.23,
+"conv": 1.0
+},
+{
+"term": "صبابين رجال",
+"impr": 1,
+"clicks": 1,
+"cost_sar": 8.35,
+"conv": 1.0
+},
+{
+"term": "ضيافة رجال",
+"impr": 11,
+"clicks": 1,
+"cost_sar": 4.58,
+"conv": 0.5
+},
+{
+"term": "ضيافة رجالية",
+"impr": 4,
+"clicks": 1,
+"cost_sar": 4.29,
+"conv": 0.0
+},
+{
+"term": "قهوة سعودية",
+"impr": 5,
+"clicks": 1,
+"cost_sar": 1.5,
+"conv": 0.0
+},
+{
+"term": "قهوة قهوجي",
+"impr": 1,
+"clicks": 1,
+"cost_sar": 2.01,
+"conv": 0.0
+},
+{
+"term": "قهوجى",
+"impr": 6,
+"clicks": 1,
+"cost_sar": 1.89,
+"conv": 0.0
+},
+{
+"term": "قهوجي جده رجال قهوجيات نساء مباشرات ومباشرين",
+"impr": 5,
+"clicks": 1,
+"cost_sar": 1.96,
+"conv": 0.0
+},
+{
+"term": "قهوجي كوفي الفيحاء",
+"impr": 2,
+"clicks": 1,
+"cost_sar": 0.76,
+"conv": 0.0
+},
+{
+"term": "قهوجيات ابها",
+"impr": 2,
+"clicks": 1,
+"cost_sar": 3.6,
+"conv": 0.0
+},
+{
+"term": "قهوجيين في جدة",
+"impr": 2,
+"clicks": 1,
+"cost_sar": 0.76,
+"conv": 0.0
+},
+{
+"term": "كوفي قهوجي حي الفيحاء",
+"impr": 1,
+"clicks": 1,
+"cost_sar": 0.63,
+"conv": 0.0
+},
+{
+"term": "كيان قهوة اليوم",
+"impr": 2,
+"clicks": 1,
+"cost_sar": 1.68,
+"conv": 0.0
+},
+{
+"term": "مباشرات في جدة",
+"impr": 1,
+"clicks": 1,
+"cost_sar": 4.65,
+"conv": 1.0
+},
+{
+"term": "محل قهوه عربيه قريب من موقعي",
+"impr": 1,
+"clicks": 1,
+"cost_sar": 1.21,
+"conv": 0.0
+},
+{
+"term": "مضيفات مناسبات",
+"impr": 6,
+"clicks": 1,
+"cost_sar": 3.68,
+"conv": 0.0
+},
+{
+"term": "مقهى ومحمصة كِفة جدة",
+"impr": 1,
+"clicks": 1,
+"cost_sar": 1.31,
+"conv": 0.0
+},
+{
+"term": "diyafa",
+"impr": 2,
+"clicks": 1,
+"cost_sar": 2.13,
+"conv": 0.0
+},
+{
+"term": "mila celebrations",
+"impr": 1,
+"clicks": 1,
+"cost_sar": 1.95,
+"conv": 0.0
+},
+{
+"term": "party planner jeddah",
+"impr": 1,
+"clicks": 1,
+"cost_sar": 2.37,
+"conv": 2.0
+},
+{
+"term": "الجوزاء للضيافة جدة",
+"impr": 3,
+"clicks": 1,
+"cost_sar": 0.55,
+"conv": 0.0
+},
+{
+"term": "الضيافه العربيه",
+"impr": 1,
+"clicks": 1,
+"cost_sar": 1.59,
+"conv": 0.0
+},
+{
+"term": "تأجير معدات حفلات",
+"impr": 2,
+"clicks": 1,
+"cost_sar": 1.95,
+"conv": 0.0
+},
+{
+"term": "تاجير مناسبات",
+"impr": 2,
+"clicks": 1,
+"cost_sar": 3.48,
+"conv": 0.0
+},
+{
+"term": "تجهيز الحفلات",
+"impr": 2,
+"clicks": 1,
+"cost_sar": 2.46,
+"conv": 1.5
+},
+{
+"term": "تجهيز مناسبات",
+"impr": 2,
+"clicks": 1,
+"cost_sar": 2.09,
+"conv": 1.0
+},
+{
+"term": "تنسيق الحفلات والمناسبات",
+"impr": 1,
+"clicks": 1,
+"cost_sar": 3.5,
+"conv": 0.0
+},
+{
+"term": "تنسيق حفلات",
+"impr": 4,
+"clicks": 1,
+"cost_sar": 3.73,
+"conv": 0.0
+},
+{
+"term": "تنظيم الحفلات الخاصة",
+"impr": 1,
+"clicks": 1,
+"cost_sar": 1.32,
+"conv": 0.0
+},
+{
+"term": "حلويات ضيافة",
+"impr": 1,
+"clicks": 1,
+"cost_sar": 4.62,
+"conv": 0.0
+},
+{
+"term": "رونق الضيافه",
+"impr": 2,
+"clicks": 1,
+"cost_sar": 2.93,
+"conv": 0.0
+},
+{
+"term": "شركات الضيافة في السعودية",
+"impr": 2,
+"clicks": 1,
+"cost_sar": 5.17,
+"conv": 0.0
+},
+{
+"term": "شركات تجهيز الحفلات",
+"impr": 4,
+"clicks": 1,
+"cost_sar": 2.06,
+"conv": 0.0
+},
+{
+"term": "شركة اعمار الضيافة",
+"impr": 1,
+"clicks": 1,
+"cost_sar": 6.49,
+"conv": 0.0
+},
+{
+"term": "شركة ضيافة",
+"impr": 7,
+"clicks": 1,
+"cost_sar": 4.97,
+"conv": 0.0
+},
+{
+"term": "صنوان الضيافه",
+"impr": 5,
+"clicks": 1,
+"cost_sar": 2.57,
+"conv": 0.0
+},
+{
+"term": "ضيافة افراح",
+"impr": 1,
+"clicks": 1,
+"cost_sar": 4.11,
+"conv": 0.0
+},
+{
+"term": "ضيافة الوسام",
+"impr": 1,
+"clicks": 1,
+"cost_sar": 3.45,
+"conv": 0.0
+},
+{
+"term": "ضيافة جده",
+"impr": 2,
+"clicks": 1,
+"cost_sar": 2.51,
+"conv": 0.0
+},
+{
+"term": "ضيافة شعبية",
+"impr": 2,
+"clicks": 1,
+"cost_sar": 2.27,
+"conv": 0.0
+},
+{
+"term": "ضيافة فرافلو",
+"impr": 3,
+"clicks": 1,
+"cost_sar": 3.16,
+"conv": 0.0
+},
+{
+"term": "ضيافة قهوة سعودية",
+"impr": 1,
+"clicks": 1,
+"cost_sar": 4.01,
+"conv": 1.0
+},
+{
+"term": "ضيافة مناسبات",
+"impr": 7,
+"clicks": 1,
+"cost_sar": 1.55,
+"conv": 1.0
+},
+{
+"term": "ضيافتنا غير",
+"impr": 3,
+"clicks": 1,
+"cost_sar": 2.36,
+"conv": 0.0
+},
+{
+"term": "عاملة ضيافة بالساعة",
+"impr": 3,
+"clicks": 1,
+"cost_sar": 3.5,
+"conv": 0.0
+},
+{
+"term": "فن الضيافه",
+"impr": 1,
+"clicks": 1,
+"cost_sar": 2.05,
+"conv": 0.0
+},
+{
+"term": "قافلة خولان",
+"impr": 1,
+"clicks": 1,
+"cost_sar": 1.24,
+"conv": 0.0
+},
+{
+"term": "كيف الضيافة",
+"impr": 3,
+"clicks": 1,
+"cost_sar": 2.77,
+"conv": 0.0
+},
+{
+"term": "كيف الضيافة للأفراح والمناسبات",
+"impr": 5,
+"clicks": 1,
+"cost_sar": 3.16,
+"conv": 0.3
+},
+{
+"term": "لارت للضيافه",
+"impr": 8,
+"clicks": 1,
+"cost_sar": 2.5,
+"conv": 0.0
+},
+{
+"term": "للضيافة",
+"impr": 1,
+"clicks": 1,
+"cost_sar": 3.54,
+"conv": 0.0
+},
+{
+"term": "لوازم الافراح",
+"impr": 1,
+"clicks": 1,
+"cost_sar": 2.55,
+"conv": 0.0
+},
+{
+"term": "مدهال للضيافة",
+"impr": 2,
+"clicks": 1,
+"cost_sar": 3.33,
+"conv": 0.0
+},
+{
+"term": "مراسم الضيافة",
+"impr": 4,
+"clicks": 1,
+"cost_sar": 3.21,
+"conv": 0.5
+},
+{
+"term": "مضيفات زواج",
+"impr": 2,
+"clicks": 1,
+"cost_sar": 3.3,
+"conv": 0.0
+},
+{
+"term": "ناز للضيافه",
+"impr": 2,
+"clicks": 1,
+"cost_sar": 2.83,
+"conv": 0.0
+},
+{
+"term": "استراحات للحفلات بجدة",
+"impr": 1,
+"clicks": 1,
+"cost_sar": 1.22,
+"conv": 0.0
+},
+{
+"term": "تصوير افراح",
+"impr": 4,
+"clicks": 1,
+"cost_sar": 3.03,
+"conv": 0.0
+},
+{
+"term": "صباب قهوة عربية",
+"impr": 2,
+"clicks": 1,
+"cost_sar": 5.8,
+"conv": 1.0
+},
+{
+"term": "صبابين",
+"impr": 4,
+"clicks": 1,
+"cost_sar": 3.32,
+"conv": 0.3
+},
+{
+"term": "قهوجيين بجدة",
+"impr": 2,
+"clicks": 1,
+"cost_sar": 5.28,
+"conv": 0.0
+},
+{
+"term": "3bean",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "8ozcafe com",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "99 coffee",
+"impr": 3,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "arabic dallah",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "black coffee",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "bon roastery",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "brew 92",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "buy me a coffee",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "cafe",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "cafista",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "cafoo",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "capefrae",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "catering",
+"impr": 5,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "catering for corporate events",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "catering for events",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "coffee coffee coffee coffee",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "coffee corner",
+"impr": 3,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "coffee house",
+"impr": 5,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "coffee houser sei addata",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "coffee ki diye toiri hoy",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "coffee places near me",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "coffee production process",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "coffee shop",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "coffee wine process",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "coffee world",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "coffeego",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "corporate and private events",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "cup coffee",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "event company near me",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "events organisers",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "fan coffee",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "flatwardo",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "fresh cut company",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "fusion fuel coffee",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "gahwaji قهوجي جدة",
+"impr": 15,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "gifts coffee",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "go matcha",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "https salla sa bys_store",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "https www eng cafe com jeedah 3",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "kaaf",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "karfet",
+"impr": 3,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "keeta saudi arabia",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "konten barista",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "la dose abha",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "mofer coffee",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "moroccan taste jeddah",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "pending coffee",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "private event",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "saudi arabia sofa set",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "shub",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "shub coffee",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "sullan store",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "toko afung",
+"impr": 3,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "tora bika",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "wedding event",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "wtr coffee",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "ابو صالح",
+"impr": 3,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "ابي قهوة",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "اركان قهوه في البيت",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "القهوة ثمانية",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "القهوه الذهبيه",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "الكيف السعودي",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "المقاهي",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "اوردر كوفي",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "ايت اوز",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "ايتوتس",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "ايرث كافيه اوتو مول",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "ايفري داي كوفي",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "بارت كافيه",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "بارتي كافيه",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "بارنز",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "بلاك كوفي",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "بن بيشه",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "بن خولاني",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "بن قهوة",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "بياك",
+"impr": 3,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "ترحيب بالقهوه",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "تعليقات حول gahwaji قهوجي جدة",
+"impr": 4,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "تقديمات ضيافه جدة",
+"impr": 9,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "تقديمات للضيوف",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "حفل زفاف",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "خدمات الضيافة",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "خرابيط",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "دلة هيام",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "رونه كافيه",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "ريبوس كافيه",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "ريكسا",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "زاهبة",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "زاهبه",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "ساج",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "سعر قهوة بارسا في السعودية",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "سقيا زمزم",
+"impr": 3,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "شاد العمار",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "شدا كافيه",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "شركة الضيافة السعودية",
+"impr": 8,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "شغف البن",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "شموط",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "صب القهوة",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "صب القهوه للضيوف",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "صباب القهوه",
+"impr": 3,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "صباب قهوه",
+"impr": 5,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "صبابات قهوة الشيوخ",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "صبابات قهوة بجدة",
+"impr": 7,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "صبابه جده",
+"impr": 14,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "صبابين قهوة الدمام",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "صبابين قهوة بالرياض",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "صبة القهوه",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "صحون ضيافة",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "صوناي",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "ضيافة السعد",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "ضيافة السعودية",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "ضيافة سعودية",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "ضيافة قهوة وشاي",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "عالم القهوة",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "عالم المقاهي",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "عطارة الحكمة قهوة بارسا",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "عنوان القهوه رابغ",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "عنوان القهوه مق",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "فنجان الضيف",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "فنجان قهوه",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "في ضيافة",
+"impr": 3,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قائمة الطعام في gahwaji قهوجي جدة",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوة perk",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوة الضيوف",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوة الطريق",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوة القشيري",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوة الكيف السعودي",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوة النشاما",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوة الوزن المثالي",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوة اليوم",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوة بارسا",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوة بيشة الأصلية",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوة سادة",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوة سعودية جاهزة",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوة صباحي",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوة عربية",
+"impr": 21,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوة قهوجي جده",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوة كيف الشيوخ المدينة المنورة",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوة نجد",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوة وزنة",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوة يود",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوجي ابحر",
+"impr": 7,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوجي الخبر",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوجي الدمام",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوجي الزهرا",
+"impr": 5,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوجي الزهراء",
+"impr": 24,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوجي المحمدية",
+"impr": 62,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوجي المحمديه",
+"impr": 40,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوجي النسيم",
+"impr": 15,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوجي النعيم",
+"impr": 5,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوجي جدة الزهراء",
+"impr": 16,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوجي جدة الفيحاء",
+"impr": 5,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوجي حي الفيحاء",
+"impr": 4,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوجي حي المرجان",
+"impr": 10,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوجي قهوة",
+"impr": 5,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوجي كافي",
+"impr": 14,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوجي كافيه جدة",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوجي كوفي",
+"impr": 6,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوجي كوفي جدة",
+"impr": 6,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوجي كوفي جده",
+"impr": 8,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوجية في جدة مباشرين جده صبابين جده ضيافة جدة",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوجيين الرياض",
+"impr": 10,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوجيين جدة",
+"impr": 35,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوجيين وصبابين",
+"impr": 4,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوه بارنيز",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوه برا",
+"impr": 3,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوه بريهانت",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوه على الطريق",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوه لوز جده",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قولد بيور",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "كافي",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "كافي جميله",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "كافيه قهوجي جدة",
+"impr": 5,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "كافيه كافيه",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "كافيهات جده",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "كنن",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "كوفي 24",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "كوفي glor",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "كوفي joinin جده",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "كوفي row منيو",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "كوفي الدائره",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "كوفي بارد",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "كوفي غدي البارقي جده",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "كوفي قهوجي جدة",
+"impr": 35,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "كوفي قهوجي جدة الفيحاء",
+"impr": 3,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "كوفي قهوجي جده",
+"impr": 7,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "كوفي قهوجي في جدة",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "كوفي كيان",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "كون",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "كي دي دي موكا",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "كيترنق قهوه",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "كيف الرياض",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "كيف سعودي",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "كِفّة كوفي منيو",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "لوازم مناسبات",
+"impr": 6,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "لوكيشن كافيه",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "لونا كابتشينو",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "مؤسسة كيف خولان",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "مباشرات قهوة صبابات قهوة مباشرين قهوة صبابين قهوة قهوجيات جدة",
+"impr": 3,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "متجر ايت اوز",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "متجر قهوه",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "متجر نقاء القهوة",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "متجر وجار",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "محمصة حصاد",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "مشروع الملك عبدالله بن عبدالعزيز لسقيا زمزم",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "مشروع الملك عبدالله لسقيا زمزم",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "مقهى",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "مقهى قهوه عربيه",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "منيو عنوان القهوة",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "منيو كوفي 8oz",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "نبض الأصالة للقهوة",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "هادن كافيه",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "هلو كافيه",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "crystals events & catering",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "event organisers near me",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "gahwaji قهوجي الصور",
+"impr": 3,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "qahwaji",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "ادوات قهوة v60",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "ارقام قهوجيين",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "اسعار صبابات القهوه",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "اسعار قهوة عنوان القهوة",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "افضل قهوه مختصه",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "اقرب ديوانيه قهوه عربيه",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "الضيافات",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "القهوة السعودية",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "القهوة العربية",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "القهوة العربية جدة",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "القهوة العربيه",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "القهوجي",
+"impr": 6,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "القهوه",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "بوث قهوة للمناسبات",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "تجهيز حفلات جدة",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "تنسيق حفلات جدة",
+"impr": 11,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "تنسيق حفلات جده",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "تنسيق حفلات في البيت جدة",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "توصيل قهوة عربية",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "خدمة ضيافة",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "دارة القهوة التحلية جدة",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "دلة قهوة",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "دله قهوة",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "ديوانية القهوة العربية",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "ديوانية القهوة العربية جدة",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "ديوانيه القهوه العربيه",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "شركة السعودية للقهوة",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "شركة حلول القهوة للتجارة",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "صبابات جده",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "صبابة قهوة",
+"impr": 4,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "صبابين قهوه رجال",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "ضيافة زواجات رجال",
+"impr": 8,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "ضيافة قهوة",
+"impr": 4,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "ضيافة قهوة استقبال",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "ضيافه رجال",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "فروع قهوجي",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "فهوجي",
+"impr": 3,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهرجي",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهواجي",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوة السطوح جدة",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوة سعودي",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوة سعودية فاخرة",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوة عربي",
+"impr": 3,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوة عربية سعودية",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوة عربيه",
+"impr": 4,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوة في جدة",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوة مختصة",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوة هيام",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوتي",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوجب",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوجط",
+"impr": 3,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوجي الامير سلطان",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوجي البساتين",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوجي الروضه",
+"impr": 3,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوجي الزهرة",
+"impr": 3,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوجي السلامة",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوجي السلامه",
+"impr": 5,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوجي الشاطئ",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوجي الفيحا",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوجي المرجان",
+"impr": 5,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوجي الملك",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوجي النماص",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوجي جده صبابين قهوة مباشرين في جدة",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوجي حلمي كتبي",
+"impr": 3,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوجي طريق الملك",
+"impr": 37,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوجي فرع المحمديه",
+"impr": 3,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوجي فيحاء",
+"impr": 3,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوجي قهوه",
+"impr": 3,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوجي كفي",
+"impr": 3,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوجي مكه",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوجي مكه المكرمه",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوجيات تبوك",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوجيه خميس مشيط",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوحي",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوه بون",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوه دله",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوه سعودي",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوه سعوديه",
+"impr": 5,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوه عربي قريبه من موقعي",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوه عربيه سريعه",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوه قهوجي",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "كافي قهوجي",
+"impr": 7,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "كافي كوف",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "كافية قهوجي",
+"impr": 4,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "كافيه قهوجي",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "كورنر قهوة للمناسبات",
+"impr": 5,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "كوفي بانك جدة",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "كيف الشيوخ",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "للقهوه السعوديه",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "مباشرات افراح",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "محامص قهوة سعودية",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "محل قهوه عربي",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "محل قهوه عربيه",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "محمصه قهوجي",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "مطباخة قهوة",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "منيو قهوجي جدة",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "banquet halls near me",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "caterers service near me",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "catering company in jeddah",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "catering ksa",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "catering saudi",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "catering services",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "event planner jeddah",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "jeddah catering",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "kenaz al khair dates",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "khayal events",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "ruaww store https ruwaaroastery com",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "tiara catering",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "treevia تريڤيا جدة",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "wedding planner jeddah",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "أفضل بوفيهات جدة للمناسبات",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "أفكار للضيافة في البيت",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "استراحات جدة للمناسبات رخيصة",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "استراحات مناسبات جدة",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "استراحة زواج جده",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "استراحة ضيافة العز",
+"impr": 3,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "استراحة ضيافة العز التيسير",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "استراحه ضيافه العز",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "اصول الضيافه",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "اظرف قهوه سعودية",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "افراح ومناسبات",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "افضل ضيافة للضيوف",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "افق للاحتفالات",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "الحفلات والمناسبات",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "الضيافة الراقية",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "الضيافة المثالية للشقق المخدومة aldiyafa serviced apartments",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "الضيافة المخملية",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "الضيافة الملكية",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "الضيافه المميزه",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "الفخامة للضيافة",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "الكنافة",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "المراسم للضيافة",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "المهيلة",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "ام غنى للضيافه",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "ايجار مستلزمات الافراح",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "ايليت للحفلات الخارجية جدة",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "بشرى الضيافة",
+"impr": 4,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "بشرى للضيافة",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "بكج ضيافة زواج",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "بكجات ضيافة",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "تأجير كراسي تاجير طاولات الضيافة للافراح",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "تأجير لوازم افراح",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "تاجير افراح",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "تاجير لوازم افراح",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "تاجير لوازم الافراح",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "تجهيز بوفيهات المناسبات",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "تجهيز حفلات",
+"impr": 8,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "تجهيز حفلات عشاء",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "تجهيز خيام حفلات",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "تجهيز عشاء عرسان",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "تجهيز كوشات",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "تجهيزات الافراح",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "ترتيب الضيافة",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "تقديم ضيافة للضيوف",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "تقديم ضيافه",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "تقديمات ضيافة زواج",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "تنسيق حفلات زواج في البيت",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "تنسيقات حفلات",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "تنظيم حفلات",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "تنظيم حفلات ومناسبات",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "تنظيم مناسبات",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "جرعه كيف",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "حسن الاستقبال وكرم الضيافة",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "حسن الضيافة",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "حفاوة الاستقبال وكرم الضيافة",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "حفلات ومناسبات",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "حفلاتي",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "خدمات ضيافه",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "خدمة الضيافة",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "خدمة ضيافة شاي وقهوه",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "داركم للضيافة جدة",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "رويال رسبشن",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "رويال ريسبشن",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "ريتان للضيافه",
+"impr": 3,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "سادن للضيافة",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "سمو الضيافه",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "سمو الكيف",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "سيرفس قهوه",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "شركات تقديم الضيافة",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "شركات تنسيق حفلات",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "شركات تنظيم زواجات",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "شركات ضيافة",
+"impr": 3,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "شركة الضيافة الرائدة",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "شركة الضيافة جدة",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "شركة القمة للضيافة",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "شركة حفلات",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "شركة ضيافة للخدمات الفندقية",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "شركة طيبة للضيافة",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "شركة كيف الشيوخ",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "شركة لمسة الضيافة",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "شركه ضيافه",
+"impr": 5,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "شيخ الكيف",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "صيافه",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "ضيافات رتيل",
+"impr": 4,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "ضيافة استقبال",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "ضيافة افراح في جدة",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "ضيافة البادية",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "ضيافة الرجال في الزواجات",
+"impr": 3,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "ضيافة السلطانة",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "ضيافة العز",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "ضيافة العز التيسير",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "ضيافة العز للمناسبات",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "ضيافة العزاء",
+"impr": 3,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "ضيافة القهوة",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "ضيافة المجلس",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "ضيافة المحمل جدة",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "ضيافة المعتمر",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "ضيافة النخيل",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "ضيافة ام العروس",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "ضيافة ام العريس",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "ضيافة انتكا",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "ضيافة ايفنت",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "ضيافة ايفي",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "ضيافة خيال",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "ضيافة ديم",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "ضيافة ذا بوكس",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "ضيافة رتيل",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "ضيافة زواج",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "ضيافة سمو",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "ضيافة شاي",
+"impr": 3,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "ضيافة فواكه",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "ضيافة قهوة عربية",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "ضيافة قوت",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "ضيافة كابتشينو",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "ضيافة للضيوف",
+"impr": 3,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "ضيافة مكان",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "ضيافة مميزة",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "ضيافة مناسبات جدة",
+"impr": 7,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "ضيافه شاي",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "ضيافه لليوم الوطني",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "طلب قهوه",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "عرف الضيافة",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "فرقة زواجات",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "فن الضيافة",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قاعه سفير الضيافه في جده",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوة العربي",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوة المسافر بالهيل",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوة دايمه",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوة ضيافة",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "كاترينج جدة",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "كرم الضيافة النوارية",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "كيترنغ",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "كيف خولان",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "لتأجير لوازم الأفراح والمناسبات",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "للأحتفالات",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "للافراح والمناسبات",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "للحفلات والمناسبات",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "لوازم افراح",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "مؤسسة مجد الضيافة التجارية",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "مجلس ضيافة رجال",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "مجموعة الضيافة العالمية",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "مجموعة ليلتي للضيافة",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "محلات تنسيق",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "محلات ضيافة",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "محلات ضيافة في جدة",
+"impr": 11,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "محلات ضيافه",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "محلات ضيافه في جده",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "معجنات ضيافة",
+"impr": 3,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "معجنات للضيافة",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "مناسبة",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "منسقات حفلات",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "منسقة حفلات جدة",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "مولية للضيافة",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "موليه للضيافه",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "catering company in saudi arabia",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "silverspoon jeddah",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "sparkle event",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "افراح جدة",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "ميز زواجات",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "jeddah catering services",
+"impr": 3,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "القهوجيه",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "تطبيق قهوجي",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "رقم قهوجي",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "فروع قهوجي جده",
+"impr": 5,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوجي jeddah",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوجي حفلات",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوجي حي الزهراء",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوجي خط الملك",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوجي شارع عبدالله سليمان جدة",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوجي طريق الملك جدة",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوجي طريق الملك عبدالعزيز",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوجي قريب مني",
+"impr": 3,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوجي متنقل",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوجين مباشرين",
+"impr": 4,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوجين وصبابين",
+"impr": 7,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوجيه الرياض",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوجيين وصبابين الرياض",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوجيين وصبابين بالرياض",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "للحفلات",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "مباشرين قهوه الرياض",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "photographer in jeddah",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "ارقام منسقين حفلات",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "استراحة للمناسبات جدة",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "تنسيق اعراس",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "تنسيق حفلات في البيت",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "دبلة لتنظيم الحفلات",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "ديكور حفلة توديع عزوبية",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "ركن ضيافة",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "ضيافة ديفا",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "ضيافة زواجات",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "لوازم افراح جدة",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "مباشرات قهوه",
+"impr": 3,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "مصور زواجات رجال جدة",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "منسق حفلات ومناسبات",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "منظم اعراس",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "ارقام مباشرات في جدة",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "ضيافة الشيوخ جدة",
+"impr": 3,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوجيين وصبابين قهوه",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "big dish catering jeddah",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "catering companies in jeddah",
+"impr": 8,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "catering services near me",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "تأجير صواني حفلات جدة",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "توفيدو جدة",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "ضيافة عرس",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "ضيافه جده",
+"impr": 4,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "بيت الضيافة لتأجير لوازم الأفراح والمناسبات",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "8oz coffee jeddah",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "catering companies in ksa",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "catering company",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "gahwaji jeddah",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "jeddah restaurants",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "افاق للحفلات",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "تأجير زل ومستلزمات الحفلات",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "صباب",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "صبابات خدوج",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "صبابين القهوه",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "صبابين قهوة رجال",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "صبابين قهوة قهوجيين",
+"impr": 4,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "ضيافة قهوه",
+"impr": 2,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوجي الرياض قهوجيين وصبابين",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوجي الطايف",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوجي جده قهوجيات وقهوجين رجال ونساء",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوجي ومباشرين",
+"impr": 12,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "قهوجيين صبابين",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "مباشرين ومباشرات وصبابين القهوةالعربية والشاهي",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "moments international",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "افكار تقديمات للضيوف",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "شركة حفلات النجوم",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+},
+{
+"term": "ضيافة الافراح",
+"impr": 1,
+"clicks": 0,
+"cost_sar": 0.0,
+"conv": 0.0
+}
+]
