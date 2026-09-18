@@ -231,3 +231,5 @@ cd /home/user/webapp && npx tsc --noEmit && npm run lint && npm run build && npm
 # الالتزام (لا PR)
 git add -A && git commit -m "<type>(<scope>): <وصف عربي واضح>" && git push origin main
 ```
+
+> **⚠️ 2026-09-18 — قبل أي عمل اقرأ `docs/AGENT-STATE.md` → قسم «تسليم جلسة 2026-09-18 (الجزء 3)»**: كود D160 مرفوع على main لكن seo-guard فيه مخالفات S1/S4 جديدة في `src/lib/local/*.ts` (أطوال عناوين/أوصاف) وجدة/ينبع لم تُكتبا بعد. لا تنشر قبل اخضرار `npm run guard`. النشر = Vercel مشروع keif-v2 (يقوم به المالك).
