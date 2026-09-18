@@ -130,6 +130,10 @@ export const INTENT_PAGES: {
 }[] = [
   { slug: "mubashirin-qahwa-jeddah", ar: "مباشرين قهوة جدة", city: "jeddah", short: "مباشرين ومباشرات ينظّمون حركة تقديم القهوة في مناسبات جدة الكبيرة" },
   { slug: "qahwajiyat-sababat-jeddah", ar: "قهوجيات وصبابات جدة", city: "jeddah", short: "طاقم نسائي كامل بمشرفة مستقلة — قهوجيات وصبابات ومباشرات للمناسبات النسائية" },
+  { slug: "diyafa-alyawm-alwatani", ar: "ضيافة اليوم الوطني", city: "", short: "قهوجيين وأركان قهوة وتوزيعات بطابع وطني — اليوم الوطني ويوم التأسيس ويوم العلم" },
+  { slug: "qahwajiin", ar: "قهوجيين وصبابين قهوة", city: "", short: "الدليل الكامل لحجز قهوجي وصبابين سعوديين في ثماني مدن" },
+  { slug: "coffee-break-sharikat-jeddah", ar: "كوفي بريك شركات جدة", city: "jeddah", short: "ضيافة الشركات والجهات: أجنحة المعارض والاجتماعات والمؤتمرات — بعقد وفاتورة" },
+  { slug: "diyafa-a3ras-jeddah", ar: "ضيافة زواجات جدة", city: "jeddah", short: "ضيافة الزواجات والملكات: استقبال بالبخور، قهوجيين وصبابين، قسم نسائي، بوفيه حلا" },
 ];
 
 export function localSlug(service: string, city: string): string {

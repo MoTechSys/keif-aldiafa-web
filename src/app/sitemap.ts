@@ -21,7 +21,8 @@ const DATES = {
   social: "2026-09-09", // (site)/social
   legal: "2026-09-09", // (site)/legal
   privacy: "2026-09-11", // (site)/privacy — أُنشئت D149
-  intentPages: "2026-09-09", // (site)/mubashirin-qahwa-jeddah
+  intentPages: "2026-09-18", // (site)/mubashirin-qahwa-jeddah — D156 نُقل إلى lib/intent
+  intentNew: "2026-09-18", // صفحات المرحلة 7 الخمس (D156)
 };
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -45,7 +46,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     path: `/${p.slug}`,
     priority: 0.8,
     changeFrequency: "monthly" as const,
-    lastModified: DATES.intentPages,
+    lastModified: p.slug === "mubashirin-qahwa-jeddah" ? DATES.intentPages : DATES.intentNew,
   }));
 
   const routes = [
