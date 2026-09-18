@@ -76,3 +76,19 @@ CHROME_PATH=$HOME/.cache/ms-playwright/chromium-1134/chrome-linux/chrome npx lig
 - `src/app/(site)/privacy/` = سياسة الخصوصية (D149) · `src/components/CookieConsent.tsx` شريط الموافقة (يُركَّب في `layout.tsx` الجذر)
 - `src/app/` جذر: `layout.tsx` (خطوط/ميتا/gtag مؤجّل/شِيمات) · `not-found.tsx` (يلفّ ClientLayout صراحةً) · robots/sitemaps
 - مخرجات `.next/server/app/*.html` لا تتأثر بمجموعات المسارات — الفاحصات تعمل كما هي.
+
+## ⏱ تحديث 2026-09-18 (جلسة المرحلة 7 — الجزء الأول) — Claude (Anthropic) · وكيل GenSpark AI Developer
+
+**أُنجز وبُني وفُحص (guard ✅ seo 192/192 · similarity 192/192 · assets 11/11 · tsc ✓ · lint ✓ · build 56 مساراً):**
+- D156 منهجية المرحلة 7 · D157 تحديث خط الأساس 178→192 (16 زوجاً قديماً تحرّك 60.0–61.2% بعد تصحيح الإملاء؛ لا زوج يشمل الصفحات الجديدة).
+- فحص S15 في `scripts/seo-guard.mjs`: يمنع «قهوجيون/صبابون/مباشرون» (0 بحث مُقاس) — 13 موضعاً صُحّحت في src.
+- بنية صفحات النيّة: `src/lib/intent/{types,index,<slug>}.ts` (محتوى يدوي لكل صفحة) · `getIntentPage` معمّم · `IntentRoute.tsx` (ميتا + Breadcrumb/Service/WebPage/ImageGallery) · قالب LocalPage: pts/badge3/worksH2 قابلة للتخصيص + قسم «الدليل» (#guide) + «المعرض الإضافي» (#gallery .pgrid) + التغطية بروابط (#districts) · CSS `.guide .gd`.
+- **الصفحات الخمس مبنية:** `/qahwajiyat-sababat-jeddah` (2,010 كلمة · 46 صورة · تشابه أقصى 57.0% مع زواجات) · `/diyafa-alyawm-alwatani` (2,105 · 45 · 49.8%) · `/qahwajiin` عام بلا مدينة (2,042 · 45 · 50.3%) · `/coffee-break-sharikat-jeddah` (2,193 · 63 · 49.8%) · `/diyafa-a3ras-jeddah` (2,143 · 54 · 57.0%). كلها في INTENT_PAGES → sitemap (lastmod 2026-09-18) · LocationsPage · EXISTING_PAGES (صورها انتقلت من /portfolio تلقائياً).
+
+**لم يُنفَّذ بعد (بالترتيب):**
+1. html-audit على `next start -p 3111` + لقطات 390/768/1024/1440 للصفحات الخمس (D117) — **لم تُلتقط**.
+2. خفض تشابه قهوجيات↔زواجات 57% → ≤45% (تقليل تكرار فقرات القسم النسائي في صفحة الزواجات).
+3. إغناء `/qahwajiin-makkah` والـ24 صفحة (خدمة×مدينة) بنصوص فريدة — أكبر دَين تشابه (95%).
+4. إعادة كتابة `/about` + إبراز الشهادات الثلاث؛ روابط سياقية من /services /offerings /portfolio إلى الصفحات الجديدة؛ قسم «أماكن نصل إليها» في صفحات جدة.
+5. تحديث AGENTS.md §3 · PLAN.md §5 · DEPLOYMENT.md (Vercel=keif-v2).
+6. النشر الكامل (أمر المالك — بعد اكتمال كل شيء) + طلب فهرسة GSC.
