@@ -758,3 +758,20 @@ body.ch-flash::after{content:"";position:fixed;inset:0;z-index:9998;pointer-even
 .guide .gd h3{font-size:1.12rem;color:var(--gold-hi);line-height:1.5;font-family:var(--f-head)}
 .guide .gd p{color:var(--cream-2);font-size:.96rem;line-height:1.95;margin-top:10px}
 @media (min-width:900px){.guide .gd article{padding:24px 28px}.guide .gd h3{font-size:1.25rem}}
+/* ===== المرحلة 7 (D160): من نحن — من نخدم · الشهادات الثلاث · خطوات ===== */
+.sectors{display:grid;gap:22px}
+.sector{display:grid;gap:14px;border:1px solid var(--line-2);border-radius:20px;padding:14px;background:rgba(36,36,36,.45)}
+.sector .shot{width:100%;max-width:none;aspect-ratio:4/3;margin:0}
+.sector-txt h3{font-family:var(--f-head);font-size:1.15rem;color:var(--gold-hi);margin-bottom:8px}
+.sector-txt p{color:var(--cream-2);font-size:.95rem;line-height:1.8}
+.sector-txt .lnk{justify-content:flex-start;margin-top:12px}
+.steps .val b .num-ar{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;background:rgba(197,160,89,.15);border:1px solid var(--line-hi);font-size:.9rem;margin-inline-end:6px;vertical-align:middle}
+.steps .val b::before{content:none}
+.certs{display:grid;gap:14px}
+.cert{border:1px solid var(--line-2);border-radius:18px;padding:22px 18px;background:rgba(36,36,36,.55);text-align:center;transition:border-color .3s,transform .3s}
+.cert:hover{border-color:var(--line-hi);transform:translateY(-2px)}
+.cert-badge{display:grid;place-items:center;height:72px;margin-bottom:14px}
+.cert-badge img{height:56px;width:auto;max-width:200px;object-fit:contain}
+.cert h3{font-family:var(--f-head);font-size:1.05rem;color:var(--gold-hi);margin-bottom:8px}
+.cert p{color:var(--cream-2);font-size:.9rem;line-height:1.75}
+@media (min-width:900px){.sectors{grid-template-columns:repeat(3,1fr);gap:20px}.sector{padding:16px}.certs{grid-template-columns:repeat(3,1fr);gap:20px}.cert{padding:28px 22px}.cert-badge{height:84px}.cert-badge img{height:64px}}
