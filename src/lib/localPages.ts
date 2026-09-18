@@ -90,14 +90,14 @@ export const SERVICES: Record<string, ServiceKind> = {
   "sababin-qahwa": {
     slug: "sababin-qahwa",
     ar: "صبابين قهوة",
-    short: "صبّابون وقهوجيون بزيّ سعودي تراثي لتقديم القهوة العربية",
+    short: "صبابين وقهوجيين بزيّ سعودي تراثي لتقديم القهوة العربية",
     synonyms: ["صبابين قهوة", "صبابين سعوديين", "قهوجي", "قهوجيين", "مباشرين قهوة", "صبابات قهوة"],
     imageCategories: ["services", "events", "distributions"],
   },
   qahwajiin: {
     slug: "qahwajiin",
     ar: "قهوجيين ومباشرين",
-    short: "قهوجيون ومباشرون محترفون بزيّ رسمي لخدمة كبار الضيوف",
+    short: "قهوجيين ومباشرين محترفين بزيّ رسمي لخدمة كبار الضيوف",
     synonyms: ["قهوجي", "قهوجيين", "مباشرين قهوة", "مباشرين", "صبابين سعوديين"],
     imageCategories: ["services", "events"],
   },
@@ -132,7 +132,7 @@ export const INTENT_PAGES: {
     slug: "mubashirin-qahwa-jeddah",
     ar: "مباشرين قهوة جدة",
     city: "jeddah",
-    short: "مباشرون ومباشرات ينظّمون حركة تقديم القهوة في مناسبات جدة الكبيرة",
+    short: "مباشرين ومباشرات ينظّمون حركة تقديم القهوة في مناسبات جدة الكبيرة",
   },
 ];
 

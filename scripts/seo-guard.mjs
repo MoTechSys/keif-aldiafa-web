@@ -22,6 +22,7 @@
  * S11 روابط داخلية < 3 · نص رابط عام («اضغط هنا»)
  * S12 التشابه بين الصفحات > العتبة (يستدعي similarity-check)
  * S14 روابط sameAs تُرجع 200 (شبكي — يُفعَّل بـ CHECK_LINKS=1)
+ * S15 إملاء غير مُقاس (D156): «قهوجيون/صبابون/مباشرون» = 0 بحث في GSC+Ads؛ الباحث يكتب قهوجيين/صبابين/مباشرين
  *
  * وضع خط الأساس: يفشل فقط على المخالفات الجديدة (انظر baseline.mjs).
  * تحديث خط الأساس عمداً: UPDATE_BASELINE=1 node scripts/seo-guard.mjs
@@ -36,6 +37,8 @@ const APP_DIR = join(ROOT, ".next", "server", "app");
 const BRAND = "كيف الضيافة";
 const SITE = "https://keifaldiafa.com";
 const BANNED = ["فروعنا", "مقرنا", "فرعنا"];
+// D156 — صيغ الرفع بلا طلب بحث مُقاس (0 ظهور في GSC 16 شهراً + Ads منذ 2023). تشمل التشكيل (صبّابون).
+const UNMEASURED_SPELLING = /(?:قهوجي|صب\u0651?اب|مباشر)ون(?:ا|نا)?(?![\u0600-\u06FF])/u;
 const GENERIC_LINK_TEXT = ["اضغط هنا", "المزيد", "انقر هنا", "هنا", "اقرأ المزيد"];
 
 if (!existsSync(APP_DIR)) {
@@ -159,6 +162,9 @@ for (const file of files) {
   for (const w of BANNED) {
     if (visible.includes(w)) { errors.push(`S9 · ${bare}: كلمة محظورة «${w}» (ادعاء مواقع فيزيائية)`); break; }
   }
+
+  // S15 إملاء غير مُقاس (D156)
+  { const m = visible.match(UNMEASURED_SPELLING); if (m) errors.push(`S15 · ${bare}: صيغة غير مُقاسة «${m[0]}» — استخدم قهوجيين/صبابين/مباشرين (D156)`); }
 
   // S10 أرقام إثبات غير موثّقة (يشمل الأرقام الهندية-العربية ٠-٩ و٪)
   const D = "[\\d\u0660-\u0669]";

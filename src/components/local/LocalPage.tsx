@@ -109,7 +109,7 @@ export default function LocalPage({ rec }: { rec: LocalPageRecord }) {
       {/* 4) الخدمات — بطاقات محلية ✦ + تكمّل مناسبتك */}
       <section className="on-deep glow" id="services">
         <div className="wrap">
-          <SecHead label="الخدمات" h2={<Em a={`كل ما تحتاجه مناسبتك في ${ar} —`} b="من طاقم واحد" />} p={`قهوجيون وصبّابون ومباشرون، ومعهم كل ما يكمّل الضيافة: سقّاة زمزم، سفرجية، كاونترات وخيام وبوفيهات — طاقم واحد يصل إلى مناسبتك في ${ar} بعدّته كاملة.`} />
+          <SecHead label="الخدمات" h2={<Em a={`كل ما تحتاجه مناسبتك في ${ar} —`} b="من طاقم واحد" />} p={`قهوجيين وصبابين ومباشرين، ومعهم كل ما يكمّل الضيافة: سقّاة زمزم، سفرجية، كاونترات وخيام وبوفيهات — طاقم واحد يصل إلى مناسبتك في ${ar} بعدّته كاملة.`} />
           <div className="svcs">
             <h3 className="svc-grp rv">خدماتنا في {ar}</h3>
             {rec.localServices.map((s) => <SvcCard key={s.href} {...s} local />)}
