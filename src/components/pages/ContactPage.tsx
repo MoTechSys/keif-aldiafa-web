@@ -4,6 +4,7 @@ import ChannelFx from "@/components/pages/ChannelFx";
 import ContactForm from "@/components/pages/ContactForm";
 import { CITIES } from "@/lib/cities";
 import { SERVICES, SERVICE_GROUPS } from "@/lib/servicesContent";
+import { SOCIAL } from "@/lib/site";
 
 // D140: تُحضَّر في الخادم وتُمرَّر للنموذج (لا كتالوج في حزمة العميل)
 const FORM_GROUPS = SERVICE_GROUPS.map((g) => ({ key: g.key, label: g.label, items: g.ids.map((i) => ({ id: i, title: SERVICES[i].title })) }));
@@ -26,6 +27,8 @@ export default function ContactPage() {
             <p className="rv">املأ الحقول وستُفتح رسالة واتساب مُعدّة بكل التفاصيل — لا يُخزَّن أي شيء هنا.</p>
           </div>
           <ContactForm groups={FORM_GROUPS} />
+          {/* T3 (D162): دعوة تقييم نصّية — رابط المراجعة المباشر لملف النشاط، بلا AggregateRating */}
+          <p className="rv trust-maps">خدمناك من قبل؟ <a href={SOCIAL.googleReview} target="_blank" rel="noopener" data-ev="review_contact">قيّمنا على Google</a> — دقيقة منك تساعد غيرك على الاختيار.</p>
         </div>
       </section>
       <section className="cities on-black" id="cities" aria-label="المدن التي نخدمها">

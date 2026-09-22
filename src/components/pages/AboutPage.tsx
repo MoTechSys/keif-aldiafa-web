@@ -165,6 +165,7 @@ export default function AboutPage() {
             ))}
           </div>
           <p className="rv trust-maps">{LEGAL_NAME} — الرقم الوطني الموحّد <span className="num-ltr">{UNIFIED_NUMBER}</span> · تقييمات عملائنا على <a href={SOCIAL.googleMaps} target="_blank" rel="noopener">خرائط Google</a></p>
+          <p className="rv trust-maps">خدمناك من قبل؟ <a href={SOCIAL.googleReview} target="_blank" rel="noopener" data-ev="review_about">قيّمنا على Google</a> — تقييمك يساعد أهل جدة على معرفتنا.</p>
         </div>
       </section>
 

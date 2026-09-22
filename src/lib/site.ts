@@ -73,6 +73,11 @@ export const SOCIAL = {
    * kgmid: /g/11vz4gzwn_ · CID: 15151944507933206223
    */
   googleMaps: "https://maps.google.com/maps?cid=15151944507933206223",
+  /**
+   * T3 (D162): رابط «اكتب تقييماً» المباشر لملف النشاط نفسه (CID أعلاه) — نصّ ودعوة فقط، بلا AggregateRating
+   * في الـSchema (سياسة Google: التقييمات الذاتية لا تُعرض). صيغة Google الرسمية لرابط المراجعة بالـCID.
+   */
+  googleReview: "https://search.google.com/local/writereview?cid=15151944507933206223",
 } as const;
 
 /**

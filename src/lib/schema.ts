@@ -8,6 +8,7 @@ import {
   LEGAL_NAME,
   UNIFIED_NUMBER,
   SAME_AS,
+  SOCIAL,
 } from "@/lib/site";
 
 export function generateOrganizationSchema() {
@@ -106,6 +107,15 @@ export function generateLocalBusinessSchema() {
     // أرقام — لا يخالف قاعدة «لا أسعار». التوثيق: allpro تقرير 13.
     priceRange: "$$-$$$$",
     servesCuisine: "قهوة سعودية وضيافة عربية",
+    // T2 (D162): hasMap = ملف خرائط Google بالـCID المؤكَّد · hasCredential = الشهادات الثلاث المعروضة
+    // في /about والفوتر بأسمائها الحرفية · knowsAbout = مجالات الخبرة (وثيقة Google «establish business details»).
+    hasMap: SOCIAL.googleMaps,
+    hasCredential: [
+      { "@type": "EducationalOccupationalCredential", credentialCategory: "سجل تجاري", name: "سجل تجاري — وزارة التجارة", recognizedBy: { "@type": "GovernmentOrganization", name: "وزارة التجارة" } },
+      { "@type": "EducationalOccupationalCredential", credentialCategory: "تسجيل ضريبي", name: "مسجّلة في هيئة الزكاة والضريبة والجمارك", recognizedBy: { "@type": "GovernmentOrganization", name: "هيئة الزكاة والضريبة والجمارك" } },
+      { "@type": "EducationalOccupationalCredential", credentialCategory: "الرقم الوطني الموحّد للمنشأة", name: "موثّقة عبر المركز السعودي للأعمال", recognizedBy: { "@type": "GovernmentOrganization", name: "المركز السعودي للأعمال" } },
+    ],
+    knowsAbout: ["القهوة السعودية", "الضيافة التراثية السعودية", "ضيافة الفعاليات والمؤتمرات", "ضيافة الزواجات والمناسبات", "بروتوكول تقديم القهوة العربية"],
     sameAs: SAME_AS,
     contactPoint: {
       "@type": "ContactPoint",

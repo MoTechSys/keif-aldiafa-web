@@ -11,7 +11,7 @@ import { WaIcon } from "@/components/v7/WaIcon";
 import { WA_DEFAULT_MSG } from "@/components/v7/nav";
 import { SOCIAL_ICONS } from "@/components/v7/socialIcons";
 import { CITIES } from "@/lib/cities";
-import { INTENT_PAGES } from "@/lib/localPages";
+import { INTENT_PAGES, SERVICES, localSlug } from "@/lib/localPages";
 import {
   CONTACT_WA, FAQS, HERO, PACKAGES, ROLES, ROLES_WA, SERVICE_GROUPS, WHO, WHY, WORKS, packageWa,
 } from "@/lib/homeContent";
@@ -31,6 +31,11 @@ const CITY_ORDER = ["جدة", "مكة-المكرمة", "المدينة-المن�
 /** المرحلة 7 (D160): روابط النيّة الخمس الجديدة + الدليل العام في شريط المدن — بكلمات الباحث */
 const HOME_INTENTS = ["qahwajiin", "diyafa-a3ras-jeddah", "qahwajiyat-sababat-jeddah", "coffee-break-sharikat-jeddah", "diyafa-alyawm-alwatani"].map((s) => INTENT_PAGES.find((i) => i.slug === s)).filter((i): i is NonNullable<typeof i> => !!i);
 const HOME_CITIES = CITY_ORDER.map((slug) => CITIES.find((c) => c.slug === slug)).filter((c): c is NonNullable<typeof c> => !!c);
+/** D162 «من كل شي شوية»: صف ثالث في شريط المدن — خدمات جدة الثلاث بكلمات الباحث الجدّاوي (صبابين قهوة بجدة 273 نقرة · قهوجيين جدة 126 · ضيافة للمناسبات جدة 114 · مباشرين قهوة جدة 101) */
+const HOME_JEDDAH: { href: string; label: string; title: string }[] = [
+  ...Object.values(SERVICES).map((s) => ({ href: `/${localSlug(s.slug, "jeddah")}`, label: `${s.ar} جدة`, title: s.short })),
+  ...INTENT_PAGES.filter((i) => i.slug === "mubashirin-qahwa-jeddah").map((i) => ({ href: `/${i.slug}`, label: i.ar, title: i.short })),
+];
 
 function Hero() {
   return (
@@ -276,6 +281,10 @@ function Cities() {
       <div className="wrap rv" style={{ marginTop: 10 }}>
         <span className="lbl">وبحسب المناسبة:</span>
         {HOME_INTENTS.map((i) => <Link key={i.slug} href={`/${i.slug}`} title={i.short}>{i.ar}</Link>)}
+      </div>
+      <div className="wrap rv" style={{ marginTop: 10 }}>
+        <span className="lbl">الأكثر طلباً في جدة:</span>
+        {HOME_JEDDAH.map((l) => <Link key={l.href} href={l.href} title={l.title}>{l.label}</Link>)}
       </div>
     </section>
   );

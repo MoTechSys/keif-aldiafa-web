@@ -132,7 +132,7 @@ export default function LocalPage({ rec }: { rec: LocalPageRecord }) {
         <div className="wrap">
           {isCity
             ? <SecHead label="خدماتنا" h2={<Em a="خدماتنا في" b={`${ar} — عن قرب`} />} p={`ثلاث خدمات محلية بطاقم واحد — اختر ما يناسب مناسبتك في ${ar} أو اجمعها.`} />
-            : <SecHead label="كيف نعمل" h2={<Em a="ماذا يفعل طاقمنا في مناسبتك" b={`في ${ar}؟`} />} p={rec.rolesP ?? "أدوار واضحة يعرفها أهل الضيافة في السعودية — ونوزّعها على عدد ضيوفك."} />}
+            : <SecHead label="كيف نعمل" h2={<Em a="أدوار طاقمنا في مناسبتك" b={`في ${ar}`} />} p={rec.rolesP ?? "أدوار واضحة يعرفها أهل الضيافة في السعودية — ونوزّعها على عدد ضيوفك."} />}
           {rec.roles.map((r, i) => {
             const im = roles[i % roles.length];
             return (
@@ -166,7 +166,7 @@ export default function LocalPage({ rec }: { rec: LocalPageRecord }) {
       {/* 7) التقديمات والعدّة — 8 مربعات + 6 مقصوصات في قسم واحد (D75 · D142) */}
       <section className="on-black grain" id="offerings" data-sim="chrome">
         <div className="wrap">
-          <SecHead label="التقديمات والعدّة" h2={<Em a="ما الذي يصل إلى ضيوفك في" b={`${ar}؟`} />} p="تمور وقهوة وحلويات ومشروبات — والدلال والفناجين وأطقم التقديم تصل مع الطاقم." hint />
+          <SecHead label="التقديمات والعدّة" h2={<Em a="التقديمات والعدّة التي تصل مع الطاقم إلى" b={ar} />} p="تمور وقهوة وحلويات ومشروبات — والدلال والفناجين وأطقم التقديم تصل مع الطاقم." hint />
           <Strip><OfferingTiles count={8} /></Strip>
           <CutoutGrid />
           <div className="works-foot rv"><Link className="btn btn-glass" href="/offerings">كل التقديمات والمعدات</Link></div>
@@ -229,7 +229,7 @@ export default function LocalPage({ rec }: { rec: LocalPageRecord }) {
       {/* 9) لماذا نحن */}
       <section className="lsec on-deep" id="why">
         <div className="wrap">
-          <SecHead label="لماذا نحن" h2={<Em a="لماذا يختارنا أهل" b={`${ar}؟`} />} />
+          <SecHead label="لماذا نحن" h2={<Em a="ما يميّزنا عند أهل" b={ar} />} />
           <ul className="why">{rec.why.map((w) => <li key={w} className="rv">{w}</li>)}</ul>
           <div className="works-foot rv"><Link className="btn btn-glass" href="/about">تعرّف علينا أكثر</Link></div>
         </div>
