@@ -155,3 +155,12 @@ CHROME_PATH=$HOME/.cache/ms-playwright/chromium-1134/chrome-linux/chrome npx lig
 **رسائل المالك المحفوظة اليوم (3):** `2026-09-22-فتح-جلسة-*` · `2026-09-22-البرمت-قديم-*` · `2026-09-22-قبل-البدء-حلل-المنافسين-*`.
 
 **التالي (بانتظار «ابدأ» من المالك):** قائمة (أ) 1→7 كما في تقرير الجاهزية + تطبيق D161 أثناء الكتابة + T1–T4 من التقرير §7ب. قرارات مالك مفتوحة: A1 GSC control · A2 Search profile · A3 founder Person · A4 message asset واتساب · A5 Earned media · خطة Ads (أ/ب) · مراجعة الصور D139 · النشر.
+
+
+## ⏱ جلسة 2026-09-22 (الجزء 2) — تنفيذ «انطلق بدقة وعمق» — D162
+- **الحالة**: البوابة خضراء بعد بناء نظيف: tsc ✓ lint ✓ build 56 ✓ · seo-guard exit 0 (28، 0 جديدة) · similarity 28 ≤71.36% · assets 11 · html-audit 48/0. خطّا الأساس **192 → 28** (`UPDATE_BASELINE=1`، موثّق D162).
+- **ما تغيّر**: `src/lib/local/jeddah.ts` + `yanbu.ts` (جديدان، مسجّلان في `index.ts` — المدن الثماني كلها يدوية الآن) · `cities.ts` مكتوب من جديد للثماني · `localPage.ts` getCityPage يقرأ الأدوار من النص اليدوي · `schema.ts` T2 · `site.ts` `SOCIAL.googleReview` · About/Contact T3 · `LocalPage.tsx` + 4 intent H2 وصفية (T4) · abha/madinah/riyadh/taif S1/S4.
+- **التقرير**: `docs/reports/2026-09-22-phase7-ready-to-publish.md`.
+- **لم يُنفَّذ**: لقطات الشاشة 4 أعراض (playwright غير مركّب — `npx playwright install chromium` ثم `/tmp/shot.mjs` منطقه موثّق في التقرير) · T1 (يفحصه المالك) · T5 بعد النشر.
+- **تذكير تشغيلي**: `npm run guard` يُرجع 0 حتى لو فشل seo-guard — شغّل `node scripts/seo-guard.mjs` وحده. البناء قد يفشل بـENOTEMPTY إن كان `next start` يعمل على .next — أوقفه أو أعد المحاولة.
+- **المعلّق على المالك**: أمر النشر · A1–A5 · Ads أ/ب · D139.
