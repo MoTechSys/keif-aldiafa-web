@@ -310,12 +310,18 @@ export function getCityPage(cityKey: string): LocalPageRecord {
   const rich = CITY_PAGES.find((x) => x.name === ar);
   const svcPaths = Object.keys(SERVICES).map((svc) => `/${localSlug(svc, cityKey)}`);
   const { hero, shots, slides, roleImgs, gallery } = slots(poolFor([path, ...svcPaths, ...INTENT_PAGES.filter((p) => p.city === cityKey).map((p) => `/${p.slug}`), ...Object.keys(SERVICES).map((svc) => `/${localSlug(svc, "jeddah")}`)], ci, LOCAL_POOL));
-  // الأدوار = أول فقرة محلية لكل خدمة من الثلاث (محتوى فريد لكل مدينة) مع زر إلى صفحتها (D96)
+  // الأدوار = أول فقرة محلية لكل خدمة من الثلاث مع زر إلى صفحتها (D96) — من النص اليدوي للمدينة (D162)
+  // حين يوجد (فريد لكل مدينة)، وإلا من القالب القديم.
   const roles: LocalRole[] = Object.values(SERVICES).map((s) => {
-    const r = svcText(s.slug, c).roles[0];
-    return { kick: svcText(s.slug, c).kicker, h2: r.h2, p: r.p, href: `/${localSlug(s.slug, cityKey)}`, linkLabel: `${s.ar} ${ar} ›` };
+    const t = LOCAL_TEXT[cityKey]?.[s.slug as keyof CityLocalText] ?? svcText(s.slug, c);
+    const r = t.roles[0];
+    return { kick: t.kicker, h2: r.h2, p: r.p, href: `/${localSlug(s.slug, cityKey)}`, linkLabel: `${s.ar} ${ar} ›` };
   });
   const cityFaqs: LocalFaq[] = (rich?.faqs ?? []).map((f) => ({ q: f.question, a: f.answer }));
+  // D162: أول سؤال وأول سبب من كل خدمة يدوية للمدينة — بدل أسئلة/أسباب القالب المتطابقة بين المدن
+  const handCity = LOCAL_TEXT[cityKey];
+  const handFaqs: LocalFaq[] = handCity ? Object.values(SERVICES).map((s) => handCity[s.slug as keyof CityLocalText].faqs[0]) : [];
+  const handWhy: string[] = handCity ? Object.values(SERVICES).map((s) => handCity[s.slug as keyof CityLocalText].why[0]) : [];
   return {
     kind: "city", path, g: `l-city-${cityKey}`, cityAr: ar, cityLatin: LATIN[cityKey] ?? ar, serviceAr: "الضيافة", kicker: `في ${ar}`,
     crumbs: [{ label: "الرئيسية", href: "/" }, { label: "المدن", href: "/locations" }, { label: ar, href: path }],
@@ -326,8 +332,8 @@ export function getCityPage(cityKey: string): LocalPageRecord {
     keywords: rich?.keywords ?? [`ضيافة ${ar}`, `قهوجيين ${ar}`, `صبابين قهوة ${ar}`],
     hero, slides, shots, roleImgs, gallery,
     roles, packages: null,
-    why: [...(rich?.highlights ?? []), ...WHY_US(ar).slice(0, 3)],
-    faqs: [...cityFaqs, { q: "هل تشمل الخدمة المعدات والتقديمات؟", a: "نعم — الدلال والفناجين والتمر والتقديمات ضمن الخدمة أو بحسب طلبك." }],
+    why: [...(rich?.highlights ?? []), ...(handWhy.length ? handWhy : WHY_US(ar).slice(0, 3))],
+    faqs: [...cityFaqs, ...handFaqs, { q: `هل تشمل الخدمة في ${ar} العدّة والتقديمات؟`, a: `نعم — الدلال والفناجين والتمر والبخور معنا إلى ${ar}، والتقديمات ضمن الخدمة أو بحسب طلبك.` }],
     districts: c.districts,
     localServices: localServiceCards(cityKey, path),
     related: { h2: ["مدن", "أخرى نخدمها"], links: [...CITY_KEYS.filter((k) => k !== cityKey).map((k) => ({ label: CITIES[k].ar, href: cityPath(k) })), { label: "كل المدن", href: "/locations" }] },
