@@ -109,7 +109,7 @@ function Works() {
             <figure key={w.img.src} className="shot" data-g="works" data-go={w.go} data-go-txt={w.goTxt}>
               <CatalogImg img={w.img} sizes="(max-width:899px) 72vw, 260px" sub={w.img.service} />
               <span className="tag">{w.tag}</span>
-              <figcaption><b>{w.img.title}</b><span>{w.img.service}</span></figcaption>
+              <figcaption><b>{w.img.caption}</b></figcaption>
             </figure>
           ))}
         </Strip>

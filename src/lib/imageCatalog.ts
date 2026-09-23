@@ -32,6 +32,12 @@ export interface CatalogImage {
   alt: string;
   /** العنوان من الكتالوج → ImageObject.name */
   title: string;
+  /**
+   * D166: سطر العرض الوحيد فوق الصورة في البطاقات — مشتق من title بحذف
+   * ما يعرفه الزائر أصلاً («ضيافة كيف الضيافة في…»، «— كيف الضيافة»، لاحقة
+   * «— 2»، «— صورة زخرفية»). الوصف الكامل يبقى في alt/title (D111) وفي المعرض.
+   */
+  caption: string;
   width: number;
   height: number;
   /** مستوى قوة الإثبات 1→6 (D110) — الترتيب الافتراضي */
@@ -74,6 +80,29 @@ function hostPage(pages: string[]): string {
  */
 export const CATALOG_ASSET_VERSION = "7";
 
+/**
+ * D166: عنوان العرض فوق البطاقة (سطر واحد غالباً). قواعد الاشتقاق — كلها حذف
+ * لا إضافة، فلا تُخترع كلمة ليست في الكتالوج:
+ *   1. «— صورة زخرفية» و«— N» في النهاية تُحذفان (تسلسل داخلي لا معنى له للزائر).
+ *   2. البادئة «ضيافة كيف الضيافة في » تُحذف (82 عنواناً) — الزائر داخل موقعنا.
+ *   3. اللاحقة «— تجهيزات كيف الضيافة» / «— كيف الضيافة» تُحذف.
+ *   4. «<دور> كيف الضيافة …» (قهوجي/مضيفات/سفرجية/فريق…) → «<دور> …».
+ * ما لا تُطابقه القواعد يبقى كما هو (19 عنواناً تذكر الاسم وسط الجملة).
+ */
+export function displayCaption(title: string): string {
+  let c = title;
+  c = c.replace(/\s*—\s*صورة زخرفية(?:\s*—\s*\d+)?\s*$/, "");
+  c = c.replace(/\s*—\s*\d+\s*$/, "");
+  c = c.replace(/^ضيافة كيف الضيافة في\s+/, "");
+  c = c.replace(/\s*—\s*تجهيزات كيف الضيافة\s*$/, "");
+  c = c.replace(/\s*—\s*كيف الضيافة\s*$/, "");
+  c = c.replace(/\s*—\s*كيف الضيافة\s*—\s*/, " — ");
+  c = c.replace(/^(قهوجي|قهوجيين|قهوجيات|مضيفات|مضيفة|سفرجية|سفرجي|فريق قهوجيين|فريق|صبابين|صبابات|صبابة|مباشرين|طاقم|كشك قهوة) كيف الضيافة(?=\s|$)/, "$1");
+  c = c.replace(/\s*—\s*\d+\s*$/, "");
+  c = c.replace(/\s{2,}/g, " ").replace(/^[\s—]+|[\s—]+$/g, "");
+  return c || title;
+}
+
 function toImage(r: CatalogRecord): CatalogImage {
   const path = `${CATALOG_DIR}/${r.file}`;
   const src = `${path}?v=${CATALOG_ASSET_VERSION}`;
@@ -82,6 +111,7 @@ function toImage(r: CatalogRecord): CatalogImage {
     url: `${SITE_URL}${path}`,
     alt: r.alt,
     title: r.title,
+    caption: displayCaption(r.title),
     width: r.width,
     height: r.height,
     tier: r.tier,

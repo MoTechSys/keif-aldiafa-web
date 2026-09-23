@@ -84,7 +84,7 @@ export default function LocalPage({ rec }: { rec: LocalPageRecord }) {
             {rec.shots.map((im) => (
               <figure key={im.src} className="shot" data-g={rec.g} data-go="/portfolio" data-go-txt="معرض الأعمال">
                 <CatalogImg img={im} sizes="(max-width:899px) 72vw, 260px" sub={im.service} />
-                <figcaption><b>{im.title}</b><span>{im.service}</span></figcaption>
+                <figcaption><b>{im.caption}</b></figcaption>
               </figure>
             ))}
           </Strip>
@@ -218,7 +218,7 @@ export default function LocalPage({ rec }: { rec: LocalPageRecord }) {
               {rec.gallery.map((im) => (
                 <figure key={im.src} className="shot rv" data-g={rec.g} data-go="/portfolio" data-go-txt="معرض الأعمال">
                   <CatalogImg img={im} sizes="(max-width:899px) 46vw, 300px" sub={im.service} />
-                  <figcaption><b>{im.title}</b><span>{im.service}</span></figcaption>
+                  <figcaption><b>{im.caption}</b></figcaption>
                 </figure>
               ))}
             </div>

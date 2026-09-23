@@ -128,7 +128,7 @@ export default function AboutPage() {
               <article key={s.b} className="sector rv">
                 <figure className="shot" data-g="about-sectors" data-go="/portfolio" data-go-txt="معرض الأعمال">
                   <CatalogImg img={s.img} sizes="(max-width:899px) 92vw, 360px" sub={s.img.service} />
-                  <figcaption><b>{s.img.title}</b><span>{s.img.service}</span></figcaption>
+                  <figcaption><b>{s.img.caption}</b></figcaption>
                 </figure>
                 <div className="sector-txt">
                   <h3>{s.b}</h3>

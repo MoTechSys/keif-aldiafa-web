@@ -28,7 +28,7 @@ export default function PortfolioPage() {
               <figure key={s.img.src} className="shot rv" data-g="pf" data-type={s.type} data-go={`/portfolio?type=${s.type}`} data-go-txt="المزيد من هذا النوع">
                 <CatalogImg img={s.img} sizes="(max-width:899px) 46vw, 300px" sub={s.img.service} />
                 <span className="tag">{s.tag}</span>
-                <figcaption><b>{s.img.title}</b><span>{s.img.service}</span></figcaption>
+                <figcaption><b>{s.img.caption}</b></figcaption>
               </figure>
             ))}
           </div>

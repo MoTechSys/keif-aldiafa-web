@@ -775,3 +775,79 @@ body.ch-flash::after{content:"";position:fixed;inset:0;z-index:9998;pointer-even
 .cert h3{font-family:var(--f-head);font-size:1.05rem;color:var(--gold-hi);margin-bottom:8px}
 .cert p{color:var(--cream-2);font-size:.9rem;line-height:1.75}
 @media (min-width:900px){.sectors{grid-template-columns:repeat(3,1fr);gap:20px}.sector{padding:16px}.certs{grid-template-columns:repeat(3,1fr);gap:20px}.cert{padding:28px 22px}.cert-badge{height:84px}.cert-badge img{height:64px}}
+
+/* =========================================================
+   2026-09-22 — طبقة معايير الجوال (D166–D169) — Claude (Anthropic)
+   تجاوزات موثّقة فوق مقاطع النموذج v6.9 (لا تُعدَّل الأسطر الأصلية كي يبقى
+   أصل 1:1 قابلاً للتدقيق — D115/D121). كل رقم هنا خرج من قياس Playwright
+   iPhone 390×844 على البناء الحي (docs/reports/2026-09-22-mobile-standards-D166-D169.md).
+   المعايير: WCAG 2.2 SC 2.5.8 (هدف ≥24px) وSC 2.5.5 (≥44px محسّن) · Apple HIG 44pt ·
+   Material 48dp · WCAG 1.4.3 تباين ≥4.5:1 · حدّ الخط الأدنى للجوال 13px (Apple 11pt/Material 12sp + هامش).
+   ========================================================= */
+
+/* D166 — بطاقات الصور: سطر واحد فوق الصورة (caption) بدل عنوان + وصف.
+   كان التدرّج + سطران يغطّيان 33–69% من ارتفاع الصورة (مقاس). الآن ≤ ~20%. */
+.shot figcaption{padding:28px 12px 10px;background:linear-gradient(180deg,rgba(13,13,13,0),rgba(13,13,13,.55) 45%,rgba(13,13,13,.94))}
+.shot figcaption b{font-size:.95rem;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.shot .tag{font-size:.74rem;padding:4px 10px}
+
+/* D167 — شريط الكوكيز: كان يغطي زرَي الهيرو (top 602 / أزرار 629–683 على 844px).
+   الآن: بلا ارتفاع زائد (سطر نص + صفّ أزرار) ويجلس تحت خطّ الأزرار عند 390×844؛
+   وعلى الشاشات ≥900 كما كان. الأزرار 44px (SC 2.5.5). */
+.ck{bottom:calc(12px + env(safe-area-inset-bottom));inset-inline:12px 86px;padding:10px 12px;gap:8px;border-radius:14px}
+.ck p{font-size:.82rem;line-height:1.55}
+.ck .btn-sm{height:44px;padding:0 14px;font-size:.9rem}
+@media (min-width:900px){.ck{inset-inline:auto;inset-inline-start:24px;bottom:24px;padding:14px 16px;gap:10px}}
+
+/* D168 — أهداف اللمس ≥44px على الجوال (كانت: breadcrumb 23px · روابط المدن في الفوتر 25px ·
+   رقم الهاتف 18px · روابط الرأس 39px · فلاتر/وسوم 37px · btn-sm 40px) وخطوط ≥13px. */
+@media (max-width:899px){
+  .btn-sm{height:44px}
+  .nav-link{padding:9px 12px;font-size:.95rem}
+  .crumb{font-size:.82rem;gap:4px 6px;align-items:center}
+  .crumb a{display:inline-flex;align-items:center;min-height:44px;padding:0 6px;margin:0 -2px}
+  .hero.hero-l .crumb{gap:4px 6px;font-size:.82rem}
+  .hero.hero-l .crumb a,.crumb a{min-height:44px;min-width:44px;justify-content:center;display:inline-flex;align-items:center;padding:0 6px}
+  .chips a{padding:11px 16px;font-size:.9rem;min-height:44px;display:inline-flex;align-items:center}
+  .filters button{padding:11px 18px;font-size:.92rem;min-height:44px}
+  .cities a{padding:10px 16px;min-height:44px;display:inline-flex;align-items:center;font-size:.9rem}
+  footer.v7-footer .fcol a{min-height:44px;display:inline-flex;align-items:center;padding:0 4px;margin:0 -4px}
+  footer.v7-footer .fcol ul{gap:0}
+  footer.v7-footer .ftel{display:inline-flex;align-items:center;min-height:44px}
+  footer.v7-footer .links a{min-height:44px;display:inline-flex;align-items:center;padding:0 4px}
+  footer.v7-footer .bottom a{display:inline-flex;align-items:center;min-height:44px}
+  footer.v7-footer .legal span{display:inline-flex;align-items:center;min-height:44px}
+  .lnk a{padding:10px 16px;min-height:44px;display:inline-flex;align-items:center;font-size:.9rem}
+  .contact .tel a,.trust-maps a{display:inline-flex;align-items:center;min-height:44px;padding:0 4px}
+  /* .ck p a يبقى سطرياً (استثناء SC 2.5.8 للروابط داخل جملة) كي لا يرتفع الشريط فيغطي الأزرار */
+  footer.v7-footer .fcol a,footer.v7-footer .links a{min-width:44px;justify-content:center}
+  footer.v7-footer .fcol a{justify-content:flex-start}
+  footer.v7-footer .fsoc a{width:44px;height:44px}
+  .brand{min-height:44px}
+  /* خطوط ≥13px لنصوص المعلومات (لا الزخرفية اللاتينية) */
+  .pts{font-size:.84rem}
+  .hero .proof{font-size:.84rem}
+  .badges-l span{font-size:.84rem}
+  .sec-head .hint{font-size:.84rem}
+  .item small,.svc small,.cgrid-l small,.eq figcaption,.form .note,.ch-tx small,.partners .note{font-size:.84rem}
+  .sec-head .label,.split .kick,.hero .kicker{font-size:.8rem;letter-spacing:.24em}
+  .socrow a{font-size:.78rem}
+  .who-l .who small{font-size:.8rem}
+}
+
+/* D169 — btn-glass: الرمادي الشفاف فوق صور الهيرو كان يضعف التباين الفعلي حسب الصورة؛
+   خلفية داكنة ثابتة + حدّ أوضح = تباين ≥ 9:1 على أي خلفية (مقاس 9.5–11.8 على الأسود). */
+.btn-glass{background:rgba(13,13,13,.55);border-color:rgba(197,160,89,.6)}
+.hero .cta .btn-glass{background:rgba(13,13,13,.62)}
+
+/* D170 — كثافة الصور على الجوال: بلاطات «الزيّ» 46% و«التقديمات» 42% من العرض
+   (≈160px) تعرض 2.4 بلاطة/شاشة بنصّ 13–14px فوق صورة صغيرة. القياس الفعلي بعد
+   إزالة النسخ المستنسخة من العدّ: 8–11 صورة مرئية في القسم الواحد.
+   القرار: بلاطة أكبر (الزيّ 58% · التقديمات 52%) = ~1.7–1.9 بلاطة/شاشة وعنوان أوضح؛
+   الشريط نفسه (v6.9 Strip) يبقى — لا تغيير في البنية أو عدد العناصر. */
+@media (max-width:899px){
+  .uni{width:58%;max-width:230px}
+  .uni b{font-size:1.1rem;padding:32px 12px 12px}
+  .tile{width:52%;max-width:210px}
+  .tile span{font-size:.95rem;padding:30px 10px 10px}
+}
