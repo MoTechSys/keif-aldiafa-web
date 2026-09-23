@@ -97,7 +97,7 @@ def with_opacity(im, op):
 
 def read_catalog():
     ts = open(DATA_TS, encoding="utf-8").read()
-    start = ts.index("= [", ts.index("export const CATALOG")) + 2
+    start = ts.index("= [", ts.index("export const CATALOG")) + 2  # يشير إلى "["
     end = ts.rindex("]")
     return ts, start, end, json.loads(ts[start:end + 1])
 
@@ -352,6 +352,14 @@ def process(rec: dict, src_root: str, mapping: dict, out_dir: str, center: bool)
 
     xmp = build_xmp(rec, im.width, im.height)
     q, data, p = smart_encode(im, xmp)
+    # صور مزدحمة/مشوّشة: سقف الحجم يهبط بالجودة تحت 40dB → الأفضل تصغير الأبعاد قليلاً
+    # (المتصفح يعرضها ≤1200px غالباً) بدل آثار ضغط ظاهرة.
+    # خطوة واحدة فقط إلى 1200px (أكبر مقاس يطلبه next/image للمعارض) — لا أقل.
+    if p < 40.0 and max(im.size) > 1200:
+        im = fit(im, 1200)
+        xmp = build_xmp(rec, im.width, im.height)
+        q, data, p = smart_encode(im, xmp)
+        info["downscaled_for_quality"] = f"{im.width}x{im.height}"
     out = os.path.join(out_dir, rec["file"])
     os.makedirs(out_dir, exist_ok=True)
     with open(out, "wb") as f:
@@ -367,7 +375,7 @@ def update_data_ts(ts: str, start: int, end: int, recs: list, results: dict) -> 
         if res:
             r["width"], r["height"], r["kb"] = res["w"], res["h"], res["kb"]
     body = json.dumps(recs, ensure_ascii=False, indent=2)
-    ts = ts[:start] + " " + body + ts[end + 1:]
+    ts = ts[:start] + body + ts[end + 1:]
     ts = re.sub(r'export const CATALOG_VERSION = "[^"]*";',
                 'export const CATALOG_VERSION = "v5 — 2026-09-22 (D163: أصول keif-v2 · ختم واحد · WebP ذكي · XMP)";', ts)
     return ts
