@@ -1,5 +1,8 @@
 # النشر — keif-aldiafa-web
 
+> **⚠️ 2026-09-23 (D173) — الحقيقة المؤكَّدة بالقياس:** مشروع Vercel لـ keifaldiafa.com مربوط بـ **`MoTechSys/keif-v2` فرع `main`**، لا بهذا المستودع.
+> **إجراء النشر:** (1) البوابة خضراء هنا · (2) `git remote add kv2 https://github.com/MoTechSys/keif-v2.git` · (3) فرع مؤقت بلا `.github/workflows/quality.yml` (الرمز بلا صلاحية workflows) مع `.github/WORKFLOW-NOTE.md` · (4) `git push -f kv2 <branch>:main` · (5) انتظر ~90 ثانية ثم فحص §«بعد النشر». أول نشر: `04b4664` → `keif-v2@3c3d1a8` (تقرير `docs/reports/2026-09-23-deploy-D173.md`). الأنظف مستقبلاً: ربط Vercel بهذا المستودع مباشرة (قرار المالك في لوحة Vercel).
+
 > أُعيدت كتابته 2026-09-11 (D153) — النسخة السابقة وصفت الموقع القديم (`SocialClient.tsx` محذوف، معرّفات «بالتخمين» صارت متحقَّقة في `src/lib/site.ts`). **النشر لا يحدث إلا بأمر صريح من المالك** (PLAN §المرحلة 6).
 
 ## الحالة الفعلية (2026-09-11)
