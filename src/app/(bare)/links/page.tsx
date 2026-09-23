@@ -1,3 +1,4 @@
+import { OG_VERSION } from "@/components/SEO";
 import type { Metadata } from "next";
 import Link from "next/link";
 import ContactChannels from "@/components/pages/ContactChannels";
@@ -19,7 +20,8 @@ export const metadata: Metadata = {
   title: { absolute: TITLE },
   description: DESC,
   alternates: { canonical: URL },
-  openGraph: { title: "روابط كيف الضيافة", description: "اختر قناة التواصل الأنسب لك — واتساب هو الأسرع.", url: URL, type: "website", images: [{ url: `${SITE_URL}/og-cover-v2.jpg`, width: 1200, height: 630, alt: "كيف الضيافة" }] },
+  openGraph: { title: "روابط كيف الضيافة", description: "اختر قناة التواصل الأنسب لك — واتساب هو الأسرع.", url: URL, type: "website", images: [{ url: `${SITE_URL}/og/links.webp?v=${OG_VERSION}`, width: 1200, height: 630, alt: "روابط كيف الضيافة", type: "image/webp" }] },
+  twitter: { card: "summary_large_image", title: "روابط كيف الضيافة", description: "اختر قناة التواصل الأنسب لك — واتساب هو الأسرع.", images: [`${SITE_URL}/og/links.webp?v=${OG_VERSION}`] },
 };
 
 const schemas = [

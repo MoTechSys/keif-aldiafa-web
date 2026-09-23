@@ -1,3 +1,4 @@
+import { OG_VERSION } from "@/components/SEO";
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import "@/styles/globals.css";
@@ -96,11 +97,11 @@ export const metadata: Metadata = {
     url: SITE_URL,
     images: [
       {
-        url: `${SITE_URL}/og-cover-v2.jpg`,
+        url: `${SITE_URL}/og/home.webp?v=${OG_VERSION}`,
         width: 1200,
         height: 630,
         alt: "كيف الضيافة - خدمات الضيافة الفاخرة",
-        type: "image/jpeg",
+        type: "image/webp",
       },
     ],
   },
@@ -109,7 +110,7 @@ export const metadata: Metadata = {
     title: "كيف الضيافة | خدمات الضيافة الفاخرة في المملكة",
     description:
       "قهوجيين وصبابين قهوة سعوديون وتجهيز ضيافة VIP للأعراس والمؤتمرات — منذ 2016.",
-    images: [`${SITE_URL}/og-cover-v2.jpg`],
+    images: [`${SITE_URL}/og/home.webp?v=${OG_VERSION}`],
     // الحساب المتحقَّق (site.ts SOCIAL.x) = @keifaldiafa — كان @keifdiafa (حرف ناقص) D154
     creator: "@keifaldiafa",
     site: "@keifaldiafa",

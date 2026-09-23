@@ -3,6 +3,30 @@ import { SITE_URL, SITE_NAME, PHONE, EMAIL, WHATSAPP_NUMBER, SOCIAL } from "@/li
 
 const DEFAULT_OG_IMAGE = `${SITE_URL}/og-cover-v2.jpg`;
 
+/**
+ * D171 — صورة معاينة مصمَّمة لكل صفحة (`public/og/<slug>.webp`، 1200×630، ≤120KB،
+ * تُولَّد بـ `scripts/images/build-og.py` من `scripts/images/og-routes.json`).
+ * الرقم `OG_VERSION` يكسر كاش واتساب/تيليجرام/فيسبوك عند إعادة التوليد.
+ * إن لم يكن للمسار بطاقة (مسار جديد لم يُولَّد بعد) نعود إلى الغلاف الافتراضي.
+ */
+export const OG_VERSION = "1";
+const OG_SLUGS: ReadonlySet<string> = new Set([
+  "home", "about", "coffee-break-sharikat-jeddah", "contact", "diyafa-a3ras-jeddah", "diyafa-alyawm-alwatani",
+  "diyafa-munasabat-abha", "diyafa-munasabat-dammam", "diyafa-munasabat-jeddah", "diyafa-munasabat-madinah",
+  "diyafa-munasabat-makkah", "diyafa-munasabat-riyadh", "diyafa-munasabat-taif", "diyafa-munasabat-yanbu",
+  "legal", "links", "locations", "locations__أبها", "locations__الدمام", "locations__الرياض", "locations__الطائف",
+  "locations__المدينة-المنورة", "locations__جدة", "locations__مكة-المكرمة", "locations__ينبع",
+  "mubashirin-qahwa-jeddah", "offerings", "portfolio", "privacy", "qahwajiin", "qahwajiin-abha", "qahwajiin-dammam",
+  "qahwajiin-jeddah", "qahwajiin-madinah", "qahwajiin-makkah", "qahwajiin-riyadh", "qahwajiin-taif", "qahwajiin-yanbu",
+  "qahwajiyat-sababat-jeddah", "sababin-qahwa-abha", "sababin-qahwa-dammam", "sababin-qahwa-jeddah",
+  "sababin-qahwa-madinah", "sababin-qahwa-makkah", "sababin-qahwa-riyadh", "sababin-qahwa-taif", "sababin-qahwa-yanbu",
+  "services", "social",
+]);
+export function ogImageFor(path: string): string | null {
+  const slug = path === "/" ? "home" : decodeURIComponent(path).replace(/^\/|\/$/g, "").replace(/\//g, "__");
+  return OG_SLUGS.has(slug) ? `${SITE_URL}/og/${encodeURI(slug)}.webp?v=${OG_VERSION}` : null;
+}
+
 export interface SEOProps {
   title: string;
   description: string;
@@ -51,6 +75,9 @@ export function generatePageMetadata({
   modifiedTime,
 }: SEOProps): Metadata {
   const url = `${SITE_URL}${path}`;
+  // D171: البطاقة المصمَّمة للصفحة لها الأولوية على صورة الهيرو المُمرَّرة من الصفحة
+  const card = ogImageFor(path);
+  if (card) { ogImage = card; ogImageWidth = 1200; ogImageHeight = 630; ogImageAlt = `${title} — ${SITE_NAME}`; }
 
   const defaultKeywords = [
     "كيف الضيافة",

@@ -13,6 +13,9 @@
  *   CH8  صورة بتنسيق غير WebP/SVG/ICO في public/ (خطأ)
  *   CH9  صورة كتالوج (/images/catalog/*) في HTML المبني بـ alt ≠ alt الكتالوج حرفياً
  *        (خطأ — D111: الوكيل المبرمج لا يغيّر alt). يعمل إن وُجد .next/server/app.
+ *   CH10 (D171) كل صفحة مبنية: og:image واحدة تشير إلى /og/<slug>.webp موجود في public/og
+ *        بحجم ≤ 300KB (حدّ واتساب) و1200×630، وtwitter:image = og:image، وog:image:type = image/webp.
+ *        بطاقتا صفحتين مختلفتين لا تتطابقان (لكل صفحة معاينتها) — استثناء: /privacy تشارك صورة الرئيسية.
  *
  * استثناء موثّق: public/og-image.jpg و public/og/** أصول اجتماعية — تُطلب من
  * مُكشِّطات المنصات عند مشاركة رابط ولا تدخل وزن أي صفحة، وصيغة JPEG فيها
@@ -170,6 +173,38 @@ if (existsSync(APP_DIR) && existsSync(DATA_TS)) {
     }
   }
   warn.push(`CH9 · فُحص ${checked} <img> من الكتالوج في ${htmlFiles.length} صفحة مبنية`);
+}
+
+// ---- CH10 (D171): بطاقة معاينة لكل صفحة ----
+if (existsSync(APP_DIR)) {
+  const OG_DIR = join(PUBLIC, "og");
+  const OG_MAX = 300 * KB;
+  const seen = new Map();
+  let checked = 0;
+  for (const file of walk(APP_DIR).filter((f) => f.endsWith(".html") && !f.includes("_not-found"))) {
+    const html = readFileSync(file, "utf8");
+    const page = relative(APP_DIR, file).replace(/\.html$/, "");
+    const ogs = [...html.matchAll(/property="og:image" content="([^"]*)"/g)].map((m) => m[1]);
+    const tw = html.match(/name="twitter:image" content="([^"]*)"/)?.[1];
+    const type = html.match(/property="og:image:type" content="([^"]*)"/)?.[1];
+    const w = html.match(/property="og:image:width" content="([^"]*)"/)?.[1];
+    const h = html.match(/property="og:image:height" content="([^"]*)"/)?.[1];
+    checked++;
+    if (ogs.length !== 1) { errors.push(`CH10 · ${page}: og:image عددها ${ogs.length} (المطلوب 1)`); continue; }
+    const og = ogs[0];
+    const m = og.match(/\/og\/([^?"]+)\.webp(\?v=\d+)?$/);
+    if (!m) { errors.push(`CH10 · ${page}: og:image ليست بطاقة /og/*.webp → ${og}`); continue; }
+    const f = join(OG_DIR, decodeURIComponent(m[1]) + ".webp");
+    if (!existsSync(f)) errors.push(`CH10 · ${page}: ملف البطاقة مفقود ${relative(ROOT, f)}`);
+    else if (statSync(f).size > OG_MAX) errors.push(`CH10 · ${page}: بطاقة > 300KB (واتساب يتجاهلها) ${relative(ROOT, f)}`);
+    if (tw !== og) errors.push(`CH10 · ${page}: twitter:image ≠ og:image`);
+    if (type !== "image/webp") errors.push(`CH10 · ${page}: og:image:type=${type} (المطلوب image/webp)`);
+    if (w !== "1200" || h !== "630") errors.push(`CH10 · ${page}: أبعاد og ${w}×${h} (المطلوب 1200×630)`);
+    const key = m[1];
+    if (seen.has(key) && !(page === "privacy" || seen.get(key) === "privacy")) errors.push(`CH10 · ${page}: نفس بطاقة ${seen.get(key)}`);
+    seen.set(key, page);
+  }
+  warn.push(`CH10 · فُحصت og:image في ${checked} صفحة مبنية · بطاقات فريدة ${seen.size}`);
 }
 
 // ---- التقرير ----

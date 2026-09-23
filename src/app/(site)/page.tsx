@@ -1,3 +1,4 @@
+import { OG_VERSION } from "@/components/SEO";
 import { Metadata } from "next";
 import HomePage from "@/components/home/HomePage";
 
@@ -25,11 +26,11 @@ export const metadata: Metadata = {
     url: SITE_URL,
     images: [
       {
-        url: `${SITE_URL}/og-cover-v2.jpg`,
+        url: `${SITE_URL}/og/home.webp?v=${OG_VERSION}`,
         width: 1200,
         height: 630,
         alt: "كيف الضيافة - خدمات الضيافة الفاخرة",
-        type: "image/jpeg",
+        type: "image/webp",
       },
     ],
   },
@@ -37,7 +38,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "كيف الضيافة | قهوجيين وصبابين قهوة لضيافة فاخرة",
     description: "قهوجيين وصبابين وصبابات لمناسبات فاخرة في المملكة العربية السعودية",
-    images: [`${SITE_URL}/og-cover-v2.jpg`],
+    images: [`${SITE_URL}/og/home.webp?v=${OG_VERSION}`],
   },
 };
 
