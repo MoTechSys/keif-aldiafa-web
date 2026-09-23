@@ -67,11 +67,19 @@ function hostPage(pages: string[]): string {
   return pages.find((p) => EXISTING_PAGES.has(p)) ?? FALLBACK_PAGE;
 }
 
+/**
+ * D163: نسخة الملفات — تُلحق بـ src فقط (لا بـ url الخريطة/الـschema) كي يتجاوز
+ * المتصفح ومحسّن next/image كاش الصور القديمة (كانت بشعار مكرّر) عند إعادة بناء
+ * الكتالوج بنفس الأسماء. تُرفع عند كل إعادة بناء للصور.
+ */
+export const CATALOG_ASSET_VERSION = "5";
+
 function toImage(r: CatalogRecord): CatalogImage {
-  const src = `${CATALOG_DIR}/${r.file}`;
+  const path = `${CATALOG_DIR}/${r.file}`;
+  const src = `${path}?v=${CATALOG_ASSET_VERSION}`;
   return {
     src,
-    url: `${SITE_URL}${src}`,
+    url: `${SITE_URL}${path}`,
     alt: r.alt,
     title: r.title,
     width: r.width,
