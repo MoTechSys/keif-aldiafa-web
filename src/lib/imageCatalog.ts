@@ -72,7 +72,7 @@ function hostPage(pages: string[]): string {
  * المتصفح ومحسّن next/image كاش الصور القديمة (كانت بشعار مكرّر) عند إعادة بناء
  * الكتالوج بنفس الأسماء. تُرفع عند كل إعادة بناء للصور.
  */
-export const CATALOG_ASSET_VERSION = "6";
+export const CATALOG_ASSET_VERSION = "7";
 
 function toImage(r: CatalogRecord): CatalogImage {
   const path = `${CATALOG_DIR}/${r.file}`;

@@ -29,8 +29,8 @@ MAPPING = os.path.join(ROOT, "docs", "reports", "2026-09-22-image-sources-mappin
 OUT_DIR = os.path.join(ROOT, "public", "images", "catalog")
 LOGO = os.path.join(ROOT, "scripts", "images", "assets", "wm-oval.png")
 
-# صور تحمل هوية العلامة داخل التصميم أصلاً (بانرات/هيرو) — تُعاد من الأصل بلا ختم إضافي
-DESIGN_NO_STAMP = {112, 123, 131, 281, 282}
+# صور تحمل هوية العلامة داخل التصميم أصلاً (بانرات/هيرو/قالب المنتجات/شارة K) — تُعاد من الأصل بلا ختم إضافي
+DESIGN_NO_STAMP = {112, 123, 131, 281, 282, 186, 212}
 # الهيرو: أصل keif-v2 يحمل الشعار البيضاوي مرّة واحدة أصلاً
 HERO_PRESTAMPED = {99, 106}
 
@@ -65,16 +65,52 @@ def center_fit(im: Image.Image, w: int, h: int) -> Image.Image:
         im = im.crop((0, top, im.width, top + nh))
     return im.resize((w, h), Image.LANCZOS)
 
-def stamp_center(im: Image.Image) -> Image.Image:
+_det = None
+def face_boxes(im: Image.Image, yunet: str):
+    """وجوه (YuNet) على الصورة قبل الختم — ترجع [(x,y,w,h)]."""
+    global _det
+    if not yunet: return []
+    import cv2, numpy as np
+    if _det is None:
+        _det = cv2.FaceDetectorYN.create(yunet, "", (320, 320), 0.5, 0.3, 5000)
+    arr = cv2.cvtColor(np.asarray(im.convert("RGB")), cv2.COLOR_RGB2BGR)
+    h, w = arr.shape[:2]; _det.setInputSize((w, h)); _, f = _det.detect(arr)
+    if f is None: return []
+    return [(int(x), int(y), int(bw), int(bh)) for x, y, bw, bh, *_, sc in f if sc >= 0.5]
+
+def _cover(box, face):
+    ix = max(0, min(box[0] + box[2], face[0] + face[2]) - max(box[0], face[0]))
+    iy = max(0, min(box[1] + box[3], face[1] + face[3]) - max(box[1], face[1]))
+    return ix * iy / max(1, face[2] * face[3])
+
+def stamp_center(im: Image.Image, faces=(), info: dict | None = None) -> Image.Image:
+    """شعار بيضاوي واحد. الافتراضي: الوسط (50%, 61%) بعرض 34%. إن غطّى وجهاً (>5% من مساحة
+    الوجه) نبحث عن أقرب موضع/حجم بلا تغطية — أولاً نزولاً على المحور، ثم يميناً/يساراً،
+    ثم تصغيراً حتى 26%. الحدّ الأدنى للحجم يبقى بارزاً ضد القصّ."""
     W, H = im.size
     wide = W / H > 1.1
-    lw = int(W * (WIDTH_FRAC_WIDE if wide else WIDTH_FRAC))
-    lg = logo(); lg = lg.resize((lw, int(lw * lg.height / lg.width)), Image.LANCZOS)
+    base_w = WIDTH_FRAC_WIDE if wide else WIDTH_FRAC
+    base_cy = CY_WIDE if wide else CY
+    lg0 = logo()
+    cands = []
+    for wf in (base_w, base_w - 0.04, base_w - 0.08):
+        for cy in (base_cy, base_cy + 0.07, base_cy + 0.14, base_cy + 0.21, base_cy - 0.08, base_cy - 0.16):
+            for cx in (0.5, 0.36, 0.64, 0.24, 0.76):
+                lw = int(W * wf); lh = int(lw * lg0.height / lg0.width)
+                x = int(W * cx - lw / 2); y = int(H * cy - lh / 2)
+                if x < 0 or y < 0 or x + lw > W or y + lh > H: continue
+                box = (x, y, lw, lh)
+                cov = max((_cover(box, f) for f in faces), default=0.0)
+                # ترتيب: تغطية الوجه أولاً، ثم بقاء الحجم، ثم القرب من الافتراضي
+                dist = abs(cx - 0.5) * 1.2 + abs(cy - base_cy)
+                cands.append((cov > 0.05, round(cov, 3), base_w - wf, dist, box, wf, cx, cy))
+    cands.sort(key=lambda c: (c[0], c[1], c[2], c[3]))
+    _, cov, _, _, (x, y, lw, lh), wf, cx, cy = cands[0]
+    lg = lg0.resize((lw, lh), Image.LANCZOS)
     lg.putalpha(ImageEnhance.Brightness(lg.getchannel("A")).enhance(OPACITY))
-    cy = CY_WIDE if wide else CY
-    x = (W - lg.width) // 2; y = int(H * cy - lg.height / 2)
-    y = max(0, min(H - lg.height, y))
     c = im.convert("RGBA"); c.alpha_composite(lg, (x, y))
+    if info is not None:
+        info.update(wf=round(wf, 2), cx=round(cx, 2), cy=round(cy, 2), face_cover=cov, faces=len(faces))
     return c.convert("RGB")
 
 def encode(im: Image.Image) -> bytes:
@@ -91,6 +127,8 @@ def main():
     ap.add_argument("--bad-ids", required=True)
     ap.add_argument("--old-dims", required=True)
     ap.add_argument("--ids")
+    ap.add_argument("--rebuild-ids", help="JSON بقائمة أرقام إضافية تُبنى من الأصل (مكرّرة/فوق وجه/بلا شعار)")
+    ap.add_argument("--yunet", help="مسار نموذج YuNet لتجنّب الوجوه")
     ap.add_argument("--out")
     ap.add_argument("--write", action="store_true")
     ap.add_argument("--report")
@@ -99,6 +137,7 @@ def main():
     ts, start, end, recs = read_catalog()
     mapping = {int(r["id"]): r for r in csv.DictReader(open(MAPPING, encoding="utf-8"))}
     bad = set(json.load(open(a.bad_ids)))
+    if a.rebuild_ids: bad |= set(json.load(open(a.rebuild_ids)))
     old_dims = {int(k): v for k, v in json.load(open(a.old_dims)).items()}
     only = {int(x) for x in a.ids.split(",")} if a.ids else None
     out_dir = a.out or (OUT_DIR if a.write else "/tmp/restamp-out")
@@ -118,16 +157,18 @@ def main():
         rel = mapping[rid]["keif_v2_source_path"].replace("public/images/", "", 1)
         im = Image.open(os.path.join(a.src, rel)); im.load(); im = im.convert("RGB")
         im = center_fit(im, ow, oh)
+        info = {}
         if rid in DESIGN_NO_STAMP or rid in HERO_PRESTAMPED:
             act = "rebuilt-nostamp"
         else:
-            im = stamp_center(im); act = "rebuilt-1-center"
+            fb = face_boxes(im, a.yunet)
+            im = stamp_center(im, fb, info); act = "rebuilt-1-center"
         data = encode(im)
         open(dst, "wb").write(data)
         kb = round(len(data) / 1024)
         r["width"], r["height"], r["kb"] = im.width, im.height, kb
-        results.append(dict(id=rid, action=act, w=im.width, h=im.height, kb=kb, src=rel))
-        print(f"#{rid:>3} {act} {im.width}x{im.height} {kb}KB", flush=True)
+        results.append(dict(id=rid, action=act, w=im.width, h=im.height, kb=kb, src=rel, **info))
+        print(f"#{rid:>3} {act} {im.width}x{im.height} {kb}KB {info}", flush=True)
 
     if a.report:
         json.dump(results, open(a.report, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
