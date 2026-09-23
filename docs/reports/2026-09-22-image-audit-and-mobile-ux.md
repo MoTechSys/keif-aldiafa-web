@@ -83,3 +83,16 @@
 tsc ✓ · lint ✓ · build 56 ✓ · seo 28/28 · similarity 28/28 · assets 21/21 (+8 CH3 أزواج بنفس الأصل موثّقة) · html-audit 48/0 · image-sitemap 274 · `?v=7`.
 
 ### 10. غير منشور — النشر بأمر المالك.
+
+## الجزء الثالث — أدلة بصرية مرفوعة (روابط ثابتة، أُضيفت بعد الدفع 4552c7b)
+
+| اللوح | ما يعرضه | الرابط |
+|---|---|---|
+| 10 صور بشعارين فاتت العين | قبل/بعد لكل صورة كشفها `audit-stamps.py` | https://www.genspark.ai/api/files/s/IUGLuwlV |
+| 69 صورة أُعيد بناؤها من الأصل | النتيجة النهائية بموضع يتجنّب الوجوه (منها #5 و#95) | https://www.genspark.ai/api/files/s/sJOnEAKY |
+| شعار فوق وجه — لوح 1 | قبل (الشعار على الوجه) ← بعد (مزاح عنه) مع صناديق YuNet | https://www.genspark.ai/api/files/s/BgBZMcuw |
+| شعار فوق وجه — لوح 2 | تتمة الحالات الـ45 | https://www.genspark.ai/api/files/s/N5AHkwcY |
+| الهاتف — الرئيسية | لقطات متتابعة شاشةً شاشة iPhone 390×844 | https://www.genspark.ai/api/files/s/Uc9lOhHF |
+| الهاتف — الخدمات | لقطات متتابعة iPhone 390×844 | https://www.genspark.ai/api/files/s/WTIcsDVJ |
+
+> الروابط تعمل بجلسة حساب المالك فقط (ليست عامة). النسخ الخام في `/tmp` قد تُفقد بإعادة تشغيل البيئة؛ الأرقام كلها قابلة لإعادة الإنتاج من `scripts/images/audit-stamps.py` + `docs/reports/2026-09-22-image-audit-results.csv`.
