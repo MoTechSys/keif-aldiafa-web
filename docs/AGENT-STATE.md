@@ -3,6 +3,10 @@
 > **لأي وكيل جديد: ابدأ من `AGENTS.md` في الجذر (ترتيب القراءة الكامل)، ثم هذا الملف، ثم `PLAN.md` و`docs/DECISIONS.md` كاملَين، ثم آخر 5 ملفات في `docs/owner-messages/`.**
 > يُحدَّث في نهاية كل جلسة. كل رقم هنا خرج من أمر فعلي مذكور بجواره.
 
+## ⏱ تحديث 2026-09-23 (ط) — D174 أداء الجوال على الإنتاج 53→78 / 61→79 — Claude (Anthropic)
+
+> بأمر «استمر / كمل النشر»: Lighthouse على الإنتاج كشف TBT 2.3s (gtag عند أول scroll + 9 prefetch RSC). أُصلح بتأجيل gtag (بلا scroll، خمول 4s؛ اللمس يُحمِّله فوراً — مُتحقَّق) و`prefetch={false}` على 32 رابطاً + `security.txt`/`humans.txt`. نُشر عبر keif-v2 `8fe3a12` (= web `994e584` + WORKFLOW-NOTE). **قياس الإنتاج بعد:** LCP 2.6s · TBT 680ms · TTI 3.5s · perf 78/79 · A11y/BP/SEO 100. 49/49 مسار 200 · 0 أخطاء. **التالي للأداء:** JS الأولي ~490KB (Strip/Lightbox) و LCP على الحدّ — يحتاج قرار (تأخير شرائط تحت الطية). **ما يزال ينتظر المالك:** مسح كاش المعاينات · Search Console/Ads بالتوكنات · aggregateRating · دمج سجلات/307/93 · طول الصفحات · إنجليزية · CI في keif-v2 · ربط Vercel بـ keif-aldiafa-web مباشرة. التالي الحرّ **D175**. تذكير تشغيلي: رمز GitHub ينقضي بين الجلسات → `setup_github_environment` قبل أي push.
+
 ## ⏱ تحديث 2026-09-23 (ح) — **نُشر على الإنتاج** — D173 — Claude (Anthropic)
 
 > **الموقع الجديد حيّ على keifaldiafa.com منذ 06:20 UTC.** Vercel مربوط بـ **`keif-v2/main`** (مؤكَّد بالقياس) → **قاعدة النشر:** طوّر هنا، ثم ادفع نفس الـcommit إلى `keif-v2/main` بلا `.github/workflows/quality.yml` (تفاصيل `DEPLOYMENT.md`). نُشر `04b4664` كـ `keif-v2@3c3d1a8`. فحص الإنتاج: 49/49 مسار 200 · robots/sitemaps/llms.txt/og 200 · 301/308 · 0 أخطاء جوال · الكوكيز لا يغطي CTA. **يفعله المالك الآن:** مسح كاش المعاينات (FB Debugger + @WebpageBot) · اختبار هاتف · Search Console sitemap_index + طلب فهرسة · Ads روابط · PSI بعد 48 ساعة · CI في keif-v2. **الجلسة القادمة (9 بنود محصاة في تقرير D173 §5):** aggregateRating · Console/Ads بالتوكنات · CWV · دمج سجلات/307/93 · طول الصفحات · إنجليزية · security.txt · تبسيط مسار النشر · استعادة /tmp عند الحاجة. التالي الحرّ **D174**.
