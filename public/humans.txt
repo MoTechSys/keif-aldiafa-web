@@ -1,0 +1,10 @@
+/* TEAM */
+Owner: مؤسسة كيف الضيافة — Keif Al-Diafa, Jeddah, Saudi Arabia
+Site: https://keifaldiafa.com
+Contact: info@keifaldiafa.com
+
+/* SITE */
+Since: 2016 (business) · 2026 (this website)
+Language: Arabic (ar-SA), RTL
+Stack: Next.js 14 (App Router, SSG), next/image WebP, Vercel
+Fonts: Amiri, Noto Naskh Arabic, Marcellus

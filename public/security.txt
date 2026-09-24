@@ -1,0 +1,7 @@
+# كيف الضيافة — Keif Al-Diafa (RFC 9116)
+Contact: mailto:info@keifaldiafa.com
+Contact: https://keifaldiafa.com/contact
+Preferred-Languages: ar, en
+Canonical: https://keifaldiafa.com/.well-known/security.txt
+Policy: https://keifaldiafa.com/legal
+Expires: 2027-09-23T00:00:00.000Z

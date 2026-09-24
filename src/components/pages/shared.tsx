@@ -25,11 +25,11 @@ export function WaBtn({ text, cls = "btn btn-wa", label = "تواصل عبر و�
 export function Crumbs({ items }: { items: Crumb[] }) {
   return (
     <nav className="crumb" aria-label="مسار التنقل">
-      <Link href="/">الرئيسية</Link>
+      <Link href="/" prefetch={false}>الرئيسية</Link>
       {items.map((c) => (
         <span key={c.label} style={{ display: "contents" }}>
           <span>›</span>
-          {c.href ? <Link href={c.href}>{c.label}</Link> : <span>{c.label}</span>}
+          {c.href ? <Link href={c.href} prefetch={false}>{c.label}</Link> : <span>{c.label}</span>}
         </span>
       ))}
     </nav>
@@ -109,7 +109,7 @@ export function ContactBlock({ h2, p, wa }: { h2: ReactNode; p: string; wa: stri
         <p className="rv">{p}</p>
         <div className="actions rv">
           <WaBtn text={wa} cls="btn btn-wa" label="تواصل عبر واتساب" ev="wa_contact" />
-          <Link className="btn btn-glass" href="/contact">نموذج طلب عرض</Link>
+          <Link className="btn btn-glass" href="/contact" prefetch={false}>نموذج طلب عرض</Link>
         </div>
         <p className="tel rv">واتساب واتصال: <a href={`tel:${PHONE}`}>{WHATSAPP_DISPLAY}</a></p>
         <p className="assure rv">عروض أسعار وعقود وفواتير رسمية للجهات والشركات</p>
@@ -131,7 +131,7 @@ export function IntentLinks({ label, h2, p, slugs, cls = "on-deep" }: {
     <section className={`${cls} intent-links`} id="intent-links">
       <div className="wrap">
         <div className="sec-head"><span className="label rv">{label}</span><h2 className="rv">{h2}</h2><p className="rv">{p}</p></div>
-        <div className="lnk rv">{links.map((l) => <Link key={l.slug} href={`/${l.slug}`} title={l.short}>{l.ar}</Link>)}</div>
+        <div className="lnk rv">{links.map((l) => <Link key={l.slug} href={`/${l.slug}`} title={l.short} prefetch={false}>{l.ar}</Link>)}</div>
       </div>
     </section>
   );

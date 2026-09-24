@@ -21,7 +21,7 @@ export default function Header() {
     <header className="v7-header">
       <div className="wrap nav">
         <div className="nav-row">
-          <Link className="brand" href="/" title="الرئيسية">
+          <Link className="brand" href="/" title="الرئيسية" prefetch={false}>
             <Image src="/images/brand/logo-emblem-120.webp" alt="" width={35} height={42} priority />
             <span className="word">
               <b>كيف الضيافة</b>
@@ -35,7 +35,7 @@ export default function Header() {
         </div>
         <nav className="pages" aria-label="صفحات الموقع">
           {NAV_LINKS.map((l) => (
-            <Link key={l.href} className="nav-link" href={l.href} aria-current={isCurrent(l.href) ? "page" : undefined}>
+            <Link key={l.href} className="nav-link" href={l.href} aria-current={isCurrent(l.href) ? "page" : undefined} prefetch={false}>
               {l.label}
             </Link>
           ))}

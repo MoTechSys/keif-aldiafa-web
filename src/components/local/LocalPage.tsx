@@ -51,7 +51,7 @@ export default function LocalPage({ rec }: { rec: LocalPageRecord }) {
             {rec.crumbs.map((c, i) => (
               <span key={c.href} style={{ display: "contents" }}>
                 {i > 0 && <span>›</span>}
-                {i === rec.crumbs.length - 1 ? <span>{c.label}</span> : <Link href={c.href}>{c.label}</Link>}
+                {i === rec.crumbs.length - 1 ? <span>{c.label}</span> : <Link href={c.href} prefetch={false}>{c.label}</Link>}
               </span>
             ))}
           </nav>
@@ -88,7 +88,7 @@ export default function LocalPage({ rec }: { rec: LocalPageRecord }) {
               </figure>
             ))}
           </Strip>
-          <div className="works-foot rv"><Link className="btn btn-glass" href="/portfolio">معرض الأعمال الكامل</Link></div>
+          <div className="works-foot rv"><Link className="btn btn-glass" href="/portfolio" prefetch={false}>معرض الأعمال الكامل</Link></div>
         </div>
       </section>
 
@@ -123,7 +123,7 @@ export default function LocalPage({ rec }: { rec: LocalPageRecord }) {
               {COMPLEMENT_CARDS.map((s) => <SvcCard key={s.href} href={s.href} img={s.img} b={s.b} small={s.small} />)}
             </div>
           </div>
-          <div className="works-foot rv"><Link className="btn btn-glass" href="/services">كل الخدمات</Link></div>
+          <div className="works-foot rv"><Link className="btn btn-glass" href="/services" prefetch={false}>كل الخدمات</Link></div>
         </div>
       </section>
 
@@ -141,7 +141,7 @@ export default function LocalPage({ rec }: { rec: LocalPageRecord }) {
                   <span className="kick">{r.kick}</span>
                   <h2>{r.h2}</h2>
                   <p>{r.p}</p>
-                  {r.href && <Link className="btn btn-glass btn-sm" href={r.href}>{r.linkLabel}</Link>}
+                  {r.href && <Link className="btn btn-glass btn-sm" href={r.href} prefetch={false}>{r.linkLabel}</Link>}
                 </div>
                 <figure className="rv" data-g={rec.g}>
                   <CatalogImg img={im} sizes="(max-width:899px) 92vw, 560px" sub={im.service} />
@@ -159,7 +159,7 @@ export default function LocalPage({ rec }: { rec: LocalPageRecord }) {
         <div className="wrap">
           <SecHead label="الطاقم والزي" h2={`اختر زيّ طاقمك في ${ar}`} p="قهوجيين وصبابين ومباشرين بزي موحد — وطاقم نسائي للمناسبات النسائية." hint />
           <Strip><UniformFigures /></Strip>
-          <div className="works-foot rv"><Link className="btn btn-glass" href="/services#hosts">تفاصيل الزي والطاقم</Link></div>
+          <div className="works-foot rv"><Link className="btn btn-glass" href="/services#hosts" prefetch={false}>تفاصيل الزي والطاقم</Link></div>
         </div>
       </section>
 
@@ -169,7 +169,7 @@ export default function LocalPage({ rec }: { rec: LocalPageRecord }) {
           <SecHead label="التقديمات والعدّة" h2={<Em a="التقديمات والعدّة التي تصل مع الطاقم إلى" b={ar} />} p="تمور وقهوة وحلويات ومشروبات — والدلال والفناجين وأطقم التقديم تصل مع الطاقم." hint />
           <Strip><OfferingTiles count={8} /></Strip>
           <CutoutGrid />
-          <div className="works-foot rv"><Link className="btn btn-glass" href="/offerings">كل التقديمات والمعدات</Link></div>
+          <div className="works-foot rv"><Link className="btn btn-glass" href="/offerings" prefetch={false}>كل التقديمات والمعدات</Link></div>
         </div>
       </section>
 
@@ -231,7 +231,7 @@ export default function LocalPage({ rec }: { rec: LocalPageRecord }) {
         <div className="wrap">
           <SecHead label="لماذا نحن" h2={<Em a="ما يميّزنا عند أهل" b={ar} />} />
           <ul className="why">{rec.why.map((w) => <li key={w} className="rv">{w}</li>)}</ul>
-          <div className="works-foot rv"><Link className="btn btn-glass" href="/about">تعرّف علينا أكثر</Link></div>
+          <div className="works-foot rv"><Link className="btn btn-glass" href="/about" prefetch={false}>تعرّف علينا أكثر</Link></div>
         </div>
       </section>
 
@@ -252,7 +252,7 @@ export default function LocalPage({ rec }: { rec: LocalPageRecord }) {
         <div className="wrap">
           <SecHead label="التغطية" h2={rec.districtsH2 ?? `نصل إلى كل أحياء ${ar}`} />
           {rec.districtLinks
-            ? <div className="lnk rv">{rec.districtLinks.map((l) => <Link key={l.href} href={l.href}>{l.label}</Link>)}</div>
+            ? <div className="lnk rv">{rec.districtLinks.map((l) => <Link key={l.href} href={l.href} prefetch={false}>{l.label}</Link>)}</div>
             : <div className="dist rv">{rec.districts.map((d) => <span key={d}>{d}</span>)}</div>}
         </div>
       </section>
@@ -265,7 +265,7 @@ export default function LocalPage({ rec }: { rec: LocalPageRecord }) {
           <p className="rv">أرسل التاريخ والمكان وعدد الضيوف — ونرتّب لك الطاقم والعدّة كاملة.</p>
           <div className="actions rv">
             <WaBtn text={rec.wa} cls="btn btn-wa" label="تواصل عبر واتساب" ev="wa_contact" />
-            <Link className="btn btn-glass" href="/contact">نموذج طلب عرض</Link>
+            <Link className="btn btn-glass" href="/contact" prefetch={false}>نموذج طلب عرض</Link>
           </div>
           <p className="tel rv">واتساب واتصال: <a href={`tel:${PHONE}`}>{WHATSAPP_DISPLAY}</a></p>
           <p className="assure rv">عروض أسعار وعقود وفواتير رسمية للجهات والشركات</p>
@@ -276,7 +276,7 @@ export default function LocalPage({ rec }: { rec: LocalPageRecord }) {
       <section className="lsec on-rich" id="rel">
         <div className="wrap">
           <SecHead label="روابط" h2={<Em a={rec.related.h2[0]} b={rec.related.h2[1]} />} />
-          <div className="lnk rv">{rec.related.links.map((l) => <Link key={l.href} href={l.href}>{l.label}</Link>)}</div>
+          <div className="lnk rv">{rec.related.links.map((l) => <Link key={l.href} href={l.href} prefetch={false}>{l.label}</Link>)}</div>
         </div>
       </section>
 

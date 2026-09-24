@@ -73,11 +73,11 @@ export default function Footer() {
             <ul>
               {SERVICE_LINKS.map((s) => (
                 <li key={s.hash}>
-                  <Link href={`/services#${s.hash}`}>{s.label}</Link>
+                  <Link href={`/services#${s.hash}`} prefetch={false}>{s.label}</Link>
                 </li>
               ))}
               <li>
-                <Link className="all" href="/services">كل الخدمات ›</Link>
+                <Link className="all" href="/services" prefetch={false}>كل الخدمات ›</Link>
               </li>
             </ul>
           </nav>
@@ -87,11 +87,11 @@ export default function Footer() {
             <ul>
               {CITIES.map((c) => (
                 <li key={c.slug}>
-                  <Link href={`/locations/${c.slug}`}>{c.name}</Link>
+                  <Link href={`/locations/${c.slug}`} prefetch={false}>{c.name}</Link>
                 </li>
               ))}
               <li>
-                <Link className="all" href="/locations">كل المدن ›</Link>
+                <Link className="all" href="/locations" prefetch={false}>كل المدن ›</Link>
               </li>
             </ul>
           </nav>
@@ -99,7 +99,7 @@ export default function Footer() {
 
         <nav className="links" aria-label="أقسام الموقع">
           {FOOTER_LINKS.map((l) => (
-            <Link key={l.href} href={l.href}>{l.label}</Link>
+            <Link key={l.href} href={l.href} prefetch={false}>{l.label}</Link>
           ))}
         </nav>
 
@@ -117,7 +117,7 @@ export default function Footer() {
 
         <div className="bottom">
           <p>
-            © {year} كيف الضيافة. جميع الحقوق محفوظة. · <Link href="/legal">الحقوق القانونية</Link> · <Link href="/privacy">سياسة الخصوصية</Link>
+            © {year} كيف الضيافة. جميع الحقوق محفوظة. · <Link href="/legal" prefetch={false}>الحقوق القانونية</Link> · <Link href="/privacy" prefetch={false}>سياسة الخصوصية</Link>
           </p>
           <p className="dev">
             Developed by <b>Alabbasi Soft</b>

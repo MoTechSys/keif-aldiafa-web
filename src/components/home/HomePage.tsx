@@ -83,7 +83,7 @@ function Who() {
         </div>
         <div className="who-grid">
           {WHO.map((w) => (
-            <Link key={w.href} className="who rv" href={w.href}>
+            <Link key={w.href} className="who rv" href={w.href} prefetch={false}>
               <CatalogImg img={w.img} sizes="(max-width:899px) 31vw, 380px" />
               <div><b>{w.b}</b><small>{w.small}</small></div>
             </Link>
@@ -113,7 +113,7 @@ function Works() {
             </figure>
           ))}
         </Strip>
-        <div className="works-foot rv"><Link className="btn btn-glass" href="/portfolio">معرض الأعمال الكامل</Link></div>
+        <div className="works-foot rv"><Link className="btn btn-glass" href="/portfolio" prefetch={false}>معرض الأعمال الكامل</Link></div>
       </div>
     </section>
   );
@@ -153,7 +153,7 @@ function Staff() {
           {HINT}
         </div>
         <Strip><UniformFigures /></Strip>
-        <div className="works-foot rv"><Link className="btn btn-glass" href="/services#hosts">كل الأزياء والطاقم</Link></div>
+        <div className="works-foot rv"><Link className="btn btn-glass" href="/services#hosts" prefetch={false}>كل الأزياء والطاقم</Link></div>
       </div>
     </section>
   );
@@ -188,7 +188,7 @@ function Services() {
             <SvcGroup key={g.title} title={g.title} items={g.items} />
           ))}
         </div>
-        <div className="works-foot rv"><Link className="btn btn-glass" href="/services">تفاصيل كل الخدمات</Link></div>
+        <div className="works-foot rv"><Link className="btn btn-glass" href="/services" prefetch={false}>تفاصيل كل الخدمات</Link></div>
       </div>
     </section>
   );
@@ -262,7 +262,7 @@ function Why() {
           <h2 className="rv">لماذا يختارنا منظّمو الفعاليات؟</h2>
         </div>
         <ul className="why">{WHY.map((w) => <li key={w} className="rv">{w}</li>)}</ul>
-        <div className="works-foot rv"><Link className="btn btn-glass" href="/about">تعرّف علينا أكثر</Link></div>
+        <div className="works-foot rv"><Link className="btn btn-glass" href="/about" prefetch={false}>تعرّف علينا أكثر</Link></div>
       </div>
     </section>
   );
@@ -274,17 +274,17 @@ function Cities() {
       <div className="wrap rv">
         <span className="lbl">نخدم في:</span>
         {HOME_CITIES.map((c, i) => (
-          <Link key={c.slug} className={i === 0 ? "main" : undefined} href={`/locations/${c.slug}`}>{c.name}</Link>
+          <Link key={c.slug} className={i === 0 ? "main" : undefined} href={`/locations/${c.slug}`} prefetch={false}>{c.name}</Link>
         ))}
-        <Link href="/locations">كل المدن ›</Link>
+        <Link href="/locations" prefetch={false}>كل المدن ›</Link>
       </div>
       <div className="wrap rv" style={{ marginTop: 10 }}>
         <span className="lbl">وبحسب المناسبة:</span>
-        {HOME_INTENTS.map((i) => <Link key={i.slug} href={`/${i.slug}`} title={i.short}>{i.ar}</Link>)}
+        {HOME_INTENTS.map((i) => <Link key={i.slug} href={`/${i.slug}`} title={i.short} prefetch={false}>{i.ar}</Link>)}
       </div>
       <div className="wrap rv" style={{ marginTop: 10 }}>
         <span className="lbl">الأكثر طلباً في جدة:</span>
-        {HOME_JEDDAH.map((l) => <Link key={l.href} href={l.href} title={l.title}>{l.label}</Link>)}
+        {HOME_JEDDAH.map((l) => <Link key={l.href} href={l.href} title={l.title} prefetch={false}>{l.label}</Link>)}
       </div>
     </section>
   );

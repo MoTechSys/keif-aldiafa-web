@@ -180,7 +180,7 @@ export default function RootLayout({
               «لا تتوفر علامة تتبّع» — كوميت af96b9a في الأرشيف). أي استدعاء gtag() قبل
               التحميل يُصفّ في dataLayer ويُرسَل عند وصول المكتبة (لا تُفقد تحويلات).
             • المُحمِّل (~350KB JS · ≈1.1s حجب للخيط الرئيسي على الجوال) يُحقَن بعد
-              اكتمال تحميل الصفحة + 2.5s ثم أول خمول للخيط الرئيسي (requestIdleCallback ≤3s)،
+              اكتمال تحميل الصفحة + 4s ثم أول خمول للخيط الرئيسي (requestIdleCallback ≤4s) — D174: كان 2.5s/3s و'scroll' ضمن المحفّزات فحُمِّل 347KB أثناء قياس LCP/TBT على الجوال (Lighthouse يمرّر) → TBT 2.3s؛ التفاعل الحقيقي (لمس/نقر/كتابة) يبقى محفّزاً فورياً فلا تُفقد تحويلات،
               أو عند أول تفاعل (أسبق الاثنين) — لكل زائر،
               لا بعد التفاعل فقط (ذلك ما عطّل الاكتشاف سابقاً). يقيس Core Web Vitals
               للزائر الحقيقي (INP/TBT) لا Lighthouse وحده.
@@ -198,9 +198,9 @@ gtag('set','url_passthrough',true);gtag('set','ads_data_redaction',true);
 try{var kc=localStorage.getItem('kd_consent');if(kc==='granted'){gtag('consent','update',{ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',analytics_storage:'granted'});}}catch(e){}
 gtag('js',new Date());gtag('config','G-ZZHYDVVMT1');gtag('config','AW-11081441847');
 (function(){var d=0;function l(){if(d)return;d=1;var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=AW-11081441847';document.head.appendChild(s);}
-var ev=['pointerdown','keydown','touchstart','scroll'];function u(){ev.forEach(function(e){removeEventListener(e,u,{passive:true})});l();}
+var ev=['pointerdown','keydown','touchstart'];function u(){ev.forEach(function(e){removeEventListener(e,u,{passive:true})});l();}
 ev.forEach(function(e){addEventListener(e,u,{passive:true})});
-function q(){setTimeout(function(){(window.requestIdleCallback||function(f){f()})(l,{timeout:3000});},2500);}
+function q(){setTimeout(function(){(window.requestIdleCallback||function(f){f()})(l,{timeout:4000});},4000);}
 if(document.readyState==='complete'){q();}else{addEventListener('load',q);}})();`,
           }}
         />
