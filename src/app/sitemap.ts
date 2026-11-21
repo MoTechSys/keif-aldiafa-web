@@ -25,6 +25,24 @@ const DATES = {
   intentNew: "2026-09-18", // صفحات المرحلة 7 الخمس (D156)
 };
 
+// D176: صفحات تغيّر عنوانها/وصفها/H1 بعد تاريخ قسمها — تاريخها الحقيقي لكل مسار.
+// تُضاف هنا الصفحة التي تغيّرت فقط؛ بقية صفحات القسم تبقى على تاريخ القسم.
+const CHANGED: Record<string, string> = {
+  "/": "2026-11-21",
+  "/services": "2026-11-21",
+  "/qahwajiin-jeddah": "2026-11-21",
+  "/sababin-qahwa-jeddah": "2026-11-21",
+  "/diyafa-munasabat-jeddah": "2026-11-21",
+  "/qahwajiyat-sababat-jeddah": "2026-11-21",
+  "/mubashirin-qahwa-jeddah": "2026-11-21",
+  "/qahwajiin-riyadh": "2026-11-21",
+  "/sababin-qahwa-riyadh": "2026-11-21",
+  "/diyafa-munasabat-riyadh": "2026-11-21",
+  "/qahwajiin-dammam": "2026-11-21",
+  "/diyafa-munasabat-dammam": "2026-11-21",
+  "/qahwajiin-makkah": "2026-11-21",
+};
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const cityRoutes = CITIES.map((c) => ({
     path: `/locations/${c.slug}`,
@@ -70,7 +88,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return routes.map((route) => ({
     // ترميز percent-encoding للأحرف العربية في <loc> لمطابقة مواصفة sitemaps.org
     url: encodeURI(`${SITE_URL}${route.path}`),
-    lastModified: route.lastModified,
+    lastModified: CHANGED[route.path] ?? route.lastModified,
     changeFrequency: route.changeFrequency,
     priority: route.priority,
   }));
