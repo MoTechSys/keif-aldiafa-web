@@ -1,0 +1,95 @@
+{
+ "rows": [
+  {
+   "keys": [
+    "sau"
+   ],
+   "clicks": 1199,
+   "impressions": 53975,
+   "ctr": 0.02221398795738768,
+   "position": 7.544918943955535
+  },
+  {
+   "keys": [
+    "yem"
+   ],
+   "clicks": 29,
+   "impressions": 472,
+   "ctr": 0.0614406779661017,
+   "position": 5.747881355932203
+  },
+  {
+   "keys": [
+    "egy"
+   ],
+   "clicks": 13,
+   "impressions": 464,
+   "ctr": 0.028017241379310345,
+   "position": 10.637931034482758
+  },
+  {
+   "keys": [
+    "bhr"
+   ],
+   "clicks": 3,
+   "impressions": 92,
+   "ctr": 0.03260869565217391,
+   "position": 8.326086956521738
+  },
+  {
+   "keys": [
+    "gbr"
+   ],
+   "clicks": 3,
+   "impressions": 123,
+   "ctr": 0.024390243902439025,
+   "position": 7.056910569105691
+  },
+  {
+   "keys": [
+    "lbn"
+   ],
+   "clicks": 3,
+   "impressions": 20,
+   "ctr": 0.15,
+   "position": 6.05
+  },
+  {
+   "keys": [
+    "syr"
+   ],
+   "clicks": 3,
+   "impressions": 109,
+   "ctr": 0.027522935779816515,
+   "position": 6.715596330275229
+  },
+  {
+   "keys": [
+    "deu"
+   ],
+   "clicks": 2,
+   "impressions": 72,
+   "ctr": 0.027777777777777776,
+   "position": 8.76388888888889
+  },
+  {
+   "keys": [
+    "omn"
+   ],
+   "clicks": 2,
+   "impressions": 59,
+   "ctr": 0.03389830508474576,
+   "position": 6.9491525423728815
+  },
+  {
+   "keys": [
+    "usa"
+   ],
+   "clicks": 2,
+   "impressions": 1002,
+   "ctr": 0.001996007984031936,
+   "position": 7.2684630738522955
+  }
+ ],
+ "responseAggregationType": "byProperty"
+}

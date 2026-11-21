@@ -1,0 +1,64 @@
+{
+ "sitemap": [
+  {
+   "path": "https://keifaldiafa.com/sitemap.xml",
+   "lastSubmitted": "2026-07-22T05:36:07.096Z",
+   "isPending": false,
+   "isSitemapsIndex": false,
+   "type": "sitemap",
+   "lastDownloaded": "2026-11-14T01:07:32.933Z",
+   "warnings": "0",
+   "errors": "0",
+   "contents": [
+    {
+     "type": "web",
+     "submitted": "48",
+     "indexed": "0"
+    }
+   ]
+  },
+  {
+   "path": "https://keifaldiafa.com/image-sitemap.xml",
+   "lastSubmitted": "2026-07-08T01:58:41.934Z",
+   "isPending": false,
+   "isSitemapsIndex": false,
+   "type": "sitemap",
+   "lastDownloaded": "2026-11-15T13:51:57.948Z",
+   "warnings": "0",
+   "errors": "0",
+   "contents": [
+    {
+     "type": "web",
+     "submitted": "12",
+     "indexed": "0"
+    },
+    {
+     "type": "image",
+     "submitted": "274",
+     "indexed": "0"
+    }
+   ]
+  },
+  {
+   "path": "https://keifaldiafa.com/sitemap_index.xml",
+   "lastSubmitted": "2026-07-08T01:50:05.473Z",
+   "isPending": false,
+   "isSitemapsIndex": true,
+   "lastDownloaded": "2026-11-18T18:56:29.672Z",
+   "warnings": "0",
+   "errors": "0",
+   "contents": [
+    {
+     "type": "web",
+     "submitted": "60",
+     "indexed": "0"
+    },
+    {
+     "type": "image",
+     "submitted": "274",
+     "indexed": "0"
+    }
+   ]
+  }
+ ]
+}

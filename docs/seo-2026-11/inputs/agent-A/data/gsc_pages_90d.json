@@ -1,0 +1,428 @@
+{
+ "rows": [
+  {
+   "keys": [
+    "https://keifaldiafa.com/"
+   ],
+   "clicks": 155,
+   "impressions": 6543,
+   "ctr": 0.02368943909521626,
+   "position": 12.828366192877885
+  },
+  {
+   "keys": [
+    "https://keifaldiafa.com/diyafa-munasabat-jeddah"
+   ],
+   "clicks": 140,
+   "impressions": 4802,
+   "ctr": 0.029154518950437316,
+   "position": 7.830903790087463
+  },
+  {
+   "keys": [
+    "https://keifaldiafa.com/diyafa-munasabat-madinah"
+   ],
+   "clicks": 105,
+   "impressions": 2129,
+   "ctr": 0.04931892907468295,
+   "position": 8.074682949741662
+  },
+  {
+   "keys": [
+    "https://keifaldiafa.com/sababin-qahwa-riyadh"
+   ],
+   "clicks": 70,
+   "impressions": 6267,
+   "ctr": 0.011169618637306526,
+   "position": 8.149034625817777
+  },
+  {
+   "keys": [
+    "https://keifaldiafa.com/diyafa-munasabat-riyadh"
+   ],
+   "clicks": 69,
+   "impressions": 4395,
+   "ctr": 0.015699658703071672,
+   "position": 7.934926052332195
+  },
+  {
+   "keys": [
+    "https://keifaldiafa.com/sababin-qahwa-jeddah"
+   ],
+   "clicks": 61,
+   "impressions": 3486,
+   "ctr": 0.017498565691336777,
+   "position": 9.799770510613884
+  },
+  {
+   "keys": [
+    "https://keifaldiafa.com/diyafa-munasabat-taif"
+   ],
+   "clicks": 60,
+   "impressions": 1886,
+   "ctr": 0.031813361611876985,
+   "position": 7.1118769883351005
+  },
+  {
+   "keys": [
+    "https://keifaldiafa.com/diyafa-munasabat-dammam"
+   ],
+   "clicks": 59,
+   "impressions": 2502,
+   "ctr": 0.02358113509192646,
+   "position": 9.764588329336531
+  },
+  {
+   "keys": [
+    "https://keifaldiafa.com/diyafa-munasabat-abha"
+   ],
+   "clicks": 56,
+   "impressions": 1459,
+   "ctr": 0.03838245373543523,
+   "position": 6.82659355723098
+  },
+  {
+   "keys": [
+    "https://keifaldiafa.com/qahwajiin-madinah"
+   ],
+   "clicks": 56,
+   "impressions": 1293,
+   "ctr": 0.04331013147718484,
+   "position": 13.211136890951277
+  },
+  {
+   "keys": [
+    "https://keifaldiafa.com/qahwajiin-jeddah"
+   ],
+   "clicks": 46,
+   "impressions": 5230,
+   "ctr": 0.008795411089866157,
+   "position": 11.54359464627151
+  },
+  {
+   "keys": [
+    "https://keifaldiafa.com/diyafa-munasabat-makkah"
+   ],
+   "clicks": 45,
+   "impressions": 1005,
+   "ctr": 0.04477611940298507,
+   "position": 7.477611940298507
+  },
+  {
+   "keys": [
+    "https://keifaldiafa.com/locations/%D8%A7%D9%84%D8%AF%D9%85%D8%A7%D9%85"
+   ],
+   "clicks": 34,
+   "impressions": 1472,
+   "ctr": 0.02309782608695652,
+   "position": 15.741847826086957
+  },
+  {
+   "keys": [
+    "https://keifaldiafa.com/locations/%D8%A7%D9%84%D8%B1%D9%8A%D8%A7%D8%B6"
+   ],
+   "clicks": 33,
+   "impressions": 1604,
+   "ctr": 0.02057356608478803,
+   "position": 16.092269326683294
+  },
+  {
+   "keys": [
+    "https://keifaldiafa.com/locations/%D9%8A%D9%86%D8%A8%D8%B9"
+   ],
+   "clicks": 24,
+   "impressions": 841,
+   "ctr": 0.028537455410225922,
+   "position": 8.215219976218787
+  },
+  {
+   "keys": [
+    "https://keifaldiafa.com/sababin-qahwa-madinah"
+   ],
+   "clicks": 24,
+   "impressions": 1048,
+   "ctr": 0.022900763358778626,
+   "position": 12.409351145038167
+  },
+  {
+   "keys": [
+    "https://keifaldiafa.com/diyafa-munasabat-yanbu"
+   ],
+   "clicks": 23,
+   "impressions": 1117,
+   "ctr": 0.020590868397493287,
+   "position": 6.860340196956132
+  },
+  {
+   "keys": [
+    "https://keifaldiafa.com/qahwajiin-riyadh"
+   ],
+   "clicks": 23,
+   "impressions": 4890,
+   "ctr": 0.004703476482617587,
+   "position": 9.058691206543967
+  },
+  {
+   "keys": [
+    "https://keifaldiafa.com/diyafa-a3ras-jeddah"
+   ],
+   "clicks": 22,
+   "impressions": 1016,
+   "ctr": 0.021653543307086614,
+   "position": 7.344488188976378
+  },
+  {
+   "keys": [
+    "https://keifaldiafa.com/locations/%D8%A7%D9%84%D9%85%D8%AF%D9%8A%D9%86%D8%A9-%D8%A7%D9%84%D9%85%D9%86%D9%88%D8%B1%D8%A9"
+   ],
+   "clicks": 20,
+   "impressions": 926,
+   "ctr": 0.02159827213822894,
+   "position": 8.86501079913607
+  },
+  {
+   "keys": [
+    "https://keifaldiafa.com/locations/%D8%AC%D8%AF%D8%A9"
+   ],
+   "clicks": 20,
+   "impressions": 699,
+   "ctr": 0.02861230329041488,
+   "position": 9.762517882689556
+  },
+  {
+   "keys": [
+    "https://keifaldiafa.com/sababin-qahwa-taif"
+   ],
+   "clicks": 20,
+   "impressions": 684,
+   "ctr": 0.029239766081871343,
+   "position": 7.638888888888889
+  },
+  {
+   "keys": [
+    "https://keifaldiafa.com/qahwajiin-taif"
+   ],
+   "clicks": 18,
+   "impressions": 965,
+   "ctr": 0.01865284974093264,
+   "position": 9.37720207253886
+  },
+  {
+   "keys": [
+    "https://keifaldiafa.com/sababin-qahwa-makkah"
+   ],
+   "clicks": 18,
+   "impressions": 915,
+   "ctr": 0.019672131147540985,
+   "position": 9.815300546448087
+  },
+  {
+   "keys": [
+    "https://keifaldiafa.com/qahwajiin-makkah"
+   ],
+   "clicks": 17,
+   "impressions": 1545,
+   "ctr": 0.011003236245954692,
+   "position": 10.237540453074434
+  },
+  {
+   "keys": [
+    "https://keifaldiafa.com/sababin-qahwa-abha"
+   ],
+   "clicks": 17,
+   "impressions": 535,
+   "ctr": 0.03177570093457944,
+   "position": 10.162616822429907
+  },
+  {
+   "keys": [
+    "https://keifaldiafa.com/qahwajiin-dammam"
+   ],
+   "clicks": 14,
+   "impressions": 2978,
+   "ctr": 0.0047011417058428475,
+   "position": 9.144392209536601
+  },
+  {
+   "keys": [
+    "https://keifaldiafa.com/portfolio"
+   ],
+   "clicks": 11,
+   "impressions": 934,
+   "ctr": 0.011777301927194861,
+   "position": 23.133832976445397
+  },
+  {
+   "keys": [
+    "https://keifaldiafa.com/locations/%D8%A3%D8%A8%D9%87%D8%A7"
+   ],
+   "clicks": 10,
+   "impressions": 551,
+   "ctr": 0.018148820326678767,
+   "position": 7.47005444646098
+  },
+  {
+   "keys": [
+    "https://keifaldiafa.com/qahwajiin-abha"
+   ],
+   "clicks": 8,
+   "impressions": 402,
+   "ctr": 0.01990049751243781,
+   "position": 12.626865671641792
+  },
+  {
+   "keys": [
+    "https://keifaldiafa.com/sababin-qahwa-yanbu"
+   ],
+   "clicks": 7,
+   "impressions": 623,
+   "ctr": 0.011235955056179775,
+   "position": 12.597110754414125
+  },
+  {
+   "keys": [
+    "https://keifaldiafa.com/locations/%D8%A7%D9%84%D8%B7%D8%A7%D8%A6%D9%81"
+   ],
+   "clicks": 5,
+   "impressions": 375,
+   "ctr": 0.013333333333333334,
+   "position": 11.424
+  },
+  {
+   "keys": [
+    "https://keifaldiafa.com/sababin-qahwa-dammam"
+   ],
+   "clicks": 3,
+   "impressions": 310,
+   "ctr": 0.00967741935483871,
+   "position": 8.9
+  },
+  {
+   "keys": [
+    "https://keifaldiafa.com/legal"
+   ],
+   "clicks": 2,
+   "impressions": 105,
+   "ctr": 0.01904761904761905,
+   "position": 6.066666666666666
+  },
+  {
+   "keys": [
+    "https://keifaldiafa.com/services"
+   ],
+   "clicks": 2,
+   "impressions": 1086,
+   "ctr": 0.001841620626151013,
+   "position": 31.49355432780847
+  },
+  {
+   "keys": [
+    "https://keifaldiafa.com/about"
+   ],
+   "clicks": 1,
+   "impressions": 227,
+   "ctr": 0.004405286343612335,
+   "position": 6.616740088105727
+  },
+  {
+   "keys": [
+    "https://keifaldiafa.com/diyafa-alyawm-alwatani"
+   ],
+   "clicks": 1,
+   "impressions": 151,
+   "ctr": 0.006622516556291391,
+   "position": 11.642384105960264
+  },
+  {
+   "keys": [
+    "https://keifaldiafa.com/locations/%D8%A7%D9%8A%D9%81%D8%AF%D9%85%D8%A7%D9%85"
+   ],
+   "clicks": 1,
+   "impressions": 1,
+   "ctr": 1,
+   "position": 1
+  },
+  {
+   "keys": [
+    "https://keifaldiafa.com/qahwajiin-yanbu"
+   ],
+   "clicks": 1,
+   "impressions": 71,
+   "ctr": 0.014084507042253521,
+   "position": 23.47887323943662
+  },
+  {
+   "keys": [
+    "https://keifaldiafa.com/locations"
+   ],
+   "clicks": 0,
+   "impressions": 170,
+   "ctr": 0,
+   "position": 14.005882352941176
+  },
+  {
+   "keys": [
+    "https://keifaldiafa.com/locations/%D8%A7%D9%84%D9%85%D8%AF%D9%8A%D9%86%D8%A5_%D8%A7%D9%84%D9%85%D9%86%D9%88%D8%B1%D8%A9"
+   ],
+   "clicks": 0,
+   "impressions": 1,
+   "ctr": 0,
+   "position": 5
+  },
+  {
+   "keys": [
+    "https://keifaldiafa.com/locations/%D8%A7%D9%8A%D8%A7%D9%81%D8%A7-%D8%A7%D9%84%D9%85%D8%AF%D9%8A%D9%86%D8%A9-%D8%A7%D9%84%D9%85%D9%86%D9%88%D8%B1%D8%A9"
+   ],
+   "clicks": 0,
+   "impressions": 1,
+   "ctr": 0,
+   "position": 1
+  },
+  {
+   "keys": [
+    "https://keifaldiafa.com/locations/%D8%A7%D9%8A-%D8%A7%D9%84%D8%B1%D9%8A%D8%A7%D8%B6"
+   ],
+   "clicks": 0,
+   "impressions": 1,
+   "ctr": 0,
+   "position": 2
+  },
+  {
+   "keys": [
+    "https://keifaldiafa.com/locations/%D8%AC%D8%AF%D8%A8"
+   ],
+   "clicks": 0,
+   "impressions": 1,
+   "ctr": 0,
+   "position": 1
+  },
+  {
+   "keys": [
+    "https://keifaldiafa.com/offerings"
+   ],
+   "clicks": 0,
+   "impressions": 1,
+   "ctr": 0,
+   "position": 1
+  },
+  {
+   "keys": [
+    "https://keifaldiafa.com/privacy"
+   ],
+   "clicks": 0,
+   "impressions": 19,
+   "ctr": 0,
+   "position": 12.526315789473685
+  },
+  {
+   "keys": [
+    "https://keifaldiafa.com/social"
+   ],
+   "clicks": 0,
+   "impressions": 67,
+   "ctr": 0,
+   "position": 12.805970149253731
+  }
+ ],
+ "responseAggregationType": "byPage"
+}

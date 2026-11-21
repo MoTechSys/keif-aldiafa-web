@@ -1,0 +1,482 @@
+{
+ "https://keifaldiafa.com/": {
+  "verdict": "PASS",
+  "coverage": "تم إرسال الصفحة وتمت فهرستها",
+  "lastCrawl": "2026-11-15T14:24:28Z",
+  "gcanon": "https://keifaldiafa.com/",
+  "fetch": "SUCCESSFUL",
+  "robots": "ALLOWED",
+  "indexing": "INDEXING_ALLOWED",
+  "err": null
+ },
+ "https://keifaldiafa.com/about": {
+  "verdict": "PASS",
+  "coverage": "تم إرسال الصفحة وتمت فهرستها",
+  "lastCrawl": "2026-10-29T10:34:31Z",
+  "gcanon": "https://keifaldiafa.com/about",
+  "fetch": "SUCCESSFUL",
+  "robots": "ALLOWED",
+  "indexing": "INDEXING_ALLOWED",
+  "err": null
+ },
+ "https://keifaldiafa.com/coffee-break-sharikat-jeddah": {
+  "verdict": "NEUTRAL",
+  "coverage": "لم يتعرّف محرّك بحث Google على عنوان URL.",
+  "lastCrawl": null,
+  "gcanon": "",
+  "fetch": "PAGE_FETCH_STATE_UNSPECIFIED",
+  "robots": "ROBOTS_TXT_STATE_UNSPECIFIED",
+  "indexing": "INDEXING_STATE_UNSPECIFIED",
+  "err": null
+ },
+ "https://keifaldiafa.com/contact": {
+  "verdict": "NEUTRAL",
+  "coverage": "تم اكتشاف الصفحة - لم تتم فهرستها حتى الآن",
+  "lastCrawl": null,
+  "gcanon": "",
+  "fetch": "PAGE_FETCH_STATE_UNSPECIFIED",
+  "robots": "ROBOTS_TXT_STATE_UNSPECIFIED",
+  "indexing": "INDEXING_STATE_UNSPECIFIED",
+  "err": null
+ },
+ "https://keifaldiafa.com/diyafa-a3ras-jeddah": {
+  "verdict": "PASS",
+  "coverage": "تم إرسال الصفحة وتمت فهرستها",
+  "lastCrawl": "2026-10-27T15:23:15Z",
+  "gcanon": "https://keifaldiafa.com/diyafa-a3ras-jeddah",
+  "fetch": "SUCCESSFUL",
+  "robots": "ALLOWED",
+  "indexing": "INDEXING_ALLOWED",
+  "err": null
+ },
+ "https://keifaldiafa.com/diyafa-alyawm-alwatani": {
+  "verdict": "PASS",
+  "coverage": "تم إرسال الصفحة وتمت فهرستها",
+  "lastCrawl": "2026-11-02T22:37:29Z",
+  "gcanon": "https://keifaldiafa.com/diyafa-alyawm-alwatani",
+  "fetch": "SUCCESSFUL",
+  "robots": "ALLOWED",
+  "indexing": "INDEXING_ALLOWED",
+  "err": null
+ },
+ "https://keifaldiafa.com/diyafa-munasabat-abha": {
+  "verdict": "PASS",
+  "coverage": "تم إرسال الصفحة وتمت فهرستها",
+  "lastCrawl": "2026-11-02T08:11:36Z",
+  "gcanon": "https://keifaldiafa.com/diyafa-munasabat-abha",
+  "fetch": "SUCCESSFUL",
+  "robots": "ALLOWED",
+  "indexing": "INDEXING_ALLOWED",
+  "err": null
+ },
+ "https://keifaldiafa.com/diyafa-munasabat-dammam": {
+  "verdict": "PASS",
+  "coverage": "تم إرسال الصفحة وتمت فهرستها",
+  "lastCrawl": "2026-11-19T06:13:42Z",
+  "gcanon": "https://keifaldiafa.com/diyafa-munasabat-dammam",
+  "fetch": "SUCCESSFUL",
+  "robots": "ALLOWED",
+  "indexing": "INDEXING_ALLOWED",
+  "err": null
+ },
+ "https://keifaldiafa.com/diyafa-munasabat-jeddah": {
+  "verdict": "PASS",
+  "coverage": "تم إرسال الصفحة وتمت فهرستها",
+  "lastCrawl": "2026-11-17T22:28:05Z",
+  "gcanon": "https://keifaldiafa.com/diyafa-munasabat-jeddah",
+  "fetch": "SUCCESSFUL",
+  "robots": "ALLOWED",
+  "indexing": "INDEXING_ALLOWED",
+  "err": null
+ },
+ "https://keifaldiafa.com/diyafa-munasabat-madinah": {
+  "verdict": "PASS",
+  "coverage": "تم إرسال الصفحة وتمت فهرستها",
+  "lastCrawl": "2026-11-16T23:50:56Z",
+  "gcanon": "https://keifaldiafa.com/diyafa-munasabat-madinah",
+  "fetch": "SUCCESSFUL",
+  "robots": "ALLOWED",
+  "indexing": "INDEXING_ALLOWED",
+  "err": null
+ },
+ "https://keifaldiafa.com/diyafa-munasabat-makkah": {
+  "verdict": "PASS",
+  "coverage": "تم إرسال الصفحة وتمت فهرستها",
+  "lastCrawl": "2026-10-25T15:16:10Z",
+  "gcanon": "https://keifaldiafa.com/diyafa-munasabat-makkah",
+  "fetch": "SUCCESSFUL",
+  "robots": "ALLOWED",
+  "indexing": "INDEXING_ALLOWED",
+  "err": null
+ },
+ "https://keifaldiafa.com/diyafa-munasabat-riyadh": {
+  "verdict": "PASS",
+  "coverage": "تم إرسال الصفحة وتمت فهرستها",
+  "lastCrawl": "2026-11-15T18:44:47Z",
+  "gcanon": "https://keifaldiafa.com/diyafa-munasabat-riyadh",
+  "fetch": "SUCCESSFUL",
+  "robots": "ALLOWED",
+  "indexing": "INDEXING_ALLOWED",
+  "err": null
+ },
+ "https://keifaldiafa.com/diyafa-munasabat-taif": {
+  "verdict": "PASS",
+  "coverage": "تم إرسال الصفحة وتمت فهرستها",
+  "lastCrawl": "2026-11-19T14:29:12Z",
+  "gcanon": "https://keifaldiafa.com/diyafa-munasabat-taif",
+  "fetch": "SUCCESSFUL",
+  "robots": "ALLOWED",
+  "indexing": "INDEXING_ALLOWED",
+  "err": null
+ },
+ "https://keifaldiafa.com/diyafa-munasabat-yanbu": {
+  "verdict": "PASS",
+  "coverage": "تم إرسال الصفحة وتمت فهرستها",
+  "lastCrawl": "2026-10-25T11:44:48Z",
+  "gcanon": "https://keifaldiafa.com/diyafa-munasabat-yanbu",
+  "fetch": "SUCCESSFUL",
+  "robots": "ALLOWED",
+  "indexing": "INDEXING_ALLOWED",
+  "err": null
+ },
+ "https://keifaldiafa.com/legal": {
+  "verdict": "PASS",
+  "coverage": "تم إرسال الصفحة وتمت فهرستها",
+  "lastCrawl": "2026-11-12T06:18:43Z",
+  "gcanon": "https://keifaldiafa.com/legal",
+  "fetch": "SUCCESSFUL",
+  "robots": "ALLOWED",
+  "indexing": "INDEXING_ALLOWED",
+  "err": null
+ },
+ "https://keifaldiafa.com/locations": {
+  "verdict": "PASS",
+  "coverage": "تم إرسال الصفحة وتمت فهرستها",
+  "lastCrawl": "2026-11-16T01:20:24Z",
+  "gcanon": "https://keifaldiafa.com/locations",
+  "fetch": "SUCCESSFUL",
+  "robots": "ALLOWED",
+  "indexing": "INDEXING_ALLOWED",
+  "err": null
+ },
+ "https://keifaldiafa.com/locations/أبها": {
+  "verdict": "PASS",
+  "coverage": "تم إرسال الصفحة وتمت فهرستها",
+  "lastCrawl": "2026-11-20T01:42:29Z",
+  "gcanon": "https://keifaldiafa.com/locations/أبها",
+  "fetch": "SUCCESSFUL",
+  "robots": "ALLOWED",
+  "indexing": "INDEXING_ALLOWED",
+  "err": null
+ },
+ "https://keifaldiafa.com/locations/الدمام": {
+  "verdict": "PASS",
+  "coverage": "تم إرسال الصفحة وتمت فهرستها",
+  "lastCrawl": "2026-11-21T04:40:54Z",
+  "gcanon": "https://keifaldiafa.com/locations/الدمام",
+  "fetch": "SUCCESSFUL",
+  "robots": "ALLOWED",
+  "indexing": "INDEXING_ALLOWED",
+  "err": null
+ },
+ "https://keifaldiafa.com/locations/الرياض": {
+  "verdict": "PASS",
+  "coverage": "تم إرسال الصفحة وتمت فهرستها",
+  "lastCrawl": "2026-11-11T07:58:26Z",
+  "gcanon": "https://keifaldiafa.com/locations/الرياض",
+  "fetch": "SUCCESSFUL",
+  "robots": "ALLOWED",
+  "indexing": "INDEXING_ALLOWED",
+  "err": null
+ },
+ "https://keifaldiafa.com/locations/الطائف": {
+  "verdict": "PASS",
+  "coverage": "تم إرسال الصفحة وتمت فهرستها",
+  "lastCrawl": "2026-10-24T21:27:36Z",
+  "gcanon": "https://keifaldiafa.com/locations/الطائف",
+  "fetch": "SUCCESSFUL",
+  "robots": "ALLOWED",
+  "indexing": "INDEXING_ALLOWED",
+  "err": null
+ },
+ "https://keifaldiafa.com/locations/المدينة-المنورة": {
+  "verdict": "PASS",
+  "coverage": "تم إرسال الصفحة وتمت فهرستها",
+  "lastCrawl": "2026-11-18T11:18:57Z",
+  "gcanon": "https://keifaldiafa.com/locations/المدينة-المنورة",
+  "fetch": "SUCCESSFUL",
+  "robots": "ALLOWED",
+  "indexing": "INDEXING_ALLOWED",
+  "err": null
+ },
+ "https://keifaldiafa.com/locations/جدة": {
+  "verdict": "PASS",
+  "coverage": "تم إرسال الصفحة وتمت فهرستها",
+  "lastCrawl": "2026-11-16T14:00:22Z",
+  "gcanon": "https://keifaldiafa.com/locations/جدة",
+  "fetch": "SUCCESSFUL",
+  "robots": "ALLOWED",
+  "indexing": "INDEXING_ALLOWED",
+  "err": null
+ },
+ "https://keifaldiafa.com/locations/مكة-المكرمة": {
+  "verdict": "NEUTRAL",
+  "coverage": "تم اكتشاف الصفحة - لم تتم فهرستها حتى الآن",
+  "lastCrawl": null,
+  "gcanon": "",
+  "fetch": "PAGE_FETCH_STATE_UNSPECIFIED",
+  "robots": "ROBOTS_TXT_STATE_UNSPECIFIED",
+  "indexing": "INDEXING_STATE_UNSPECIFIED",
+  "err": null
+ },
+ "https://keifaldiafa.com/locations/ينبع": {
+  "verdict": "PASS",
+  "coverage": "تم إرسال الصفحة وتمت فهرستها",
+  "lastCrawl": "2026-11-16T10:29:46Z",
+  "gcanon": "https://keifaldiafa.com/locations/ينبع",
+  "fetch": "SUCCESSFUL",
+  "robots": "ALLOWED",
+  "indexing": "INDEXING_ALLOWED",
+  "err": null
+ },
+ "https://keifaldiafa.com/mubashirin-qahwa-jeddah": {
+  "verdict": "NEUTRAL",
+  "coverage": "تم اكتشاف الصفحة - لم تتم فهرستها حتى الآن",
+  "lastCrawl": null,
+  "gcanon": "",
+  "fetch": "PAGE_FETCH_STATE_UNSPECIFIED",
+  "robots": "ROBOTS_TXT_STATE_UNSPECIFIED",
+  "indexing": "INDEXING_STATE_UNSPECIFIED",
+  "err": null
+ },
+ "https://keifaldiafa.com/offerings": {
+  "verdict": "NEUTRAL",
+  "coverage": "نسخة طبق الأصل، لم يخترها المستخدم نسخة أساسية.",
+  "lastCrawl": "2026-09-09T05:15:50Z",
+  "gcanon": "https://www.afpintegra.pe/iniciar-sesion",
+  "fetch": "SUCCESSFUL",
+  "robots": "ALLOWED",
+  "indexing": "INDEXING_ALLOWED",
+  "err": null
+ },
+ "https://keifaldiafa.com/portfolio": {
+  "verdict": "PASS",
+  "coverage": "تم إرسال الصفحة وتمت فهرستها",
+  "lastCrawl": "2026-11-03T04:54:02Z",
+  "gcanon": "https://keifaldiafa.com/portfolio",
+  "fetch": "SUCCESSFUL",
+  "robots": "ALLOWED",
+  "indexing": "INDEXING_ALLOWED",
+  "err": null
+ },
+ "https://keifaldiafa.com/privacy": {
+  "verdict": "PASS",
+  "coverage": "تم إرسال الصفحة وتمت فهرستها",
+  "lastCrawl": "2026-11-02T22:07:42Z",
+  "gcanon": "https://keifaldiafa.com/privacy",
+  "fetch": "SUCCESSFUL",
+  "robots": "ALLOWED",
+  "indexing": "INDEXING_ALLOWED",
+  "err": null
+ },
+ "https://keifaldiafa.com/qahwajiin": {
+  "verdict": "NEUTRAL",
+  "coverage": "تم اكتشاف الصفحة - لم تتم فهرستها حتى الآن",
+  "lastCrawl": null,
+  "gcanon": "",
+  "fetch": "PAGE_FETCH_STATE_UNSPECIFIED",
+  "robots": "ROBOTS_TXT_STATE_UNSPECIFIED",
+  "indexing": "INDEXING_STATE_UNSPECIFIED",
+  "err": null
+ },
+ "https://keifaldiafa.com/qahwajiin-abha": {
+  "verdict": "PASS",
+  "coverage": "تم إرسال الصفحة وتمت فهرستها",
+  "lastCrawl": "2026-11-19T09:50:28Z",
+  "gcanon": "https://keifaldiafa.com/qahwajiin-abha",
+  "fetch": "SUCCESSFUL",
+  "robots": "ALLOWED",
+  "indexing": "INDEXING_ALLOWED",
+  "err": null
+ },
+ "https://keifaldiafa.com/qahwajiin-dammam": {
+  "verdict": "PASS",
+  "coverage": "تم إرسال الصفحة وتمت فهرستها",
+  "lastCrawl": "2026-11-09T13:12:55Z",
+  "gcanon": "https://keifaldiafa.com/qahwajiin-dammam",
+  "fetch": "SUCCESSFUL",
+  "robots": "ALLOWED",
+  "indexing": "INDEXING_ALLOWED",
+  "err": null
+ },
+ "https://keifaldiafa.com/qahwajiin-jeddah": {
+  "verdict": "PASS",
+  "coverage": "تم إرسال الصفحة وتمت فهرستها",
+  "lastCrawl": "2026-11-13T16:12:57Z",
+  "gcanon": "https://keifaldiafa.com/qahwajiin-jeddah",
+  "fetch": "SUCCESSFUL",
+  "robots": "ALLOWED",
+  "indexing": "INDEXING_ALLOWED",
+  "err": null
+ },
+ "https://keifaldiafa.com/qahwajiin-madinah": {
+  "verdict": "PASS",
+  "coverage": "تم إرسال الصفحة وتمت فهرستها",
+  "lastCrawl": "2026-11-17T12:05:16Z",
+  "gcanon": "https://keifaldiafa.com/qahwajiin-madinah",
+  "fetch": "SUCCESSFUL",
+  "robots": "ALLOWED",
+  "indexing": "INDEXING_ALLOWED",
+  "err": null
+ },
+ "https://keifaldiafa.com/qahwajiin-makkah": {
+  "verdict": "PASS",
+  "coverage": "تم إرسال الصفحة وتمت فهرستها",
+  "lastCrawl": "2026-11-02T03:46:04Z",
+  "gcanon": "https://keifaldiafa.com/qahwajiin-makkah",
+  "fetch": "SUCCESSFUL",
+  "robots": "ALLOWED",
+  "indexing": "INDEXING_ALLOWED",
+  "err": null
+ },
+ "https://keifaldiafa.com/qahwajiin-riyadh": {
+  "verdict": "PASS",
+  "coverage": "تم إرسال الصفحة وتمت فهرستها",
+  "lastCrawl": "2026-11-16T03:16:47Z",
+  "gcanon": "https://keifaldiafa.com/qahwajiin-riyadh",
+  "fetch": "SUCCESSFUL",
+  "robots": "ALLOWED",
+  "indexing": "INDEXING_ALLOWED",
+  "err": null
+ },
+ "https://keifaldiafa.com/qahwajiin-taif": {
+  "verdict": "PASS",
+  "coverage": "تم إرسال الصفحة وتمت فهرستها",
+  "lastCrawl": "2026-11-17T11:35:34Z",
+  "gcanon": "https://keifaldiafa.com/qahwajiin-taif",
+  "fetch": "SUCCESSFUL",
+  "robots": "ALLOWED",
+  "indexing": "INDEXING_ALLOWED",
+  "err": null
+ },
+ "https://keifaldiafa.com/qahwajiin-yanbu": {
+  "verdict": "PASS",
+  "coverage": "تم إرسال الصفحة وتمت فهرستها",
+  "lastCrawl": "2026-09-17T00:56:52Z",
+  "gcanon": "https://keifaldiafa.com/qahwajiin-yanbu",
+  "fetch": "SUCCESSFUL",
+  "robots": "ALLOWED",
+  "indexing": "INDEXING_ALLOWED",
+  "err": null
+ },
+ "https://keifaldiafa.com/qahwajiyat-sababat-jeddah": {
+  "verdict": "NEUTRAL",
+  "coverage": "لم يتعرّف محرّك بحث Google على عنوان URL.",
+  "lastCrawl": null,
+  "gcanon": "",
+  "fetch": "PAGE_FETCH_STATE_UNSPECIFIED",
+  "robots": "ROBOTS_TXT_STATE_UNSPECIFIED",
+  "indexing": "INDEXING_STATE_UNSPECIFIED",
+  "err": null
+ },
+ "https://keifaldiafa.com/sababin-qahwa-abha": {
+  "verdict": "PASS",
+  "coverage": "تم إرسال الصفحة وتمت فهرستها",
+  "lastCrawl": "2026-11-02T19:56:48Z",
+  "gcanon": "https://keifaldiafa.com/sababin-qahwa-abha",
+  "fetch": "SUCCESSFUL",
+  "robots": "ALLOWED",
+  "indexing": "INDEXING_ALLOWED",
+  "err": null
+ },
+ "https://keifaldiafa.com/sababin-qahwa-dammam": {
+  "verdict": "PASS",
+  "coverage": "تم إرسال الصفحة وتمت فهرستها",
+  "lastCrawl": "2026-09-17T00:56:52Z",
+  "gcanon": "https://keifaldiafa.com/sababin-qahwa-dammam",
+  "fetch": "SUCCESSFUL",
+  "robots": "ALLOWED",
+  "indexing": "INDEXING_ALLOWED",
+  "err": null
+ },
+ "https://keifaldiafa.com/sababin-qahwa-jeddah": {
+  "verdict": "PASS",
+  "coverage": "تم إرسال الصفحة وتمت فهرستها",
+  "lastCrawl": "2026-11-16T21:53:39Z",
+  "gcanon": "https://keifaldiafa.com/sababin-qahwa-jeddah",
+  "fetch": "SUCCESSFUL",
+  "robots": "ALLOWED",
+  "indexing": "INDEXING_ALLOWED",
+  "err": null
+ },
+ "https://keifaldiafa.com/sababin-qahwa-madinah": {
+  "verdict": "PASS",
+  "coverage": "تم إرسال الصفحة وتمت فهرستها",
+  "lastCrawl": "2026-11-19T08:19:48Z",
+  "gcanon": "https://keifaldiafa.com/sababin-qahwa-madinah",
+  "fetch": "SUCCESSFUL",
+  "robots": "ALLOWED",
+  "indexing": "INDEXING_ALLOWED",
+  "err": null
+ },
+ "https://keifaldiafa.com/sababin-qahwa-makkah": {
+  "verdict": "PASS",
+  "coverage": "تم إرسال الصفحة وتمت فهرستها",
+  "lastCrawl": "2026-11-02T03:59:29Z",
+  "gcanon": "https://keifaldiafa.com/sababin-qahwa-makkah",
+  "fetch": "SUCCESSFUL",
+  "robots": "ALLOWED",
+  "indexing": "INDEXING_ALLOWED",
+  "err": null
+ },
+ "https://keifaldiafa.com/sababin-qahwa-riyadh": {
+  "verdict": "PASS",
+  "coverage": "تم إرسال الصفحة وتمت فهرستها",
+  "lastCrawl": "2026-11-18T20:13:49Z",
+  "gcanon": "https://keifaldiafa.com/sababin-qahwa-riyadh",
+  "fetch": "SUCCESSFUL",
+  "robots": "ALLOWED",
+  "indexing": "INDEXING_ALLOWED",
+  "err": null
+ },
+ "https://keifaldiafa.com/sababin-qahwa-taif": {
+  "verdict": "PASS",
+  "coverage": "تم إرسال الصفحة وتمت فهرستها",
+  "lastCrawl": "2026-11-03T16:20:16Z",
+  "gcanon": "https://keifaldiafa.com/sababin-qahwa-taif",
+  "fetch": "SUCCESSFUL",
+  "robots": "ALLOWED",
+  "indexing": "INDEXING_ALLOWED",
+  "err": null
+ },
+ "https://keifaldiafa.com/sababin-qahwa-yanbu": {
+  "verdict": "PASS",
+  "coverage": "تم إرسال الصفحة وتمت فهرستها",
+  "lastCrawl": "2026-11-16T14:24:10Z",
+  "gcanon": "https://keifaldiafa.com/sababin-qahwa-yanbu",
+  "fetch": "SUCCESSFUL",
+  "robots": "ALLOWED",
+  "indexing": "INDEXING_ALLOWED",
+  "err": null
+ },
+ "https://keifaldiafa.com/services": {
+  "verdict": "PASS",
+  "coverage": "تم إرسال الصفحة وتمت فهرستها",
+  "lastCrawl": "2026-11-18T12:10:27Z",
+  "gcanon": "https://keifaldiafa.com/services",
+  "fetch": "SUCCESSFUL",
+  "robots": "ALLOWED",
+  "indexing": "INDEXING_ALLOWED",
+  "err": null
+ },
+ "https://keifaldiafa.com/social": {
+  "verdict": "PASS",
+  "coverage": "تم إرسال الصفحة وتمت فهرستها",
+  "lastCrawl": "2026-11-18T21:58:44Z",
+  "gcanon": "https://keifaldiafa.com/social",
+  "fetch": "SUCCESSFUL",
+  "robots": "ALLOWED",
+  "indexing": "INDEXING_ALLOWED",
+  "err": null
+ }
+}
