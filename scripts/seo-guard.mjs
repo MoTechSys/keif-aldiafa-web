@@ -15,7 +15,7 @@
  * S8  JSON-LD لا يمرّ JSON.parse · streetAddress ممنوع (قرار موثّق: address
  *     بمستوى المدينة فقط — عنوان شارع خاطئ يضر الخرائط) · areaServed إلزامي
  *     للكيان الرئيسي.
- *     ملاحظة فرق عن osoul: كيف تستخدم CateringService (فرع LocalBusiness)
+ *     ملاحظة فرق عن osoul: كيف تستخدم LocalBusiness (D178 — CateringService ليس نوعاً في schema.org)
  *     بقرار موثّق في schema.ts — لذلك لا نمنع LocalBusiness هنا.
  * S9  كلمات محظورة: «فروعنا/مقرنا/فرعنا» (ادعاء مواقع فيزيائية متعددة)
  * S10 أرقام إثبات غير موثّقة: «+N مناسبة» أو «N% رضا» بلا data/proof.json (E-E-A-T)
@@ -146,8 +146,11 @@ for (const file of files) {
       if (/"streetAddress"\s*:/.test(flat))
         errors.push(`S8 · ${bare}: JSON-LD يحتوي streetAddress (القرار الموثّق: address بمستوى المدينة فقط)`);
       // الكيان التجاري الرئيسي يجب أن يعلن مناطق خدمته.
-      if (flat.includes('"CateringService"') && !/"areaServed"\s*:/.test(flat))
-        errors.push(`S8 · ${bare}: CateringService بلا areaServed`);
+      if (flat.includes('"@type":"LocalBusiness"') && !/"areaServed"\s*:/.test(flat))
+        errors.push(`S8 · ${bare}: LocalBusiness بلا areaServed`);
+      // D178: «CateringService» ليس نوعاً في schema.org — ممنوع رجوعه.
+      if (flat.includes('"CateringService"'))
+        errors.push(`S8 · ${bare}: نوع غير موجود في schema.org «CateringService»`);
     } catch {
       errors.push(`S8 · ${bare}: JSON-LD لا يمرّ JSON.parse`);
     }

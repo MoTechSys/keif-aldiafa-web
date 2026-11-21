@@ -8,7 +8,7 @@ import { WaIcon } from "./WaIcon";
 
 /**
  * Footer — فوتر مُهيكل (D94) منقول 1:1 من النموذج v6.9:
- * العلامة+تواصل / الخدمات / المدن → صف أقسام الموقع (doormat) → التوثيق والحقوق.
+ * العلامة+تواصل / الخدمات / المدن / خدماتنا في جدة (D177) → صف أقسام الموقع (doormat) → التوثيق والحقوق.
  * مكوّن خادم صرف (لا JS). النصوص حرفية من النموذج؛ الأرقام المسموحة فقط
  * (+500 · منذ 2016 · الرقم الموحّد) — PLAN قاعدة 2.
  * روابط الخدمات: مراسي /services#<id> بنفس معرّفات data.py (تُبنى في المرحلة 5).
@@ -22,6 +22,22 @@ const SERVICE_LINKS: readonly { hash: string; label: string }[] = [
   { hash: "counter", label: "كاونترات واستقبال" },
   { hash: "buffet", label: "بوفيه متكامل" },
   { hash: "heritage-tent", label: "خيمة تراثية" },
+];
+
+/**
+ * D177 — عمود «خدماتنا في جدة»: روابط ثابتة من كل صفحة إلى صفحات جدة السبع + دليل الحجز.
+ * السبب المُقاس: هذه الصفحات كان يصلها 8–18 رابطاً داخلياً من 48 صفحة، وأربع منها غير مفهرسة.
+ * نص الرابط = اسم الصفحة كما يبحث عنه الزائر. المسارات قائمة (قاعدة 5: لا تغيير slug).
+ */
+const JEDDAH_LINKS: readonly { href: string; label: string }[] = [
+  { href: "/qahwajiin-jeddah", label: "قهوجيين جدة" },
+  { href: "/sababin-qahwa-jeddah", label: "صبابين قهوة جدة" },
+  { href: "/mubashirin-qahwa-jeddah", label: "مباشرين قهوة جدة" },
+  { href: "/qahwajiyat-sababat-jeddah", label: "قهوجيات وصبابات جدة" },
+  { href: "/diyafa-munasabat-jeddah", label: "ضيافة مناسبات جدة" },
+  { href: "/diyafa-a3ras-jeddah", label: "ضيافة زواجات جدة" },
+  { href: "/coffee-break-sharikat-jeddah", label: "كوفي بريك شركات جدة" },
+  { href: "/qahwajiin", label: "دليل حجز القهوجيين" },
 ];
 
 const BADGES: readonly { src: string; alt: string; w: number; h: number }[] = [
@@ -93,6 +109,17 @@ export default function Footer() {
               <li>
                 <Link className="all" href="/locations" prefetch={false}>كل المدن ›</Link>
               </li>
+            </ul>
+          </nav>
+
+          <nav className="fcol fcol-jed" aria-labelledby="fh-jed">
+            <h3 id="fh-jed">خدماتنا في جدة</h3>
+            <ul>
+              {JEDDAH_LINKS.map((l) => (
+                <li key={l.href}>
+                  <Link href={l.href} prefetch={false}>{l.label}</Link>
+                </li>
+              ))}
             </ul>
           </nav>
         </div>

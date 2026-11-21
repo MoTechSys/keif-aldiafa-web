@@ -851,3 +851,14 @@ body.ch-flash::after{content:"";position:fixed;inset:0;z-index:9998;pointer-even
   .tile{width:52%;max-width:210px}
   .tile span{font-size:.95rem;padding:30px 10px 10px}
 }
+
+/* D177 — عمود رابع في الفوتر «خدماتنا في جدة» (انحراف موثّق عن النموذج v6.9: الفوتر فيه 3 أعمدة).
+   الجوال: العمود بعرض الشبكة كاملاً وروابطه في عمودين (نفس إيقاع عمودَي الخدمات/المدن فوقه).
+   ≥900px: أربعة أعمدة؛ الفجوة 48→36px كي لا تنكسر تسميات الخدمات عند 900–1100px. */
+footer.v7-footer .fcol-jed{grid-column:1/-1}
+footer.v7-footer .fcol-jed ul{grid-template-columns:1fr 1fr;column-gap:18px}
+@media (min-width:900px){
+  footer.v7-footer .fgrid{grid-template-columns:1.5fr 1fr 1fr 1fr;gap:32px 36px}
+  footer.v7-footer .fcol-jed{grid-column:auto}
+  footer.v7-footer .fcol-jed ul{grid-template-columns:1fr}
+}

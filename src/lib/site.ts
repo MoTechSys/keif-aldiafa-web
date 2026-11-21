@@ -82,7 +82,7 @@ export const SOCIAL = {
 
 /**
  * روابط sameAs للـSchema — صفحات ملفات تعريفية فقط (بلا روابط أفعال مثل wa.me).
- * مصدر واحد يستهلكه Organization وCateringService معاً.
+ * مصدر واحد يستهلكه Organization وLocalBusiness معاً.
  */
 export const SAME_AS: readonly string[] = [
   SOCIAL.instagram,

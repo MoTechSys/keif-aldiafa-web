@@ -9,7 +9,11 @@
   "orientation": "portrait-primary",
   "lang": "ar",
   "dir": "rtl",
-  "categories": ["hospitality", "food", "business"],
+  "categories": [
+    "hospitality",
+    "food",
+    "business"
+  ],
   "scope": "/",
   "icons": [
     {
@@ -41,14 +45,6 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
-    }
-  ],
-  "screenshots": [
-    {
-      "src": "/screenshot-mobile.png",
-      "sizes": "390x844",
-      "type": "image/png",
-      "form_factor": "narrow"
     }
   ],
   "shortcuts": [

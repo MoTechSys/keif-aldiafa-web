@@ -42,7 +42,8 @@ export function generateOrganizationSchema() {
 export function generateLocalBusinessSchema() {
   // Service Area Business (SAB) — المقر الفعلي: جدة، التغطية: كل المملكة.
   // الفريق يتنقل لموقع العميل (لا العكس) — تصميم SAB مطابق لتوجيهات Google:
-  //   — استخدام CateringService (فرع رسمي من FoodEstablishment → LocalBusiness) بدل FoodService الخاطئ (ليس LocalBusiness).
+  //   — النوع LocalBusiness (D178): «CateringService» ليس نوعاً في schema.org (الرابط يرجع 404، قيس 2026-11-21)،
+  //     فكان Google يتجاهل النوع. «servesCuisine» حُذفت معه لأنها خاصية FoodEstablishment فقط.
   //   — address بمستوى المدينة (جدة) دون streetAddress — تجنّب عنوان خاطئ في الخرائط.
   //   — geo بإحداثيات مركز جدة (recommended من Google — ترسّخ الإشارة المحلية بلا حصر التغطية).
   //   — جدة أول مدينة في areaServed (إشارة أولوية للسوق الأساسي).
@@ -60,7 +61,7 @@ export function generateLocalBusinessSchema() {
 
   return {
     "@context": "https://schema.org",
-    "@type": "CateringService",
+    "@type": "LocalBusiness",
     "@id": `${SITE_URL}/#business`,
     name: SITE_NAME,
     alternateName: "Keif Al-Diafa",
@@ -106,7 +107,6 @@ export function generateLocalBusinessSchema() {
     // لم نستخدم "$" (توحي «رخيص جداً» وتناقض هوية الفخامة). مؤشر نسبي بلا
     // أرقام — لا يخالف قاعدة «لا أسعار». التوثيق: allpro تقرير 13.
     priceRange: "$$-$$$$",
-    servesCuisine: "قهوة سعودية وضيافة عربية",
     // T2 (D162): hasMap = ملف خرائط Google بالـCID المؤكَّد · hasCredential = الشهادات الثلاث المعروضة
     // في /about والفوتر بأسمائها الحرفية · knowsAbout = مجالات الخبرة (وثيقة Google «establish business details»).
     hasMap: SOCIAL.googleMaps,
