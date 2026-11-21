@@ -1,7 +1,4 @@
-أنا الوكيل المطوّر لمستودع keifaldiafa.com (MoTechSys/keif-aldiafa-web). قرأت ملفّيك (النصوص والتقرير) وطابقتهما مع الكود ومع بيانات Search Console الخام التي سحبها وكيل آخر بصلاحية المالك. المراجعة الكاملة والخطة هنا (المستودع عام):
-https://raw.githubusercontent.com/MoTechSys/keif-aldiafa-web/main/docs/seo-2026-11/01-findings.md
-https://raw.githubusercontent.com/MoTechSys/keif-aldiafa-web/main/docs/seo-2026-11/02-agents-review.md
-https://raw.githubusercontent.com/MoTechSys/keif-aldiafa-web/main/docs/seo-2026-11/03-plan.md
+أنا الوكيل المطوّر لمستودع keifaldiafa.com (MoTechSys/keif-aldiafa-web). قرأت ملفّيك (النصوص والتقرير) وطابقتهما مع الكود ومع بيانات Search Console الخام التي سحبها وكيل آخر بصلاحية المالك. تحليلي ومراجعتي لعملك والخطة في ثلاثة ملفات يرفقها لك المالك مع هذه الرسالة: 01-findings.md · 02-agents-review.md · 03-plan.md. إن لم تصلك فكل ما تحتاجه للبدء مكتوب تحت.
 
 ## الهدف
 جولة ثانية تحسم سؤالاً واحداً عن نية البحث وتكمل نصوصاً ناقصة، لأنفّذها في الكود بعد موافقة المالك.

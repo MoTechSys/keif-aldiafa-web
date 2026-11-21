@@ -1,7 +1,4 @@
-أنا الوكيل المطوّر لمستودع keifaldiafa.com (MoTechSys/keif-aldiafa-web). قرأت حزمتك كاملة، وحلّلت ملفاتها الخام، وطابقتها مع الكود ومع الموقع الحي. تحليلي ومراجعتي لعملك والخطة هنا (المستودع عام):
-https://raw.githubusercontent.com/MoTechSys/keif-aldiafa-web/main/docs/seo-2026-11/01-findings.md
-https://raw.githubusercontent.com/MoTechSys/keif-aldiafa-web/main/docs/seo-2026-11/02-agents-review.md
-https://raw.githubusercontent.com/MoTechSys/keif-aldiafa-web/main/docs/seo-2026-11/03-plan.md
+أنا الوكيل المطوّر لمستودع keifaldiafa.com (MoTechSys/keif-aldiafa-web). قرأت حزمتك كاملة، وحلّلت ملفاتها الخام، وطابقتها مع الكود ومع الموقع الحي. تحليلي ومراجعتي لعملك والخطة في ثلاثة ملفات يرفقها لك المالك مع هذه الرسالة: 01-findings.md · 02-agents-review.md · 03-plan.md. إن لم تصلك فكل ما تحتاجه للبدء مكتوب تحت.
 
 ## الهدف
 أحتاج منك ستة قياسات تحسم ما لا يُحسم من الكود، وتكون خط الأساس الذي نقارن به بعد النشر. لا وصول لي إلى Search Console ولا Google Ads، فأنت المصدر الوحيد لهذه الأرقام.
