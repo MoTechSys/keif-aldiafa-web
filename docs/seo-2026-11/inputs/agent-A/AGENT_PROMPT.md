@@ -29,7 +29,7 @@ Inside: seo/README.md (index) → keif/SEO_AUDIT_AR.md (audit) → keif/delivera
 - Lighthouse mobile /qahwajiin-jeddah: Perf 82, LCP 2.6s, TBT 550ms. HTML 300–590KB per page (RSC payload). FAQ content exists without FAQPage schema.
 - **Strong pages — don't touch their title/H1/URL:** /sababin-qahwa-jeddah (pos 1.9), /diyafa-munasabat-jeddah, /sababin-qahwa-riyadh (3.8), /qahwajiin-madinah (3.5).
 - Ads (context): stopped serving since 2026-10-11. Last recorded conversion 2026-09-30. Main campaign uses Max Conversions + tCPA 12 SAR. Probable cause: Consent Mode default `ad_storage: denied` until the cookie banner is accepted, so conversions don't get recorded. (The owner says ads are not the priority right now.)
-- I paused a foreign Smart campaign "متجر أدوات رياضية في جدة" (→ [third-party domain removed]) that was created on 2026-10-11 inside the account.
+- I paused a foreign Smart campaign "[حملة أخرى — الاسم محذوف]" (→ [third-party domain removed]) that was created on 2026-10-11 inside the account.
 
 ## Proposed tasks for you (in order)
 1. **Internal linking** (keif/deliverables/internal_linking.md): a sitewide "خدماتنا" block in the header/footer with keyword anchors → /qahwajiin, /qahwajiin-jeddah, /sababin-qahwa-jeddah, /qahwajiyat-sababat-jeddah, /mubashirin-qahwa-jeddah, /diyafa-a3ras-jeddah, /coffee-break-sharikat-jeddah, /diyafa-munasabat-jeddah. Plus contextual links inside city pages.
