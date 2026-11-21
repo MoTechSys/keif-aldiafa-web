@@ -65,7 +65,7 @@ function Hero() {
           </a>
         </div>
         <div className="proof" aria-label="أرقامنا">
-          <a href="#works" title="شاهد الأعمال"><b>+500</b>مناسبة نُفّذت</a><i />
+          <a href="#works" title="شاهد الأعمال"><b>+1600</b>مناسبة نُفّذت</a><i />
           <span><b className="ar">منذ 2016</b>خبرة متواصلة</span>
         </div>
       </div>
@@ -134,7 +134,7 @@ function Partners() {
               <Image src={partnerSrc(p)} alt={p.alt} width={p.width} height={p.height} sizes="(max-width:899px) 30vw, 180px" loading="lazy" quality={80} />
             </div>
           ))}
-          <div className="logo more"><div><b>+500</b><small>مناسبة منذ 2016</small></div></div>
+          <div className="logo more"><div><b>+1600</b><small>مناسبة منذ 2016</small></div></div>
         </div>
         <PartnersMore count={PARTNERS.length} />
       </div>

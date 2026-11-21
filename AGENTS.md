@@ -1,6 +1,6 @@
 # AGENTS.md — نقطة الدخول الوحيدة لأي وكيل (اقرأ هذا أولاً، كاملاً)
 
-> آخر تحديث: 2026-11-21 (انظر AGENT-STATE (ل) — القرارات حتى D179، الموقع منشور عبر keif-v2 **بلا** D176–D178 (نسخة التطوير متقدّمة وغير منشورة)؛ مراجعة SEO في `docs/seo-2026-11/`) · يُحدَّث في نهاية كل جلسة. إن تعارض مع أي ملف آخر في المستودع فهذا الملف + `docs/AGENT-STATE.md` + `docs/DECISIONS.md` هي المُلزمة (الأحدث يغلب).
+> آخر تحديث: 2026-11-21 (انظر AGENT-STATE (ل) — القرارات حتى D183، الموقع منشور عبر keif-v2 **بلا** D176–D183 (نسخة التطوير متقدّمة وغير منشورة)؛ مراجعة SEO في `docs/seo-2026-11/`) · يُحدَّث في نهاية كل جلسة. إن تعارض مع أي ملف آخر في المستودع فهذا الملف + `docs/AGENT-STATE.md` + `docs/DECISIONS.md` هي المُلزمة (الأحدث يغلب).
 
 ## 0. ترتيب القراءة الإلزامي (≈ 25 دقيقة — لا تختصر)
 1. **هذا الملف** كاملاً.
@@ -23,7 +23,7 @@
 ## 2. القواعد الحمراء (لا استثناء — التفصيل في PLAN §2 وDECISIONS)
 1. **لا PR** — commit مباشر إلى `main` بعد بوابة الجودة (`git push origin main`). فرع `genspark_ai_developer` قديم ومهمل.
 2. **لا تغيير slug** لأي مسار موجود. إضافة مسار جديد مسموحة (`/links` مثال — D145).
-3. **لا أسعار · لا يوتيوب · لا أرقام** إلا: `+500` · `منذ 2016` · `س.ت / الرقم الموحّد 7033069720`. أي رقم آخر يجب أن يكون `verified_by_owner:true` في `data/proof.json` (S10 يفشل البناء).
+3. **لا أسعار · لا يوتيوب · لا أرقام** إلا: `+1600` · `منذ 2016` · `س.ت / الرقم الموحّد 7033069720`. أي رقم آخر يجب أن يكون `verified_by_owner:true` في `data/proof.json` (S10 يفشل البناء).
 4. **D111**: alt/title/الأسماء من الكتالوج **حرفياً** (`src/lib/imageCatalog.data.ts` — 314 سجلاً، مولَّد من `MoTechSys/catalog-keif-aldiafa-photots`؛ لا يُعدَّل يدوياً). CH9 يفشل البناء عند أي تركيب.
 5. **D113**: لا علامة مائية برمجية على الصور.
 6. **D115**: الهيكل والCSS = النموذج **prototype-home v6.9** 1:1 (`MoTechSys/allpro` → `prototype-home/build/{build.py,data.py,local.py}`). أي انحراف يُوثَّق بقرار.
@@ -65,7 +65,7 @@ src/lib/               imageCatalog(.data) · homeContent · offeringsContent ·
 src/styles/v7.css      CSS النموذج 1:1 (764 قوساً متوازنة) · globals.css (بقايا Tailwind لـ404/loading + .ck شريط الكوكيز)
 public/images/         catalog(314) · partners(49) · brand · badges · cutouts(6) · links(9)
 scripts/               seo-guard · similarity-check · check-assets · baseline · import-catalog · html-audit · browser-sweep · pixel-audit · browser/* · baselines/{seo,similarity,assets}.json
-data/proof.json        الأرقام المعتمدة من المالك (+500 · 2016 = true؛ 200 · 100% = false ولا تُعرض)
+data/proof.json        الأرقام المعتمدة من المالك (+1600 · 2016 = true؛ 200 · 100% = false ولا تُعرض)
 docs/                  AGENT-STATE · DECISIONS · DEPLOYMENT (2026-09-11) · reports/ · owner-messages/ · shots/ · archive/ (تقارير الجذر القديمة + manus/agent-skills — لا تُعتمد)
 ci/quality.yml         نسخة workflow — تفعيلها يدوي من المالك
 ```

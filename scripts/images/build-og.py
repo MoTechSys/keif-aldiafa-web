@@ -15,7 +15,7 @@ build-og.py — D171: صورة معاينة (og:image) مختلفة لكل صف�
 التركيب (لكل صفحة):
   يسار (RTL: يمين البصر) الصورة الحقيقية من الكتالوج بقصّ يتجنّب الوجوه (YuNet) —
   يمين نصّ عربي Amiri على خامة ذهبية داكنة مولّدة بالذكاء الاصطناعي (og-bg-ai.png)
-  + الشعار البيضاوي + سطر إثبات «+500 مناسبة · منذ 2016» (الأرقام الوحيدة المسموحة).
+  + الشعار البيضاوي + سطر إثبات «+1600 مناسبة · منذ 2016» (الأرقام الوحيدة المسموحة).
 
 الاستخدام:
   python3 scripts/images/build-og.py --routes /tmp/og_routes.json --pick /tmp/og_pick.json \
@@ -143,7 +143,7 @@ def compose(photo, title, sub, kicker, emblem, bg):
     fb = font(F_HEAD, 40)
     d.text((ex - 18, ey + 10), "كيف الضيافة", font=fb, fill=GOLD_HI, anchor="ra")
     fl = font(F_BODY_B, 22)
-    draw_mixed(d, (ex - 18, ey + 62), "+500 مناسبة  ·  منذ 2016  ·  keifaldiafa.com", fl, GOLD)
+    draw_mixed(d, (ex - 18, ey + 62), "+1600 مناسبة  ·  منذ 2016  ·  keifaldiafa.com", fl, GOLD)
     return canvas
 
 def save_webp(im, path, max_kb=MAX_KB):

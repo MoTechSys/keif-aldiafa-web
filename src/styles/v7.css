@@ -862,3 +862,11 @@ footer.v7-footer .fcol-jed ul{grid-template-columns:1fr 1fr;column-gap:18px}
   footer.v7-footer .fcol-jed{grid-column:auto}
   footer.v7-footer .fcol-jed ul{grid-template-columns:1fr}
 }
+
+/* ── D182 — رابط المطوّر في الفوتر: أبرز + لمعان متحرّك (بأمر المالك 2026-11-21). انحراف عن النموذج v6.9 موثّق. ── */
+footer.v7-footer .dev{font-size:1rem}
+footer.v7-footer .dev a{display:inline-flex;align-items:center;gap:.5em;min-height:44px;padding:0 8px;color:inherit;text-decoration:none}
+footer.v7-footer .dev a b{font-weight:600;letter-spacing:.08em;background:linear-gradient(100deg,#b8860b 0%,#e8c877 38%,#fff8e1 50%,#e8c877 62%,#b8860b 100%);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 0 7px rgba(232,200,119,.5));animation:kdDevShine 2.4s linear infinite}
+footer.v7-footer .dev a:hover b,footer.v7-footer .dev a:focus-visible b{filter:drop-shadow(0 0 12px rgba(232,200,119,.9))}
+@keyframes kdDevShine{0%{background-position:120% 0}100%{background-position:-120% 0}}
+@media (prefers-reduced-motion:reduce){footer.v7-footer .dev a b{animation:none;background-position:50% 0}}

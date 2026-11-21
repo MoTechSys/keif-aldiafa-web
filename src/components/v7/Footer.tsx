@@ -10,7 +10,7 @@ import { WaIcon } from "./WaIcon";
  * Footer — فوتر مُهيكل (D94) منقول 1:1 من النموذج v6.9:
  * العلامة+تواصل / الخدمات / المدن / خدماتنا في جدة (D177) → صف أقسام الموقع (doormat) → التوثيق والحقوق.
  * مكوّن خادم صرف (لا JS). النصوص حرفية من النموذج؛ الأرقام المسموحة فقط
- * (+500 · منذ 2016 · الرقم الموحّد) — PLAN قاعدة 2.
+ * (+1600 · منذ 2016 · الرقم الموحّد) — PLAN قاعدة 2.
  * روابط الخدمات: مراسي /services#<id> بنفس معرّفات data.py (تُبنى في المرحلة 5).
  * روابط المدن: slugs العربية القائمة في Next (قاعدة 5: لا تغيير slug).
  */
@@ -58,7 +58,7 @@ export default function Footer() {
               <b>كيف الضيافة</b>
             </div>
             <p className="fdesc">
-              قهوجيين وصبابين ومباشرين وطاقم ضيافة متكامل بزيّ موحّد — قاعدتنا جدة ونصل إلى ثماني مدن بعدّتنا كاملة. +500 مناسبة منذ 2016.
+              قهوجيين وصبابين ومباشرين وطاقم ضيافة متكامل بزيّ موحّد — قاعدتنا جدة ونصل إلى ثماني مدن بعدّتنا كاملة. +1600 مناسبة منذ 2016.
             </p>
             <a
               className="btn btn-wa btn-sm"
@@ -147,7 +147,10 @@ export default function Footer() {
             © {year} كيف الضيافة. جميع الحقوق محفوظة. · <Link href="/legal" prefetch={false}>الحقوق القانونية</Link> · <Link href="/privacy" prefetch={false}>سياسة الخصوصية</Link>
           </p>
           <p className="dev">
-            Developed by <b>Alabbasi Soft</b>
+            {/* D182: رابط المطوّر إلى موقعه — بأمر المالك 2026-11-21 */}
+            <a href="https://alabbasi.uk" target="_blank" rel="noopener" title="Alabbasi Soft — alabbasi.uk">
+              Developed by <b>Alabbasi Soft</b>
+            </a>
           </p>
           <p className="tag">KEIF AL-DIAFA · LUXURY HOSPITALITY · KSA</p>
         </div>

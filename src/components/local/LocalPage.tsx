@@ -63,14 +63,14 @@ export default function LocalPage({ rec }: { rec: LocalPageRecord }) {
             <h1>{rec.h1[0]} <em>{rec.h1[1]}</em></h1>
             <p className="sub">{rec.intro}</p>
             <div className="pts">{(rec.pts ?? ["جهات وفعاليات رسمية", "شركات ومعارض", "أعراس ومناسبات خاصة"]).map((t) => <span key={t}>{t}</span>)}</div>
-            <div className="badges-l"><span>+500 مناسبة منذ 2016</span><span>طاقم سعودي مدرّب</span><span>{rec.badge3 ?? `كل أحياء ${ar}`}</span></div>
+            <div className="badges-l"><span>+1600 مناسبة منذ 2016</span><span>طاقم سعودي مدرّب</span><span>{rec.badge3 ?? `كل أحياء ${ar}`}</span></div>
           </div>
           <div className="cta">
             <WaBtn text={rec.wa} cls="btn btn-gold" label="احجز عبر واتساب" ev="wa_hero" />
             <a className="btn btn-glass" href="#works">أعمالنا</a>
           </div>
           <div className="proof" aria-label="أرقامنا">
-            <a href="#works" title="شاهد الأعمال"><b>+500</b>مناسبة نُفّذت</a><i />
+            <a href="#works" title="شاهد الأعمال"><b>+1600</b>مناسبة نُفّذت</a><i />
             <span><b className="ar">منذ 2016</b>خبرة متواصلة</span>
           </div>
         </div>
